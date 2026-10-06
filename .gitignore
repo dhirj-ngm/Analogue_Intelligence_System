@@ -1,0 +1,42 @@
+# Local agent and account configuration
+.agents/
+.codex/
+.aws/
+
+# Secrets and environment configuration
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Raw, cached, and generated project data
+data/raw/
+data/cache/
+artifacts/
+models/
+runs/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
