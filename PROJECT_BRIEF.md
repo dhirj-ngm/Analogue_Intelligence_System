@@ -1,7 +1,7 @@
 # Historical Analogue Intelligence Engine
 
 **Complete project brief for Dheeraj Nigam**  
-**Updated:** 7 October 2026, Asia/Kolkata  
+**Updated:** 9 October 2026, Asia/Kolkata
 **Document state:** Consolidated direction and implementation handoff  
 **Confirmed domain:** Business and supply chain intelligence, starting with FMCG input cost pressure and company responses
 
@@ -9,11 +9,24 @@
 
 Build an end to end analytical system that helps a human investigate a business situation by finding comparable historical episodes, including episodes from **other companies** and the **current company's own past**. Explain why each comparison is useful, identify important differences, and show the evidence for documented actions and subsequent outcomes.
 
+The intended users include analysts, researchers and students. A user should
+be able to describe a real company situation, provide partial hints, or ask a
+comparison question and find curated case studies of earlier challenges,
+responses and subsequent developments. Where sources document a company's
+stated rationale or principles, show that evidence. Where a principle is an
+interpretation, label it as such. Readers draw their own inferences; a reported
+recovery does not establish that a particular action caused it.
+
 The first application is a consumer products company facing higher materials, energy or logistics costs and pressure on margins. The central technical experiment is whether a structured representation of business mechanisms improves historical analogue retrieval beyond keyword and embedding search.
 
 Dheeraj has confirmed the FMCG starting domain. The first implementation milestone remains a **ten-episode data pilot and five investigation queries**. Exact companies, model checkpoints, feature weights and final infrastructure should be chosen through that pilot and subsequent experiments.
 
 This brief consolidates the earlier direction document and the later clarifications. Use it as the starting reference for new CLI threads. Keep current implementation progress in the repository's status and decision records. Do not infer that a feature has been implemented merely because it appears in this brief.
+
+For the expanded explanation, read [Project overview](docs/project-overview.md).
+Use [PROJECT_TRACK.md](PROJECT_TRACK.md) for roles and working rules,
+[Thread starter prompts](docs/workflow/thread-start-prompts.md) to open the
+working conversations, and section 17 for where each kind of knowledge belongs.
 
 ## Contents
 
@@ -98,7 +111,30 @@ An early name was **Historical Analogue and Causal Intelligence Engine**. The wo
 
 ### Aim
 
-Help an analyst turn a messy company situation into a structured investigation of historical comparisons, with evidence that can be inspected and challenged.
+Help an analyst, researcher or student turn a company situation or partial
+question into a structured investigation of historical comparisons, with
+curated case studies and evidence that can be inspected and challenged.
+
+### Product objective
+
+Create a place where readers find and compare earlier company challenges,
+understand documented responses and stated rationales, inspect later
+developments, and form their own evidence-based interpretations. Evaluate
+whether readers can locate useful evidence and recognize important differences.
+
+Dheeraj now prioritizes this product objective. The intended experience is
+conversational: clarify the reader's question, organize their situation, adapt
+explanation depth/style, and explore supported case details. Reader judgement
+guides the investigation; it does not substitute for independent benchmark
+judgements. The pilot can use fixed queries before a chatbot is implemented.
+See D012/D013 and the [Manager handoff](docs/workflow/manager-direction-handoff.md).
+
+### Research objective
+
+Test whether explicit business relationships and available context improve
+analogue retrieval over lexical and semantic baselines. Product usefulness and
+retrieval improvement are separate outcomes: useful case-study access remains
+valuable even if structural features do not improve a ranking metric.
 
 ### Primary analyst question
 
@@ -109,6 +145,12 @@ Help an analyst turn a messy company situation into a structured investigation o
 > Does adding typed event relationships and available temporal or quantitative context improve retrieval of useful business analogues beyond lexical and semantic retrieval?
 
 This is an experimental question. Improved retrieval is not an assumed result.
+
+The first detailed investigation, selected under Dheeraj's delegation, compares
+FMCG materials/packaging/logistics-cost margin pressure, documented responses and
+reasoning, later observations and relevant differences. Pricing conditions and
+volume are investigated when supported, not assumed for every case. Structural
+experiments remain research work, not a prerequisite for product usefulness.
 
 ### Illustrative situation
 
@@ -125,6 +167,8 @@ The engine supports judgement by comparing documented actions and observations. 
 The first interface should accept:
 
 - A short description of the situation.
+- Partial hints or a comparison question, with clarification where information
+  needed for a useful comparison is missing.
 - An optional company identifier.
 - An optional date representing what was publicly known at that time.
 - Optional filters for sector, geography, period or mechanism, where the corpus supports them.
@@ -141,6 +185,7 @@ A fixed historical case or structured form can be used for the pilot. Arbitrary 
 | Important differences | Reveal why the analogy may fail |
 | Evidence passages and source links | Let an analyst inspect support for each statement |
 | Documented company actions | Show pricing, productivity or other responses when supported by sources |
+| Stated rationale or principles | Show sourced explanations of the response; label reader or system interpretations separately |
 | Follow-up observations | Show later metrics and developments with their dates |
 | Evidence limitations | Distinguish missing data, forecasts, management explanations and analyst interpretations |
 
@@ -148,7 +193,18 @@ A fixed historical case or structured form can be used for the pilot. Arbitrary 
 
 The end to end application should provide situation search, ranked cases, a comparison view, an inspectable relationship graph, a dated timeline and selected financial metrics. Sources should open at an identified passage or section where practical.
 
+Present each episode as a readable curated case study covering the challenge,
+conditions, documented response, rationale where supported, later observations,
+and limitations of comparison. The episode records remain the evidence basis
+for that presentation. Questions and hints broaden the intended input experience;
+fixed queries remain sufficient for the first pilot.
+
 The demo should also show a weak match and a situation for which the corpus contains insufficient evidence. Do not fill those gaps with plausible invented explanations.
+
+When no sufficiently supported analogue exists, say so explicitly and offer a
+nearest supported partial comparison if one is defensible. If no admissible,
+meaningfully related case exists, return no case rather than force an answer.
+Minimum support and automatic thresholds remain to be specified.
 
 ## 5 Where historical cases come from
 
@@ -289,6 +345,11 @@ An episode is a bounded company situation during a defined period, supported by 
 
 Use a shared episode ID and shock-family ID where appropriate. Also preserve documents explaining contrary or additional mechanisms.
 
+Dheeraj confirms that four quarterly reports updating one continuing pressure
+are one case with four updates. Time gaps flag a possible split for review, not
+proof the challenge ended. Check scope, reported continuity, changes in pressure
+and evidence of resolution/recurrence; preserve a reason for any merge or split.
+
 ### Proposed records
 
 | Record | Minimum fields |
@@ -330,13 +391,35 @@ Preserve units, group versus segment scope and GAAP versus adjusted measures. Do
 
 ## 9 NLP and model learning
 
-### First task
+### Later custom AI component
 
-Begin with a small, testable task: **identify statements describing input cost pressure**. Use those statements to assist episode construction and evidence discovery.
+Dheeraj intends to build a task-specific AI component after BM25 and dense
+embedding baselines. Its exact responsibility, architecture and training route
+remain open. Candidate tasks include input-cost statement detection, mechanism
+extraction, query interpretation or relevance reranking. Select a task using
+pilot evidence, suitable labels, hardware limits and held-out evaluation.
 
-After that task is understood, extracting cause and effect spans or classifying company response types may become extensions. Full automatic reconstruction of a business episode is substantially more demanding than sentence classification.
+Evidence and episode records support feature construction, training examples
+and comparison outputs. Source identity, publication cutoffs, access rules and
+provenance validation remain explicit system responsibilities. Preserve the
+baseline results when adding a model. The term `jev` mentioned in discussion
+has not been identified; confirm the exact tool or method before adopting it.
 
-### Experiment sequence
+### Candidate learning task — not selected
+
+One candidate is to **identify statements describing input cost pressure** to
+assist episode construction and evidence discovery. D010/D012 leave the custom
+AI responsibility open until baseline errors and available labels justify it.
+This is not M001's first task; that task is the annotation guide.
+
+If statement detection is selected later, extracting reported explanation spans
+or classifying company response types may become extensions. Full automatic
+reconstruction of a business episode is substantially more demanding than
+sentence classification.
+
+### Conditional experiment sequence
+
+If the statement-detection task is selected, use this sequence:
 
 1. Write the label definition and examples, including negative cases.
 2. Build a rule baseline.
@@ -498,6 +581,13 @@ These cases establish useful source material. They overlap with the same broad i
 
 The contribution can be an evidence-linked business-episode dataset, a reproducible experiment on structure-assisted analogue retrieval, and an analyst workflow that exposes both matches and mismatches. Publication-level novelty would require further literature review and stronger evaluation.
 
+A later literature discussion identified closer historical analogy precedents,
+including the July 2026 Analogical Deep Research preprint. The maintained
+[literature map](docs/research/literature-map.md) records these alongside their
+task differences and limitations. Historical mechanism matching itself is not
+a novelty claim for this project. This update is an initial literature map,
+not a completed systematic review or a reproduced experiment.
+
 **Stress-test verdict:** proceed to the data pilot. Data richness, annotation quality, historical diversity and evaluation are the main unresolved risks. More compute does not remove those risks.
 
 ## 14 The first data pilot
@@ -506,17 +596,25 @@ The contribution can be an evidence-linked business-episode dataset, a reproduci
 
 Verify that the confirmed FMCG domain contains enough distinguishable, evidence-backed episodes to support useful cross-company historical comparisons.
 
-### Proposed work
+### Working task sequence
 
-1. Check source access for the candidate firms and identify useful historical windows.
-2. Collect ten distinct episodes across multiple firms and at least two distinct periods; seek genuinely different shock contexts where possible.
-3. Preserve source, publication date, reporting period and evidence spans.
-4. Annotate the small mechanism vocabulary and important differences manually.
-5. Include contrasting cases such as margin decline dominated by demand, mix or restructuring if supported by disclosures.
-6. Construct five queries with explicit candidate eligibility rules.
-7. Run BM25 and semantic retrieval on the same episodes.
-8. Judge and compare results using the rubric; record annotation effort and missing data.
-9. Write a continue, narrow or revise decision supported by findings.
+The detailed contract is [M001](docs/modules/M001-data-viability-pilot.md).
+D014 authorizes the current guide task; later tasks retain their checkpoints.
+
+1. **T01:** Draft episode/annotation rules with hypothetical boundary examples;
+   review their meaning before source work.
+2. **T02:** Validate one complete real source-to-case example, checking access,
+   terms, evidence locators, publication/reporting dates and explicit unknowns.
+3. **T03:** Check candidate firms and historical windows; agree a sampling plan.
+4. **T04:** Curate ten distinct reviewed episodes across multiple firms and at
+   least two periods. Preserve evidence and shared-shock dependencies; include
+   supported contrasts and mixed/unsuccessful cases rather than only recoveries.
+5. **T05:** Define five queries; freeze the relevance rubric, judgements,
+   eligibility, evidence budget and evaluation conventions before rankings.
+6. **T06:** Run BM25 and semantic retrieval on identical admissible candidates.
+7. **T07:** Compare results against the frozen judgements; inspect errors,
+   missingness, usefulness and measured curation effort. Do not relabel to fit ranks.
+8. **T08:** Recommend continue, narrow or revise from the actual findings.
 
 ### Pilot outputs
 
@@ -578,7 +676,10 @@ Rent compute for a demonstrated training bottleneck, not as the first architectu
 
 ### Working agreement
 
-Dheeraj uses this conversation to discuss ideas, inspect reasoning and resolve uncertainty. Coding is primarily through **Codex CLI**. The earlier tool-name ambiguity was resolved: this handoff is for Codex.
+Dheeraj has designated the existing project discussion as the **Manager**
+thread: the place to return for coordination, doubts and cross-module choices.
+Separate **Records**, **Domain**, **Implementation** and **Review** threads
+handle their assigned work. Coding is primarily through **Codex CLI**.
 
 Use project files as the portable record. Do not assume the CLI has automatically received this conversation or that this chat can see the laptop's latest code. When returning here, provide current status, decisions and the relevant results or questions.
 
@@ -588,49 +689,58 @@ Use project files as the portable record. Do not assume the CLI has automaticall
 | --- | --- |
 | `PROJECT_BRIEF.md` | This reference: purpose, scope, design and evaluation requirements |
 | `AGENTS.md` | Short repository-specific instructions for Codex |
+| `PROJECT_TRACK.md` | Working rules, thread responsibilities, lifecycle and record ownership |
 | `DECISIONS.md` | Dated choices, reasons, evidence and superseded decisions |
 | `STATUS.md` | Current state, completed work, blockers and next task |
+| `docs/project-overview.md` | Product/research explanation, record roles, output flow and custom-model ambition |
+| `docs/module-map.md` | Current M001 contract and proposed later-module boundaries; consult status for assigned work |
+| `docs/research/literature-map.md` | Source-linked paper notes, precedents and limits of novelty claims |
+| `docs/research/open-questions.md` | User responses and remaining operational concerns |
+| `docs/workflow/thread-start-prompts.md` | Ordered opening prompts and handoff instructions |
+| `docs/workflow/manager-direction-handoff.md` | Accepted direction, delegated starting question and next Records/Implementation handoff |
+| `docs/modules/` | Approved or draft module specifications and task acceptance criteria |
+| `docs/reviews/` | Review findings, their severity and resolution evidence |
+| `docs/domain/` | Domain explanations and supported assumptions developed in discussion |
 | `README.md` | Setup, commands, demo and results for another reader |
 | `data/source_manifest.jsonl` | Source metadata and corpus provenance |
-| `data/annotation_guide.md` | Label definitions and judgement rules |
+| `data/annotation_guide.md` | Episode/evidence annotation rules and examples; benchmark judgements belong in the evaluation protocol |
 | `data/episodes.jsonl` | Reviewed episode records for the first pilot |
 | `evaluation/` | Queries, judgements, split definitions and result reports |
 | `src/` | Collection, extraction, retrieval and service code with clear boundaries |
 | `tests/` | Meaningful checks for dates, eligibility, metrics and changed behaviour |
 | `configs/` | Versioned model, feature and experiment settings |
 
-These are recommended conventions, not a directory inventory. Dheeraj reports that his setup is ready; this briefing task has not inspected his local repository or verified implementation progress.
+Root records and the linked knowledge documents are established. The annotation
+guide v0.1 and its T01 handoff now exist under D014; domain review is pending.
+The source manifest, episode dataset, evaluation artifacts and runtime paths
+remain future deliverables. Consult `STATUS.md` for verified work.
+
+### Where knowledge and decisions belong
+
+Use the brief for changes to purpose, audience, scope or required behavior.
+Use the overview to explain how the product works. Keep paper claims and source
+limitations in the literature map, and unresolved alternatives in the question
+record. A research idea or thread suggestion becomes a project choice when
+accepted and entered in `DECISIONS.md`; cite its supporting note there.
+
+Translate accepted choices into the affected module specification. Record
+actual implementation and measurements in `STATUS.md` and evaluation reports.
+Store review findings under `docs/reviews/`. Keep proposed architectures and
+model candidates clearly marked until selected. Cross-link the records rather
+than duplicating full discussions in the brief or `AGENTS.md`.
 
 ### Short AGENTS.md starter
 
 Codex supports project instructions in `AGENTS.md`. Put a concise file at the repository root, respecting any existing applicable instructions. Keep the complete brief separate and point to it for substantive work. [S11]
 
-The following is a suggested template to copy or adapt; it has not been installed in the user's repository:
+The installed entry point is short and routes to the full working guidelines:
 
 ```markdown
-# Project working agreements
+# Codex project entry point
 
-For a new substantive project task, read PROJECT_BRIEF.md and current
-STATUS.md. Consult DECISIONS.md for choices relevant to the task.
-
-Build the Historical Analogue Intelligence Engine for the confirmed FMCG
-input-cost domain. Retrieval must include cross-company history and
-preserve source evidence and publication dates.
-
-Keep ranking features separate from later follow-up outcomes. Do not
-present management attributions or observed sequences as proven causes.
-
-Use the smallest implementation that meets the current milestone.
-Explain the reason for material dependencies and model choices.
-Treat optional ideas in the brief as optional, not automatic tasks.
-
-Complete the agreed task, run appropriate checks and report limitations.
-Update STATUS.md after a meaningful milestone and DECISIONS.md when a
-material project choice changes. Preserve the user's existing work.
-
-Explain non-obvious design choices so Dheeraj can understand and defend
-the implementation. Record actual results; never invent dataset records,
-sources, scores or completed work.
+Read and follow PROJECT_TRACK.md before beginning work in this repository.
+For a new substantive task, read PROJECT_BRIEF.md and STATUS.md. Consult
+DECISIONS.md and relevant module specifications.
 ```
 
 ### Thread sequence
@@ -663,31 +773,20 @@ changed, what remains uncertain and the next concrete step.
 
 ### First CLI prompt
 
-```text
-Read PROJECT_BRIEF.md. Our confirmed starting domain is business and
-supply chain intelligence, specifically FMCG input cost pressure and
-company responses. The engine must search across companies and include
-the current company's own public history.
+Use the current role prompts in
+[Thread starter prompts](docs/workflow/thread-start-prompts.md). Resume the
+existing Records, Domain and Implementation conversations with the latest
+handoff; do not repeat their initial assignments. Domain/Dheeraj next reviews
+the T01 guide. Independent Review starts when a code checkpoint exists.
+AIS — Manager remains the designated coordination conversation; a new thread
+does not inherit that identity merely by reading this brief.
 
-Inspect my existing project files first. Preserve them. Establish a short
-AGENTS.md, DECISIONS.md and STATUS.md if they do not already exist, or
-update the relevant records without replacing unrelated content.
-
-Start the ten-episode data pilot. Verify source access for candidate
-consumer products firms, curate distinct evidence-linked episodes across
-multiple firms and periods, and include misleading comparison cases.
-Define five queries, admissible candidate sets and a relevance rubric.
-Compare BM25 and semantic retrieval when the dataset is ready.
-
-Respect publication-date cutoffs. Keep later actions and outcomes out of
-the initial ranking features and show them only as labelled follow-up.
-Do not fabricate records or claim causal effects.
-
-Avoid building a large UI or adding graph infrastructure before the data
-pilot supports it. Explain the data and code choices as we work. Report
-source quality, annotation effort, baseline results, gaps and a reasoned
-continue-or-narrow recommendation. End with updated status and next task.
-```
+The earlier broad pilot-start prompt is superseded by these bounded role
+prompts. Creating the records or opening a thread does not approve execution
+of all milestones. Dheeraj has now answered the product-direction concerns;
+D012/D013 and the Manager handoff identify remaining operational questions.
+D014 records the authorized reconciliation and T01 execution. The next handoff
+is [guide review](docs/workflow/M001-T01-handoff.md), not another startup gate.
 
 ### Handoff back to this discussion
 
@@ -752,13 +851,17 @@ The strongest story is the reasoning behind the machinery: how the problem was b
 | Begin with a curated corpus | Keeps evidence, dates and evaluation controllable |
 | Use Codex CLI primarily for coding | Explicit clarification of the coding tool |
 | Carry reasoning through project files | Agreed continuity and handoff approach |
+| Serve analysts, researchers and students through curated case studies | User clarification on 9 October 2026 |
+| Keep this discussion as Manager and use separate working threads | User clarification on 9 October 2026 |
+| Build a task-specific AI component after text baselines | User's learning and product ambition; exact task and design remain open |
+| Begin with ten reviewed episodes and five queries | D004 milestone target; M001 working contract adopted under D014 |
+| Start with the FMCG materials/packaging/logistics-cost margin question | D013 delegated objective; pricing and volume are evidence-dependent comparison dimensions |
 
 ### Proposed defaults requiring practical validation
 
-- Input cost pressure and reported margin drivers as the bounded first task.
 - Colgate-Palmolive, Kimberly-Clark and Procter & Gamble as seed firms.
 - SQLite, NetworkX and Flask for a small initial implementation.
-- Ten pilot episodes and five queries, followed by a larger exploratory corpus if useful.
+- A larger exploratory corpus after the accepted ten-episode/five-query pilot target.
 - One small-model learning task after baseline and data validation.
 - The eight-week sequence and 80–120 hour estimate.
 
@@ -776,7 +879,11 @@ The strongest story is the reasoning behind the machinery: how the problem was b
 
 ### Known work state
 
-The direction and the source-based stress test were completed. Dheeraj has since confirmed FMCG and reports that his setup is ready. No dataset, trained model, retrieval benchmark or application has been verified in this conversation. The CLI should inspect the actual repository and record its current state rather than assume that it is empty or complete.
+The direction and earlier source-based stress test are documented. M001 is now
+In Progress under D014: annotation guide v0.1 is drafted and checked, awaiting
+Domain/Dheeraj review. No curated episode dataset, trained model, retrieval
+benchmark or application exists. Use `STATUS.md` for current evidence rather
+than treating this planning brief as a completion report.
 
 ### Return-to-direction questions
 
@@ -809,6 +916,10 @@ The project research references below come from the **2 October 2026 stress-test
 ## Change from the earlier brief
 
 - FMCG is now recorded as the confirmed starting sector.
+- The 9 October clarification broadens the audience to researchers and students
+  and emphasizes readable case studies, hints/questions and sourced rationales.
+- Product and research objectives, later custom AI work, the Manager role, and
+  routing to knowledge documents and ordered prompts are now explicit.
 - Cross-company retrieval and own-company history are explicit requirements.
 - Public own-company history is distinguished from optional private internal records.
 - The brief contains the original personal rationale, three explored domains and the selected hierarchy.
