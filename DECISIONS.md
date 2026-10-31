@@ -354,3 +354,10 @@ does not constitute replication or acceptance of a model architecture.
 - Use BM25 (k1 1.2, b 0.75) and CPU all-MiniLM-L6-v2 cosine embeddings. Apache-2.0 model card and immutable revision recorded in configs/pilot/baseline.json. No paid API or MCP needed.
 - Challenge-only text, strict historical candidate ordering and publication cutoff, explicit unknown dates and source/duplicate exclusions. Model training-date isolation is not established.
 - Source disclosure is accessed for concise factual annotations and minimal quotations; full archival/redistribution rights remain unverified. No full documents retained.
+
+## D019 — Structure cases and seek blinded reader judgements
+
+- Recorded: 31 October 2026. Status: Builder preparation under D017; human judgements pending.
+- Preserve frozen M001 v1 corpus, protocol, labels and rankings. Add a separate v2 structured case view with distinct pressure, margin/profit, concurrent drivers, response, source/date lineage, unknowns and comparison limits.
+- Prepare five query–candidate pairs for Dheeraj without previous assistant grades or model ranks. Record only his actual grades and reasons as human feedback. No v2 reranking or model claim follows until judgements are supplied and a new evaluation version is defined.
+- Rationale: Q2 and Q4 errors show that similar cost/volume words can hide different mechanisms. Separating fields makes these differences inspectable while retaining source provenance and the original benchmark.

@@ -24,3 +24,7 @@ D016 accepted only the original Colgate case's limited usefulness subject to its
 Use Discussion for questions and direction; Builder for complete modules. Start with PROJECT_TRACK.md and this file. Older role handoffs are history and do not create permission gates. No separate Manager, Records, Reviewer or Domain thread is needed. Existing user changes were preserved. Dheeraj authorized committing the delivered work; Git history records the commit. No push or deployment requested.
 
 M002–M008 remain proposals. No additional MCP or paid API is required. Next module choice can be discussed from the delivered pilot results, without reopening M001's old task-start gates.
+
+## Active follow-up — structured cases and reader review
+
+Builder created `data/pilot/cases-structured-v2.jsonl` with separate pressure, measure, other drivers, response, unknowns and evidence locators for all ten cases. Source/date/metric/review fields passed a local completeness check. The five-pair `evaluation/pilot/relevance-review-v2.md` is ready for Dheeraj's grades and reasons; no human judgements or new model results are claimed. Frozen v1 inputs/results remain unchanged. After feedback, record the actual judgements, define/freeze a v2 comparison and rerun methods on the same eligible candidates.
