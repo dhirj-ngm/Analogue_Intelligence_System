@@ -1,12 +1,9 @@
-# Codex project entry point
+# Project entry point
 
-Read and follow [PROJECT_TRACK.md](PROJECT_TRACK.md) before beginning work in
-this repository. It contains the project workflow and repository guidelines.
+Read [PROJECT_TRACK.md](PROJECT_TRACK.md) and [STATUS.md](STATUS.md).
 
-For a new substantive project task, read [PROJECT_BRIEF.md](PROJECT_BRIEF.md)
-and [STATUS.md](STATUS.md). Consult [DECISIONS.md](DECISIONS.md) for relevant
-choices and any existing module specification in `docs/modules/`.
-
-Keep the full working guidelines in `PROJECT_TRACK.md`; keep this file as the
-short discoverable entry point. Explicit user instructions govern the current
-task. Identify conflicts between project records before acting on them.
+There are two threads: Discussion and Builder. Builder completes an assigned
+module end to end without internal role handoffs. Read its specification for
+scope; consult PROJECT_BRIEF.md, DECISIONS.md and domain notes only as needed.
+Older workflow/handoff documents and docs/archive/ are historical. The current
+user instruction and PROJECT_TRACK.md supersede their task-start gates.

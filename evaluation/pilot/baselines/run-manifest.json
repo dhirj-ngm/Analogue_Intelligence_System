@@ -1,0 +1,30 @@
+{
+  "inputs": {
+    "data/pilot/cases.jsonl": "5d6ca8e518eb16321590af89cae74e80e835af0966eeb7c9adefbbf8401e2f5b",
+    "evaluation/pilot/queries.jsonl": "217313f8afaacba025c4aaa05f37d34744180849d29ed416f2c6ed8500c77500",
+    "evaluation/pilot/judgements.jsonl": "3b714f233b7162d3d7cd5d5ad16fa7f3f5260e9376167b5071dacd602c1adbc2",
+    "evaluation/pilot/protocol.md": "d886450c2ad6c6cc572b53a6df8200bed98edee583ef6507b1babdc5bd2e7a5b",
+    "configs/pilot/baseline.json": "39192c92d80bbf485d3286edfa6e0f82ada760afa46ecaef171bea7f3b119961"
+  },
+  "config": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license": "Apache-2.0",
+    "bm25_k1": 1.2,
+    "bm25_b": 0.75,
+    "tuning": false
+  },
+  "elapsed_seconds": 0.7255991369993353,
+  "device": "cpu",
+  "review": "assistant; descriptive only",
+  "python": "3.14.7",
+  "packages": {
+    "sentence-transformers": "6.2.0",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "numpy": "2.5.4"
+  },
+  "code_sha256": "46ba53a0114ed30b2f1f34b7d6fa06e88de073d69ee26b6ee7ad8f3edb4f644e",
+  "git_base": "0f5ff4426489e98cd9f10d51c54096c46fd79f26",
+  "git_dirty": true
+}

@@ -1,0 +1,7 @@
+{
+  "rank_order_identical": true,
+  "metrics_identical": true,
+  "max_score_difference": 4.440892098500626e-16,
+  "tolerance": 1e-05,
+  "second_run_offline": true
+}

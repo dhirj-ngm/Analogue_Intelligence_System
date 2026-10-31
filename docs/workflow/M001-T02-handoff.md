@@ -1,4 +1,82 @@
-# M001-T02 — Real-example checkpoint to Domain
+# M001-T02 — Checkpoint and correction handoff
+
+## Current correction to Records — 31 October 2026
+
+**Task/finding:** M001-T02 / DOM-T02-01, applied under the explicit correction
+assignment and D016. No T03 work or lifecycle transition.
+
+The Colgate Asia Pacific Q4 2022 episode is now **record version 2**. Added
+SP-CL-APAC-006, CL-CL-APAC-006 and MET-CL-APAC-003/004: as-reported and organic
+volume each changed **−1.0% versus Q4 2021**, in the same division. Source: the
+[official release](https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-4th-quarter-and-full-year-2022-results),
+Fourth Quarter Sales Growth By Division, Asia Pacific row, its two volume
+columns and quarter heading; corroborated by quarterly Table 6 and notes.
+
+The worksheet replaces `volume_demand` with evidenced `disclosed_volume` references
+and a separate `underlying_consumer_demand` unknown. The issuer's volume columns
+do not establish consumer demand or a volume contribution to margin decline.
+Source labels, comparison periods and the difference from sales are preserved;
+no extra definition/weighting formula is invented. The new claim stays display-only
+pending T05. Existing margin attribution and initial evidence/IDs remain intact.
+
+**Source checks:** Web reader opened the same release and exposed the relevant
+headings, volume cells, footnotes and Table 6. Direct `curl` returned HTTP 403
+(exit 22). A new raw body/hash was not obtained. The new locator hashes rendered
+row cells, with normalization and column positions declared; this is not a raw
+HTML hash or a revalidation of the old HTML offsets. The manifest adds a dated
+inspection without replacing the original retrieval/hash. Terms were not
+rechecked; full-source retention/public-reuse limits remain unresolved.
+
+**Local checks passed:** One source/episode, six unique spans/claims, four metrics,
+fourteen explicit unknowns; claim/update/action/metric references resolve. Both
+volume values, division, units, reporting/comparison quarters and publication
+date agree with the inspected table. The stored excerpt matches the rendered-row
+cell-pair fixture, offsets and context hash. Original five spans/claims, both
+margin metrics, source retrieval metadata, guide 0.2, canonical review flags and
+original effort measurement are unchanged. JSONL parsing, Markdown local links,
+UTF-8/newlines/whitespace and `git diff --check` passed. No application code was
+introduced; application tests/lint are inapplicable. No ranking or model run.
+
+**Records disposition requested:** D016 already records Dheeraj's bounded
+acceptance of the case's limited usefulness. Record the correction/version and
+reconcile canonical human-review flags/counts with that limited decision. Those
+flags/counts were deliberately not promoted by Implementation; no final guide,
+episode-boundary, response-effectiveness or ten-case corpus acceptance follows.
+Earlier specification reconciliation is already complete and is not reopened.
+Manager decides any subsequent assignment. No new user decision is needed merely
+to disposition this correction.
+
+Changed artifacts: episode JSONL, source manifest (additive inspection and excerpt
+count), walkthrough, this handoff, factual STATUS progress and the linked checksum
+ledger. The guide, Domain review and pre-existing D016 changes are preserved.
+
+**Exact target:** `main` at base
+`0f5ff4426489e98cd9f10d51c54096c46fd79f26`, plus this local correction and
+pre-existing `DECISIONS.md` / Domain-review work. No new commit or remote check.
+
+| Current artifact | SHA-256 |
+| --- | --- |
+| Guide 0.2, unchanged | `0ec2551848436aec85c2f42ddf58f3f3827d46a8e302436325820ab338b9ac4c` |
+| Source manifest, additional volume inspection | `918911af5ddcc37c943e96436ac887d372e1fd67d749855262e244c040310e05` |
+| Episode record version 2 | `117be571db6674549af0d7255dae363898b58fd4818cd3208efa5820ff104618` |
+| Revised walkthrough | `91341b90728c332ea03363a8cbff8c0c145d31d73d4706d8b5e357f944c93348` |
+
+The [correction checksum ledger](../../data/pilot/M001-T02-correction.sha256)
+also records final hashes for this handoff and STATUS, avoiding a self-hash cycle
+inside either document. Verify from the repository root with
+`sha256sum -c data/pilot/M001-T02-correction.sha256`.
+
+The original handoff SHA-256 before this correction was
+`6cdef0a07f777b09d19e80a56a91ac0d3ae5fff69d1718f91a72fdb6429e8a83`.
+The historical target table below is preserved unchanged; it identifies the
+pre-correction checkpoint, not the current files. The episode revision history
+also preserves its original hash and committed snapshot reference.
+
+## Historical delivery to Domain — 9 October 2026
+
+The remainder preserves the original checkpoint, its checks, scope and target
+hashes. Its pending-review/repair instructions describe that earlier state;
+D016 and the current Records handoff above govern resumption.
 
 **Recorded:** 9 October 2026, Asia/Kolkata  
 **Task:** M001-T02 — one source-to-case example; stop before T03  

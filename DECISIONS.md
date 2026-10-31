@@ -247,6 +247,28 @@ continues to own module specifications and routine status transitions.
   Implementation handles returned corrections, and Manager assigns later work.
   T03–T08 are unstarted; startup approval is not repeated.
 
+### D016 — Accept the first case's limited usefulness, subject to clarification
+
+- **Recorded:** 31 October 2026, Asia/Kolkata.
+- **Status:** Accepted human judgement; volume-data correction pending.
+- **Basis:** During the resumed T02 Domain walkthrough, Dheeraj was asked whether
+  to keep the Colgate example with its limits clearly stated and one correction
+  noted, explicitly limited to case usefulness rather than the whole project.
+  He replied, "Yeah, okay," then asked whether this step was done.
+- **Decision:** Keep `EP-CL-APAC-2022Q4-001` as a limited first example of reported
+  cost pressure and broad responses, subject to clarifying available volume
+  evidence separately from unknown underlying consumer demand. Specific actions,
+  reasoning, dates and subsequent outcomes remain limited as documented.
+- **Consequences:** Dheeraj's bounded usefulness decision is recorded; correction
+  and technical/Records disposition remain open. Implementation addresses
+  DOM-T02-01; Records records the resulting version/checkpoint disposition.
+  No human acceptance of final annotation policy, definitive episode boundaries,
+  response effectiveness, completed AC01/M001 or accepted ten-case corpus is
+  implied. Existing canonical review flags/counts await Records reconciliation
+  after correction. No T03 work or module lifecycle transition is authorized.
+- **Supporting review and handoff:**
+  [T02 case discussion](docs/domain/M001-T02-case-review.md).
+
 ## Superseded proposal and unresolved choices
 
 ### D011 — Pilot task contracts and cross-module handoffs
@@ -315,3 +337,20 @@ Detailed concerns and Dheeraj's responses, with remaining operational questions,
 [Open questions](docs/research/open-questions.md). Research precedents are
 maintained in [Literature map](docs/research/literature-map.md); their inclusion
 does not constitute replication or acceptance of a model architecture.
+
+## D017 — Two threads and whole-module execution
+
+- Recorded: 31 October 2026; accepted explicit user instruction.
+- Replace five-role coordination with Discussion and Builder. Builder owns implementation, checks, self-review and records; no task-by-task permission gates.
+- Authorize all remaining M001 work now. Preserve ten-case/five-query targets and evidence controls. Assistant review must be identified honestly; independent/human validation is a separately reported limitation, never fabricated.
+- Supersedes workflow/assignment stops in D006/D008/D013–D016 and historical handoffs. D016 bounded Colgate acceptance and its applied volume correction remain preserved.
+- Delivery and user acceptance are separate. Existing scientific requirements remain; do not silently claim original human-review criteria satisfied.
+
+## D018 — Descriptive local pilot implementation choices
+
+- Recorded: 31 October 2026; Builder choices under D017 delegation.
+- Use a compact JSONL projection alongside preserved T02 evidence, with ten bounded observations from five issuers. These are not ten independently established shocks; human-review criteria remain unmet and must be disclosed.
+- Use five fixed questions and pre-ranking assistant grades as a descriptive development benchmark, without tuning or held-out claims. Record insufficient-evidence and partial-comparison situations.
+- Use BM25 (k1 1.2, b 0.75) and CPU all-MiniLM-L6-v2 cosine embeddings. Apache-2.0 model card and immutable revision recorded in configs/pilot/baseline.json. No paid API or MCP needed.
+- Challenge-only text, strict historical candidate ordering and publication cutoff, explicit unknown dates and source/duplicate exclusions. Model training-date isolation is not established.
+- Source disclosure is accessed for concise factual annotations and minimal quotations; full archival/redistribution rights remain unverified. No full documents retained.

@@ -1,3 +1,5 @@
+> Current workflow (31 October 2026, D017): Discussion + Builder. Builder is authorized to finish M001 end to end. Historical role handoffs and task-start stops below are superseded by PROJECT_TRACK.md; evidence requirements and honest review labels remain.
+
 # Historical Analogue Intelligence Engine
 
 **Complete project brief for Dheeraj Nigam**  
