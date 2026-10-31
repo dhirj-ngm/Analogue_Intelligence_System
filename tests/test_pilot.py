@@ -1,4 +1,9 @@
 import copy
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from run_structured_review import challenge
 import unittest
 from ais.pilot import ROOT, bm25, eligible, metrics, ranking_text, read_jsonl, validate
 
@@ -54,6 +59,14 @@ class PilotTests(unittest.TestCase):
         self.cases[0]["period_end"] = "2099-01-01"
         with self.assertRaises(ValueError):
             validate(self.cases, self.queries, self.judgements)
+
+    def test_structured_challenge_excludes_response_and_limit(self):
+        case = read_jsonl(ROOT / "data/pilot/cases-structured-v2.jsonl")[0]
+        before = challenge(case)
+        case["response"]["value"] = "PRIVATE RESPONSE"
+        case["comparison_limit"] = "PRIVATE LIMIT"
+        self.assertEqual(challenge(case), before)
+        self.assertNotIn("PRIVATE", before)
 
     def test_real_corpus_and_pair_coverage(self):
         validate(self.cases, self.queries, self.judgements)

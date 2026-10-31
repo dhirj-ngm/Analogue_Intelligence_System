@@ -361,3 +361,10 @@ does not constitute replication or acceptance of a model architecture.
 - Preserve frozen M001 v1 corpus, protocol, labels and rankings. Add a separate v2 structured case view with distinct pressure, margin/profit, concurrent drivers, response, source/date lineage, unknowns and comparison limits.
 - Prepare five query–candidate pairs for Dheeraj without previous assistant grades or model ranks. Record only his actual grades and reasons as human feedback. No v2 reranking or model claim follows until judgements are supplied and a new evaluation version is defined.
 - Rationale: Q2 and Q4 errors show that similar cost/volume words can hide different mechanisms. Separating fields makes these differences inspectable while retaining source provenance and the original benchmark.
+
+## D020 — Close M001 as a development pilot with explicit validation limits
+
+- Recorded: 31 October 2026. Status: Accepted user direction to complete work and close module 1 in one pass.
+- The compact M001 implementation contract is delivered. Preserve the original ten-human-reviewed-case and independent-validation shortfalls in STATUS.md and the pilot report; closure does not imply they passed.
+- Dheeraj supplied grades 2 for five v2 review pairs A–E without reasons. Record numeric feedback exactly. Pair E's relationship to an embargo query requires clarification; no rationale is imputed, and no full-list human metric is claimed.
+- A frozen challenge-only structured comparison ran the same BM25/MiniLM methods and eligibility rules. Its five pair positions are descriptive. Further data validation and product work belong to later scoped modules, not an M001 task handoff.

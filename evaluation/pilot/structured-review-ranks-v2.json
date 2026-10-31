@@ -1,0 +1,128 @@
+[
+  {
+    "query_id": "Q1",
+    "method": "bm25",
+    "ranking": [
+      "CL-2020",
+      "CL-2015",
+      "KC-2011",
+      "CL-2008",
+      "KC-2018",
+      "CLX-2021",
+      "PG-2022"
+    ]
+  },
+  {
+    "query_id": "Q1",
+    "method": "dense",
+    "ranking": [
+      "CL-2008",
+      "CLX-2021",
+      "CL-2015",
+      "CL-2020",
+      "PG-2022",
+      "KC-2011",
+      "KC-2018"
+    ]
+  },
+  {
+    "query_id": "Q2",
+    "method": "bm25",
+    "ranking": [
+      "KC-2011",
+      "CL-2015",
+      "CL-2020",
+      "CL-2008",
+      "KC-2018"
+    ]
+  },
+  {
+    "query_id": "Q2",
+    "method": "dense",
+    "ranking": [
+      "KC-2011",
+      "CL-2015",
+      "CL-2008",
+      "KC-2018",
+      "CL-2020"
+    ]
+  },
+  {
+    "query_id": "Q3",
+    "method": "bm25",
+    "ranking": [
+      "CL-2008",
+      "KC-2011"
+    ]
+  },
+  {
+    "query_id": "Q3",
+    "method": "dense",
+    "ranking": [
+      "CL-2008",
+      "KC-2011"
+    ]
+  },
+  {
+    "query_id": "Q4",
+    "method": "bm25",
+    "ranking": [
+      "CL-2020",
+      "CLX-2021",
+      "UL-2022",
+      "CL-2022",
+      "PG-2022",
+      "CL-2008",
+      "CL-2015",
+      "KC-2011",
+      "KC-2018"
+    ]
+  },
+  {
+    "query_id": "Q4",
+    "method": "dense",
+    "ranking": [
+      "UL-2022",
+      "CLX-2021",
+      "CL-2022",
+      "CL-2008",
+      "KC-2011",
+      "PG-2022",
+      "CL-2020",
+      "CL-2015",
+      "KC-2018"
+    ]
+  },
+  {
+    "query_id": "Q5",
+    "method": "bm25",
+    "ranking": [
+      "KC-2018",
+      "CL-2015",
+      "CLX-2023",
+      "CL-2008",
+      "CL-2020",
+      "CL-2022",
+      "CLX-2021",
+      "KC-2011",
+      "PG-2022",
+      "UL-2022"
+    ]
+  },
+  {
+    "query_id": "Q5",
+    "method": "dense",
+    "ranking": [
+      "CL-2015",
+      "CL-2022",
+      "KC-2011",
+      "CLX-2021",
+      "PG-2022",
+      "CLX-2023",
+      "CL-2008",
+      "CL-2020",
+      "UL-2022",
+      "KC-2018"
+    ]
+  }
+]

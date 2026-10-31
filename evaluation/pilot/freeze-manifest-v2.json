@@ -1,0 +1,7 @@
+{
+  "data/pilot/cases-structured-v2.jsonl": "ea8ba52c02d931a58c034a1ebfa4117ff8f88c3352cd41355c1336c1e1ca9ddc",
+  "evaluation/pilot/queries.jsonl": "217313f8afaacba025c4aaa05f37d34744180849d29ed416f2c6ed8500c77500",
+  "evaluation/pilot/reader-judgements-v2.jsonl": "964d19131bfe6d1edbc38e50b52746df02fa1142df97d76cee42d13dbaf7a233",
+  "evaluation/pilot/protocol-v2.md": "ec53b13778b42868ffcff4d99c0df1aa5ad3f334b3658162e8837007a46deff3",
+  "configs/pilot/baseline.json": "39192c92d80bbf485d3286edfa6e0f82ada760afa46ecaef171bea7f3b119961"
+}

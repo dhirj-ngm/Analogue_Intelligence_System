@@ -28,7 +28,7 @@ Clorox 2021 is a cross-company comparison with a material difference: alongside 
 | AC03 ten reviewed cases | Ten assistant-checked bounded observations. Original ten human-reviewed, distinct-episode criterion is **not satisfied**. |
 | AC04 five queries/judgements | Five queries and 33 frozen eligible-pair grades; assistant-only descriptive evaluation. |
 | AC05 reproducible baselines | Paired rankings, pinned model/config, dependency lock, run manifest and offline rerun evidence. |
-| AC06 protections | Seven tests plus saved-candidate/hash/metric audit; no response/outcome fields in ranking text. |
+| AC06 protections | Eight current tests plus saved-candidate/hash/metric audit; no response/outcome fields in ranking text. |
 | AC07 usefulness/errors/effort | Concrete comparison above, per-query errors and explicit missing effort/reader evidence. No new human usability test. |
 | AC08 recommendation/review | Narrow recommendation and Builder self-review delivered; independent review and user module acceptance are not claimed. |
 
@@ -43,3 +43,11 @@ Per-case human curation time and a reliable scaling estimate remain unknown. Avo
 ## Verification
 
 `make test lint validate` passes. `scripts/audit_results.py` verifies frozen hashes, both methods, exact eligible sets and metrics. Two CPU runs produced identical ranks and metrics; score differences were below 1e-5, with the second run offline. See baselines/reproducibility.json and run-manifest.json. No deployment, commit or publication performed.
+
+## Post-pilot structured review and closure — 31 October 2026
+
+Dheeraj entered grade **2** for each of the five blinded pairs A–E in `relevance-review-v2.md`; no reasons were supplied. Their numerical grades are preserved in `reader-judgements-v2.jsonl`. Pair E's grade is particularly ambiguous because the cited P&G disclosure concerns commodity costs rather than export access. No inferred rationale or correction has been inserted. A clarification request is pending.
+
+The v2 structured representation separates pressure, reported margin/profit change, other drivers and response for all ten observations. A frozen, untuned follow-up ranked the same eligible cases with BM25 and pinned MiniLM on challenge-only fields. For A–E respectively, BM25 positions were **4, 2, 1, 2, 9** and dense positions were **1, 2, 1, 2, 5**. These positions do not demonstrate improvement: only five pairs have human grades, all are grade 2 without reasons, and full-list human P@5/nDCG@5 cannot be calculated. The original v1 corpus, labels and rankings are retained intact. No structural model, learned weights or new recommendation is selected from these results.
+
+Dheeraj explicitly requested closure of M001 in the current conversation. The active compact M001 implementation deliverables are complete and verified; record its lifecycle as **Closed — development pilot**. The original research acceptance shortfalls remain open evidence limitations, particularly ten human-reviewed distinct episodes, independent relevance review of all eligible pairs, and a new reader-usability finding. Closure is not a claim that these missing validations happened. Any broader scientific claim needs fresh evidence and a new review/version rather than retroactive promotion of assistant records.

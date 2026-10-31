@@ -1,6 +1,6 @@
 # M001 — Data viability pilot
 
-Owner: Builder. Authorized end to end by D017, 31 October 2026.
+Lifecycle: Closed — development pilot, 31 October 2026 (D020). Builder delivered the compact implementation; original human-validation shortfalls remain explicit.
 
 Deliver a small reproducible experiment showing whether public FMCG disclosures can support useful historical case retrieval. The original detailed contract is preserved in docs/archive/M001-original-contract.md; its task gates no longer govern execution.
 

@@ -1,0 +1,7 @@
+# Structured case comparison v2
+
+This follow-up keeps the original five queries and exact candidate/date rules. The ten structured cases are a separate version. Ranking text is the concatenation of pressure, margin_or_profit and other_drivers only; reported responses, later outcomes, comparison limits, review labels and human grades are excluded. BM25 and the same pinned MiniLM encoder rank identical candidates. No weights, model selection or tuning use the five reader grades.
+
+Dheeraj entered grade 2 for pairs A–E without reasons. These are five human numeric judgements, not 33 human labels or ten reviewed cases. Pair E conflicts with the apparent embargo-mechanism evidence and awaits clarification; do not silently relabel or treat it as proof of an embargo match. Because the human pair set is incomplete and contains an unresolved interpretation, do not calculate or claim full-list human nDCG/P@5. Report only the five pairs' positions and source-backed differences. The v1 assistant benchmark remains unchanged and separately reproducible.
+
+Input manifest must be written before v2 rankings. Any later rationale or grade change receives a new judgement version; do not overwrite this snapshot. The pilot is not a controlled text-representation experiment until case text, judgement process and evaluation use are independently reviewed. No automatic abstention threshold is validated here.
