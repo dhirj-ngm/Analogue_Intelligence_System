@@ -1,10 +1,24 @@
 # Historical Analogue Intelligence Engine
 
-An evidence-linked FMCG case retrieval pilot. Two threads: **Discussion** for ideas and decisions; **Builder** for whole-module delivery. Read PROJECT_TRACK.md and STATUS.md to resume. Older handoffs are history.
+An evidence-based tool for finding earlier company situations that help explain
+a current business challenge. The first domain is FMCG input-cost pressure and
+company responses. Search should compare both the company's own past and other
+companies, show why an earlier case helps, show important differences, and link
+to source passages. Issuer explanations and later observations must remain
+separate from the system's interpretation. A reported recovery is not proof that
+a particular action caused it.
 
-## Run locally
+The current deliverable is a reproducible **development pilot** with ten
+assistant-checked observations, five queries, BM25 keyword retrieval and MiniLM
+semantic retrieval. [The pilot report](evaluation/pilot/pilot-report.md) contains
+results and limitations. `data/pilot/cases-structured-v2.jsonl` separates
+pressure, measure, other drivers, response and unknowns. The original detailed
+Colgate record remains in `data/episodes.jsonl` with its source manifest.
 
-Python 3.14 was used for this pilot. CPU inference; initial setup and model download require internet access. No paid API, credentials or MCP required.
+## Run
+
+Python 3.14 and an internet connection are needed for initial CPU model setup.
+No paid API, credentials or MCP are required.
 
 ```sh
 make setup
@@ -12,27 +26,23 @@ make test
 make lint
 make validate
 make run
-# After the first model download, run without network:
-HF_HUB_OFFLINE=1 make run
 ```
 
-The model cache lives in ignored `models/`. Frozen benchmark inputs are checked before execution. Results are written to `evaluation/pilot/baselines/`. `requirements.txt` records the tested dependency environment.
-
-For a lexical investigation:
+After the model is cached: `HF_HUB_OFFLINE=1 make run`. To try a keyword query:
 
 ```sh
 PYTHONPATH=src .venv/bin/python -m ais.pilot search --text 'packaging costs and margin pressure' --cutoff 2023-01-27
 ```
 
-This returns uncalibrated candidates with evidence and limitations; a rank is not proof of relevance. No automatic insufficient-evidence threshold is implemented. Inspect source passages before interpreting cases.
+Results are uncalibrated candidates; inspect source evidence and differences.
+Model caches are ignored by Git. Frozen v1 and v2 experiment files stay under
+`evaluation/pilot/`; changes to them require a new version.
 
-## What is here
+## Roadmap
 
-- `data/pilot/cases.jsonl`: ten compact assistant-checked observations, including contrasts; original detailed Colgate evidence remains in `data/episodes.jsonl`.
-- `evaluation/pilot/`: fixed queries, pre-ranking assistant judgements, protocol, input hashes and measured comparisons.
-- `src/ais/pilot.py`: date/candidate validation, BM25, dense retrieval and metrics.
-- `tests/`: leakage, dates, eligibility, invalid inputs and metric checks.
-
-The pilot is descriptive and has no independent relevance labels, held-out claims, causal findings or trained custom model. Evidence review and user acceptance are separate from software delivery.
-
-Read [the completed development pilot report](evaluation/pilot/pilot-report.md) for results and the unmet original human-validation criteria.
+M001 is closed as a development pilot. Next build the case-search and comparison
+experience and improve evidence depth. Later, expand the corpus, evaluate with
+independent relevance judgements if available, test structural comparison, and
+consider task-specific model training only when failures and labels justify it.
+Builder works end to end without user review gates. Development findings must
+not be presented as independently validated business advice.

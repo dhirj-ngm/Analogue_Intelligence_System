@@ -1,53 +1,58 @@
-# M001 pilot report — 31 October 2026
+# M001 development pilot
 
-**Delivery:** working development pilot, with scientific validation shortfalls explicitly retained. **Recommendation: narrow** the next build to evidence-backed comparisons of reported pressures and responses. Do not yet claim strategy learning, independently reviewed analogues or an effective conversational advisor.
-
-## Delivered
-
-Ten compact source-linked observations across five issuers and multiple years; five fixed investigations; 33 eligible pre-ranking assistant judgements; publication/self/duplicate controls; BM25 and pinned MiniLM dense retrieval; tests, commands, results and offline reproducibility evidence. Original corrected Colgate worksheet and D016 feedback preserved.
+Closed 31 October 2026. Ten assistant-checked source-linked observations across
+five issuers and multiple periods, five fixed queries, 33 assistant-labelled
+eligible pairs, and paired BM25/MiniLM runs. Results are descriptive; the labels
+and most cases have no independent human review.
 
 | Method | Mean P@5 | Mean nDCG@5 |
 | --- | ---: | ---: |
 | BM25 | 0.400 | 0.6253 |
 | MiniLM dense | 0.360 | 0.6561 |
 
-Means include the zero-relevance query. Candidate counts Q1–Q5 are 7, 5, 2, 9 and 10. Dense has slightly higher mean nDCG but lower P@5; five assistant-labelled questions cannot establish superiority. No split, tuning, independent relevance review or statistical testing was performed.
+Means include one query with no relevant case. Candidate counts by query were
+7, 5, 2, 9 and 10. Dense has slightly higher nDCG and lower P@5, but five
+assistant-labelled queries cannot establish superiority. The Q3 nDCG of 1.0
+reflects only two eligible candidates and a partial match. Q5 asks for an
+export-embargo case absent from this corpus; both methods still rank unrelated
+cases because no calibrated abstention rule exists.
 
-## Readable comparison
+The ten records were purposively selected from accessible official releases and
+filings: Colgate 2008/2015/2020/2022, Kimberly-Clark 2011/2018, Clorox
+2021/2023, P&G 2022 and Unilever 2022. The Colgate 2020 source lead redirected
+to the wrong quarter during curation, so its unsupported cost narrative was
+removed before the v1 benchmark froze. The retained Q1 official release supports
+a contrasting demand-growth case. The same company and the 2021–22 inflation
+window recur; ten observations are not ten proven independent shocks.
 
-For the Colgate Asia Pacific Q4 2022 investigation, CL-2008 is a supported partial own-company comparison: both disclosures identify materials/packaging cost pressure and describe pricing and savings as offsets. The 2008 observation concerns global gross margin excluding restructuring; the 2022 example concerns regional operating margin. Those measures include different costs and scopes, so their levels cannot be compared directly. Neither source isolates the effect of a response or supplies a transferable best strategy. Exact implementation detail and later outcomes remain unknown in the pilot.
+For the Colgate Asia Pacific Q4 2022 question, Colgate Q3 2008 is a useful
+partial own-company comparison: both discuss materials/packaging pressure and
+pricing/savings offsets. The 2008 metric is adjusted global gross margin;
+the 2022 metric is regional operating margin. Their levels cannot be compared
+as the same measure. Clorox Q4 2021 is a cross-company partial comparison with
+shipment normalization and fixed-cost absorption as additional contributors.
+Neither comparison isolates response effectiveness.
 
-Clorox 2021 is a cross-company comparison with a material difference: alongside input/logistics inflation, shipment normalization and manufacturing absorption contributed to the margin decline. That is useful context, but it cannot establish that the same mechanism operated in Colgate. This walkthrough is assistant-authored; D016 supplies human feedback only on the original example's limited usefulness. No new reader-usability result is claimed.
+A later structured view separates pressure, reported margin/profit change,
+other drivers and response. It keeps responses out of ranking text. Five
+user-entered grades of 2 (A–E) were recorded without reasons. On those pairs,
+BM25 positions were 4, 2, 1, 2, 9 and MiniLM positions were 1, 2, 1, 2, 5.
+Those grades cover only five pairs; full-list human P@5/nDCG@5 cannot be
+calculated. Pair E (P&G commodity costs against an embargo query) has no
+recorded explanation for relevance. Preserve the grade as entered and do not
+infer a reason or an embargo mechanism.
 
-## Original acceptance matrix
+Verification: eight tests, Ruff checks, frozen-input and candidate audit, and
+offline rerun passed. Rank order and metrics reproduced, with scores within
+1e-5. See run manifests and frozen protocols in `evaluation/pilot/`. Source
+URLs, locators, dates and metric bases live in the case records. Full-source
+archival/public redistribution permission, precise episode boundaries, later
+realized outcomes, human review of all ten cases, and independent full-query
+labels remain unverified. The original detailed Colgate case had limited
+usefulness accepted by Dheeraj after its volume correction; this does not
+validate the whole corpus. No causal or strategy-success conclusion follows.
 
-| Criterion | Evidence / disposition |
-| --- | --- |
-| AC01 usable rules/example | Existing guide, corrected T02 record and D016; compact pilot schema documented. Definitive boundaries remain uncertain. |
-| AC02 source coverage | source-coverage.md records inspected sources, redirects and access limits. Full archive/public reuse clearance remains unverified. |
-| AC03 ten reviewed cases | Ten assistant-checked bounded observations. Original ten human-reviewed, distinct-episode criterion is **not satisfied**. |
-| AC04 five queries/judgements | Five queries and 33 frozen eligible-pair grades; assistant-only descriptive evaluation. |
-| AC05 reproducible baselines | Paired rankings, pinned model/config, dependency lock, run manifest and offline rerun evidence. |
-| AC06 protections | Eight current tests plus saved-candidate/hash/metric audit; no response/outcome fields in ranking text. |
-| AC07 usefulness/errors/effort | Concrete comparison above, per-query errors and explicit missing effort/reader evidence. No new human usability test. |
-| AC08 recommendation/review | Narrow recommendation and Builder self-review delivered; independent review and user module acceptance are not claimed. |
-
-D017 removes task-start handoffs and authorizes whole-module execution; it does not turn assistant checks into human validation. This is complete as a reproducible development implementation under the compact module specification, with the original research acceptance shortfalls above. It is not marked scientifically validated or human-accepted.
-
-## Next practical scope
-
-Reuse the existing runner and records. Improve evidence depth and case readability before adding graph ranking or custom training. In particular, collect dated response implementation and follow-up evidence, clarify episode continuity, and obtain a small independent relevance review when feasible. A modest case-search/comparison interface can be built on the current data with visible source and uncertainty labels; its usefulness must then be tested with readers.
-
-Per-case human curation time and a reliable scaling estimate remain unknown. Avoid projecting the old assistant T02 timing into a corpus budget. No paid service or additional MCP is needed for the current pilot.
-
-## Verification
-
-`make test lint validate` passes. `scripts/audit_results.py` verifies frozen hashes, both methods, exact eligible sets and metrics. Two CPU runs produced identical ranks and metrics; score differences were below 1e-5, with the second run offline. See baselines/reproducibility.json and run-manifest.json. No deployment, commit or publication performed.
-
-## Post-pilot structured review and closure — 31 October 2026
-
-Dheeraj entered grade **2** for each of the five blinded pairs A–E in `relevance-review-v2.md`; no reasons were supplied. Their numerical grades are preserved in `reader-judgements-v2.jsonl`. Pair E's grade is particularly ambiguous because the cited P&G disclosure concerns commodity costs rather than export access. No inferred rationale or correction has been inserted. A clarification request is pending.
-
-The v2 structured representation separates pressure, reported margin/profit change, other drivers and response for all ten observations. A frozen, untuned follow-up ranked the same eligible cases with BM25 and pinned MiniLM on challenge-only fields. For A–E respectively, BM25 positions were **4, 2, 1, 2, 9** and dense positions were **1, 2, 1, 2, 5**. These positions do not demonstrate improvement: only five pairs have human grades, all are grade 2 without reasons, and full-list human P@5/nDCG@5 cannot be calculated. The original v1 corpus, labels and rankings are retained intact. No structural model, learned weights or new recommendation is selected from these results.
-
-Dheeraj explicitly requested closure of M001 in the current conversation. The active compact M001 implementation deliverables are complete and verified; record its lifecycle as **Closed — development pilot**. The original research acceptance shortfalls remain open evidence limitations, particularly ten human-reviewed distinct episodes, independent relevance review of all eligible pairs, and a new reader-usability finding. Closure is not a claim that these missing validations happened. Any broader scientific claim needs fresh evidence and a new review/version rather than retroactive promotion of assistant records.
+Recommendation: continue with a narrow evidence-based comparison experience.
+Expand supported case detail and handle insufficient evidence before training
+or adding complex structural ranking. No model improvement claim is accepted
+from this tiny pilot.
