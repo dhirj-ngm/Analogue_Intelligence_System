@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 
 from ais.collection import load_collection, search_records
 from ais.pilot import ROOT, bm25, eligible, ranking_text, read_jsonl, tokens
+from ais.related import analyze, explain_matches
 
 # These words alone do not establish a specific, supported pressure match.
 FILLER = set(
@@ -199,8 +200,7 @@ class CaseSearch:
             return "challenge_evidence_after_cutoff"
         return None
 
-    def search(self, payload):
-        query = self.query(payload)
+    def candidate_pool(self, query):
         exclusions = Counter()
         candidates = []
         seen = set()
@@ -215,28 +215,52 @@ class CaseSearch:
                 continue
             seen.add(case["duplicate_group"])
             candidates.append(case)
-        # Reuse the baseline on the identical admissible, deduplicated pool.
-        scores = bm25(query["text"], [ranking_text(c) for c in candidates])
-        requested = pressure_terms(query["text"])
+        return candidates, dict(sorted(exclusions.items()))
+
+    def search(self, payload, *, method="related_v1"):
+        if method not in {"literal_v1", "related_v1"}:
+            raise ValueError("Unknown search method.")
+        query = self.query(payload)
+        candidates, exclusions = self.candidate_pool(query)
+        if method == "literal_v1":
+            # Retained exactly for M004 reproduction and paired evaluation.
+            scores = bm25(query["text"], [ranking_text(c) for c in candidates])
+            requested = pressure_terms(query["text"])
+        else:
+            query_concepts, query_words = analyze(query["text"])
+            analyzed = [analyze(self.details[c["id"]]["pressure"]["value"]) for c in candidates]
+            # Responses, later outcomes, figures and product/business descriptions
+            # cannot create a pressure concept or affect its score.
+            scores = bm25(" ".join(query_concepts), [" ".join(a[0]) for a in analyzed])
         matches = []
-        for case, score in zip(candidates, scores):
-            matched = sorted(
-                requested & pressure_terms(self.details[case["id"]]["pressure"]["value"])
-            )
+        for index, (case, score) in enumerate(zip(candidates, scores)):
+            explanations = []
+            if method == "literal_v1":
+                matched = sorted(
+                    requested & pressure_terms(self.details[case["id"]]["pressure"]["value"])
+                )
+            else:
+                explanations = explain_matches(query_words, analyzed[index][1])
+                matched = [match["family"] for match in explanations]
             if score > 0 and matched:
-                matches.append(self.present(case, query, score, matched))
+                presented = self.present(case, query, score, matched)
+                presented["pressure_matches"] = explanations
+                if method == "related_v1":
+                    connected = {word for m in explanations for word in m["query_terms"]}
+                    presented["unmatched_terms"] = sorted(specific_terms(query["text"]) - connected)
+                matches.append(presented)
         matches.sort(key=lambda c: (-c["score"], c["id"]))
         return {
             "status": "candidates" if matches else "insufficient_evidence",
             "message": (
-                "These reports share words about the problem you described."
+                "These reports mention the same or related cost pressures."
                 if matches
                 else "We don't have enough evidence for this comparison. "
                 + (
                     "No cases can be used with these dates and this starting case. "
                     "You can change those choices without changing your description."
                     if not candidates
-                    else "None of the cases we can use shares a specific word about the pressure. "
+                    else "We couldn't connect a specific pressure in your description to these reports. "
                     "Try naming a material or disruption. This small collection may not cover your situation."
                 )
             ),
@@ -246,10 +270,16 @@ class CaseSearch:
             "query": query,
             "eligible_count": len(candidates),
             "matched_count": len(matches),
-            "excluded": dict(sorted(exclusions.items())),
+            "excluded": exclusions,
             "results": matches[:5],
-            "method": "BM25 on challenge text only; specific pressure-term overlap required. "
-            "Scores are not confidence or probabilities. This lexical gate is not a relevance model.",
+            "method_id": method,
+            "method": (
+                "BM25 on challenge text only; specific pressure-term overlap required."
+                if method == "literal_v1"
+                else "BM25 on named input families in pressure passages only; explicit shared/related terms required. "
+                "A vocabulary link is not a disclosed fact, industry check or causal comparison."
+            )
+            + " Scores are not confidence or probabilities.",
         }
 
     def present(self, case, query, score, matched):

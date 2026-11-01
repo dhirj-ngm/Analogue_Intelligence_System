@@ -6,6 +6,8 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
+const retryRounds = Number(process.argv.find((arg) => arg.startsWith("--retry-rounds="))?.split("=")[1] || 3);
+assert.ok(Number.isInteger(retryRounds) && retryRounds >= 1 && retryRounds <= 30);
 const profile = await mkdtemp(join(tmpdir(), "ais-browser-"));
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 const python = spawn(process.env.APP_PYTHON || "python3", ["-c",
@@ -68,29 +70,56 @@ try {
     return result.result.value;
   }
   const wait = (expression, label) => waitFor(() => evaluate(expression), label);
+  let clickId = 0;
   async function click(selector) {
-    const point = await evaluate(`(() => {
+    const id = ++clickId;
+    const point = await evaluate(`(async () => {
       const el = document.querySelector(${JSON.stringify(selector)});
       if (!el) throw new Error('Missing control');
       el.scrollIntoView({block:'center',behavior:'instant'});
-      const r = el.getBoundingClientRect();
-      if (!r.width || !r.height) throw new Error('Control is hidden');
-      return {x:r.x+r.width/2,y:r.y+r.height/2};
+      let previous, stable = 0;
+      const deadline = performance.now() + 3000;
+      while (performance.now() < deadline) {
+        await new Promise(requestAnimationFrame);
+        const r = el.getBoundingClientRect();
+        if (!r.width || !r.height || el.disabled) throw new Error('Control is hidden or disabled');
+        const point = {x:r.x+r.width/2,y:r.y+r.height/2};
+        // A queued focus scroll can override the first scrollIntoView on the
+        // next animation frame. Bring the control back before hit-testing it.
+        if (point.y<0 || point.y>=innerHeight || point.x<0 || point.x>=innerWidth) {
+          el.scrollIntoView({block:'center',behavior:'instant'});
+          stable=0; previous=undefined; continue;
+        }
+        const hit = document.elementFromPoint(point.x, point.y);
+        stable = previous && Math.abs(previous.x-point.x)<0.1 && Math.abs(previous.y-point.y)<0.1
+          && (hit===el || el.contains(hit)) ? stable+1 : 0;
+        previous = point;
+        if (stable >= 3) {
+          el.addEventListener('click', e => { if(e.isTrusted) window.__browserClick=${id}; }, {once:true});
+          return point;
+        }
+      }
+      const r=el.getBoundingClientRect();
+      throw new Error('Click target did not settle: ' + ${JSON.stringify(selector)} + ' ' + JSON.stringify({rect:r.toJSON(),hit:previous && document.elementFromPoint(previous.x,previous.y)?.outerHTML.slice(0,200),scrollY}));
     })()`);
     await call('Input.dispatchMouseEvent', {type:'mousePressed',...point,button:'left',clickCount:1});
     await call('Input.dispatchMouseEvent', {type:'mouseReleased',...point,button:'left',clickCount:1});
+    await wait(`window.__browserClick===${id}`, `trusted click on ${selector}`);
   }
   async function fill(id, value, change = false) {
     await evaluate(`document.getElementById(${JSON.stringify(id)}).value=${JSON.stringify(value)}`);
     if (change) await evaluate(`document.getElementById(${JSON.stringify(id)}).dispatchEvent(new Event('change'))`);
   }
   async function search() {
+    const previous = await evaluate("window.__searchSubmissions");
     await click("#search-button");
-    await wait("document.getElementById('results-section').getAttribute('aria-busy')==='false'", "search completion");
+    await wait(`window.__searchSubmissions===${previous+1} && document.getElementById('results-section').getAttribute('aria-busy')==='false'`, "new search submission and completion");
   }
   await call("Runtime.enable");
   await call("Page.enable");
   await wait("document.getElementById('search-button') && !document.getElementById('search-button').disabled", "app ready");
+  await evaluate("window.__searchSubmissions=0; document.getElementById('search-form').addEventListener('submit',()=>window.__searchSubmissions++,true)");
+  await call("Network.enable");
   async function screenshot(name, full = true) {
     const shot = await call("Page.captureScreenshot", { captureBeyondViewport: full });
     await writeFile(join(tmpdir(), name), Buffer.from(shot.data, "base64"));
@@ -241,8 +270,21 @@ try {
     await click("#reset-dates");
     await fill("situation", "milk flour electricity");
     await search();
-    assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('results-status').textContent.includes("don't have enough evidence")`));
-    checks.push(`${device}: new-case publication boundary, self exclusion and honest synonym miss`);
+    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`), "GIS-2007");
+    assert.ok(await evaluate(`document.querySelector('.pressure-match').textContent.includes('milk → dairy') && document.querySelector('.pressure-match').textContent.includes('flour → grains') && document.querySelector('.pressure-match').textContent.includes('electricity → energy')`));
+    assert.ok(await evaluate(`document.querySelector('.card-main').innerText.includes('do not establish that it measured your exact input') && document.getElementById('result-caution').innerText.includes('whether costs rose or fell')`));
+    await screenshot(`ais-related-search-${device}.png`, false);
+    for (const [text,id,link] of [["chocolate ingredient inflation","HSY-2025-Q1","chocolate → cocoa"],["bottled-water freight and fuel","NES-WATERS-2011-H1","fuel → oil"]]) {
+      await fill("situation",text);
+      await search();
+      assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`), id);
+      assert.ok(await evaluate(`document.querySelector('.pressure-match').textContent.includes(${JSON.stringify(link)})`));
+      assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
+    }
+    await fill("situation", "No chocolate input-cost inflation is established.");
+    await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+    checks.push(`${device}: new-case publication boundary, self exclusion, three related-term searches and negation`);
 
     await fill("situation", "cocoa grains oil");
     await search();
@@ -259,16 +301,22 @@ try {
     await screenshot(`ais-collection-figures-${device}.png`, false);
     checks.push(`${device}: three new cases compared with business scope, accounting differences and conflict retained`);
     await click("#clear-comparison");
+
+    // Error focus starts smooth scrolling. Keep real clicks and slow responses:
+    // wait for a stable target and a fresh submission, never an old idle flag.
+    await call("Network.emulateNetworkConditions", {offline:false,latency:150,downloadThroughput:-1,uploadThroughput:-1});
+    for (let trial=0; trial<retryRounds; trial++) {
+      await call("Network.setBlockedURLs", {urls:["*/api/search"]});
+      await fill("situation", "Keep my packaging description");
+      await search();
+      assert.ok(await evaluate(`document.getElementById('error-message').textContent.includes("couldn't reach") && document.getElementById('situation').value==='Keep my packaging description' && document.querySelectorAll('.case-card').length===0`));
+      await call("Network.setBlockedURLs", {urls:[]});
+      await search();
+      assert.ok(await evaluate(`document.getElementById('error').hidden && document.querySelectorAll('.case-card').length>0`));
+    }
+    await call("Network.emulateNetworkConditions", {offline:false,latency:0,downloadThroughput:-1,uploadThroughput:-1});
+    checks.push(`${device}: ${retryRounds} connection-failure/retry cycles with delayed responses and trusted clicks`);
   }
-  await call("Network.enable");
-  await call("Network.setBlockedURLs", {urls:["*/api/search"]});
-  await fill("situation", "Keep my packaging description");
-  await search();
-  assert.ok(await evaluate(`document.getElementById('error-message').textContent.includes("couldn't reach") && document.getElementById('situation').value==='Keep my packaging description' && document.querySelectorAll('.case-card').length===0`));
-  await call("Network.setBlockedURLs", {urls:[]});
-  await search();
-  assert.ok(await evaluate(`document.getElementById('error').hidden && document.querySelectorAll('.case-card').length>0`));
-  checks.push("connection failure preserves the description and supports retry");
   assert.deepEqual(errors, []);
   console.log(JSON.stringify({ passed: checks, screenshots: ["/tmp/ais-case-search-desktop.png", "/tmp/ais-case-search-mobile.png", "/tmp/ais-reader-comparison-desktop.png", "/tmp/ais-reader-comparison-mobile.png"] }, null, 2));
 } finally {

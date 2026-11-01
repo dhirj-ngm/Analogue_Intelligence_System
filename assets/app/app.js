@@ -1,7 +1,7 @@
 "use strict";
 
 import {
-  dateLabel, periodLabel, words, differenceLabel, pressureLabel, reportLocator, unknownLabels, metricFacts, explainBasisPoints,
+  dateLabel, periodLabel, words, differenceLabel, pressureLabel, reportLocator, unknownLabels, metricFacts, explainBasisPoints, pressureMatchLabel,
   EXCLUSION_LABELS, SearchDraft, changeInformationDate,
 } from "/reader.mjs";
 
@@ -137,8 +137,12 @@ function renderCard(c, index) {
   heading.append(title, label);
   const differences = node("div", undefined, "differences");
   differences.append(node("strong", "WHAT MAKES THIS DIFFERENT"), node("p", differenceLabel(c.important_differences[0])));
-  main.append(heading, node("p", `In common: both descriptions mention ${words(c.matching_pressure_terms)}.`, "pressure-match"),
-    node("p", pressureLabel(c.fields.pressure.value), "pressure"), differences);
+  main.append(heading, node("p", c.pressure_matches?.length ? pressureMatchLabel(c.pressure_matches)
+    : `In common: both descriptions mention ${words(c.matching_pressure_terms)}.`, "pressure-match"));
+  if (c.pressure_matches?.some((match) => match.relationship === "related_terms")) {
+    main.append(node("p", "Related words help find a report. They do not establish that it measured your exact input.", "field-help"));
+  }
+  main.append(node("p", pressureLabel(c.fields.pressure.value), "pressure"), differences);
   const details = node("details", undefined, "case-reading");
   details.append(node("summary", "Read the case and its sources"));
   const body = node("div", undefined, "case-detail");
@@ -211,7 +215,7 @@ function renderChecks(data) {
     bulletList(reasons.length ? reasons : ["No cases were removed by those checks."]));
   if (data.results.length) {
     checks.append(node("h4", "Keyword scores · BM25"), bulletList(data.results.map((c) => `${c.company} (${c.id}): ${c.score.toFixed(3)}. ${c.review_status.replaceAll("_", " ")}.`)));
-    checks.append(node("h4", "Words not found in each matching pressure description"), bulletList(data.results.map((c) => `${c.company}: ${c.unmatched_terms.join(", ") || "none"}. Different wording does not prove the situations are incompatible.`)));
+    checks.append(node("h4", "Words not connected to a reported pressure"), bulletList(data.results.map((c) => `${c.company}: ${c.unmatched_terms.join(", ") || "none"}. Unmatched words may include important differences in business or direction.`)));
   }
 }
 

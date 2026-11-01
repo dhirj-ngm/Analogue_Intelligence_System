@@ -15,6 +15,13 @@ export function words(items) {
   return `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
 }
 
+export function pressureMatchLabel(matches) {
+  const parts = matches.map((match) => match.relationship === "shared_word"
+    ? words(match.shared_words)
+    : `${words(match.query_terms)} → ${words(match.report_terms)} (related ${match.label})`);
+  return `Pressure match: ${parts.join("; ")}.`;
+}
+
 const DIFFERENCES = new Map([
   ["gross margin adjusted for restructuring; global scope", "This covers the whole company. Its gross margin leaves out restructuring charges."],
   ["profit amount includes restructuring; no margin level inferred", "This is a profit amount, including restructuring costs, rather than a margin percentage."],

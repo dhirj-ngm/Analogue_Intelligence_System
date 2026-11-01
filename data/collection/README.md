@@ -83,3 +83,9 @@ rerun with loopback access. One initial browser assertion incorrectly expected
 zero results after choosing Hershey as a starting case; its broader commodity
 wording can match older cases. The assertion now checks the actual requirement:
 Hershey is excluded. No remaining test failures; no model experiment was rerun.
+
+M005 preserves the records and historical M004 observations above. The current app
+now uses related-input search; `make collection-check` explicitly reproduces the
+old literal method. See the [M005 paired report](../../evaluation/search-m005/report.md)
+for the three recovered cases and remaining misses/regressions. No new cases or
+source documents were needed for those vocabulary gaps.

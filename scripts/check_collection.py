@@ -16,7 +16,9 @@ def run():
     inputs = json.loads(path.read_text())
     checks = []
     for query in inputs["queries"]:
-        result = search.search({"text": query["text"], "cutoff": inputs["cutoff"]})
+        result = search.search(
+            {"text": query["text"], "cutoff": inputs["cutoff"]}, method="literal_v1"
+        )
         ids = [case["id"] for case in result["results"]]
         expected = query["useful_case"]
         checks.append(

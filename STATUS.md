@@ -7,32 +7,35 @@ five queries and frozen BM25/MiniLM experiments remain unchanged. Five user grad
 without rationales are not a complete human benchmark. See
 [the pilot report](evaluation/pilot/pilot-report.md).
 
-**M002 / M003: Complete.** Local, reader-friendly search, source inspection and
-comparison run with `make app` at http://127.0.0.1:8000. Technical details remain
-optional; date, self/continuation and evidence safeguards remain enforced.
+**M002–M004: Complete.** Local reader-friendly search/comparison, source inspection
+and 13 observations from eight companies run with `make app` at
+http://127.0.0.1:8000. Company claims, measurement scope and unknowns stay visible;
+source documents remain external. See [collection notes](data/collection/README.md).
 
-**M004: Complete — deeper case collection.** Three distinct situations add
-General Mills FY2007 grain/dairy/energy costs, Nestlé Waters H1 2011 oil-related
-packaging/distribution costs and Hershey Q1 2025 cocoa costs. The app now has 13
-observations from eight companies. New records include source passages/locators,
-publication/reporting dates, scope, units/basis, company attribution, actions,
-unknowns and access/retention notes. Supporting figures and Hershey's unresolved
-source disagreement are available in details and comparison. Basis points are
-explained beside numbers. Original documents remain external links.
+**M005: Complete — related-input search and reliable browser checks.** The retry
+fault was a moving coordinate target plus acceptance of an old idle flag in the
+check. Stable hit-tested clicks and fresh-submission waits fix it; the app's request
+lifecycle needed no change. New search uses an explicit input vocabulary and BM25
+on pressure passages only. Results show query/report term connections and caution
+that related inputs need not be identical. Dates, self/continuation exclusions and
+response/outcome isolation remain enforced. No cases or source records were added.
 
-**Verification:** 38 Python tests, 7 JavaScript tests, Ruff, JavaScript syntax,
-pilot validation and collection checks passed. Nineteen real-browser checks
-covered desktop and a 375px phone, new-case comparisons, source links, dates,
-self exclusion, empty results and connection recovery; screenshots inspected.
-Four substantive primary documents were readable through the web reader; a
-General Mills index request returned 403, with publication corroborated through
-the official EDGAR directory/report. All 16 frozen pilot artifact hashes match
-the starting checkpoint. No model experiment was rerun.
+**Evaluation:** 33 queries/expectations and the old baseline were frozen in commit
+`cb1b37c` before changing search. Both methods use identical eligible cases. All
+three M004 misses now retrieve the intended case first. Useful-case retrieval in
+the first five: 7/15 old → 14/15 new. Unexpected results on expected-empty queries:
+3/18 → 4/18; new false positives concern falling milk costs, booming milk sales and
+airline fuel. One packaging query drops 1 → 3, and mixed negation still misses a
+useful case. These assistant-authored checks are not independent relevance grades.
+See [actual comparisons](evaluation/search-m005/report.md).
 
-**Limits / next:** Eight recorded development queries include three useful-case
-misses; these are not a human relevance benchmark. See
-[collection notes](data/collection/README.md) and
-[actual query results](evaluation/collection/results.json). Improve coverage and
-literal-matching failures next. Cases remain assistant-checked; true episode
-bounds, isolated action effects and later outcomes are unknown. Hershey's two
-stated margin declines remain unreconciled. Use [README.md](README.md) to run/check.
+**Verification:** 46 Python tests, 8 JavaScript tests, Ruff, syntax, pilot/collection
+validation and paired evaluation passed. The full desktop/375px phone browser flow
+passed with 20 grouped checks, including 40 delayed-response failure/retry cycles;
+screenshots inspected. All 16 frozen M001 hashes and M004 case/result files remain
+unchanged. See [browser findings](evaluation/search-m005/browser-check.md).
+
+**Next:** Improve context/direction handling and mixed negation; extend vocabulary
+only with explicit relationships and evaluate with independent judgements. True
+episode bounds, isolated response effects and later outcomes remain limited;
+Hershey's two stated margin declines remain unreconciled. Run/check via README.md.

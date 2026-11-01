@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { SearchDraft, changeInformationDate, dateLabel, metricFacts, pressureLabel, reportLocator, unknownLabels, explainBasisPoints } from "../assets/app/reader.mjs";
+import { SearchDraft, changeInformationDate, dateLabel, metricFacts, pressureLabel, reportLocator, unknownLabels, explainBasisPoints, pressureMatchLabel } from "../assets/app/reader.mjs";
 
 const own = { text: "My packaging problem", cutoff: "2023-03-01", before_period_end: "2022-10-01", source_id: "" };
 const colgate = { id: "CL-2022", challenge: "Source challenge", published: "2023-01-27", period_end: "2022-12-31" };
@@ -66,4 +66,9 @@ test("basis points are explained beside each reported number without changing th
   assert.equal(explainBasisPoints("100 basis points"), "100 basis points (1 percentage point)");
   assert.match(pressureLabel("up 20 basis points"), /0.2 percentage points/);
   assert.equal(explainBasisPoints("33.7%"), "33.7%");
+});
+
+test("related matches show query and actual report terms rather than claiming identical inputs", () => {
+  assert.equal(pressureMatchLabel([{relationship:"related_terms",query_terms:["milk"],report_terms:["dairy"],label:"dairy inputs"}]), "Pressure match: milk → dairy (related dairy inputs).");
+  assert.equal(pressureMatchLabel([{relationship:"shared_word",shared_words:["packaging"]}]), "Pressure match: packaging.");
 });

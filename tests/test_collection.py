@@ -131,7 +131,9 @@ class CollectionTests(unittest.TestCase):
         inputs = json.loads((ROOT / "evaluation/collection/queries.json").read_text())
         observations = json.loads((ROOT / "evaluation/collection/results.json").read_text())
         for query, observation in zip(inputs["queries"], observations["checks"], strict=True):
-            result = self.query(query["text"], inputs["cutoff"])
+            result = self.search.search(
+                dict(text=query["text"], cutoff=inputs["cutoff"]), method="literal_v1"
+            )
             self.assertEqual([c["id"] for c in result["results"]], observation["ranked_ids"])
         self.assertTrue(any(c["finding"] == "useful case missed" for c in observations["checks"]))
 

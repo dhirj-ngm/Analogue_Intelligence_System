@@ -48,14 +48,15 @@ open the controls and focus the field to fix; dates are never silently widened t
 produce results.
 
 If the app cannot support a comparison, it explains whether the dates ruled out
-all cases or the collection lacks a matching pressure word. You can check the
-dates, edit the description, or try an example. `Semiconductor shortages at a bank`
+all cases or the description has no supported connection through the input vocabulary.
+You can check the dates, edit the description, or try an example. `Semiconductor shortages at a bank`
 shows a collection gap. Empty results are not evidence that no historical
 comparison exists elsewhere.
 
 **How this works** contains the method, date/exclusion counts and optional BM25
-scores. The main view keeps shared words, sources, differences and unknowns
-visible. Shared words do not establish a useful analogy, and reported actions do
+scores. Each result shows the words connected in your description and the report,
+with sources, differences and unknowns. Related terms do not establish a useful
+analogy or that the report measured your exact input. Reported actions do
 not prove what caused a result. Metric definitions and exact source locators
 remain available beside the company-reported figures.
 
@@ -72,12 +73,18 @@ models or sources. Source links visit the issuer's site or SEC EDGAR in a separa
 
 ## Safeguards and limits
 
-BM25 still scores only allowlisted challenge text. Responses, rationale, later
-outcomes and display wording do not affect scores. Unknown or post-cutoff
+BM25 now scores named input families in the source-backed pressure passages
+only. A small [readable vocabulary](src/ais/related.py) connects milk/dairy,
+flour/grains, electricity/energy, chocolate/cocoa and freight/transport, alongside
+other related inputs. It applies to all queries and eligible cases, with no case
+IDs or query-specific rules. Responses, profit figures, rationale, later outcomes
+and business descriptions do not affect these scores. Unknown or post-cutoff
 challenge dates, self cases, known duplicates/continuations and non-earlier
 periods stay excluded. A response unknown by the selected date is withheld.
-The app uses a conservative shared-pressure-word gate, not a relevance model;
-it can miss synonyms and complex descriptions. Numerical comparisons retain
+Explicit no/not/unknown clauses are skipped before term matching. General words
+such as ingredient or commodity cannot establish a match. The vocabulary can miss
+unlisted words and does not reliably check industry, sales versus input costs,
+direction of change or mixed negation. Numerical comparisons retain
 units, scope and the company's accounting definition. No incompatible amounts
 are subtracted. The new records live in `data/collection/cases.jsonl`; the frozen
 M001 source records, cases and experiments are unchanged. No source documents are
@@ -85,12 +92,18 @@ stored or served by the app; readers follow links to original reports.
 
 See [collection notes](data/collection/README.md) for source selection, precise
 locations, access/retention limits, continuation decisions and curation work.
-The [eight development query checks](evaluation/collection/results.json) include
-three known misses: milk/flour/electricity misses General Mills;
-chocolate/ingredient inflation misses Hershey and instead returns General Mills;
-bottled-water/freight/fuel misses Nestlé. Explicit pressure words retrieve each new
-case first in these checks. This is not an independent quality benchmark, and the
-expanded corpus changes BM25 scores/order. The ranking method is unchanged.
+The three M004 misses now retrieve their intended case first: milk/flour/electricity
+finds General Mills, chocolate ingredient inflation finds Hershey, and bottled-water
+freight/fuel finds Nestlé Waters. The [paired M005 evaluation](evaluation/search-m005/report.md)
+uses 33 queries and expectations frozen in Git before search changes, on identical
+eligible cases. Expected useful cases appear in the first five for 7/15 old versus
+14/15 new queries. Unexpected candidates on expected-empty queries increase from
+3/18 to 4/18: broader terms introduce falling-milk-cost, booming-milk-sales and
+airline-fuel false positives, while removing two old false-positive results. One
+packaging query drops from rank 1 to 3; mixed negation still misses a useful case.
+These are assistant-authored development checks, not independent quality claims.
+The [M004 observations](evaluation/collection/results.json) remain reproducible
+with the old literal method; their files and all case records remain unchanged.
 
 ## Checks
 
@@ -100,7 +113,8 @@ needs no Node installation:
 ```sh
 make test       # Python safeguards/HTTP tests and JavaScript reader-state tests
 make validate   # Existing pilot data and judgement coverage
-make collection-check # New records and reproducible query observations, including misses
+make collection-check # Collection validation and historical M004 literal results
+make search-check # Frozen M005 paired evaluation, including misses and regressions
 make lint       # Ruff, using the existing .venv development environment
 ```
 
@@ -113,6 +127,8 @@ The optional browser checks use Node 22+ and installed Chrome/Chromium:
 
 ```sh
 make browser-test
+# Full flow with 20 failure/retry cycles on each screen size:
+node scripts/check_app_browser.mjs --retry-rounds=20
 # For another browser installation:
 CHROME_BIN=/usr/bin/chromium make browser-test
 ```
@@ -123,14 +139,23 @@ results on desktop and a 375px phone viewport. They also check that technical
 information stays optional, a personal draft survives source-case switching,
 and a failed connection preserves the description for retry. New-case checks
 cover the source disagreement, accounting definitions, publication boundary,
-self exclusion, synonym misses and comparison on both screen sizes. Screenshots go to
+self exclusion, related terms, negation and comparison on both screen sizes. Screenshots go to
 `/tmp/ais-case-search-{desktop,mobile}.png`,
 `/tmp/ais-reader-comparison-{desktop,mobile}.png` and
 `/tmp/ais-reader-case-mobile.png`; the temporary browser profile is removed.
 Default Chrome path: `/opt/google/chrome/chrome`. Set `APP_PYTHON` to use another
 Python executable.
 
-Additional screenshots: `/tmp/ais-collection-{conflict,comparison,figures}-{desktop,mobile}.png`.
+Additional screenshots: `/tmp/ais-collection-{conflict,comparison,figures}-{desktop,mobile}.png`
+and `/tmp/ais-related-search-{desktop,mobile}.png`.
+
+The intermittent retry failure was in the browser check: queued focus scrolling
+could move its coordinate target, so the click hit nearby text, and an old idle
+flag was mistaken for a finished retry. Clicks now wait for stable, hit-tested
+positions; searches must have a fresh submission before completion. Default
+checks repeat delayed-response recovery three times per screen size. See the
+[browser findings](evaluation/search-m005/browser-check.md) for the reproduction
+and the 40-cycle stress result.
 
 ## Reproduce the earlier model pilot
 
@@ -166,8 +191,9 @@ changes require a new benchmark version. `make run` reproduces the model pilot;
 
 M001 is closed as a development pilot. M002 delivers local search/comparison;
 M003 makes the reader experience simpler, with optional technical detail.
-M004 adds three distinct source-backed cost situations and records search misses.
-Next improve coverage and literal-matching failures, then evaluate with independent
-relevance judgements, test structural comparison and consider task-specific training when
+M004 adds three distinct source-backed cost situations. M005 fixes browser-check
+timing and adds explainable related-input search with a frozen paired evaluation.
+Next address context/direction errors and mixed negation, then evaluate with
+independent relevance judgements, test structural comparison and consider training when
 failures and labels justify it. Builder works end to end without user review
 gates. Development findings must remain labelled honestly.

@@ -2,7 +2,7 @@ PYTHON := .venv/bin/python
 APP_PYTHON ?= python3
 export PYTHONPATH := src
 export HF_HOME := models/hf
-.PHONY: setup test lint run validate app browser-test collection-check
+.PHONY: setup test lint run validate app browser-test collection-check search-check
 setup:
 	python3 -m venv .venv
 	$(PYTHON) -m pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
@@ -23,3 +23,5 @@ browser-test:
 collection-check:
 	$(APP_PYTHON) -m ais.collection
 	$(APP_PYTHON) scripts/check_collection.py
+search-check:
+	$(APP_PYTHON) scripts/evaluate_search.py
