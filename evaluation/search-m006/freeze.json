@@ -1,7 +1,7 @@
 {
   "base_commit": "532b35adfe175c215f29aea544d0c8e7faf86205",
   "sha256": {
-    "evaluation/search-m006/queries.json": "3bb3fd4734724af4b607eeec72476717dc6ba91d13803fd3aea082a328c284c7",
+    "evaluation/search-m006/queries.json": "036de3e97d25a0111feebbb7aba168862ab914962d44646e7df5be868a9b4d1e",
     "evaluation/search-m006/baseline.json": "7c01fd9a8e2e3ce2874db5965765c8a1193bacda3faa71976f8c4c408d3ebd24",
     "src/ais/search.py": "57d03d3e2a8589154af2df4c6055864bde8314bb934f41ce214dd9a6bcf9bb61",
     "src/ais/related.py": "1521867c5fb3263de333866c4278a3b3c83b10d3d98c632f693884a6669fc26c",
@@ -35,5 +35,6 @@
     "evaluation/search-m005/browser-check.md": "de9d72332f079e03e54b0c1cec77728df560c253bcc2ebea70faeeb20c77bdcb",
     "configs/pilot/baseline.json": "39192c92d80bbf485d3286edfa6e0f82ada760afa46ecaef171bea7f3b119961"
   },
-  "policy": "Freeze before method edits. Keep all existing case records, M001 artifacts and M004/M005 observations unchanged. Compare M005 and M006 on identical ordered eligible/deduplicated pools, not different candidate sets. Report all misses, misleading results and rank changes without changing expectations to fit results."
+  "policy": "Freeze before method edits. Keep all existing case records, M001 artifacts and M004/M005 observations unchanged. Compare M005 and M006 on identical ordered eligible/deduplicated pools, not different candidate sets. Report all misses, misleading results and rank changes without changing expectations to fit results.",
+  "pre_implementation_correction": "Before method edits, corrected split-costs expectation to exclude GIS-2007: it conflicts with the requested falling dairy costs. Query text and baseline ranks unchanged."
 }

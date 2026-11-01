@@ -1,5 +1,5 @@
 {
-  "version": "M006-v1",
+  "version": "M006-v2-before-implementation",
   "base_commit": "532b35adfe175c215f29aea544d0c8e7faf86205",
   "provenance": "Assistant-authored development expectations frozen before changing the method; includes M005 failures and deliberately difficult context/negation examples. Useful cases are not exhaustive relevance grades; no independent validation.",
   "queries": [
@@ -674,12 +674,14 @@
       "text": "Milk costs fell while energy bills rose.",
       "cutoff": "2026-11-01",
       "expected_useful_cases": [
-        "GIS-2007",
         "KC-2011"
       ],
       "expect_empty": false,
-      "reason": "The shared energy pressure can be useful, but a dairy-direction conflict must be shown or excluded.",
-      "set": "M006 additional"
+      "reason": "Energy can match, but an explicitly opposite dairy direction must exclude General Mills rather than be called the same situation.",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
     }
   ]
 }
