@@ -27,7 +27,9 @@ captures the app's actual displayed results and eligibility.
 
 Initial repository and connected Drive searches found no existing review channel.
 The user subsequently authorized email contact with a designated recipient (R01).
-Human identity and independence remain to be confirmed; the registry remains empty.
+The invitation and frozen packet were sent on 1 November 2026, with Gmail readback
+confirming the attachment. Human identity/independence and actual judgements remain
+to be confirmed; the registry remains empty. Original delivery metadata is private.
 No paid service or AI reviewer has been used. Contact authorization is distinct
 from evidence of independent human judgement.
 

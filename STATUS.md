@@ -39,8 +39,9 @@ Benchmark/amount help now reflects units. See [actual checks](evaluation/collect
 realistic queries frozen in `6362044`. Blinded offline packet: 154 eligible pairs,
 shuffled without scores, result membership or expected answers. Analysis preserves
 partial usefulness, uncertainty, misleading flags, omissions and disagreements;
-verified external human provenance is required. The user authorized email contact
-with R01; eligibility and actual responses remain pending. **Zero human judgements;
+verified external human provenance is required. The authorized invitation and packet were sent
+to R01 through Gmail, with attachment readback; eligibility and actual responses
+remain pending. **Zero human judgements;
 no independent relevance conclusions.** Existing cases/ranking remain unchanged.
 71 Python/13 JavaScript tests, lint, validation and historical evaluations passed;
 app and review-form desktop/mobile flows passed. See [M008](evaluation/relevance-m008/report.md).
@@ -50,5 +51,5 @@ validation. Beef wording still misses cattle; PET alone is unrecognized. New
 sources remain U.S. focused. Partial matches need not cover every named input;
 complex grammar/industry limits, uncertain episode boundaries and unestablished
 action effects remain. Hershey's earlier source discrepancy remains unresolved.
-Next send the frozen M008 packet, confirm independent eligibility and collect real
-human judgements before reporting relevance findings.
+Next confirm independent eligibility and collect real human judgements for M008
+before reporting relevance findings.

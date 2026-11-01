@@ -207,8 +207,8 @@ query–case pairs, shuffled without scores, result membership or expected answe
 It supports reasons, partial usefulness, uncertainty, misleading flags and missing
 case suggestions. Drafts can be downloaded/restored; nothing is sent by the form.
 
-The user authorized contact with a designated reviewer; identity, independence
-and actual judgements still need confirmation. No human relevance results exist
+The authorized invitation and frozen packet were sent to the designated reviewer;
+identity, independence and actual judgements still need confirmation. No human relevance results exist
 yet. Builder/AI/test labels are excluded from human findings. `make review-check`
 verifies the freeze and current admission state; `make review-browser` tests the
 form on desktop/mobile with disposable synthetic responses. See the

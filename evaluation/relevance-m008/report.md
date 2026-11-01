@@ -18,9 +18,11 @@ scope, metric definitions, source links, reported actions, differences and unkno
 Reviewer responses distinguish useful, partly useful, not useful and unsure, plus
 separate misleading flags, reasons, source access and missing-case suggestions.
 
-The user authorized contacting a designated email recipient as R01. Sending the
-invitation and confirming human identity/independence are still pending. The
-recipient must be separate from the project user and must not have created the
+The user authorized contacting a designated email recipient as R01. The invitation
+and frozen packet were sent through Gmail on 1 November 2026; sent-message readback
+confirmed the attachment name and 85,161-byte size. Human identity/independence and
+actual judgements remain unconfirmed. The recipient must be separate from the
+project user and must not have created the
 cases/rules, seen expected answers or used AI labels. No registry entry will be
 verified merely from a form checkbox. Contact details and original receipts stay
 private. No review has been manufactured to finish the module.
@@ -37,8 +39,8 @@ preparation a missing legacy business-scope field was resolved by displaying its
 reported metric scope; a strict response validator rejects altered mapping fields.
 No search rules or case records changed.
 
-Next: send the frozen packet, confirm reviewer eligibility through the authorized
-channel, receive and retain the actual human response, then run the prepared
+Next: confirm reviewer eligibility through the authorized channel, receive and
+retain the actual human response, then run the prepared
 analysis. Useful/misleading results and within-collection omissions can only be
 reported after that. Partial reviews will have explicit missing denominators;
 one reviewer cannot measure inter-reviewer disagreement. Outside-collection
