@@ -40,3 +40,8 @@ runs/
 *.log
 *.tmp
 *.swp
+
+# Human review originals and identity/channel receipts stay coordinator-private.
+evaluation/relevance-m008/submissions/*.json
+evaluation/relevance-m008/reviewer-registry.private.json
+evaluation/relevance-m008/*-receipt.private.json

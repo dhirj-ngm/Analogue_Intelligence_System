@@ -1,0 +1,28 @@
+Subject: Independent review of historical business comparisons
+
+Hello [authorized reviewer],
+
+Would you independently assess a small set of historical company comparisons?
+The attached packet.html has ten business situations and 154 date-eligible
+query–case pairs. It shows company evidence and original source links, with cases
+in shuffled order. It does not show search scores or expected answers.
+
+Please participate only if you did not create the cases or search rules, have not
+seen the project's expected relevance answers, and can supply your own human
+judgements without AI-generated labels. Your assigned code will be [reviewer code].
+
+For each case, choose useful / partly useful / not useful / unsure and explain why.
+Separately flag whether presenting it would mislead a reader. Note source access
+and uncertainty, and suggest missing cases if known. A useful comparison does not
+establish that a reported company action caused an outcome or would work now.
+
+Open packet.html locally in a browser. Nothing is sent or saved automatically.
+Download a draft to retain progress; load it to continue. Export review when ready
+and return the JSON through [authorized return channel]. Partial reviews are
+accepted and will be reported as incomplete. Do not include personal/confidential
+information in your rationales. The coordinator will retain your responses and
+report findings using your assigned code, without publishing contact details.
+
+The coordinator will confirm identity, independence and receipt through this
+agreed channel. This invitation has not yet been sent; recipient, code and return
+channel require authorization. No payment or paid service has been arranged.

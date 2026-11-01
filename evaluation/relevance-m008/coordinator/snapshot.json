@@ -1,0 +1,477 @@
+{
+  "packet_id": "17ae94b6aee2b4695b7929908108d498deb92f8ca82bfda7bacafe92200967e1",
+  "method": "context_m007",
+  "collection_count": 17,
+  "queries": [
+    {
+      "query_id": "Q07",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "items": {
+        "I0244587353c0": "PG-2022",
+        "I0e4875af9aff": "UL-2022",
+        "I11e3f35bcaa8": "KC-2011",
+        "I22af2669cff1": "TSN-BEEF-2024-Q1",
+        "I2feeb971740d": "SJM-COFFEE-2011",
+        "I40d99f0bb4c0": "CL-2020",
+        "I4baa42beef77": "CLX-2021",
+        "I75a635d1fa0f": "DF-2015",
+        "I75c62d6a5cbf": "KC-2018",
+        "I79fd40a81c19": "NES-WATERS-2011-H1",
+        "I8888edf7937a": "GIS-2007",
+        "Ia661d532bc86": "CLX-2023",
+        "Ia718913ffe9a": "CL-2015",
+        "Id48662f1a721": "CL-2008",
+        "If13396639c55": "CL-2022",
+        "If45a8b34fee2": "HSY-2025-Q1",
+        "Ifa67f975e2b8": "COKE-2022"
+      },
+      "displayed": [],
+      "status": "insufficient_evidence"
+    },
+    {
+      "query_id": "Q04",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "items": {
+        "I190581aa6030": "KC-2018",
+        "I1b82d9451a65": "CL-2022",
+        "I4ff753011c6a": "CL-2008",
+        "I57391d183c63": "KC-2011",
+        "I7566c92fb827": "HSY-2025-Q1",
+        "Ia31441b7ad67": "SJM-COFFEE-2011",
+        "Iab8e7664cd53": "PG-2022",
+        "Ib2b32c8d67a8": "CL-2020",
+        "Ib49a1144fc5a": "COKE-2022",
+        "Ic9b56426a4f7": "CL-2015",
+        "Icbce06d2310c": "CLX-2023",
+        "Id00aad78585c": "GIS-2007",
+        "Ie78671028fe3": "UL-2022",
+        "Ief5cb05aff8d": "NES-WATERS-2011-H1",
+        "Iefdf1c3bffd7": "TSN-BEEF-2024-Q1",
+        "If0c671b54cdc": "CLX-2021",
+        "Iffa6869afdbe": "DF-2015"
+      },
+      "displayed": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 3.020329
+        }
+      ],
+      "status": "candidates"
+    },
+    {
+      "query_id": "Q05",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "items": {
+        "I03c2cfab348c": "CLX-2023",
+        "I197b72fe9254": "KC-2011",
+        "I197c115b2900": "CL-2015",
+        "I26b56c22fbcf": "CL-2020",
+        "I2d306228ec78": "COKE-2022",
+        "I32e93382efff": "PG-2022",
+        "I50ec31303d35": "KC-2018",
+        "I5c6479abc2f7": "CL-2022",
+        "I63c8ea18e0d6": "CLX-2021",
+        "I6c19e10e143b": "TSN-BEEF-2024-Q1",
+        "I72b083d381c6": "CL-2008",
+        "I8f612638b33b": "SJM-COFFEE-2011",
+        "Iac13e9fad00d": "GIS-2007",
+        "Iaccda11cce76": "NES-WATERS-2011-H1",
+        "Ib07df3097972": "HSY-2025-Q1",
+        "Ic2fb220fea44": "DF-2015",
+        "Idc8ea2314c12": "UL-2022"
+      },
+      "displayed": [
+        {
+          "id": "COKE-2022",
+          "score": 4.388633
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.954484
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.876949
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 1.602263
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        }
+      ],
+      "status": "candidates"
+    },
+    {
+      "query_id": "Q08",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "items": {
+        "I5fd0bc38aef8": "TSN-BEEF-2024-Q1",
+        "I5fd37cf63c4c": "CL-2022",
+        "I64494161ee5a": "CL-2020",
+        "I78520aeda344": "UL-2022",
+        "I8baefa014383": "CLX-2023",
+        "I9a3ef4131df4": "KC-2018",
+        "I9c6e3f5813ed": "CL-2015",
+        "I9d8d6d151d28": "GIS-2007",
+        "Ia201bfa50aa0": "NES-WATERS-2011-H1",
+        "Iafeeebba3218": "DF-2015",
+        "Ib428bc6265e4": "CLX-2021",
+        "Ib62deabb6533": "HSY-2025-Q1",
+        "Iba31e2a1dc56": "PG-2022",
+        "Ida35b4828cf3": "CL-2008",
+        "Idab8156ccaf4": "COKE-2022",
+        "If2cc6729fc15": "SJM-COFFEE-2011",
+        "If6453967243f": "KC-2011"
+      },
+      "displayed": [],
+      "status": "insufficient_evidence"
+    },
+    {
+      "query_id": "Q10",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1"
+      ],
+      "excluded": {
+        "after_cutoff": 1
+      },
+      "items": {
+        "I11e829454459": "CL-2015",
+        "I14b14ff29968": "NES-WATERS-2011-H1",
+        "I257be2d4a18e": "GIS-2007",
+        "I47b889c9359a": "KC-2011",
+        "I4ceadf49b7c0": "PG-2022",
+        "I4d7034b00caf": "SJM-COFFEE-2011",
+        "I563e9d549d65": "CL-2022",
+        "I6a077dbdce0a": "CL-2020",
+        "I81b503c3973e": "UL-2022",
+        "I8f6a813ebabb": "CLX-2023",
+        "Iaa6f51538680": "TSN-BEEF-2024-Q1",
+        "Ibb29a8f99a12": "DF-2015",
+        "Ic1348c8fa3ab": "COKE-2022",
+        "Ied8f5ce1709b": "CL-2008",
+        "If3b97bf47962": "KC-2018",
+        "If88b1f1192bb": "CLX-2021"
+      },
+      "displayed": [],
+      "status": "insufficient_evidence"
+    },
+    {
+      "query_id": "Q09",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "after_cutoff": 15
+      },
+      "items": {
+        "I3359cddb3baa": "GIS-2007",
+        "Ic2a871b2edb0": "CL-2008"
+      },
+      "displayed": [],
+      "status": "insufficient_evidence"
+    },
+    {
+      "query_id": "Q02",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "items": {
+        "I0a372adce4b9": "HSY-2025-Q1",
+        "I0d25d9aeab22": "KC-2011",
+        "I0d43eb3024e1": "NES-WATERS-2011-H1",
+        "I1b3b16711292": "CLX-2023",
+        "I4019c06f61b2": "DF-2015",
+        "I4e7b2b6a5bfd": "UL-2022",
+        "I59de08f0c82a": "CL-2020",
+        "I78f8298e652c": "SJM-COFFEE-2011",
+        "I7c8622f19770": "CL-2008",
+        "I7e981125a80f": "KC-2018",
+        "I818939f911f8": "CL-2015",
+        "I940b15a2cc68": "CL-2022",
+        "Ia633c38c9d50": "COKE-2022",
+        "Ib353cbb4741b": "TSN-BEEF-2024-Q1",
+        "Icb2d7889bc7c": "CLX-2021",
+        "Ie0d4b59882de": "GIS-2007",
+        "Ifae04e7e900a": "PG-2022"
+      },
+      "displayed": [
+        {
+          "id": "SJM-COFFEE-2011",
+          "score": 3.020329
+        }
+      ],
+      "status": "candidates"
+    },
+    {
+      "query_id": "Q01",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "items": {
+        "I1aa6c4c1dac0": "CLX-2023",
+        "I1c08c009625e": "CL-2015",
+        "I22ec99b35638": "GIS-2007",
+        "I4cb671dc13c3": "KC-2011",
+        "I57c5e66a0dc3": "CL-2022",
+        "I58aab82ddd99": "PG-2022",
+        "I6ccab4b48995": "CLX-2021",
+        "I74841f46ea66": "NES-WATERS-2011-H1",
+        "I7a7916abaa80": "UL-2022",
+        "I80c69d0a9fda": "HSY-2025-Q1",
+        "I846c5c8ad58a": "SJM-COFFEE-2011",
+        "I90cd4c58426d": "COKE-2022",
+        "Ic8e03d86862a": "DF-2015",
+        "Ie15910b0ad31": "CL-2020",
+        "Ieff40350f0b1": "KC-2018",
+        "If7eb999f1d35": "TSN-BEEF-2024-Q1",
+        "Ifc13ddee8f1c": "CL-2008"
+      },
+      "displayed": [
+        {
+          "id": "GIS-2007",
+          "score": 5.000972
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "status": "candidates"
+    },
+    {
+      "query_id": "Q03",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "items": {
+        "I0432f93067ba": "CL-2015",
+        "I21d97111d909": "NES-WATERS-2011-H1",
+        "I411ce283aa04": "CLX-2021",
+        "I4a3a89c8d58c": "TSN-BEEF-2024-Q1",
+        "I6c7a577a0b87": "CL-2008",
+        "I71f1478e066e": "CLX-2023",
+        "I74e148e1ef68": "COKE-2022",
+        "I7a075abd6e28": "UL-2022",
+        "I8b025085cd61": "PG-2022",
+        "I9207ba63fbaa": "KC-2018",
+        "I956254fd8f08": "KC-2011",
+        "I9986a1693845": "HSY-2025-Q1",
+        "Ia728ca641542": "DF-2015",
+        "Iabd2b84705e1": "CL-2020",
+        "Icbd630d09e2f": "CL-2022",
+        "Ice2ffe9959f0": "GIS-2007",
+        "Ie89fb0c732b0": "SJM-COFFEE-2011"
+      },
+      "displayed": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "status": "candidates"
+    },
+    {
+      "query_id": "Q06",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "items": {
+        "I0f33588711f0": "PG-2022",
+        "I10c1e584175b": "CL-2022",
+        "I16c25686e89f": "DF-2015",
+        "I2d513eeb6dc0": "HSY-2025-Q1",
+        "I3df6ed26c548": "COKE-2022",
+        "I5301bb455061": "CL-2008",
+        "I533d4ee33f7a": "GIS-2007",
+        "I7368905e38fe": "UL-2022",
+        "I7690ec7ae9ed": "KC-2018",
+        "I7ed7db321420": "CL-2020",
+        "I8b326919b222": "CL-2015",
+        "I8b4fa38be71c": "NES-WATERS-2011-H1",
+        "Ia43c97562d43": "CLX-2023",
+        "Ic395a1ebdb4b": "SJM-COFFEE-2011",
+        "Idc2b15bfa418": "KC-2011",
+        "Iddc3a096e0d9": "CLX-2021",
+        "Ie528234f15a6": "TSN-BEEF-2024-Q1"
+      },
+      "displayed": [
+        {
+          "id": "CL-2015",
+          "score": 2.356377
+        },
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "status": "candidates"
+    }
+  ]
+}

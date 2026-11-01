@@ -35,9 +35,20 @@ Desktop/375px phone flow passed 30 grouped checks with 40 delayed-response retry
 cycles. Four new source documents opened; comparisons/screenshots inspected.
 Benchmark/amount help now reflects units. See [actual checks](evaluation/collection-m007/verification.md).
 
+**M008: Prepared; awaiting independent human review.** Collection/method and ten
+realistic queries frozen in `6362044`. Blinded offline packet: 154 eligible pairs,
+shuffled without scores, result membership or expected answers. Analysis preserves
+partial usefulness, uncertainty, misleading flags, omissions and disagreements;
+verified external human provenance is required. The user authorized email contact
+with R01; eligibility and actual responses remain pending. **Zero human judgements;
+no independent relevance conclusions.** Existing cases/ranking remain unchanged.
+71 Python/13 JavaScript tests, lint, validation and historical evaluations passed;
+app and review-form desktop/mobile flows passed. See [M008](evaluation/relevance-m008/report.md).
+
 **Limits / next:** Assistant curation and development checks, not independent
 validation. Beef wording still misses cattle; PET alone is unrecognized. New
 sources remain U.S. focused. Partial matches need not cover every named input;
 complex grammar/industry limits, uncertain episode boundaries and unestablished
 action effects remain. Hershey's earlier source discrepancy remains unresolved.
-Next prioritize geographic/commodity gaps and independent relevance judgements.
+Next send the frozen M008 packet, confirm independent eligibility and collect real
+human judgements before reporting relevance findings.

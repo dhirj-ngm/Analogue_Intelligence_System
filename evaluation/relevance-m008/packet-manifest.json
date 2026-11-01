@@ -1,0 +1,14 @@
+{
+  "packet_id": "17ae94b6aee2b4695b7929908108d498deb92f8ca82bfda7bacafe92200967e1",
+  "upstream_freeze_sha256": "540ae966ef743ee2391ec3712320d44c5bbaace2aacb55b65c64800b48ff90d8",
+  "artifacts": {
+    "reviewer/packet.html": "05361613e76328366315262a7383c94aac6b2fcb18a13679f47d7e827b3f89a4",
+    "coordinator/snapshot.json": "cc2542b63db0df0ae33eee252821f0936c051e2af364d2523164f40ac33bd6cb"
+  },
+  "tooling": {
+    "src/ais/relevance.py": "bae397a51da930d5705c8c2f54f15fe5acab66592464be3b2092de5636cf6b84",
+    "assets/review/packet.html": "3c979259b161640a136294512531044c350eb5e33b1ee88d7cfe6f5d5d609a6f",
+    "assets/review/review.css": "f7f3ee2c83694268a25e6fa5fb956d4463a3062e15e69653748896531c0f44ae",
+    "assets/review/review.mjs": "597e2549ce03078f9ef5daff2bec7144c49c5c7502325d9d595d23c640db674f"
+  }
+}

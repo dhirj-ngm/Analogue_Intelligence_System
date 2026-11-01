@@ -1,0 +1,12 @@
+{
+  "packet_id": "17ae94b6aee2b4695b7929908108d498deb92f8ca82bfda7bacafe92200967e1",
+  "state": "awaiting_independent_human_review",
+  "independent_human_reviewers": 0,
+  "judged_pairs": 0,
+  "reviews": [],
+  "excluded_submissions": [],
+  "shared_pair_comparisons": 0,
+  "disagreement_status": "not_measured",
+  "disagreements": [],
+  "limits": "Small Builder-authored query sample. Human provenance requires authorized channel evidence, not self-attestation alone. No labels or metrics without verified independent human submissions. No claims about action effects, independent source validation or all historical cases."
+}

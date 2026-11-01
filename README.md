@@ -198,6 +198,23 @@ checks repeat delayed-response recovery three times per screen size. See the
 [browser findings](evaluation/search-m005/browser-check.md) for the reproduction
 and the 40-cycle stress result.
 
+## Independent relevance review (M008)
+
+M008 is prepared and awaiting independent human review. The cases, method, ten
+realistic queries and plan are frozen; cases and rankings are unchanged. The
+[blinded packet](evaluation/relevance-m008/README.md) includes all 154 eligible
+query–case pairs, shuffled without scores, result membership or expected answers.
+It supports reasons, partial usefulness, uncertainty, misleading flags and missing
+case suggestions. Drafts can be downloaded/restored; nothing is sent by the form.
+
+The user authorized contact with a designated reviewer; identity, independence
+and actual judgements still need confirmation. No human relevance results exist
+yet. Builder/AI/test labels are excluded from human findings. `make review-check`
+verifies the freeze and current admission state; `make review-browser` tests the
+form on desktop/mobile with disposable synthetic responses. See the
+[plan and pending report](evaluation/relevance-m008/report.md) for analysis limits
+and the precise next step. The user does not need to grade anything.
+
 ## Reproduce the earlier model pilot
 
 [The pilot report](evaluation/pilot/pilot-report.md) describes the ten-case,
