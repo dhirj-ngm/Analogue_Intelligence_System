@@ -1,0 +1,685 @@
+{
+  "version": "M006-v1",
+  "base_commit": "532b35adfe175c215f29aea544d0c8e7faf86205",
+  "provenance": "Assistant-authored development expectations frozen before changing the method; includes M005 failures and deliberately difficult context/negation examples. Useful cases are not exhaustive relevance grades; no independent validation.",
+  "queries": [
+    {
+      "id": "milk-flour-electricity",
+      "text": "Milk, flour and electricity are more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: related dairy, grain and energy inputs.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "chocolate",
+      "text": "Chocolate ingredient inflation is squeezing profit.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: cocoa is a chocolate input; ingredient alone is weak evidence.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "bottled-water",
+      "text": "Bottled-water freight and fuel costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: transport and oil-related costs; product/industry still requires reader judgement.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "literal-food",
+      "text": "Grains, dairy and energy costs are increasing.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "literal-cocoa",
+      "text": "Cocoa costs are rising and putting pressure on gross margin.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "literal-oil",
+      "text": "Oil-related packaging and distribution costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "literal-packaging",
+      "text": "Packaging and logistics costs are increasing, putting pressure on margin.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "literal-resin",
+      "text": "Resin and fiber costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "wheat-power",
+      "text": "Wheat and power bills are increasing.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Additional input vocabulary; power can also have non-energy meanings.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "milk-powder",
+      "text": "Milk powder and grain prices rose.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Related pressure; exact commodity breakdown remains unknown.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "cacao",
+      "text": "Cacao beans have become more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "freight",
+      "text": "Freight, diesel and packaging costs are higher.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "unsupported-chips",
+      "text": "Semiconductor shortages at a bank.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No supported semiconductor/bank case.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "unsupported-coffee",
+      "text": "Arabica coffee bean costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No coffee-specific cost case; do not infer one from Nestl\u00e9 company identity.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "unsupported-steel",
+      "text": "Steel smelting costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No steel-specific case.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "generic",
+      "text": "Ingredient inflation and higher costs.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Ingredient is a broad input label, not a specific pressure.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "action-only",
+      "text": "Lighter bottles and successful savings.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Response-only wording must not retrieve cases through response text.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "negated-chocolate",
+      "text": "No chocolate input-cost inflation is established.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Negation must apply before related-term matching.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "negated-milk",
+      "text": "Milk cost pressure is unknown.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Explicit unknown is not positive cost-pressure evidence.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "mixed-clauses",
+      "text": "No milk cost inflation; packaging costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Only the positive clause should supply pressure matches.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "mixed-negation",
+      "text": "Not milk but packaging is more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Known hard wording: clause-level negation can discard a positive alternative.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "falling-milk",
+      "text": "Milk costs are falling and profits are recovering.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: falling input costs differ from the rising-cost cases.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "milk-sales",
+      "text": "Milk sales are booming.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: product sales growth does not establish input-cost pressure.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "airline",
+      "text": "Freight and fuel costs at an airline.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: an airline is outside the FMCG collection.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "oil-art",
+      "text": "Oil paintings are expensive for a museum.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: oil used in art does not establish petroleum input pressure.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "early-food",
+      "text": "Milk flour electricity",
+      "cutoff": "2007-07-25",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "GIS report not yet public.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "early-water",
+      "text": "Oil distribution costs",
+      "cutoff": "2011-08-09",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Waters report not yet public.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "early-chocolate",
+      "text": "Chocolate ingredient inflation",
+      "cutoff": "2025-04-30",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Hershey report not yet public.",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "inclusive-chocolate",
+      "text": "Chocolate input costs",
+      "cutoff": "2025-05-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "self-cocoa",
+      "text": "Cocoa costs",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case and continuations excluded.",
+      "source_id": "HSY-2025-Q1",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "self-food",
+      "text": "Milk flour electricity",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case excluded; no earlier case in collection.",
+      "source_id": "GIS-2007",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "self-water",
+      "text": "Oil freight costs",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case and continuations excluded.",
+      "source_id": "NES-WATERS-2011-H1",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "period-boundary",
+      "text": "Milk flour electricity",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Reporting period must end strictly before query period end.",
+      "before_period_end": "2007-05-27",
+      "set": "M005 carry-forward"
+    },
+    {
+      "id": "falling-dairy",
+      "text": "Dairy input prices declined.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Falling input costs are not rising input costs.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "cheaper-milk",
+      "text": "Milk is becoming cheaper.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Implicit price decline still opposes the cost-pressure cases.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "sales-only",
+      "text": "Milk sales are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Sales growth is not input-cost pressure.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "demand-only",
+      "text": "Demand for chocolate is growing.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Product demand is not an input-cost observation.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "aviation",
+      "text": "An aviation business faces rising fuel bills.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Explicit non-FMCG sector.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "logistics-provider",
+      "text": "Freight costs are rising at a logistics provider.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "A logistics provider is not a consumer-goods input-cost situation.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "museum",
+      "text": "A museum pays more for oil paintings.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Word sense and industry conflict.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "not-but",
+      "text": "Not milk but packaging is more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "without-while",
+      "text": "Without milk cost pressure, while packaging prices rise.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "no-and",
+      "text": "No milk cost pressure and higher packaging costs.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "down-and-up",
+      "text": "Milk costs fall and cocoa prices rise.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "unknown-but",
+      "text": "Milk costs are unknown, but packaging costs are higher.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "costs-versus-sales",
+      "text": "Milk costs are rising while milk sales are falling.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional"
+    },
+    {
+      "id": "sales-and-costs",
+      "text": "Milk sales are growing and packaging costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "costs-versus-profit",
+      "text": "Packaging costs rise and profits fall.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Profit direction must not become cost direction.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "changed",
+      "text": "Milk costs changed.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No usable cost direction in an explicit change claim.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "either-direction",
+      "text": "Milk costs may rise or fall.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Competing possible directions are ambiguous.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "contradiction",
+      "text": "Milk costs are rising and milk costs are falling.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Contradictory directions for one input.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "no-longer",
+      "text": "Milk costs are no longer rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Do not infer a new direction from a denied increase.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "not-declining",
+      "text": "Milk costs did not fall.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Absence of a decline does not establish an increase.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "topic-only",
+      "text": "Milk flour electricity",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "A list of input topics is a search, not an assertion that prices rose.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "cost-topic",
+      "text": "Milk costs",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Unspecified direction must be labelled, not inferred.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "food-scope",
+      "text": "Oil costs at a food manufacturer",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional"
+    },
+    {
+      "id": "negative-sector",
+      "text": "We are not an airline. Milk input costs rise.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional"
+    },
+    {
+      "id": "not-only",
+      "text": "Not only milk but also packaging costs are higher.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007",
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Additive not-only differs from denying a pressure.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "positive-unknown",
+      "text": "Milk costs rose, but it is unclear whether packaging costs changed.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional"
+    },
+    {
+      "id": "negative-alternative",
+      "text": "Milk costs are rising, not falling.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "A denied alternative should not erase a positive assertion; may expose a rule limit.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "factory-scope",
+      "text": "Electricity bills rose at a factory.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Generic business location; input pressure can remain useful, with sector unknown.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "unknown-sector",
+      "text": "Fuel costs are rising at a marina.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Explicit business outside the consumer-goods collection.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "business-product",
+      "text": "A chocolate maker faces rising milk costs.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Business product identity is not evidence of cocoa input pressure.",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "HSY-2025-Q1"
+      ]
+    },
+    {
+      "id": "ambiguous-power",
+      "text": "Power is shifting at the company.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Power need not mean electricity.",
+      "set": "M006 additional"
+    },
+    {
+      "id": "split-costs",
+      "text": "Milk costs fell while energy bills rose.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007",
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "reason": "The shared energy pressure can be useful, but a dairy-direction conflict must be shown or excluded.",
+      "set": "M006 additional"
+    }
+  ]
+}
