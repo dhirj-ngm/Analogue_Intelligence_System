@@ -1,0 +1,764 @@
+{
+  "method": "M004 literal BM25 + shared pressure word",
+  "base_commit": "bd2046f8f16f04113fd3cc37c8a4d8b6dfa8bb06",
+  "checks": [
+    {
+      "id": "milk-flour-electricity",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "chocolate",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 2.253417
+        }
+      ]
+    },
+    {
+      "id": "bottled-water",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "literal-food",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 7.265101
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.704856
+        }
+      ]
+    },
+    {
+      "id": "literal-cocoa",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 3.612573
+        }
+      ]
+    },
+    {
+      "id": "literal-oil",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 7.724818
+        },
+        {
+          "id": "KC-2011",
+          "score": 2.992062
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.945194
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.69366
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.423656
+        }
+      ]
+    },
+    {
+      "id": "literal-packaging",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2022",
+          "score": 6.445823
+        },
+        {
+          "id": "UL-2022",
+          "score": 2.623602
+        },
+        {
+          "id": "CL-2015",
+          "score": 2.463567
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 2.004741
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.99274
+        }
+      ]
+    },
+    {
+      "id": "literal-resin",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "KC-2011",
+          "score": 4.253111
+        }
+      ]
+    },
+    {
+      "id": "wheat-power",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "milk-powder",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "cacao",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "freight",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 3.488968
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.945194
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.69366
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.423656
+        }
+      ]
+    },
+    {
+      "id": "unsupported-chips",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "unsupported-coffee",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "unsupported-steel",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "generic",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 5.191381
+        }
+      ]
+    },
+    {
+      "id": "action-only",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "negated-chocolate",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "negated-milk",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "mixed-clauses",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2022",
+          "score": 2.285143
+        },
+        {
+          "id": "CL-2008",
+          "score": 2.169439
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 1.883406
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.827463
+        }
+      ]
+    },
+    {
+      "id": "mixed-negation",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "falling-milk",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "milk-sales",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "airline",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "oil-art",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 4.23585
+        }
+      ]
+    },
+    {
+      "id": "early-food",
+      "eligible_ids": [],
+      "excluded": {
+        "after_cutoff": 13
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "early-water",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "after_cutoff": 11
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "early-chocolate",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023"
+      ],
+      "excluded": {
+        "after_cutoff": 1
+      },
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 2.215173
+        }
+      ]
+    },
+    {
+      "id": "inclusive-chocolate",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "self-cocoa",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023"
+      ],
+      "excluded": {
+        "self": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "self-food",
+      "eligible_ids": [],
+      "excluded": {
+        "not_earlier_observation": 12,
+        "self": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "self-water",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "not_earlier_observation": 10,
+        "self": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "period-boundary",
+      "eligible_ids": [],
+      "excluded": {
+        "not_earlier_observation": 13
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    }
+  ]
+}

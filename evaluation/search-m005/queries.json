@@ -1,0 +1,305 @@
+{
+  "version": "M005-v1",
+  "provenance": "Assistant-authored development expectations frozen before search changes; chosen with knowledge of M004 misses. Not independent or complete relevance judgements. Empty expectations test unsupported/misleading situations, even where a method returns candidates.",
+  "base_commit": "bd2046f8f16f04113fd3cc37c8a4d8b6dfa8bb06",
+  "queries": [
+    {
+      "id": "milk-flour-electricity",
+      "text": "Milk, flour and electricity are more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: related dairy, grain and energy inputs."
+    },
+    {
+      "id": "chocolate",
+      "text": "Chocolate ingredient inflation is squeezing profit.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: cocoa is a chocolate input; ingredient alone is weak evidence."
+    },
+    {
+      "id": "bottled-water",
+      "text": "Bottled-water freight and fuel costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: transport and oil-related costs; product/industry still requires reader judgement."
+    },
+    {
+      "id": "literal-food",
+      "text": "Grains, dairy and energy costs are increasing.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": ""
+    },
+    {
+      "id": "literal-cocoa",
+      "text": "Cocoa costs are rising and putting pressure on gross margin.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": ""
+    },
+    {
+      "id": "literal-oil",
+      "text": "Oil-related packaging and distribution costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": ""
+    },
+    {
+      "id": "literal-packaging",
+      "text": "Packaging and logistics costs are increasing, putting pressure on margin.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": ""
+    },
+    {
+      "id": "literal-resin",
+      "text": "Resin and fiber costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "reason": ""
+    },
+    {
+      "id": "wheat-power",
+      "text": "Wheat and power bills are increasing.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Additional input vocabulary; power can also have non-energy meanings."
+    },
+    {
+      "id": "milk-powder",
+      "text": "Milk powder and grain prices rose.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Related pressure; exact commodity breakdown remains unknown."
+    },
+    {
+      "id": "cacao",
+      "text": "Cacao beans have become more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": ""
+    },
+    {
+      "id": "freight",
+      "text": "Freight, diesel and packaging costs are higher.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": ""
+    },
+    {
+      "id": "unsupported-chips",
+      "text": "Semiconductor shortages at a bank.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No supported semiconductor/bank case."
+    },
+    {
+      "id": "unsupported-coffee",
+      "text": "Arabica coffee bean costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No coffee-specific cost case; do not infer one from Nestl\u00e9 company identity."
+    },
+    {
+      "id": "unsupported-steel",
+      "text": "Steel smelting costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No steel-specific case."
+    },
+    {
+      "id": "generic",
+      "text": "Ingredient inflation and higher costs.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Ingredient is a broad input label, not a specific pressure."
+    },
+    {
+      "id": "action-only",
+      "text": "Lighter bottles and successful savings.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Response-only wording must not retrieve cases through response text."
+    },
+    {
+      "id": "negated-chocolate",
+      "text": "No chocolate input-cost inflation is established.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Negation must apply before related-term matching."
+    },
+    {
+      "id": "negated-milk",
+      "text": "Milk cost pressure is unknown.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Explicit unknown is not positive cost-pressure evidence."
+    },
+    {
+      "id": "mixed-clauses",
+      "text": "No milk cost inflation; packaging costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Only the positive clause should supply pressure matches."
+    },
+    {
+      "id": "mixed-negation",
+      "text": "Not milk but packaging is more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Known hard wording: clause-level negation can discard a positive alternative."
+    },
+    {
+      "id": "falling-milk",
+      "text": "Milk costs are falling and profits are recovering.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: falling input costs differ from the rising-cost cases."
+    },
+    {
+      "id": "milk-sales",
+      "text": "Milk sales are booming.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: product sales growth does not establish input-cost pressure."
+    },
+    {
+      "id": "airline",
+      "text": "Freight and fuel costs at an airline.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: an airline is outside the FMCG collection."
+    },
+    {
+      "id": "oil-art",
+      "text": "Oil paintings are expensive for a museum.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: oil used in art does not establish petroleum input pressure."
+    },
+    {
+      "id": "early-food",
+      "text": "Milk flour electricity",
+      "cutoff": "2007-07-25",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "GIS report not yet public."
+    },
+    {
+      "id": "early-water",
+      "text": "Oil distribution costs",
+      "cutoff": "2011-08-09",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Waters report not yet public."
+    },
+    {
+      "id": "early-chocolate",
+      "text": "Chocolate ingredient inflation",
+      "cutoff": "2025-04-30",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Hershey report not yet public."
+    },
+    {
+      "id": "inclusive-chocolate",
+      "text": "Chocolate input costs",
+      "cutoff": "2025-05-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": ""
+    },
+    {
+      "id": "self-cocoa",
+      "text": "Cocoa costs",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case and continuations excluded.",
+      "source_id": "HSY-2025-Q1"
+    },
+    {
+      "id": "self-food",
+      "text": "Milk flour electricity",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case excluded; no earlier case in collection.",
+      "source_id": "GIS-2007"
+    },
+    {
+      "id": "self-water",
+      "text": "Oil freight costs",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case and continuations excluded.",
+      "source_id": "NES-WATERS-2011-H1"
+    },
+    {
+      "id": "period-boundary",
+      "text": "Milk flour electricity",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Reporting period must end strictly before query period end.",
+      "before_period_end": "2007-05-27"
+    }
+  ]
+}

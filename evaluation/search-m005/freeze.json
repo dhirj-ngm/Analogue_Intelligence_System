@@ -1,0 +1,26 @@
+{
+  "base_commit": "bd2046f8f16f04113fd3cc37c8a4d8b6dfa8bb06",
+  "sha256": {
+    "evaluation/search-m005/queries.json": "f48aab934c01d1058b61b8e1501844797f5b4abd5022486e59d52eac9f66520e",
+    "src/ais/search.py": "9beb9f483cfa28851cba4861e2cd56f9b2a8345c4e592778cc2bd7a015f45b53",
+    "src/ais/pilot.py": "46ba53a0114ed30b2f1f34b7d6fa06e88de073d69ee26b6ee7ad8f3edb4f644e",
+    "data/collection/cases.jsonl": "29ec05ec0b360a2ea88b586212d7626e1687a0dedeeb98a4868a093ffc907cd7",
+    "data/pilot/cases.jsonl": "5d6ca8e518eb16321590af89cae74e80e835af0966eeb7c9adefbbf8401e2f5b",
+    "data/pilot/cases-structured-v2.jsonl": "ea8ba52c02d931a58c034a1ebfa4117ff8f88c3352cd41355c1336c1e1ca9ddc",
+    "evaluation/pilot/protocol.md": "d886450c2ad6c6cc572b53a6df8200bed98edee583ef6507b1babdc5bd2e7a5b",
+    "evaluation/pilot/queries.jsonl": "217313f8afaacba025c4aaa05f37d34744180849d29ed416f2c6ed8500c77500",
+    "evaluation/pilot/judgements.jsonl": "3b714f233b7162d3d7cd5d5ad16fa7f3f5260e9376167b5071dacd602c1adbc2",
+    "evaluation/pilot/freeze-manifest.json": "26c1dcb7ae1b58457846320566bc18a1b65dd4c772ee29879741366b961a988c",
+    "evaluation/pilot/eligibility.jsonl": "7a2ca7dae8f3fd4328d4232d0a606316b012043e06251da10bab2c617aedb7d6",
+    "evaluation/pilot/pilot-report.md": "f66ba2593c9674dcd329bb4d5859e50668dc7191e589ccdf1ab3673bc9edd993",
+    "evaluation/pilot/protocol-v2.md": "ec53b13778b42868ffcff4d99c0df1aa5ad3f334b3658162e8837007a46deff3",
+    "evaluation/pilot/freeze-manifest-v2.json": "d89ae8a285756d338612a2c0265622fb178549a1d288a2751d22a45c5e0c3401",
+    "evaluation/pilot/structured-review-ranks-v2.json": "fdd69a7852dd61206fa0001cfde9980df27df080af0145941b8c215a91073362",
+    "evaluation/pilot/reader-judgements-v2.jsonl": "964d19131bfe6d1edbc38e50b52746df02fa1142df97d76cee42d13dbaf7a233",
+    "evaluation/pilot/baselines/rankings.json": "4a4437ddc923c093dcbce0311952b0787c7053d56f7ed45f8a0116d6331acc6f",
+    "evaluation/pilot/baselines/run-manifest.json": "1a770af2c6e0f4bee3aae4ba390d23ca51a9a0b947b0850e158595cc38412acb",
+    "evaluation/pilot/baselines/reproducibility.json": "fc9e6358d61ce439205c5d631f975c86fb5b9203fd3f14f0bc00a30fd9c9938a",
+    "configs/pilot/baseline.json": "39192c92d80bbf485d3286edfa6e0f82ada760afa46ecaef171bea7f3b119961"
+  },
+  "policy": "Queries and expectations frozen before modifying search. Both methods must use identical eligible, deduplicated cases. No case additions planned; response/outcome fields excluded. Record all improvements and regressions, including false-positive candidates on empty expectations. Changes require a new evaluation version."
+}
