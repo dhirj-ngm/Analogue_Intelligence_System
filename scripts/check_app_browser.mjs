@@ -273,6 +273,7 @@ try {
     assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`), "GIS-2007");
     assert.ok(await evaluate(`document.querySelector('.pressure-match').textContent.includes('milk → dairy') && document.querySelector('.pressure-match').textContent.includes('flour → grains') && document.querySelector('.pressure-match').textContent.includes('electricity → energy')`));
     assert.ok(await evaluate(`document.querySelector('.card-main').innerText.includes('do not establish that it measured your exact input') && document.getElementById('result-caution').innerText.includes('whether costs rose or fell')`));
+    assert.ok(await evaluate(`document.getElementById('query-reading').innerText.includes('direction not specified') && document.querySelector('.direction-match').innerText.includes('Your direction is not specified')`));
     await screenshot(`ais-related-search-${device}.png`, false);
     for (const [text,id,link] of [["chocolate ingredient inflation","HSY-2025-Q1","chocolate → cocoa"],["bottled-water freight and fuel","NES-WATERS-2011-H1","fuel → oil"]]) {
       await fill("situation",text);
@@ -286,6 +287,29 @@ try {
     assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
     checks.push(`${device}: new-case publication boundary, self exclusion, three related-term searches and negation`);
 
+    const contextDate = await evaluate(`document.getElementById('cutoff').value`);
+    for (const [text,reason] of [["Milk costs are falling and profits recovering.","opposite direction"],["Milk sales are rising.","Sales or demand"],["Freight and fuel costs at an airline.","outside"],["Milk costs changed.","which way"]]) {
+      await fill("situation",text);
+      await search();
+      assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('results-status').textContent.includes(${JSON.stringify(reason)}) && !document.getElementById('query-reading').hidden && document.getElementById('comparison').hidden`));
+      assert.equal(await evaluate(`document.getElementById('cutoff').value`), contextDate);
+      assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
+    }
+    await screenshot(`ais-context-empty-${device}.png`, false);
+    checks.push(`${device}: cost direction, sales role, outside industry and unclear wording give honest empty results`);
+
+    await fill("situation", "Not milk but packaging is more expensive.");
+    await search();
+    assert.ok(await evaluate(`document.querySelectorAll('.case-card')[2].dataset.caseId==='CL-2022' && !document.querySelector('[data-case-id="GIS-2007"]')`));
+    assert.ok(await evaluate(`document.getElementById('query-reading').innerText.includes('Left out: “not milk”') && document.querySelector('.direction-match').innerText.includes('rising costs in both')`));
+    await screenshot(`ais-context-mixed-${device}.png`, false);
+    await fill("situation", "Milk costs fell while energy bills rose.");
+    await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),1);
+    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`),"KC-2011");
+    assert.ok(await evaluate(`document.getElementById('query-reading').innerText.includes('falling costs') && document.getElementById('query-reading').innerText.includes('rising costs')`));
+    checks.push(`${device}: mixed negation keeps positive packaging, packaging rank is transparent, opposite inputs veto partial matches`);
+
     await fill("situation", "cocoa grains oil");
     await search();
     assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).sort(), ["GIS-2007", "HSY-2025-Q1", "NES-WATERS-2011-H1"]);
@@ -295,6 +319,7 @@ try {
     await click("#compare-button");
     const comparison = await evaluate(`document.getElementById('comparison-table').innerText`);
     assert.ok(comparison.includes('bottled-water division') && comparison.includes('full financial year') && comparison.includes('sources disagree'));
+    assert.ok(comparison.includes('Connection to your description') && comparison.includes('Your direction is not specified'));
     assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
     await screenshot(`ais-collection-comparison-${device}.png`, false);
     await evaluate(`document.querySelectorAll('#comparison-table tbody tr')[1].scrollIntoView({block:'start',behavior:'instant'})`);
@@ -309,7 +334,7 @@ try {
       await call("Network.setBlockedURLs", {urls:["*/api/search"]});
       await fill("situation", "Keep my packaging description");
       await search();
-      assert.ok(await evaluate(`document.getElementById('error-message').textContent.includes("couldn't reach") && document.getElementById('situation').value==='Keep my packaging description' && document.querySelectorAll('.case-card').length===0`));
+      assert.ok(await evaluate(`document.getElementById('error-message').textContent.includes("couldn't reach") && document.getElementById('situation').value==='Keep my packaging description' && document.querySelectorAll('.case-card').length===0 && document.getElementById('query-reading').hidden`));
       await call("Network.setBlockedURLs", {urls:[]});
       await search();
       assert.ok(await evaluate(`document.getElementById('error').hidden && document.querySelectorAll('.case-card').length>0`));

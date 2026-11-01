@@ -48,16 +48,20 @@ open the controls and focus the field to fix; dates are never silently widened t
 produce results.
 
 If the app cannot support a comparison, it explains whether the dates ruled out
-all cases or the description has no supported connection through the input vocabulary.
-You can check the dates, edit the description, or try an example. `Semiconductor shortages at a bank`
+all cases, the collection lacks a matching pressure, or the wording does not support
+a comparison. It explains a direction conflict, a sales statement, an outside
+industry or an unclear change. You can edit the description, check dates or try
+an example. `Semiconductor shortages at a bank`
 shows a collection gap. Empty results are not evidence that no historical
 comparison exists elsewhere.
 
 **How this works** contains the method, date/exclusion counts and optional BM25
 scores. Each result shows the words connected in your description and the report,
 with sources, differences and unknowns. Related terms do not establish a useful
-analogy or that the report measured your exact input. Reported actions do
-not prove what caused a result. Metric definitions and exact source locators
+analogy or that the report measured your exact input. The app shows which pressures
+it read and which parts it left out. Direction appears beside each match and in
+comparison; topic lists are labelled “direction not specified”. Reported actions
+do not prove what caused a result. Metric definitions and exact source locators
 remain available beside the company-reported figures.
 
 Try **Cocoa costs** or **Food ingredients & energy** for the new cases.
@@ -81,10 +85,16 @@ IDs or query-specific rules. Responses, profit figures, rationale, later outcome
 and business descriptions do not affect these scores. Unknown or post-cutoff
 challenge dates, self cases, known duplicates/continuations and non-earlier
 periods stay excluded. A response unknown by the selected date is withheld.
-Explicit no/not/unknown clauses are skipped before term matching. General words
-such as ingredient or commodity cannot establish a match. The vocabulary can miss
-unlisted words and does not reliably check industry, sales versus input costs,
-direction of change or mixed negation. Numerical comparisons retain
+M006 adds [explicit clause rules](src/ais/context.py) for input role, cost direction,
+negation and business context. Falling costs cannot match a report of rising costs
+for the same input, even if another shared input fits. Sales/demand statements do
+not become input costs. Contrasts preserve the positive side of “not milk but
+packaging”; “not only” is treated as additive. Recognized outside industries such
+as airlines are set aside. Product names in recognized business descriptions do
+not become purchased inputs. Ambiguous changes and denied/unknown directions are
+not filled in. Bare input-topic lists remain useful searches with unspecified
+direction. These are limited language rules, not a complete industry or sentence
+classifier. General words such as ingredient or commodity are still insufficient. Numerical comparisons retain
 units, scope and the company's accounting definition. No incompatible amounts
 are subtracted. The new records live in `data/collection/cases.jsonl`; the frozen
 M001 source records, cases and experiments are unchanged. No source documents are
@@ -92,18 +102,26 @@ stored or served by the app; readers follow links to original reports.
 
 See [collection notes](data/collection/README.md) for source selection, precise
 locations, access/retention limits, continuation decisions and curation work.
-The three M004 misses now retrieve their intended case first: milk/flour/electricity
-finds General Mills, chocolate ingredient inflation finds Hershey, and bottled-water
-freight/fuel finds Nestlé Waters. The [paired M005 evaluation](evaluation/search-m005/report.md)
-uses 33 queries and expectations frozen in Git before search changes, on identical
-eligible cases. Expected useful cases appear in the first five for 7/15 old versus
-14/15 new queries. Unexpected candidates on expected-empty queries increase from
-3/18 to 4/18: broader terms introduce falling-milk-cost, booming-milk-sales and
-airline-fuel false positives, while removing two old false-positive results. One
-packaging query drops from rank 1 to 3; mixed negation still misses a useful case.
-These are assistant-authored development checks, not independent quality claims.
-The [M004 observations](evaluation/collection/results.json) remain reproducible
-with the old literal method; their files and all case records remain unchanged.
+The three M004 related-term searches still find their intended cases first.
+The [M006 paired report](evaluation/search-m006/report.md) compares M005 and M006
+on 65 queries frozen before implementation, with identical eligible cases.
+Useful-case retrieval in the first five rises from 27/33 to 33/33; unexpected
+results on expected-empty queries fall from 16/32 to 0/32, and queries returning
+explicitly forbidden cases fall from 5 to 0. No useful-case or target-rank
+regressions occurred in this set. These assistant-authored examples were chosen
+with knowledge of M005 failures; they are not independent validation.
+
+The packaging-only query still puts Colgate 2022 third: BM25 favours a shorter
+packaging-only passage, and Colgate 2015 ties with 2022 and precedes it by ID.
+Adding logistics still puts Colgate 2022 first. A score does not establish which
+case is the better analogy. [Post-implementation diagnostics](evaluation/search-m006/diagnostics.json),
+excluded from the 65-query metrics, record remaining misses with unpunctuated
+negation, comma-linked cost directions and supplier-industry context. Unlisted
+sectors, word senses and complex attachments can still mislead or cause abstention.
+
+The [M004 observations](evaluation/collection/results.json) and
+[M005 report](evaluation/search-m005/report.md) remain unchanged and reproducible
+with their historical methods. All existing cases and frozen M001 files are unchanged.
 
 ## Checks
 
@@ -114,7 +132,8 @@ needs no Node installation:
 make test       # Python safeguards/HTTP tests and JavaScript reader-state tests
 make validate   # Existing pilot data and judgement coverage
 make collection-check # Collection validation and historical M004 literal results
-make search-check # Frozen M005 paired evaluation, including misses and regressions
+make search-check # Frozen M006 paired evaluation, including misleading results/ranks
+make search-check-m005 # Reproduce historical M005 ranks without rewriting its files
 make lint       # Ruff, using the existing .venv development environment
 ```
 
@@ -139,7 +158,8 @@ results on desktop and a 375px phone viewport. They also check that technical
 information stays optional, a personal draft survives source-case switching,
 and a failed connection preserves the description for retry. New-case checks
 cover the source disagreement, accounting definitions, publication boundary,
-self exclusion, related terms, negation and comparison on both screen sizes. Screenshots go to
+self exclusion, related terms, cost direction, sales/industry checks, mixed negation,
+ambiguous wording and comparison on both screen sizes. Screenshots go to
 `/tmp/ais-case-search-{desktop,mobile}.png`,
 `/tmp/ais-reader-comparison-{desktop,mobile}.png` and
 `/tmp/ais-reader-case-mobile.png`; the temporary browser profile is removed.
@@ -147,7 +167,8 @@ Default Chrome path: `/opt/google/chrome/chrome`. Set `APP_PYTHON` to use anothe
 Python executable.
 
 Additional screenshots: `/tmp/ais-collection-{conflict,comparison,figures}-{desktop,mobile}.png`
-and `/tmp/ais-related-search-{desktop,mobile}.png`.
+and `/tmp/ais-related-search-{desktop,mobile}.png`. M006 adds
+`/tmp/ais-context-{empty,mixed}-{desktop,mobile}.png`.
 
 The intermittent retry failure was in the browser check: queued focus scrolling
 could move its coordinate target, so the click hit nearby text, and an old idle
@@ -192,8 +213,9 @@ changes require a new benchmark version. `make run` reproduces the model pilot;
 M001 is closed as a development pilot. M002 delivers local search/comparison;
 M003 makes the reader experience simpler, with optional technical detail.
 M004 adds three distinct source-backed cost situations. M005 fixes browser-check
-timing and adds explainable related-input search with a frozen paired evaluation.
-Next address context/direction errors and mixed negation, then evaluate with
+timing and adds explainable related-input search. M006 adds conservative context,
+direction and negation checks, visible interpretations and a frozen comparison.
+Next address the documented grammar/supplier-context limits, evaluate with
 independent relevance judgements, test structural comparison and consider training when
 failures and labels justify it. Builder works end to end without user review
 gates. Development findings must remain labelled honestly.

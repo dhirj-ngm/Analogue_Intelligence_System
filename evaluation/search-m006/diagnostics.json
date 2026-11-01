@@ -1,0 +1,60 @@
+{
+  "provenance": "Post-implementation assistant diagnostic observations, not frozen evaluation inputs or independent judgements. Excluded from all 65-query comparison metrics.",
+  "context_code_sha256": "9ff2548d9c33d32e112b24edc2ba7b1ceca748a8767eb5c8a10f3b360cb373eb",
+  "observations": [
+    {
+      "query": {
+        "text": "Milk costs are rising not falling.",
+        "cutoff": "2026-11-01"
+      },
+      "ranked_ids": [],
+      "status": "insufficient_evidence",
+      "query_reading": {
+        "summary": "This part says the pressure was absent or unknown.",
+        "ignored": [
+          {
+            "text": "milk costs are rising not falling",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      },
+      "limit": "A useful dairy-pressure case is missed by coarse negation scope without punctuation."
+    },
+    {
+      "query": {
+        "text": "Milk prices fell, packaging prices rose.",
+        "cutoff": "2026-11-01"
+      },
+      "ranked_ids": [],
+      "status": "insufficient_evidence",
+      "query_reading": {
+        "summary": "We couldn't separate the cost directions reliably enough for this comparison.",
+        "ignored": [
+          {
+            "text": "milk prices fell, packaging prices rose",
+            "reason": "conflicting_direction",
+            "message": "We couldn't separate the cost directions reliably enough for this comparison."
+          }
+        ],
+        "blocked": "conflicting_direction"
+      },
+      "limit": "A potentially useful packaging match is missed because the comma does not safely bind each direction to an input."
+    },
+    {
+      "query": {
+        "text": "A food maker pays more for freight from its logistics provider.",
+        "cutoff": "2026-11-01"
+      },
+      "ranked_ids": [],
+      "status": "insufficient_evidence",
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      },
+      "limit": "The supplier context triggers conservative industry rejection; the food maker context is not resolved."
+    }
+  ]
+}

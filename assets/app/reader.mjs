@@ -22,6 +22,16 @@ export function pressureMatchLabel(matches) {
   return `Pressure match: ${parts.join("; ")}.`;
 }
 
+export function matchDirectionLabel(matches) {
+  const reports = new Set(matches.map((m) => m.report_direction).filter(Boolean));
+  if (!reports.size) return "";
+  const directions = [...reports].map((value) => value === "up" ? "rising costs" : value === "down" ? "falling costs" : "disruption");
+  const unspecified = matches.some((m) => m.query_direction === "unspecified");
+  return unspecified
+    ? `Your direction is not specified for some inputs. The matched report describes ${words(directions)}.`
+    : `Matched inputs describe ${words(directions)} in both descriptions.`;
+}
+
 const DIFFERENCES = new Map([
   ["gross margin adjusted for restructuring; global scope", "This covers the whole company. Its gross margin leaves out restructuring charges."],
   ["profit amount includes restructuring; no margin level inferred", "This is a profit amount, including restructuring costs, rather than a margin percentage."],

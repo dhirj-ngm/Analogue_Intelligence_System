@@ -1,4 +1,4 @@
-"""Paired M005 development evaluation on a frozen corpus and query set."""
+"""Paired development evaluation on frozen queries and identical eligible cases."""
 
 import argparse
 from hashlib import sha256
@@ -7,18 +7,20 @@ import json
 from ais.pilot import ROOT
 from ais.search import CaseSearch
 
-DIRECTORY = ROOT / "evaluation/search-m005"
 
-
-def evaluate():
-    freeze = json.loads((DIRECTORY / "freeze.json").read_text())
+def evaluate(module="m006"):
+    directory = ROOT / f"evaluation/search-{module}"
+    old_method, new_method = (
+        ("literal_v1", "related_v1") if module == "m005" else ("related_v1", "context_v1")
+    )
+    freeze = json.loads((directory / "freeze.json").read_text())
     for path, expected in freeze["sha256"].items():
         if path == "src/ais/search.py":
             continue  # The changed implementation is fingerprinted below.
         if sha256((ROOT / path).read_bytes()).hexdigest() != expected:
             raise ValueError(f"Frozen evaluation input changed: {path}")
-    inputs = json.loads((DIRECTORY / "queries.json").read_text())
-    baseline = json.loads((DIRECTORY / "baseline.json").read_text())
+    inputs = json.loads((directory / "queries.json").read_text())
+    baseline = json.loads((directory / "baseline.json").read_text())
     search = CaseSearch.load()
     checks = []
     for row, captured in zip(inputs["queries"], baseline["checks"], strict=True):
@@ -32,7 +34,7 @@ def evaluate():
         if ids != captured["eligible_ids"] or excluded != captured["excluded"]:
             raise ValueError(f"Eligible pool differs from frozen baseline: {row['id']}")
         methods = {}
-        for name, method in [("old", "literal_v1"), ("new", "related_v1")]:
+        for name, method in [("old", old_method), ("new", new_method)]:
             result = search.search(payload, method=method)
             if result["eligible_count"] != len(ids) or result["excluded"] != excluded:
                 raise ValueError("Method changed the eligible pool")
@@ -40,9 +42,7 @@ def evaluate():
             if name == "old" and (
                 ranked != captured["ranked"] or result["status"] != captured["status"]
             ):
-                raise ValueError(
-                    f"Literal method no longer reproduces captured M004 output: {row['id']}"
-                )
+                raise ValueError(f"Old method no longer reproduces captured baseline: {row['id']}")
             ranked_ids = [c["id"] for c in ranked]
             ranks = {
                 case_id: ranked_ids.index(case_id) + 1 if case_id in ranked_ids else None
@@ -56,6 +56,9 @@ def evaluate():
                 "status": result["status"],
                 "matched_count": result["matched_count"],
                 "unexpected_candidates": bool(row["expect_empty"] and ranked),
+                "forbidden_returned": sorted(set(ranked_ids) & set(row.get("forbidden_cases", []))),
+                "query_reading": result.get("query_reading"),
+                "context_filtered": result.get("context_filtered", {}),
             }
         checks.append({**row, "eligible_ids": ids, "excluded": excluded, **methods})
     positive = [c for c in checks if not c["expect_empty"]]
@@ -76,6 +79,14 @@ def evaluate():
         "new_unexpected_candidate_queries": sum(
             c["new"]["unexpected_candidates"] for c in negative
         ),
+        "old_forbidden_match_queries": sum(bool(c["old"]["forbidden_returned"]) for c in checks),
+        "new_forbidden_match_queries": sum(bool(c["new"]["forbidden_returned"]) for c in checks),
+        "top_result_changes": [
+            c["id"]
+            for c in checks
+            if [r["id"] for r in c["old"]["ranked"][:1]]
+            != [r["id"] for r in c["new"]["ranked"][:1]]
+        ],
         "retrieval_improvements": [
             c["id"] for c in positive if not hits(c, "old") and hits(c, "new")
         ],
@@ -101,19 +112,28 @@ def evaluate():
             for c in negative
             if c["old"]["unexpected_candidates"] and not c["new"]["unexpected_candidates"]
         ],
+        "remaining_failures": [
+            c["id"]
+            for c in checks
+            if (not c["expect_empty"] and not hits(c, "new"))
+            or c["new"]["unexpected_candidates"]
+            or c["new"]["forbidden_returned"]
+        ],
     }
     fingerprints = {
         str(path.relative_to(ROOT)): sha256(path.read_bytes()).hexdigest()
         for path in [
-            DIRECTORY / "queries.json",
-            DIRECTORY / "freeze.json",
-            DIRECTORY / "baseline.json",
+            directory / "queries.json",
+            directory / "freeze.json",
+            directory / "baseline.json",
             ROOT / "src/ais/search.py",
             ROOT / "src/ais/related.py",
+            ROOT / "src/ais/context.py",
         ]
     }
     return {
-        "scope": "Assistant-authored development checks, selected with knowledge of M004 misses. Expected useful cases are not exhaustive relevance grades; no independent validation or causal claims.",
+        "module": module,
+        "scope": inputs["provenance"] + " No independent validation or causal claims.",
         "fingerprints": fingerprints,
         "summary": summary,
         "checks": checks,
@@ -123,12 +143,13 @@ def evaluate():
 def report_text(report):
     s = report["summary"]
     lines = [
-        "# M005 paired search checks",
+        f"# {report['module'].upper()} paired search checks",
         "",
         report["scope"],
         "",
         f"Across {s['useful_case_queries']} useful-case queries, expected cases appeared in the first five in {s['old_useful_found_at_5']} old / {s['new_useful_found_at_5']} new results.",
         f"Across {s['expected_empty_queries']} expected-empty queries, unexpected candidates appeared in {s['old_unexpected_candidate_queries']} old / {s['new_unexpected_candidate_queries']} new results.",
+        f"Queries returning explicitly forbidden cases: {s['old_forbidden_match_queries']} old / {s['new_forbidden_match_queries']} new.",
         "",
         "| Query ID | Expected useful case(s) | Old rank(s) | New rank(s) | Unexpected candidates old → new |",
         "| --- | --- | --- | --- | --- |",
@@ -151,17 +172,23 @@ def report_text(report):
         "rank_regressions",
         "false_positive_regressions",
         "false_positive_improvements",
+        "top_result_changes",
+        "remaining_failures",
     ]:
         lines.append(f"- {key.replace('_', ' ')}: {', '.join(s[key]) or 'none'}")
     lines += [
         "",
         "Both methods use the same ordered eligible, deduplicated pool per query; IDs and matching pool hashes are recorded in results.json. The old method must reproduce every captured baseline rank and score. No cases or source records were added or changed.",
         "",
-        "The old method uses literal BM25 on allowlisted challenge text plus a shared pressure-word gate. The new method uses the same BM25 formula on named families from pressure passages only. A fixed vocabulary joins related inputs; generic ingredient/commodity words do not rank a case. This changes both the vocabulary and scoring representation, not the eligibility rules. No responses, outcomes or business identity are used to build concepts.",
+        "M005 related_v1 is reproduced unchanged. M006 context_v1 retains its vocabulary and BM25 formula, reading only pressure passages. General clause rules separate inputs from sales/demand, identify rising/falling/unspecified directions, split contrast and independent assertions, remove denied/unknown statements, and recognize explicit non-consumer-goods business contexts. Product names in recognized business descriptions do not become input evidence. Opposite directions for any shared input veto a partial match on another input. Bare topic lists remain searches with unspecified direction; they are never labelled as increases in the query.",
         "",
-        "Remaining limits: related inputs are not identical materials. The vocabulary does not reliably understand industry, sales versus input costs, direction of change or mixed negation. Falling milk costs, booming milk sales and airline fuel can produce misleading candidates; oil paintings already misled the old method. The mixed-negation query can still lose a useful packaging match. Explicitly negative/unknown clauses remain excluded. The app displays its term links and cautions; this is not a general relevance model.",
+        "Packaging investigation: M005 discarded the negated milk clause, leaving one packaging term. Compressed passage lengths then favour CL-2008 (one input family) over CL-2022 (packaging plus transport), through BM25 length normalization. A packaging-only query cannot justify preferring the latter case; CL-2022 stays useful at rank 3. M006 restores mixed-negation searches without forcing this case upward. The broader packaging/logistics query retains CL-2022 first. Scores and every rank are recorded; rank is not analogy quality.",
+        "For the frozen mixed-clauses query, both methods give CL-2008 1.363102, CL-2015 1.056404, CL-2022 1.056404 and NES-WATERS-2011-H1 0.862371. CL-2015 and CL-2022 tie and are ordered by ID, not domain preference.",
         "",
-        "Inputs and expected cases were frozen in commit cb1b37c before search changes, from M004 base bd2046f. The 33 queries were deliberately chosen development examples, not a held-out benchmark. Run `make search-check` to verify the freeze, reproduce the literal baseline, and compare the new results without network access. `PYTHONPATH=src python3 scripts/evaluate_search.py --write` records outputs. No model experiment was rerun.",
+        "Limits: this explicit grammar and industry vocabulary are incomplete. Complex attachment, omitted subjects, unlisted word senses/sectors, predictions and long-distance negation can still fail. Ignored statements and the interpreted direction are visible in the app. Related inputs are not identical materials; unknown source facts and action effects remain unknown. A passing development query does not validate general understanding or response effectiveness.",
+        "Post-implementation diagnostics (diagnostics.json, excluded from frozen evaluation counts) still find safe but useful-case misses for unpunctuated 'rising not falling' and comma-linked opposite input changes. Mentioning a logistics supplier can also cause conservative industry rejection even when the business is a food maker. No frozen-query failures is not a claim of no remaining search failures.",
+        "",
+        "The 65 query texts, expectations and M005 baseline were frozen in 234fab0; b1f85a7 corrected one mixed-direction expectation before implementation to exclude a case with explicitly opposite dairy costs. No labels changed after method edits. These queries were chosen with knowledge of M005 failures and are not held-out or human judgements. `make search-check` reproduces M006; `make search-check-m005` reproduces historical M005 ranks without rewriting its files. `PYTHONPATH=src python3 scripts/evaluate_search.py --write` records M006 outputs. No case records or model experiment changed.",
         "",
     ]
     return "\n".join(lines)
@@ -169,10 +196,14 @@ def report_text(report):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--module", choices=["m005", "m006"], default="m006")
     parser.add_argument("--write", action="store_true", help="Write actual results and report")
     args = parser.parse_args()
-    report = evaluate()
+    if args.write and args.module == "m005":
+        parser.error("Historical M005 outputs are frozen; run without --write.")
+    directory = ROOT / f"evaluation/search-{args.module}"
+    report = evaluate(args.module)
     if args.write:
-        (DIRECTORY / "results.json").write_text(json.dumps(report, indent=2) + "\n")
-        (DIRECTORY / "report.md").write_text(report_text(report))
+        (directory / "results.json").write_text(json.dumps(report, indent=2) + "\n")
+        (directory / "report.md").write_text(report_text(report))
     print(json.dumps(report["summary"], indent=2))

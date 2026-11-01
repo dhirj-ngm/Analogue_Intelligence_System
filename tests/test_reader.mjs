@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { SearchDraft, changeInformationDate, dateLabel, metricFacts, pressureLabel, reportLocator, unknownLabels, explainBasisPoints, pressureMatchLabel } from "../assets/app/reader.mjs";
+import { SearchDraft, changeInformationDate, dateLabel, metricFacts, pressureLabel, reportLocator, unknownLabels, explainBasisPoints, pressureMatchLabel, matchDirectionLabel } from "../assets/app/reader.mjs";
 
 const own = { text: "My packaging problem", cutoff: "2023-03-01", before_period_end: "2022-10-01", source_id: "" };
 const colgate = { id: "CL-2022", challenge: "Source challenge", published: "2023-01-27", period_end: "2022-12-31" };
@@ -71,4 +71,11 @@ test("basis points are explained beside each reported number without changing th
 test("related matches show query and actual report terms rather than claiming identical inputs", () => {
   assert.equal(pressureMatchLabel([{relationship:"related_terms",query_terms:["milk"],report_terms:["dairy"],label:"dairy inputs"}]), "Pressure match: milk → dairy (related dairy inputs).");
   assert.equal(pressureMatchLabel([{relationship:"shared_word",shared_words:["packaging"]}]), "Pressure match: packaging.");
+});
+
+test("direction explanations distinguish input topics from asserted increases", () => {
+  assert.match(matchDirectionLabel([{query_direction:"unspecified",report_direction:"up"}]), /Your direction is not specified/);
+  assert.match(matchDirectionLabel([{query_direction:"up",report_direction:"up"}]), /rising costs in both/);
+  assert.match(matchDirectionLabel([{query_direction:"down",report_direction:"down"}]), /falling costs in both/);
+  assert.equal(matchDirectionLabel([]), "");
 });

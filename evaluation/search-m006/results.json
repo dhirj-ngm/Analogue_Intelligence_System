@@ -1,0 +1,4639 @@
+{
+  "module": "m006",
+  "scope": "Assistant-authored development expectations frozen before changing the method; includes M005 failures and deliberately difficult context/negation examples. Useful cases are not exhaustive relevance grades; no independent validation. No independent validation or causal claims.",
+  "fingerprints": {
+    "evaluation/search-m006/queries.json": "036de3e97d25a0111feebbb7aba168862ab914962d44646e7df5be868a9b4d1e",
+    "evaluation/search-m006/freeze.json": "62d3153e5a82b9ea0b9b040abf8e39e898679a2447a9ceb1e5c2fd2225bcafd4",
+    "evaluation/search-m006/baseline.json": "7c01fd9a8e2e3ce2874db5965765c8a1193bacda3faa71976f8c4c408d3ebd24",
+    "src/ais/search.py": "37ed8c97aa3705ab27d300b1d64e5d22b4cf326684ddab578093b90b19bd72ac",
+    "src/ais/related.py": "1521867c5fb3263de333866c4278a3b3c83b10d3d98c632f693884a6669fc26c",
+    "src/ais/context.py": "9ff2548d9c33d32e112b24edc2ba7b1ceca748a8767eb5c8a10f3b360cb373eb"
+  },
+  "summary": {
+    "queries": 65,
+    "useful_case_queries": 33,
+    "expected_empty_queries": 32,
+    "old_useful_found_at_5": 27,
+    "new_useful_found_at_5": 33,
+    "old_unexpected_candidate_queries": 16,
+    "new_unexpected_candidate_queries": 0,
+    "old_forbidden_match_queries": 5,
+    "new_forbidden_match_queries": 0,
+    "top_result_changes": [
+      "mixed-negation",
+      "falling-milk",
+      "milk-sales",
+      "airline",
+      "oil-art",
+      "falling-dairy",
+      "cheaper-milk",
+      "sales-only",
+      "demand-only",
+      "aviation",
+      "logistics-provider",
+      "museum",
+      "not-but",
+      "without-while",
+      "no-and",
+      "unknown-but",
+      "sales-and-costs",
+      "changed",
+      "either-direction",
+      "contradiction",
+      "not-only",
+      "negative-alternative",
+      "unknown-sector",
+      "business-product",
+      "ambiguous-power",
+      "split-costs"
+    ],
+    "retrieval_improvements": [
+      "mixed-negation",
+      "not-but",
+      "no-and",
+      "unknown-but",
+      "not-only",
+      "negative-alternative"
+    ],
+    "retrieval_regressions": [],
+    "rank_regressions": [],
+    "false_positive_regressions": [],
+    "false_positive_improvements": [
+      "falling-milk",
+      "milk-sales",
+      "airline",
+      "oil-art",
+      "falling-dairy",
+      "cheaper-milk",
+      "sales-only",
+      "demand-only",
+      "aviation",
+      "logistics-provider",
+      "museum",
+      "changed",
+      "either-direction",
+      "contradiction",
+      "unknown-sector",
+      "ambiguous-power"
+    ],
+    "remaining_failures": []
+  },
+  "checks": [
+    {
+      "id": "milk-flour-electricity",
+      "text": "Milk, flour and electricity are more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: related dairy, grain and energy inputs.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 4.703197
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 4.703197
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs); energy (rising costs); grain inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "chocolate",
+      "text": "Chocolate ingredient inflation is squeezing profit.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: cocoa is a chocolate input; ingredient alone is weak evidence.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "bottled-water",
+      "text": "Bottled-water freight and fuel costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "M004 miss: transport and oil-related costs; product/industry still requires reader judgement.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 2.280079
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          },
+          {
+            "id": "CL-2022",
+            "score": 0.714137
+          },
+          {
+            "id": "CLX-2021",
+            "score": 0.714137
+          },
+          {
+            "id": "UL-2022",
+            "score": 0.714137
+          }
+        ],
+        "useful_ranks": {
+          "NES-WATERS-2011-H1": 1
+        },
+        "status": "candidates",
+        "matched_count": 6,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 2.280079
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          },
+          {
+            "id": "CL-2022",
+            "score": 0.714137
+          },
+          {
+            "id": "CLX-2021",
+            "score": 0.714137
+          },
+          {
+            "id": "UL-2022",
+            "score": 0.714137
+          }
+        ],
+        "useful_ranks": {
+          "NES-WATERS-2011-H1": 1
+        },
+        "status": "candidates",
+        "matched_count": 6,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: oil and fuel (rising costs); transport (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "literal-food",
+      "text": "Grains, dairy and energy costs are increasing.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 4.703197
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 4.703197
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs); energy (rising costs); grain inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "literal-cocoa",
+      "text": "Cocoa costs are rising and putting pressure on gross margin.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "literal-oil",
+      "text": "Oil-related packaging and distribution costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 3.14245
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.770542
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          }
+        ],
+        "useful_ranks": {
+          "NES-WATERS-2011-H1": 1
+        },
+        "status": "candidates",
+        "matched_count": 8,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 3.14245
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.770542
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          }
+        ],
+        "useful_ranks": {
+          "NES-WATERS-2011-H1": 1
+        },
+        "status": "candidates",
+        "matched_count": 8,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: oil and fuel (rising costs); packaging (rising costs); transport (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "literal-packaging",
+      "text": "Packaging and logistics costs are increasing, putting pressure on margin.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2022",
+            "score": 1.770542
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 1.44534
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 1
+        },
+        "status": "candidates",
+        "matched_count": 8,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2022",
+            "score": 1.770542
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 1.44534
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 1
+        },
+        "status": "candidates",
+        "matched_count": 8,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs); transport (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "literal-resin",
+      "text": "Resin and fiber costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "KC-2011",
+            "score": 2.86753
+          }
+        ],
+        "useful_ranks": {
+          "KC-2011": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "KC-2011",
+            "score": 2.86753
+          }
+        ],
+        "useful_ranks": {
+          "KC-2011": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: fibre inputs (rising costs); resin and plastic materials (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "wheat-power",
+      "text": "Wheat and power bills are increasing.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Additional input vocabulary; power can also have non-energy meanings.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 3.006087
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 3.006087
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: energy (rising costs); grain inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "milk-powder",
+      "text": "Milk powder and grain prices rose.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Related pressure; exact commodity breakdown remains unknown.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 3.394219
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 3.394219
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs); grain inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "cacao",
+      "text": "Cacao beans have become more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "freight",
+      "text": "Freight, diesel and packaging costs are higher.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 3.14245
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.770542
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          }
+        ],
+        "useful_ranks": {
+          "NES-WATERS-2011-H1": 1
+        },
+        "status": "candidates",
+        "matched_count": 8,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 3.14245
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.770542
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          }
+        ],
+        "useful_ranks": {
+          "NES-WATERS-2011-H1": 1
+        },
+        "status": "candidates",
+        "matched_count": 8,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: oil and fuel (rising costs); packaging (rising costs); transport (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "unsupported-chips",
+      "text": "Semiconductor shortages at a bank.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No supported semiconductor/bank case.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        },
+        "context_filtered": {
+          "outside_scope": 13
+        }
+      }
+    },
+    {
+      "id": "unsupported-coffee",
+      "text": "Arabica coffee bean costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No coffee-specific cost case; do not infer one from Nestl\u00e9 company identity.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "No specific input or disruption could be read from this description.",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "unsupported-steel",
+      "text": "Steel smelting costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No steel-specific case.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        },
+        "context_filtered": {
+          "outside_scope": 13
+        }
+      }
+    },
+    {
+      "id": "generic",
+      "text": "Ingredient inflation and higher costs.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Ingredient is a broad input label, not a specific pressure.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "No specific input or disruption could be read from this description.",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "action-only",
+      "text": "Lighter bottles and successful savings.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Response-only wording must not retrieve cases through response text.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "No specific input or disruption could be read from this description.",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "negated-chocolate",
+      "text": "No chocolate input-cost inflation is established.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Negation must apply before related-term matching.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "This part says the pressure was absent or unknown.",
+          "ignored": [
+            {
+              "text": "no chocolate input-cost inflation is established",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "negated-milk",
+      "text": "Milk cost pressure is unknown.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Explicit unknown is not positive cost-pressure evidence.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "This part says the pressure was absent or unknown.",
+          "ignored": [
+            {
+              "text": "milk cost pressure is unknown",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "mixed-clauses",
+      "text": "No milk cost inflation; packaging costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Only the positive clause should supply pressure matches.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs).",
+          "ignored": [
+            {
+              "text": "no milk cost inflation",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "mixed-negation",
+      "text": "Not milk but packaging is more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Known hard wording: clause-level negation can discard a positive alternative.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {
+          "CL-2022": null
+        },
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs).",
+          "ignored": [
+            {
+              "text": "not milk",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "falling-milk",
+      "text": "Milk costs are falling and profits are recovering.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: falling input costs differ from the rising-cost cases.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (falling costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {
+          "opposite_direction": 1
+        }
+      }
+    },
+    {
+      "id": "milk-sales",
+      "text": "Milk sales are booming.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: product sales growth does not establish input-cost pressure.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Sales or demand changes do not establish input-cost pressure.",
+          "ignored": [
+            {
+              "text": "milk sales are booming",
+              "reason": "sales_or_demand",
+              "message": "Sales or demand changes do not establish input-cost pressure."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "airline",
+      "text": "Freight and fuel costs at an airline.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: an airline is outside the FMCG collection.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 2.280079
+          },
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          },
+          {
+            "id": "CL-2022",
+            "score": 0.714137
+          },
+          {
+            "id": "CLX-2021",
+            "score": 0.714137
+          },
+          {
+            "id": "UL-2022",
+            "score": 0.714137
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 6,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        },
+        "context_filtered": {
+          "outside_scope": 13
+        }
+      }
+    },
+    {
+      "id": "oil-art",
+      "text": "Oil paintings are expensive for a museum.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Misleading: oil used in art does not establish petroleum input pressure.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        },
+        "context_filtered": {
+          "outside_scope": 13
+        }
+      }
+    },
+    {
+      "id": "early-food",
+      "text": "Milk flour electricity",
+      "cutoff": "2007-07-25",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "GIS report not yet public.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [],
+      "excluded": {
+        "after_cutoff": 13
+      },
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (direction not specified); energy (direction not specified); grain inputs (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "early-water",
+      "text": "Oil distribution costs",
+      "cutoff": "2011-08-09",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Waters report not yet public.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "after_cutoff": 11
+      },
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "78bfe43f058c920d2c18a1f49b3b813e24d3f6e6028e9a6d49dc19a3127948d1",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "78bfe43f058c920d2c18a1f49b3b813e24d3f6e6028e9a6d49dc19a3127948d1",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: oil and fuel (direction not specified); transport (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "early-chocolate",
+      "text": "Chocolate ingredient inflation",
+      "cutoff": "2025-04-30",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Hershey report not yet public.",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023"
+      ],
+      "excluded": {
+        "after_cutoff": 1
+      },
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "03069a6168a3585ffec5fa506071cde1871d7955b3c8218f8812a4e28332b689",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "03069a6168a3585ffec5fa506071cde1871d7955b3c8218f8812a4e28332b689",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "inclusive-chocolate",
+      "text": "Chocolate input costs",
+      "cutoff": "2025-05-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: cocoa and chocolate inputs (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "self-cocoa",
+      "text": "Cocoa costs",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case and continuations excluded.",
+      "source_id": "HSY-2025-Q1",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023"
+      ],
+      "excluded": {
+        "self": 1
+      },
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "03069a6168a3585ffec5fa506071cde1871d7955b3c8218f8812a4e28332b689",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "03069a6168a3585ffec5fa506071cde1871d7955b3c8218f8812a4e28332b689",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: cocoa and chocolate inputs (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "self-food",
+      "text": "Milk flour electricity",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case excluded; no earlier case in collection.",
+      "source_id": "GIS-2007",
+      "set": "M005 carry-forward",
+      "eligible_ids": [],
+      "excluded": {
+        "not_earlier_observation": 12,
+        "self": 1
+      },
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (direction not specified); energy (direction not specified); grain inputs (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "self-water",
+      "text": "Oil freight costs",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Starting case and continuations excluded.",
+      "source_id": "NES-WATERS-2011-H1",
+      "set": "M005 carry-forward",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "not_earlier_observation": 10,
+        "self": 1
+      },
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "78bfe43f058c920d2c18a1f49b3b813e24d3f6e6028e9a6d49dc19a3127948d1",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "78bfe43f058c920d2c18a1f49b3b813e24d3f6e6028e9a6d49dc19a3127948d1",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: oil and fuel (direction not specified); transport (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "period-boundary",
+      "text": "Milk flour electricity",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Reporting period must end strictly before query period end.",
+      "before_period_end": "2007-05-27",
+      "set": "M005 carry-forward",
+      "eligible_ids": [],
+      "excluded": {
+        "not_earlier_observation": 13
+      },
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (direction not specified); energy (direction not specified); grain inputs (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "falling-dairy",
+      "text": "Dairy input prices declined.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Falling input costs are not rising input costs.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (falling costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {
+          "opposite_direction": 1
+        }
+      }
+    },
+    {
+      "id": "cheaper-milk",
+      "text": "Milk is becoming cheaper.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Implicit price decline still opposes the cost-pressure cases.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (falling costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {
+          "opposite_direction": 1
+        }
+      }
+    },
+    {
+      "id": "sales-only",
+      "text": "Milk sales are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Sales growth is not input-cost pressure.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Sales or demand changes do not establish input-cost pressure.",
+          "ignored": [
+            {
+              "text": "milk sales are rising",
+              "reason": "sales_or_demand",
+              "message": "Sales or demand changes do not establish input-cost pressure."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "demand-only",
+      "text": "Demand for chocolate is growing.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Product demand is not an input-cost observation.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Sales or demand changes do not establish input-cost pressure.",
+          "ignored": [
+            {
+              "text": "demand for chocolate is growing",
+              "reason": "sales_or_demand",
+              "message": "Sales or demand changes do not establish input-cost pressure."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "aviation",
+      "text": "An aviation business faces rising fuel bills.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Explicit non-FMCG sector.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        },
+        "context_filtered": {
+          "outside_scope": 13
+        }
+      }
+    },
+    {
+      "id": "logistics-provider",
+      "text": "Freight costs are rising at a logistics provider.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "A logistics provider is not a consumer-goods input-cost situation.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "PG-2022",
+            "score": 0.921468
+          },
+          {
+            "id": "CL-2022",
+            "score": 0.714137
+          },
+          {
+            "id": "CLX-2021",
+            "score": 0.714137
+          },
+          {
+            "id": "UL-2022",
+            "score": 0.714137
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.582969
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 6,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        },
+        "context_filtered": {
+          "outside_scope": 13
+        }
+      }
+    },
+    {
+      "id": "museum",
+      "text": "A museum pays more for oil paintings.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Word sense and industry conflict.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        },
+        "context_filtered": {
+          "outside_scope": 13
+        }
+      }
+    },
+    {
+      "id": "not-but",
+      "text": "Not milk but packaging is more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {
+          "CL-2022": null
+        },
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs).",
+          "ignored": [
+            {
+              "text": "not milk",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "without-while",
+      "text": "Without milk cost pressure, while packaging prices rise.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 4
+        },
+        "status": "candidates",
+        "matched_count": 5,
+        "unexpected_candidates": false,
+        "forbidden_returned": [
+          "GIS-2007"
+        ],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs).",
+          "ignored": [
+            {
+              "text": "without milk cost pressure,",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "no-and",
+      "text": "No milk cost pressure and higher packaging costs.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {
+          "CL-2022": null
+        },
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs).",
+          "ignored": [
+            {
+              "text": "no milk cost pressure",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "down-and-up",
+      "text": "Milk costs fall and cocoa prices rise.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          },
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [
+          "GIS-2007"
+        ],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          }
+        ],
+        "useful_ranks": {
+          "HSY-2025-Q1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: cocoa and chocolate inputs (rising costs); dairy inputs (falling costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {
+          "opposite_direction": 1
+        }
+      }
+    },
+    {
+      "id": "unknown-but",
+      "text": "Milk costs are unknown, but packaging costs are higher.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {
+          "CL-2022": null
+        },
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs).",
+          "ignored": [
+            {
+              "text": "milk costs are unknown,",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "costs-versus-sales",
+      "text": "Milk costs are rising while milk sales are falling.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs).",
+          "ignored": [
+            {
+              "text": "milk sales are falling",
+              "reason": "sales_or_demand",
+              "message": "Sales or demand changes do not establish input-cost pressure."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "sales-and-costs",
+      "text": "Milk sales are growing and packaging costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 4
+        },
+        "status": "candidates",
+        "matched_count": 5,
+        "unexpected_candidates": false,
+        "forbidden_returned": [
+          "GIS-2007"
+        ],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs).",
+          "ignored": [
+            {
+              "text": "milk sales are growing",
+              "reason": "sales_or_demand",
+              "message": "Sales or demand changes do not establish input-cost pressure."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "costs-versus-profit",
+      "text": "Packaging costs rise and profits fall.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Profit direction must not become cost direction.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "CL-2022": 3
+        },
+        "status": "candidates",
+        "matched_count": 4,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: packaging (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "changed",
+      "text": "Milk costs changed.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "No usable cost direction in an explicit change claim.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description does not establish which way these costs changed.",
+          "ignored": [
+            {
+              "text": "milk costs changed",
+              "reason": "unclear_direction",
+              "message": "The description does not establish which way these costs changed."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "either-direction",
+      "text": "Milk costs may rise or fall.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Competing possible directions are ambiguous.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description does not establish which way these costs changed.",
+          "ignored": [
+            {
+              "text": "milk costs may rise or fall",
+              "reason": "unclear_direction",
+              "message": "The description does not establish which way these costs changed."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "contradiction",
+      "text": "Milk costs are rising and milk costs are falling.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Contradictory directions for one input.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "We couldn't separate the cost directions reliably enough for this comparison.",
+          "ignored": [],
+          "blocked": "conflicting_direction"
+        },
+        "context_filtered": {
+          "conflicting_direction": 13
+        }
+      }
+    },
+    {
+      "id": "no-longer",
+      "text": "Milk costs are no longer rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Do not infer a new direction from a denied increase.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "This part says the pressure was absent or unknown.",
+          "ignored": [
+            {
+              "text": "milk costs are no longer rising",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "not-declining",
+      "text": "Milk costs did not fall.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Absence of a decline does not establish an increase.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "This part says the pressure was absent or unknown.",
+          "ignored": [
+            {
+              "text": "milk costs did not fall",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "topic-only",
+      "text": "Milk flour electricity",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "A list of input topics is a search, not an assertion that prices rose.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 4.703197
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 4.703197
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (direction not specified); energy (direction not specified); grain inputs (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "cost-topic",
+      "text": "Milk costs",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Unspecified direction must be labelled, not inferred.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "food-scope",
+      "text": "Oil costs at a food manufacturer",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "NES-WATERS-2011-H1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "NES-WATERS-2011-H1": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: oil and fuel (direction not specified).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "negative-sector",
+      "text": "We are not an airline. Milk input costs rise.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "not-only",
+      "text": "Not only milk but also packaging costs are higher.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007",
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "reason": "Additive not-only differs from denying a pressure.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {
+          "GIS-2007": null,
+          "CL-2022": null
+        },
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1,
+          "CL-2022": 4
+        },
+        "status": "candidates",
+        "matched_count": 5,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs); packaging (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "positive-unknown",
+      "text": "Milk costs rose, but it is unclear whether packaging costs changed.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.363102
+          },
+          {
+            "id": "CL-2015",
+            "score": 1.056404
+          },
+          {
+            "id": "CL-2022",
+            "score": 1.056404
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 0.862371
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 5,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs).",
+          "ignored": [
+            {
+              "text": "it is unclear whether packaging costs changed",
+              "reason": "unclear_direction",
+              "message": "The description does not establish which way these costs changed."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "negative-alternative",
+      "text": "Milk costs are rising, not falling.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "A denied alternative should not erase a positive assertion; may expose a rule limit.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {
+          "GIS-2007": null
+        },
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "factory-scope",
+      "text": "Electricity bills rose at a factory.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Generic business location; input pressure can remain useful, with sector unknown.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.308978
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.308978
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: energy (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "unknown-sector",
+      "text": "Fuel costs are rising at a marina.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Explicit business outside the consumer-goods collection.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        },
+        "context_filtered": {
+          "outside_scope": 13
+        }
+      }
+    },
+    {
+      "id": "business-product",
+      "text": "A chocolate maker faces rising milk costs.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "reason": "Business product identity is not evidence of cocoa input pressure.",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "HSY-2025-Q1"
+      ],
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "HSY-2025-Q1",
+            "score": 2.682528
+          },
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 2
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [
+          "HSY-2025-Q1"
+        ],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.697109
+          }
+        ],
+        "useful_ranks": {
+          "GIS-2007": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "ambiguous-power",
+      "text": "Power is shifting at the company.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "reason": "Power need not mean electricity.",
+      "set": "M006 additional",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 1.308978
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {},
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": true,
+        "forbidden_returned": [],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [],
+        "useful_ranks": {},
+        "status": "insufficient_evidence",
+        "matched_count": 0,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "The description does not establish which way these costs changed.",
+          "ignored": [
+            {
+              "text": "power is shifting at the company",
+              "reason": "unclear_direction",
+              "message": "The description does not establish which way these costs changed."
+            }
+          ],
+          "blocked": null
+        },
+        "context_filtered": {}
+      }
+    },
+    {
+      "id": "split-costs",
+      "text": "Milk costs fell while energy bills rose.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "reason": "Energy can match, but an explicitly opposite dairy direction must exclude General Mills rather than be called the same situation.",
+      "set": "M006 additional",
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "old": {
+        "method": "related_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "GIS-2007",
+            "score": 3.006087
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "KC-2011": 2
+        },
+        "status": "candidates",
+        "matched_count": 2,
+        "unexpected_candidates": false,
+        "forbidden_returned": [
+          "GIS-2007"
+        ],
+        "query_reading": null,
+        "context_filtered": {}
+      },
+      "new": {
+        "method": "context_v1",
+        "eligible_ids_sha256": "11299fec75d4d8ce8dd3c6546353dc769097d2af4467af81f9b2f6e52820ea90",
+        "ranked": [
+          {
+            "id": "KC-2011",
+            "score": 1.105861
+          }
+        ],
+        "useful_ranks": {
+          "KC-2011": 1
+        },
+        "status": "candidates",
+        "matched_count": 1,
+        "unexpected_candidates": false,
+        "forbidden_returned": [],
+        "query_reading": {
+          "summary": "Searching for: dairy inputs (falling costs); energy (rising costs).",
+          "ignored": [],
+          "blocked": null
+        },
+        "context_filtered": {
+          "opposite_direction": 1
+        }
+      }
+    }
+  ]
+}

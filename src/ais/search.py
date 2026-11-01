@@ -7,6 +7,7 @@ import re
 from urllib.parse import urlsplit
 
 from ais.collection import load_collection, search_records
+from ais.context import REASONS, compatible_matches, describe, read_pressure
 from ais.pilot import ROOT, bm25, eligible, ranking_text, read_jsonl, tokens
 from ais.related import analyze, explain_matches
 
@@ -217,8 +218,8 @@ class CaseSearch:
             candidates.append(case)
         return candidates, dict(sorted(exclusions.items()))
 
-    def search(self, payload, *, method="related_v1"):
-        if method not in {"literal_v1", "related_v1"}:
+    def search(self, payload, *, method="context_v1"):
+        if method not in {"literal_v1", "related_v1", "context_v1"}:
             raise ValueError("Unknown search method.")
         query = self.query(payload)
         candidates, exclusions = self.candidate_pool(query)
@@ -226,56 +227,93 @@ class CaseSearch:
             # Retained exactly for M004 reproduction and paired evaluation.
             scores = bm25(query["text"], [ranking_text(c) for c in candidates])
             requested = pressure_terms(query["text"])
-        else:
+        elif method == "related_v1":
             query_concepts, query_words = analyze(query["text"])
             analyzed = [analyze(self.details[c["id"]]["pressure"]["value"]) for c in candidates]
             # Responses, later outcomes, figures and product/business descriptions
             # cannot create a pressure concept or affect its score.
             scores = bm25(" ".join(query_concepts), [" ".join(a[0]) for a in analyzed])
+        else:
+            reading = read_pressure(query["text"])
+            profiles = [
+                read_pressure(self.details[c["id"]]["pressure"]["value"]) for c in candidates
+            ]
+            query_words = reading["words"]
+            scores = bm25(
+                " ".join(reading["concepts"]), [" ".join(p["concepts"]) for p in profiles]
+            )
         matches = []
+        context_filtered = Counter()
         for index, (case, score) in enumerate(zip(candidates, scores)):
             explanations = []
             if method == "literal_v1":
                 matched = sorted(
                     requested & pressure_terms(self.details[case["id"]]["pressure"]["value"])
                 )
-            else:
+            elif method == "related_v1":
                 explanations = explain_matches(query_words, analyzed[index][1])
+                matched = [match["family"] for match in explanations]
+            else:
+                explanations, reason = compatible_matches(reading, profiles[index])
+                if reason:
+                    context_filtered[reason] += 1
                 matched = [match["family"] for match in explanations]
             if score > 0 and matched:
                 presented = self.present(case, query, score, matched)
                 presented["pressure_matches"] = explanations
-                if method == "related_v1":
+                if method != "literal_v1":
                     connected = {word for m in explanations for word in m["query_terms"]}
                     presented["unmatched_terms"] = sorted(specific_terms(query["text"]) - connected)
                 matches.append(presented)
         matches.sort(key=lambda c: (-c["score"], c["id"]))
+        context = describe(reading) if method == "context_v1" else None
+        context_reason = None
+        if context and not matches:
+            context_reason = reading["blocked"]
+            if not context_reason and reading["ignored"] and not reading["words"]:
+                context_reason = reading["ignored"][0]["reason"]
+            if not context_reason and context_filtered:
+                context_reason = context_filtered.most_common(1)[0][0]
         return {
             "status": "candidates" if matches else "insufficient_evidence",
             "message": (
-                "These reports mention the same or related cost pressures."
+                "These reports have input or disruption evidence connected to your description."
                 if matches
                 else "We don't have enough evidence for this comparison. "
                 + (
                     "No cases can be used with these dates and this starting case. "
                     "You can change those choices without changing your description."
                     if not candidates
+                    else REASONS[context_reason]
+                    + " Try a clearer consumer-goods input-cost description."
+                    if context_reason
                     else "We couldn't connect a specific pressure in your description to these reports. "
                     "Try naming a material or disruption. This small collection may not cover your situation."
                 )
             ),
             "empty_reason": None
             if matches
-            else ("no_eligible_cases" if not candidates else "no_pressure_match"),
+            else (
+                "no_eligible_cases"
+                if not candidates
+                else "context_not_supported"
+                if context_reason
+                else "no_pressure_match"
+            ),
             "query": query,
             "eligible_count": len(candidates),
             "matched_count": len(matches),
             "excluded": exclusions,
             "results": matches[:5],
+            "query_reading": context,
+            "context_filtered": dict(sorted(context_filtered.items())),
             "method_id": method,
             "method": (
                 "BM25 on challenge text only; specific pressure-term overlap required."
                 if method == "literal_v1"
+                else "BM25 on pressure passages only, with clause-level input role, direction, negation and scope checks. "
+                "Bare input topics have unspecified direction. Vocabulary matches are not causal comparisons."
+                if method == "context_v1"
                 else "BM25 on named input families in pressure passages only; explicit shared/related terms required. "
                 "A vocabulary link is not a disclosed fact, industry check or causal comparison."
             )

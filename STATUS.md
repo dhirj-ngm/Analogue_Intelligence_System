@@ -7,35 +7,37 @@ five queries and frozen BM25/MiniLM experiments remain unchanged. Five user grad
 without rationales are not a complete human benchmark. See
 [the pilot report](evaluation/pilot/pilot-report.md).
 
-**M002–M004: Complete.** Local reader-friendly search/comparison, source inspection
-and 13 observations from eight companies run with `make app` at
-http://127.0.0.1:8000. Company claims, measurement scope and unknowns stay visible;
-source documents remain external. See [collection notes](data/collection/README.md).
+**M002–M005: Complete.** Local reader-friendly search/comparison and 13 observations
+from eight companies run with `make app` at http://127.0.0.1:8000. Related inputs,
+source inspection and reliable browser checks remain available. Historical
+[M004 notes](data/collection/README.md) and [M005 report](evaluation/search-m005/report.md)
+are unchanged.
 
-**M005: Complete — related-input search and reliable browser checks.** The retry
-fault was a moving coordinate target plus acceptance of an old idle flag in the
-check. Stable hit-tested clicks and fresh-submission waits fix it; the app's request
-lifecycle needed no change. New search uses an explicit input vocabulary and BM25
-on pressure passages only. Results show query/report term connections and caution
-that related inputs need not be identical. Dates, self/continuation exclusions and
-response/outcome isolation remain enforced. No cases or source records were added.
+**M006: Complete — context, direction and negation.** General clause rules separate
+input costs from sales, preserve positive sides of mixed negation, compare cost
+directions and set aside recognized outside industries. Opposite shared-input
+directions veto partial matches. Ambiguous changes yield insufficient evidence;
+bare input topics keep direction unspecified. The app shows what it read/ignored
+and explains direction in results and comparison. Only pressure passages affect
+ranking; dates and self/continuation exclusions are unchanged.
 
-**Evaluation:** 33 queries/expectations and the old baseline were frozen in commit
-`cb1b37c` before changing search. Both methods use identical eligible cases. All
-three M004 misses now retrieve the intended case first. Useful-case retrieval in
-the first five: 7/15 old → 14/15 new. Unexpected results on expected-empty queries:
-3/18 → 4/18; new false positives concern falling milk costs, booming milk sales and
-airline fuel. One packaging query drops 1 → 3, and mixed negation still misses a
-useful case. These assistant-authored checks are not independent relevance grades.
-See [actual comparisons](evaluation/search-m005/report.md).
+**Evaluation:** 65 query texts/expectations and M005 ranks frozen before method
+edits (`234fab0`, expectation clarification `b1f85a7`). On identical eligible cases,
+useful-case retrieval in the first five: 27/33 → 33/33; unexpected results on
+expected-empty queries: 16/32 → 0/32; forbidden-case queries: 5 → 0. No useful-case
+or target-rank regressions in this development set. Packaging-only Colgate 2022
+remains third due to length normalization and an ID-ordered tie; the broader
+packaging/logistics query remains first. See [actual comparisons](evaluation/search-m006/report.md).
 
-**Verification:** 46 Python tests, 8 JavaScript tests, Ruff, syntax, pilot/collection
-validation and paired evaluation passed. The full desktop/375px phone browser flow
-passed with 20 grouped checks, including 40 delayed-response failure/retry cycles;
-screenshots inspected. All 16 frozen M001 hashes and M004 case/result files remain
-unchanged. See [browser findings](evaluation/search-m005/browser-check.md).
+**Verification:** 56 Python tests, 9 JavaScript tests, Ruff, syntax, pilot/collection
+validation and M005/M006 evaluations passed. Desktop/375px phone browser flow passed
+24 grouped checks, including 40 delayed-response failure/retry cycles; screenshots
+inspected. All existing cases, source records, frozen M001 files and M004/M005
+observations remain byte-identical. No source acquisition or model run was needed.
 
-**Next:** Improve context/direction handling and mixed negation; extend vocabulary
-only with explicit relationships and evaluate with independent judgements. True
-episode bounds, isolated response effects and later outcomes remain limited;
-Hershey's two stated margin declines remain unreconciled. Run/check via README.md.
+**Limits / next:** These are assistant-authored development checks, not independent
+validation. [Additional diagnostics](evaluation/search-m006/diagnostics.json) record
+remaining conservative misses in unpunctuated negation, comma-linked directions
+and supplier-industry context. Improve those limits and test unlisted sectors/word
+senses with independent judgements. Episode bounds, action effects and later
+outcomes remain uncertain; Hershey's margin-source discrepancy is unresolved.

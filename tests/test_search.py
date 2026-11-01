@@ -140,7 +140,7 @@ class SearchTests(unittest.TestCase):
         self.assertIn("these dates", result["message"])
 
     def test_no_word_match_explains_collection_gap_separately_from_date_exclusions(self):
-        result = self.search.search(dict(self.query, text="semiconductor shortage"))
+        result = self.search.search(dict(self.query, text="coffee beans"))
         self.assertGreater(result["eligible_count"], 0)
         self.assertEqual(result["empty_reason"], "no_pressure_match")
         self.assertIn("small collection", result["message"])

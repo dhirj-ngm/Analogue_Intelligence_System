@@ -1,7 +1,7 @@
 "use strict";
 
 import {
-  dateLabel, periodLabel, words, differenceLabel, pressureLabel, reportLocator, unknownLabels, metricFacts, explainBasisPoints, pressureMatchLabel,
+  dateLabel, periodLabel, words, differenceLabel, pressureLabel, reportLocator, unknownLabels, metricFacts, explainBasisPoints, pressureMatchLabel, matchDirectionLabel,
   EXCLUSION_LABELS, SearchDraft, changeInformationDate,
 } from "/reader.mjs";
 
@@ -142,6 +142,8 @@ function renderCard(c, index) {
   if (c.pressure_matches?.some((match) => match.relationship === "related_terms")) {
     main.append(node("p", "Related words help find a report. They do not establish that it measured your exact input.", "field-help"));
   }
+  const direction = matchDirectionLabel(c.pressure_matches || []);
+  if (direction) main.append(node("p", direction, "field-help direction-match"));
   main.append(node("p", pressureLabel(c.fields.pressure.value), "pressure"), differences);
   const details = node("details", undefined, "case-reading");
   details.append(node("summary", "Read the case and its sources"));
@@ -189,6 +191,7 @@ function renderComparison() {
     ["What the company said it did", (c) => fieldBlock("Reported action", c.fields.response)],
     ["What we don't know", (c) => bulletList(unknownLabels(c.unknowns))],
     ["When this happened", (c) => `Period covered: ${periodLabel(c.period)}. Report published ${dateLabel(c.published)}.`],
+    ["Connection to your description", (c) => { const block = node("div"); block.append(node("p", pressureMatchLabel(c.pressure_matches || [])), node("p", matchDirectionLabel(c.pressure_matches || []))); return block; }],
     ["Read the evidence", (c) => sourceLink(c.source)],
   ];
   rows.forEach(([title, value]) => {
@@ -228,6 +231,14 @@ function renderResults(data) {
   $("results-title").textContent = data.results.length ? `${data.results.length} cases to explore` : "No comparison to show yet";
   $("results-status").textContent = data.message;
   $("results-status").classList.toggle("empty", data.status === "insufficient_evidence");
+  const reading = $("query-reading");
+  reading.replaceChildren();
+  reading.hidden = !data.query_reading;
+  if (data.query_reading) {
+    const explained = data.message.includes(data.query_reading.summary);
+    reading.append(node("p", explained ? `From your description: “${data.query.text.slice(0,160)}”` : data.query_reading.summary));
+    if (!explained && data.query_reading.ignored.length) reading.append(bulletList(data.query_reading.ignored.map((item) => `Left out: “${item.text.slice(0,160)}” — ${item.message}`)));
+  }
   $("result-caution").hidden = !data.results.length;
   $("empty-actions").hidden = Boolean(data.results.length);
   $("try-example").hidden = data.empty_reason === "no_eligible_cases";
@@ -273,6 +284,8 @@ $("search-form").addEventListener("submit", async (event) => {
   $("result-caution").hidden = true;
   $("results-status").classList.remove("empty");
   $("results-status").textContent = "Looking through the company reports…";
+  $("query-reading").hidden = true;
+  $("query-reading").replaceChildren();
   $("method-checks").replaceChildren(node("p", "This search is still running."));
   updateSelection();
   try {

@@ -72,6 +72,7 @@
       <div class="section-top results-top"><div><h2 id="results-title" tabindex="-1">Cases to explore</h2></div>
         <button id="edit-search" class="text-button" type="button" hidden>Edit your search ↑</button></div>
       <div id="results-status" class="results-status" role="status" aria-live="polite">Your results will appear here. Try describing a problem or choosing an example.</div>
+      <div id="query-reading" class="query-reading" hidden></div>
       <p id="result-caution" class="visible-caution" hidden>Shared or related input names are a starting point. Check the business, whether costs rose or fell, and the source.</p>
       <div id="empty-actions" class="empty-actions" hidden>
         <button id="try-example" class="secondary" type="button">Try the packaging example</button>
@@ -99,8 +100,11 @@
         <p>Search connects a small set of input names in your description with pressures in company reports.
           It links milk with dairy, flour with grains, chocolate with cocoa, freight with transport, and fuel with oil.
           Each result shows the words it connected. Related inputs are not identical costs or proof of a useful comparison.</p>
-        <p>Search does not reliably check the industry, whether a word describes sales or costs, or whether costs rose or fell.
-          It can miss unlisted terms and can return misleading matches. A match does not show that an earlier action would work now.</p>
+        <p>Simple sentence rules separate input costs from sales or demand, keep denied pressures out, and compare whether costs rose or fell.
+          We set aside descriptions naming other industries, such as airlines. When the wording is unclear, we may have no comparison to show.
+          A list of input topics can still be searched, with its direction marked as unspecified.</p>
+        <p>The rules cannot read every sentence or recognize every industry. Check what we read from your description and what we left out.
+          Related terms and matching directions do not show that an earlier action would work now.</p>
         <h3>Where the evidence comes from</h3>
         <p>The case descriptions were compiled with AI from published company reports. They have not had a complete independent review.
           Each case links to its report and tells you where to look. The company's explanation is not independent proof of cause and effect.</p>
@@ -109,7 +113,7 @@
           Repeated copies are grouped together. Reported actions and later outcomes do not help a case rank higher. Actions not known by your chosen date are hidden.</p>
         <details class="technical-details"><summary>Search method and this search's checks</summary>
           <p>BM25 scores named input families in the pressure passages only. Responses, profit figures and later outcomes do not affect these scores.
-            General words such as ingredient, commodity, cost or margin are not enough. Explicit no/not/unknown clauses are skipped before matching.
+            General words such as ingredient, commodity, cost or margin are not enough. Clauses are checked for role, direction, negation and business context before matching.
             Scores are keyword scores, not confidence or probabilities. This vocabulary and its simple negation rule do not establish relevance.</p>
           <div id="method-checks"><p>Run a search to see its dates, exclusions and scores.</p></div>
         </details>
