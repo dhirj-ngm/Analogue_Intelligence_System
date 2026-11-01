@@ -8,7 +8,8 @@ are used. The unchanged M005 vocabulary/method remains available for comparison.
 import re
 
 from ais.pilot import tokens
-from ais.related import ALIASES, FAMILIES, explain_matches
+from ais.related import FAMILIES
+from ais.vocabulary import explain_context_matches
 
 UP = r"\b(?:ris(?:e|es|ing)|rose|increas\w*|higher|grew|grow\w*|inflation|more expensive|dearer|up)\b"
 DOWN = (
@@ -66,7 +67,8 @@ def fragments(text):
             yield current.strip()
 
 
-def read_pressure(text):
+def read_pressure(text, *, families=FAMILIES):
+    aliases = {term: family for family, (_, terms) in families.items() for term in terms.split()}
     concepts, words, directions, ignored = [], {}, {}, []
     blocked = None
     for fragment in fragments(text):
@@ -75,17 +77,17 @@ def read_pressure(text):
             blocked = "outside_scope"
         # Business product identity is context, not an input being purchased.
         pressure = re.sub(BUSINESS, " ", fragment, flags=re.I)
-        recognized = [(term, ALIASES[term]) for term in tokens(pressure) if term in ALIASES]
+        recognized = [(term, aliases[term]) for term in tokens(pressure) if term in aliases]
         if not recognized:
             continue
-        families = {family for _, family in recognized}
+        recognized_families = {family for _, family in recognized}
         reason = None
         if negative:
             reason = "negated_or_unknown"
         elif found(UNCERTAIN, pressure):
             reason = "unclear_direction"
         elif (
-            "cyberattack" not in families
+            "cyberattack" not in recognized_families
             and found(NON_INPUT, pressure)
             and not found(COST, pressure)
         ):
@@ -106,7 +108,7 @@ def read_pressure(text):
             else "down"
             if down
             else "disruption"
-            if "cyberattack" in families
+            if "cyberattack" in recognized_families
             else "unspecified"
         )
         for term, family in recognized:
@@ -126,6 +128,7 @@ def read_pressure(text):
         "directions": directions,
         "ignored": ignored,
         "blocked": blocked,
+        "labels": {key: value[0] for key, value in families.items()},
     }
 
 
@@ -134,7 +137,7 @@ def compatible_matches(query, report):
         return [], query["blocked"]
     if report["blocked"]:
         return [], "unsupported_direction"
-    matches = explain_matches(query["words"], report["words"])
+    matches = explain_context_matches(query["words"], report["words"], query["labels"])
     accepted = []
     reason = None
     for match in matches:
@@ -169,7 +172,7 @@ def describe(profile):
                 if "disruption" in values
                 else "direction not specified"
             )
-            parts.append(f"{FAMILIES[family][0]} ({direction})")
+            parts.append(f"{profile['labels'][family]} ({direction})")
         summary = "Searching for: " + "; ".join(parts) + "."
     elif profile["ignored"]:
         summary = profile["ignored"][0]["message"]

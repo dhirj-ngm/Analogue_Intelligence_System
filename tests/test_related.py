@@ -12,7 +12,7 @@ from ais.search import CaseSearch
 
 class RelatedSearchTests(unittest.TestCase):
     def setUp(self):
-        self.search = CaseSearch.load()
+        self.search = CaseSearch.load(collection="m006")
 
     def query(self, text, **options):
         return self.search.search({"text": text, "cutoff": "2026-11-01", **options})

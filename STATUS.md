@@ -2,42 +2,42 @@
 
 Updated: 1 November 2026.
 
-**M001: Closed as a development pilot.** Ten assistant-checked observations,
-five queries and frozen BM25/MiniLM experiments remain unchanged. Five user grades
-without rationales are not a complete human benchmark. See
-[the pilot report](evaluation/pilot/pilot-report.md).
+**M001: Closed as a development pilot.** Its ten observations, five queries and
+frozen BM25/MiniLM experiments remain unchanged. Five user grades without
+rationales are not a complete human benchmark. See [the pilot report](evaluation/pilot/pilot-report.md).
 
-**M002–M005: Complete.** Local reader-friendly search/comparison and 13 observations
-from eight companies run with `make app` at http://127.0.0.1:8000. Related inputs,
-source inspection and reliable browser checks remain available. Historical
-[M004 notes](data/collection/README.md) and [M005 report](evaluation/search-m005/report.md)
-are unchanged.
+**M002–M006: Complete.** Reader-friendly local search/comparison, related inputs,
+context/direction/negation rules and reproducible browser checks remain available.
+Historical [M005](evaluation/search-m005/report.md) and
+[M006](evaluation/search-m006/report.md) evaluations retain their original
+thirteen-case collection and frozen observations.
 
-**M006: Complete — context, direction and negation.** General clause rules separate
-input costs from sales, preserve positive sides of mixed negation, compare cost
-directions and set aside recognized outside industries. Opposite shared-input
-directions veto partial matches. Ambiguous changes yield insufficient evidence;
-bare input topics keep direction unspecified. The app shows what it read/ignored
-and explains direction in results and comparison. Only pressure passages affect
-ranking; dates and self/continuation exclusions are unchanged.
+**M007: Complete — focused collection expansion.** The app now has 17 situations
+from twelve companies (`make app`, http://127.0.0.1:8000). Four distinct additions:
+Smucker retail coffee FY2011, Dean's declining dairy costs in 2015, Tyson Beef
+FY2024 Q1 cattle costs, and Coca-Cola Consolidated's 2022 packaging inputs.
+[Collection notes](data/collection/m007/README.md) preserve original links,
+publication/reporting dates, field-level locations, metric definitions, company
+attribution, continuation boundaries and unknowns. Documents remain external;
+existing case records and frozen M001 files are byte-identical.
 
-**Evaluation:** 65 query texts/expectations and M005 ranks frozen before method
-edits (`234fab0`, expectation clarification `b1f85a7`). On identical eligible cases,
-useful-case retrieval in the first five: 27/33 → 33/33; unexpected results on
-expected-empty queries: 16/32 → 0/32; forbidden-case queries: 5 → 0. No useful-case
-or target-rank regressions in this development set. Packaging-only Colgate 2022
-remains third due to length normalization and an ID-ordered tie; the broader
-packaging/logistics query remains first. See [actual comparisons](evaluation/search-m006/report.md).
+**Development comparison:** Twenty checks and two comparison plans frozen in
+`72d1611` before data/method edits. One fixed extended vocabulary on old/expanded
+collections retrieves expected useful cases in 4/10 → 9/10 searches; all ten
+expected-empty queries stay empty. No target-rank drops in this set. In an
+additional probe of the older 65 queries, no previously expected cases leave the first five,
+but General Mills for “milk costs” and Kimberly-Clark for falling milk/rising
+energy each move first → second. See [ranks and limits](evaluation/collection-m007/report.md).
 
-**Verification:** 56 Python tests, 9 JavaScript tests, Ruff, syntax, pilot/collection
-validation and M005/M006 evaluations passed. Desktop/375px phone browser flow passed
-24 grouped checks, including 40 delayed-response failure/retry cycles; screenshots
-inspected. All existing cases, source records, frozen M001 files and M004/M005
-observations remain byte-identical. No source acquisition or model run was needed.
+**Verification:** 63 Python and 10 JavaScript tests; Ruff and syntax; pilot and
+collection validation; M005/M006 historical and M007 paired evaluations passed.
+Desktop/375px phone flow passed 30 grouped checks with 40 delayed-response retry
+cycles. Four new source documents opened; comparisons/screenshots inspected.
+Benchmark/amount help now reflects units. See [actual checks](evaluation/collection-m007/verification.md).
 
-**Limits / next:** These are assistant-authored development checks, not independent
-validation. [Additional diagnostics](evaluation/search-m006/diagnostics.json) record
-remaining conservative misses in unpunctuated negation, comma-linked directions
-and supplier-industry context. Improve those limits and test unlisted sectors/word
-senses with independent judgements. Episode bounds, action effects and later
-outcomes remain uncertain; Hershey's margin-source discrepancy is unresolved.
+**Limits / next:** Assistant curation and development checks, not independent
+validation. Beef wording still misses cattle; PET alone is unrecognized. New
+sources remain U.S. focused. Partial matches need not cover every named input;
+complex grammar/industry limits, uncertain episode boundaries and unestablished
+action effects remain. Hershey's earlier source discrepancy remains unresolved.
+Next prioritize geographic/commodity gaps and independent relevance judgements.

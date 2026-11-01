@@ -7,9 +7,10 @@ compare up to three side by side, with sources, important differences and unknow
 Issuer explanations remain distinct from independently identified effects.
 A reported recovery does not establish that an action caused it.
 
-The collection has **13 assistant-checked observations from eight companies**.
-The latest batch adds General Mills' 2007 grain/dairy/energy costs, Nestlé Waters'
-2011 oil-related packaging/distribution costs, and Hershey's 2025 cocoa costs.
+The collection has **17 assistant-checked observations from twelve companies**.
+M007 adds Smucker's 2011 coffee inputs, Dean Foods' 2015 falling milk costs,
+Tyson Beef's early-2024 cattle costs, and Coca-Cola Consolidated's 2022 packaging
+inputs. These are distinct situations, not successive reports of one episode.
 These development records have not had independent human validation.
 
 ## Run the case app
@@ -64,7 +65,8 @@ comparison; topic lists are labelled “direction not specified”. Reported act
 do not prove what caused a result. Metric definitions and exact source locators
 remain available beside the company-reported figures.
 
-Try **Cocoa costs** or **Food ingredients & energy** for the new cases.
+Try **Coffee costs** or **Falling milk costs**, or describe rising cattle or aluminum
+costs. A bare “milk” search can show both rising and falling costs: read the direction.
 Case details and comparisons explain basis points beside the disclosed numbers.
 **More company-reported figures** keeps supporting amounts and adjusted measures
 with their own definitions and sources. Hershey's release and filing disagree
@@ -80,7 +82,8 @@ models or sources. Source links visit the issuer's site or SEC EDGAR in a separa
 BM25 now scores named input families in the source-backed pressure passages
 only. A small [readable vocabulary](src/ais/related.py) connects milk/dairy,
 flour/grains, electricity/energy, chocolate/cocoa and freight/transport, alongside
-other related inputs. It applies to all queries and eligible cases, with no case
+other related inputs. [M007's material names](src/ais/vocabulary.py) add coffee,
+cattle/livestock and aluminum/aluminium. They apply to all queries and eligible cases, with no case
 IDs or query-specific rules. Responses, profit figures, rationale, later outcomes
 and business descriptions do not affect these scores. Unknown or post-cutoff
 challenge dates, self cases, known duplicates/continuations and non-earlier
@@ -96,15 +99,17 @@ not filled in. Bare input-topic lists remain useful searches with unspecified
 direction. These are limited language rules, not a complete industry or sentence
 classifier. General words such as ingredient or commodity are still insufficient. Numerical comparisons retain
 units, scope and the company's accounting definition. No incompatible amounts
-are subtracted. The new records live in `data/collection/cases.jsonl`; the frozen
+are subtracted. Additional records live in `data/collection/cases.jsonl` and
+`data/collection/m007/cases.jsonl`; the frozen
 M001 source records, cases and experiments are unchanged. No source documents are
 stored or served by the app; readers follow links to original reports.
 
-See [collection notes](data/collection/README.md) for source selection, precise
+See [M007 collection notes](data/collection/m007/README.md) and
+[earlier notes](data/collection/README.md) for source selection, precise
 locations, access/retention limits, continuation decisions and curation work.
 The three M004 related-term searches still find their intended cases first.
-The [M006 paired report](evaluation/search-m006/report.md) compares M005 and M006
-on 65 queries frozen before implementation, with identical eligible cases.
+The historical [M006 paired report](evaluation/search-m006/report.md) compares M005 and M006
+on 65 queries frozen before implementation, using the original thirteen-case collection.
 Useful-case retrieval in the first five rises from 27/33 to 33/33; unexpected
 results on expected-empty queries fall from 16/32 to 0/32, and queries returning
 explicitly forbidden cases fall from 5 to 0. No useful-case or target-rank
@@ -123,6 +128,17 @@ The [M004 observations](evaluation/collection/results.json) and
 [M005 report](evaluation/search-m005/report.md) remain unchanged and reproducible
 with their historical methods. All existing cases and frozen M001 files are unchanged.
 
+The [M007 comparison](evaluation/collection-m007/report.md) uses twenty new checks
+frozen before adding records. With one fixed method, expected useful cases appear
+in the first five for 4/10 searches on the old collection and 9/10 on the expanded
+one; all ten expected-empty searches stay empty. Beef wording still misses Tyson's
+cattle case, and PET alone is unrecognized. An additional probe of the older 65
+queries finds no useful-case retrieval losses but two target-rank drops: General
+Mills for “milk costs” and Kimberly-Clark for falling milk plus rising energy both
+move from first to second. These development checks are not independent validation.
+The added sources remain U.S. focused; episode boundaries and action effects are
+still uncertain. More records do not establish reliable search quality.
+
 ## Checks
 
 Python 3.14 and Node 22+ run the full development suite; running the app itself
@@ -132,7 +148,8 @@ needs no Node installation:
 make test       # Python safeguards/HTTP tests and JavaScript reader-state tests
 make validate   # Existing pilot data and judgement coverage
 make collection-check # Collection validation and historical M004 literal results
-make search-check # Frozen M006 paired evaluation, including misleading results/ranks
+make search-check # Historical M006 evaluation plus frozen M007 old/expanded checks
+make collection-check-m007 # M007 alone, including older-query rank-change probe
 make search-check-m005 # Reproduce historical M005 ranks without rewriting its files
 make lint       # Ruff, using the existing .venv development environment
 ```
@@ -168,7 +185,10 @@ Python executable.
 
 Additional screenshots: `/tmp/ais-collection-{conflict,comparison,figures}-{desktop,mobile}.png`
 and `/tmp/ais-related-search-{desktop,mobile}.png`. M006 adds
-`/tmp/ais-context-{empty,mixed}-{desktop,mobile}.png`.
+`/tmp/ais-context-{empty,mixed}-{desktop,mobile}.png`. M007 adds
+`/tmp/ais-m007-{dairy,comparison,measures}-{desktop,mobile}.png`, including
+benchmark units and different profit measures. Price and dollar-amount help stays
+separate from margin-percentage explanations.
 
 The intermittent retry failure was in the browser check: queued focus scrolling
 could move its coordinate target, so the click hit nearby text, and an old idle
@@ -215,6 +235,7 @@ M003 makes the reader experience simpler, with optional technical detail.
 M004 adds three distinct source-backed cost situations. M005 fixes browser-check
 timing and adds explainable related-input search. M006 adds conservative context,
 direction and negation checks, visible interpretations and a frozen comparison.
+M007 adds four source-backed situations and compares the old and expanded collections.
 Next address the documented grammar/supplier-context limits, evaluate with
 independent relevance judgements, test structural comparison and consider training when
 failures and labels justify it. Builder works end to end without user review

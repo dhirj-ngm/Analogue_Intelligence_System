@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { SearchDraft, changeInformationDate, dateLabel, metricFacts, pressureLabel, reportLocator, unknownLabels, explainBasisPoints, pressureMatchLabel, matchDirectionLabel } from "../assets/app/reader.mjs";
+import { SearchDraft, changeInformationDate, dateLabel, metricFacts, metricHelp, pressureLabel, reportLocator, unknownLabels, explainBasisPoints, pressureMatchLabel, matchDirectionLabel } from "../assets/app/reader.mjs";
 
 const own = { text: "My packaging problem", cutoff: "2023-03-01", before_period_end: "2022-10-01", source_id: "" };
 const colgate = { id: "CL-2022", challenge: "Source challenge", published: "2023-01-27", period_end: "2022-12-31" };
@@ -51,6 +51,17 @@ test("reader labels preserve metric units, accounting definition and uncertainty
   assert.equal(metricFacts({ ...metric, value: 662, unit: "USD million" })[1][1], "662 USD million");
   assert.equal(unknownLabels(["isolated effect of response"])[0], "How much any one action changed the result.");
   assert.deepEqual(unknownLabels(["A new unresolved question"]), ["A new unresolved question"]);
+});
+
+test("price benchmarks and dollar amounts receive help appropriate to their units", () => {
+  const benchmark = {name:"Milk price benchmark",value:16.34,unit:"USD per 100 lb",scope:"U.S. federal benchmark",basis:"Not the actual purchase price",comparison:"2014: 23.29"};
+  assert.deepEqual(metricFacts(benchmark)[1], ["Number reported", "16.34 USD per 100 lb"]);
+  assert.match(metricHelp(benchmark), /100 pounds/);
+  assert.match(metricHelp(benchmark), /benchmark or the company's actual purchase price/);
+  assert.doesNotMatch(metricHelp(benchmark), /basis points|margin is/);
+  assert.match(metricHelp({unit:"USD million"}), /estimated cost change/);
+  assert.equal(metricFacts({...benchmark,value:-206,unit:"USD million"})[1][1], "-206 USD million");
+  assert.match(metricHelp({unit:"percent"}), /100 basis points means one percentage point/);
 });
 
 test("pressure summaries keep reported amounts, negation and unknown wording", () => {

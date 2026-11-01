@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 from ais.pilot import ROOT, read_jsonl
 
 COLLECTION = ROOT / "data/collection/cases.jsonl"
+M007 = ROOT / "data/collection/m007/cases.jsonl"
 FIELDS = ("pressure", "margin_or_profit", "other_drivers", "response")
 
 
@@ -82,7 +83,7 @@ def validate(records):
                 "metric must be numeric",
             )
             require(
-                metric["unit"] in {"percent", "USD million", "basis points"},
+                metric["unit"] in {"percent", "USD million", "basis points", "USD per 100 lb"},
                 "unsupported metric unit",
             )
             evidence(metric)
@@ -95,8 +96,13 @@ def validate(records):
     return records
 
 
-def load_collection():
-    return validate(read_jsonl(COLLECTION))
+def load_collection(version="m007"):
+    if version not in {"m006", "m007"}:
+        raise ValueError("Unknown collection version.")
+    records = read_jsonl(COLLECTION)
+    if version == "m007":
+        records += read_jsonl(M007)
+    return validate(records)
 
 
 def search_records(records):

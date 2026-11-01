@@ -12,8 +12,8 @@ from ais.search import CaseSearch
 
 class CollectionTests(unittest.TestCase):
     def setUp(self):
-        self.records = load_collection()
-        self.search = CaseSearch.load()
+        self.records = load_collection(version="m006")
+        self.search = CaseSearch.load(collection="m006")
 
     def query(self, text, cutoff="2026-11-01", **extra):
         return self.search.search(dict(text=text, cutoff=cutoff, **extra))

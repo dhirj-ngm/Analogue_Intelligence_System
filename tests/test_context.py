@@ -12,12 +12,14 @@ from ais.search import CaseSearch
 
 class ContextSearchTests(unittest.TestCase):
     def setUp(self):
-        self.search = CaseSearch.load()
+        self.search = CaseSearch.load(collection="m006")
         self.directory = ROOT / "evaluation/search-m006"
         self.queries = json.loads((self.directory / "queries.json").read_text())["queries"]
 
     def run_query(self, text, **extra):
-        return self.search.search({"text": text, "cutoff": "2026-11-01", **extra})
+        return self.search.search(
+            {"text": text, "cutoff": "2026-11-01", **extra}, method="context_v1"
+        )
 
     def test_all_frozen_expectations_and_explicitly_forbidden_cases(self):
         for row in self.queries:
@@ -27,7 +29,7 @@ class ContextSearchTests(unittest.TestCase):
                 if k in {"text", "cutoff", "before_period_end", "source_id"}
             }
             with self.subTest(query=row["id"]):
-                result = self.search.search(payload)
+                result = self.search.search(payload, method="context_v1")
                 ids = [c["id"] for c in result["results"]]
                 self.assertTrue(set(row["expected_useful_cases"]) <= set(ids))
                 self.assertFalse(set(row.get("forbidden_cases", [])) & set(ids))

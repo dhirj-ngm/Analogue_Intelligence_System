@@ -21,7 +21,7 @@ def evaluate(module="m006"):
             raise ValueError(f"Frozen evaluation input changed: {path}")
     inputs = json.loads((directory / "queries.json").read_text())
     baseline = json.loads((directory / "baseline.json").read_text())
-    search = CaseSearch.load()
+    search = CaseSearch.load(collection="m006")
     checks = []
     for row, captured in zip(inputs["queries"], baseline["checks"], strict=True):
         payload = {

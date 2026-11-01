@@ -10,8 +10,8 @@ from ais.search import CaseSearch
 
 
 def run():
-    records = load_collection()
-    search = CaseSearch.load()
+    records = load_collection(version="m006")
+    search = CaseSearch.load(collection="m006")
     path = ROOT / "evaluation/collection/queries.json"
     inputs = json.loads(path.read_text())
     checks = []

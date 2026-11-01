@@ -288,7 +288,7 @@ try {
     checks.push(`${device}: new-case publication boundary, self exclusion, three related-term searches and negation`);
 
     const contextDate = await evaluate(`document.getElementById('cutoff').value`);
-    for (const [text,reason] of [["Milk costs are falling and profits recovering.","opposite direction"],["Milk sales are rising.","Sales or demand"],["Freight and fuel costs at an airline.","outside"],["Milk costs changed.","which way"]]) {
+    for (const [text,reason] of [["Coffee costs are falling.","opposite direction"],["Milk sales are rising.","Sales or demand"],["Freight and fuel costs at an airline.","outside"],["Milk costs changed.","which way"]]) {
       await fill("situation",text);
       await search();
       assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('results-status').textContent.includes(${JSON.stringify(reason)}) && !document.getElementById('query-reading').hidden && document.getElementById('comparison').hidden`));
@@ -305,8 +305,7 @@ try {
     await screenshot(`ais-context-mixed-${device}.png`, false);
     await fill("situation", "Milk costs fell while energy bills rose.");
     await search();
-    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),1);
-    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`),"KC-2011");
+    assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).sort(),["DF-2015","KC-2011"]);
     assert.ok(await evaluate(`document.getElementById('query-reading').innerText.includes('falling costs') && document.getElementById('query-reading').innerText.includes('rising costs')`));
     checks.push(`${device}: mixed negation keeps positive packaging, packaging rank is transparent, opposite inputs veto partial matches`);
 
@@ -326,6 +325,75 @@ try {
     await screenshot(`ais-collection-figures-${device}.png`, false);
     checks.push(`${device}: three new cases compared with business scope, accounting differences and conflict retained`);
     await click("#clear-comparison");
+
+    // M007: actual records, not synthetic substitutes or company-specific ranking.
+    for (const [text,id] of [["Coffee input costs are rising.","SJM-COFFEE-2011"],["Cattle costs are rising.","TSN-BEEF-2024-Q1"],["Aluminium costs are rising.","COKE-2022"],["Milk costs are falling.","DF-2015"]]) {
+      await fill("situation",text);
+      await search();
+      assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`),id);
+      await click(".case-reading > summary");
+      await click(".case-detail .source-location > summary");
+      assert.ok(await evaluate(`document.querySelector('.case-detail .source-location').innerText.includes('p. ')`), `source page locator for ${id}`);
+      assert.ok(await evaluate(`document.querySelector('.case-detail .source-link').href.startsWith('https://www.sec.gov/Archives/')`));
+      assert.ok(await evaluate(`document.querySelector('.case-detail').innerText.includes("What we don't know")`));
+      assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
+    }
+    checks.push(`${device}: all four M007 situations searched, precise original source links and unknowns readable`);
+
+    await openOptions();
+    await fill("situation","Coffee costs rise.");
+    await fill("cutoff","2011-06-27",true);
+    await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+    await openOptions();
+    await fill("cutoff","2011-06-28",true);
+    await search();
+    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`),"SJM-COFFEE-2011");
+    await openOptions();
+    await fill("source-case","SJM-COFFEE-2011",true);
+    await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+    await openOptions();
+    await fill("source-case","",true);
+    await click("#reset-dates");
+    checks.push(`${device}: M007 publication boundary and starting-case exclusion`);
+
+    await fill("situation","milk");
+    await search();
+    assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).sort(),["DF-2015","GIS-2007"]);
+    for (const id of ["DF-2015","GIS-2007"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
+    await click("#compare-button");
+    assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('falling costs') && document.getElementById('comparison-table').innerText.includes('rising costs')`));
+    await click("#comparison-table .other-figures > summary");
+    await click("#comparison-table .other-figures .metric-details > summary");
+    assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('16.34 USD per 100 lb') && document.getElementById('comparison-table').innerText.includes('NOT the price Dean actually paid')`));
+    assert.ok(await evaluate(`document.querySelector('#comparison-table .other-figures .field-help').innerText.includes('This price is quoted per 100 pounds')`));
+    await evaluate(`document.querySelector('#comparison-table .other-figures').scrollIntoView({block:'start',behavior:'instant'})`);
+    await screenshot(`ais-m007-dairy-${device}.png`,false);
+    await click("#clear-comparison");
+
+    await fill("situation","coffee cattle aluminum");
+    await search();
+    for (const id of ["SJM-COFFEE-2011","TSN-BEEF-2024-Q1","COKE-2022"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
+    await click("#compare-button");
+    const expandedComparison = await evaluate(`document.getElementById('comparison-table').innerText`);
+    assert.ok(expandedComparison.includes('operating loss of US$206 million') && expandedComparison.includes('27.8%') && expandedComparison.includes('36.7%'));
+    assert.ok(expandedComparison.includes('write-down') && expandedComparison.includes('bottler') && expandedComparison.includes('quarterly'));
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
+    await screenshot(`ais-m007-comparison-${device}.png`,false);
+    await evaluate(`document.querySelectorAll('#comparison-table tbody tr')[1].scrollIntoView({block:'start',behavior:'instant'})`);
+    for (const cell of [2,3,4]) await click(`#comparison-table tbody tr:nth-child(2) td:nth-child(${cell}) > .detail-block > .metric-details > summary`);
+    assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('-206 USD million')`));
+    await evaluate(`document.querySelectorAll('#comparison-table tbody tr')[1].scrollIntoView({block:'start',behavior:'instant'})`);
+    await screenshot(`ais-m007-measures-${device}.png`,false);
+    await click("#clear-comparison");
+    for (const text of ["Potato input costs rise.","Beef input costs rise."]) {
+      await fill("situation",text);
+      await search();
+      assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+      assert.ok(await evaluate(`!document.getElementById('empty-actions').hidden`));
+    }
+    checks.push(`${device}: M007 dairy and three-metric comparisons, benchmark distinction, unsupported and documented missed wording`);
 
     // Error focus starts smooth scrolling. Keep real clicks and slow responses:
     // wait for a stable target and a fresh submission, never an old idle flag.

@@ -10,6 +10,7 @@ from ais.collection import load_collection, search_records
 from ais.context import REASONS, compatible_matches, describe, read_pressure
 from ais.pilot import ROOT, bm25, eligible, ranking_text, read_jsonl, tokens
 from ais.related import analyze, explain_matches
+from ais.vocabulary import FAMILIES as M007_FAMILIES
 
 # These words alone do not establish a specific, supported pressure match.
 FILLER = set(
@@ -103,8 +104,8 @@ class CaseSearch:
                     iso_date(evidence["public_date"], "Evidence publication date")
 
     @classmethod
-    def load(cls):
-        cases, details = search_records(load_collection())
+    def load(cls, collection="m007"):
+        cases, details = search_records(load_collection(collection))
         return cls(
             read_jsonl(ROOT / "data/pilot/cases.jsonl") + cases,
             read_jsonl(ROOT / "data/pilot/cases-structured-v2.jsonl") + details,
@@ -218,8 +219,8 @@ class CaseSearch:
             candidates.append(case)
         return candidates, dict(sorted(exclusions.items()))
 
-    def search(self, payload, *, method="context_v1"):
-        if method not in {"literal_v1", "related_v1", "context_v1"}:
+    def search(self, payload, *, method="context_m007"):
+        if method not in {"literal_v1", "related_v1", "context_v1", "context_m007"}:
             raise ValueError("Unknown search method.")
         query = self.query(payload)
         candidates, exclusions = self.candidate_pool(query)
@@ -234,9 +235,11 @@ class CaseSearch:
             # cannot create a pressure concept or affect its score.
             scores = bm25(" ".join(query_concepts), [" ".join(a[0]) for a in analyzed])
         else:
-            reading = read_pressure(query["text"])
+            vocabulary = {"families": M007_FAMILIES} if method == "context_m007" else {}
+            reading = read_pressure(query["text"], **vocabulary)
             profiles = [
-                read_pressure(self.details[c["id"]]["pressure"]["value"]) for c in candidates
+                read_pressure(self.details[c["id"]]["pressure"]["value"], **vocabulary)
+                for c in candidates
             ]
             query_words = reading["words"]
             scores = bm25(
@@ -266,7 +269,7 @@ class CaseSearch:
                     presented["unmatched_terms"] = sorted(specific_terms(query["text"]) - connected)
                 matches.append(presented)
         matches.sort(key=lambda c: (-c["score"], c["id"]))
-        context = describe(reading) if method == "context_v1" else None
+        context = describe(reading) if method in {"context_v1", "context_m007"} else None
         context_reason = None
         if context and not matches:
             context_reason = reading["blocked"]
@@ -313,7 +316,7 @@ class CaseSearch:
                 if method == "literal_v1"
                 else "BM25 on pressure passages only, with clause-level input role, direction, negation and scope checks. "
                 "Bare input topics have unspecified direction. Vocabulary matches are not causal comparisons."
-                if method == "context_v1"
+                if method in {"context_v1", "context_m007"}
                 else "BM25 on named input families in pressure passages only; explicit shared/related terms required. "
                 "A vocabulary link is not a disclosed fact, industry check or causal comparison."
             )

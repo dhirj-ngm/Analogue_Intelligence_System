@@ -8,7 +8,7 @@ from ais.search import CaseSearch, SearchInputError
 
 class SearchTests(unittest.TestCase):
     def setUp(self):
-        self.search = CaseSearch.load()
+        self.search = CaseSearch.load(collection="m006")
         self.query = {
             "text": "Packaging and logistics costs are increasing, putting pressure on margin.",
             "cutoff": "2023-01-27",

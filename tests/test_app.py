@@ -38,6 +38,7 @@ class AppTests(unittest.TestCase):
             "/.git/config",
             "/README.md",
             "/data/collection/cases.jsonl",
+            "/data/collection/m007/cases.jsonl",
             "/sources/report.pdf",
         ]:
             self.assertEqual(self.request("GET", path)[0], 404)
@@ -45,7 +46,7 @@ class AppTests(unittest.TestCase):
     def test_catalog_and_real_search_round_trip(self):
         status, _, body = self.request("GET", "/api/catalog")
         self.assertEqual(status, 200)
-        self.assertEqual(json.loads(body)["total"], 13)
+        self.assertEqual(json.loads(body)["total"], 17)
         payload = json.dumps(dict(text="packaging logistics", cutoff="2023-01-27"))
         status, _, body = self.request(
             "POST", "/api/search", payload, {"Content-Type": "application/json"}

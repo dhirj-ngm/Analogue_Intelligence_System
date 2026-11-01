@@ -101,6 +101,12 @@ export function metricFacts(metric) {
   ];
 }
 
+export function metricHelp(metric) {
+  if (metric.unit === "USD per 100 lb") return "This price is quoted per 100 pounds. Check whether it is a market benchmark or the company's actual purchase price, and which costs it includes.";
+  if (metric.unit === "USD million") return "This amount is in millions of U.S. dollars. Check whether it measures profit, an estimated cost change or another reported amount, and which part of the business it covers.";
+  return "A margin is profit as a share of sales. A percentage change in profit measures something different. For margins, 100 basis points means one percentage point. Adjusted figures leave out some items; check the company's definition.";
+}
+
 export const EXCLUSION_LABELS = {
   self: "The case you started from",
   duplicate_or_continuation: "Another copy or continuing report of the same situation",

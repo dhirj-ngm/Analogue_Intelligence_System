@@ -2,7 +2,7 @@
 
 import {
   dateLabel, periodLabel, words, differenceLabel, pressureLabel, reportLocator, unknownLabels, metricFacts, explainBasisPoints, pressureMatchLabel, matchDirectionLabel,
-  EXCLUSION_LABELS, SearchDraft, changeInformationDate,
+  EXCLUSION_LABELS, SearchDraft, changeInformationDate, metricHelp,
 } from "/reader.mjs";
 
 const $ = (id) => document.getElementById(id);
@@ -72,7 +72,7 @@ function metricDetails(metric) {
   details.append(node("summary", "What this number measures"));
   const facts = node("dl");
   metricFacts(metric).forEach(([label, value]) => facts.append(node("dt", label), node("dd", value)));
-  details.append(facts, node("p", "A margin is profit as a share of sales. A profit amount and a margin percentage measure different things. For margins, 100 basis points means one percentage point. Adjusted figures leave out some items; check the company's definition.", "field-help"));
+  details.append(facts, node("p", metricHelp(metric), "field-help"));
   if (metric.evidence) details.append(sourceLink(metric.evidence));
   return details;
 }
