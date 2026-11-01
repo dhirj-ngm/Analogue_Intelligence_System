@@ -1,0 +1,219 @@
+{
+  "version": "M007-v1",
+  "base_commit": "78e9446f7d703969970ddfef6ed841d74f607a47",
+  "provenance": "Assistant-authored development search/comparison checks frozen after source scouting and before records or vocabulary changes. Expected useful cases are provisional starting points, not exhaustive relevance grades or independent validation.",
+  "planned_cases": [
+    "SJM-COFFEE-2011",
+    "DF-2015",
+    "TSN-BEEF-2024-Q1",
+    "COKE-2022"
+  ],
+  "queries": [
+    {
+      "id": "coffee",
+      "text": "Green coffee input costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "SJM-COFFEE-2011"
+      ],
+      "expect_empty": false
+    },
+    {
+      "id": "milk-deflation",
+      "text": "Raw milk input costs are falling.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false
+    },
+    {
+      "id": "cattle",
+      "text": "Live cattle input costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "TSN-BEEF-2024-Q1"
+      ],
+      "expect_empty": false
+    },
+    {
+      "id": "metal",
+      "text": "Aluminium input costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "COKE-2022"
+      ],
+      "expect_empty": false
+    },
+    {
+      "id": "resin-transport",
+      "text": "Aluminum, PET resin and transport costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "COKE-2022"
+      ],
+      "expect_empty": false
+    },
+    {
+      "id": "milk-inflation",
+      "text": "Milk costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "packaging-regression",
+      "text": "Packaging and logistics costs are increasing, putting pressure on margin.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false
+    },
+    {
+      "id": "cocoa-regression",
+      "text": "Cocoa costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "HSY-2025-Q1"
+      ],
+      "expect_empty": false
+    },
+    {
+      "id": "mixed-negation",
+      "text": "Not milk but packaging is more expensive.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [
+        "DF-2015",
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "coffee-decline",
+      "text": "Coffee input costs are falling.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "sales",
+      "text": "Milk sales are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "cattle-sales",
+      "text": "Cattle sales are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "airline",
+      "text": "Airline fuel costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "non-fmcg-metal",
+      "text": "Aluminum costs in steel smelting are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "uncovered-potato",
+      "text": "Potato input costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "beef-wording",
+      "text": "Beef input costs are rising.",
+      "cutoff": "2026-11-01",
+      "expected_useful_cases": [
+        "TSN-BEEF-2024-Q1"
+      ],
+      "expect_empty": false,
+      "note": "Broader processed-meat wording may remain a vocabulary miss; do not add a case or alter evidence to satisfy it."
+    },
+    {
+      "id": "coffee-before",
+      "text": "Coffee input costs rise.",
+      "cutoff": "2011-06-27",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "milk-before",
+      "text": "Milk costs fall.",
+      "cutoff": "2016-02-21",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "cattle-before",
+      "text": "Cattle input costs rise.",
+      "cutoff": "2024-02-04",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    },
+    {
+      "id": "metal-before",
+      "text": "Aluminum input costs rise.",
+      "cutoff": "2023-02-21",
+      "expected_useful_cases": [],
+      "expect_empty": true
+    }
+  ],
+  "comparisons": [
+    {
+      "ids": [
+        "DF-2015",
+        "GIS-2007"
+      ],
+      "purpose": "Read falling versus rising dairy costs, annual consolidated scope, gross-margin definitions, benchmark versus company cost, source locators and unknowns. No arithmetic comparison or causal inference."
+    },
+    {
+      "ids": [
+        "SJM-COFFEE-2011",
+        "TSN-BEEF-2024-Q1",
+        "COKE-2022"
+      ],
+      "purpose": "Compare coffee segment profit, beef segment operating loss and bottler gross margin without conflating accounting measures, quarterly/annual periods or independent company claims."
+    }
+  ],
+  "expanded_guards": [
+    "Publication day is inclusive; prior day excludes the new record",
+    "Self and same-continuation group are excluded",
+    "Opposite-direction dairy records cannot substitute for one another",
+    "No response, outcome or company identity enters pressure scoring"
+  ],
+  "comparison_policy": "Use one fixed extended input vocabulary for old and expanded collections, with identical eligibility rules. Record original M006/old-collection output separately to distinguish vocabulary effects. Do not retune ranking or update expectations after seeing outputs.",
+  "planned_vocabulary": {
+    "coffee": [
+      "coffee"
+    ],
+    "cattle": [
+      "cattle",
+      "livestock"
+    ],
+    "aluminum": [
+      "aluminum",
+      "aluminium"
+    ]
+  },
+  "vocabulary_note": "New material names enable source-backed collection entries. Existing material families and clause rules remain unchanged; PET-only wording may remain unrecognized."
+}

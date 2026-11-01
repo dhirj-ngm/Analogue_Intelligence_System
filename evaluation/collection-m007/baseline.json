@@ -1,0 +1,481 @@
+{
+  "method": "context_v1",
+  "collection": "M006, 13 observations",
+  "checks": [
+    {
+      "id": "coffee",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "milk-deflation",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "cattle",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "metal",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "resin-transport",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "KC-2011",
+          "score": 1.926273
+        },
+        {
+          "id": "PG-2022",
+          "score": 0.921468
+        },
+        {
+          "id": "CL-2022",
+          "score": 0.714137
+        },
+        {
+          "id": "CLX-2021",
+          "score": 0.714137
+        },
+        {
+          "id": "UL-2022",
+          "score": 0.714137
+        }
+      ]
+    },
+    {
+      "id": "milk-inflation",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.697109
+        }
+      ]
+    },
+    {
+      "id": "packaging-regression",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2022",
+          "score": 1.770542
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 1.44534
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.363102
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.056404
+        },
+        {
+          "id": "PG-2022",
+          "score": 0.921468
+        }
+      ]
+    },
+    {
+      "id": "cocoa-regression",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 2.682528
+        }
+      ]
+    },
+    {
+      "id": "mixed-negation",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.363102
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.056404
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.056404
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.862371
+        }
+      ]
+    },
+    {
+      "id": "coffee-decline",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "sales",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "cattle-sales",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "airline",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "non-fmcg-metal",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "uncovered-potato",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "beef-wording",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "coffee-before",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "after_cutoff": 11
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "milk-before",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015"
+      ],
+      "excluded": {
+        "after_cutoff": 8
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "cattle-before",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "CLX-2023"
+      ],
+      "excluded": {
+        "after_cutoff": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    },
+    {
+      "id": "metal-before",
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022"
+      ],
+      "excluded": {
+        "after_cutoff": 2
+      },
+      "status": "insufficient_evidence",
+      "ranked": []
+    }
+  ]
+}
