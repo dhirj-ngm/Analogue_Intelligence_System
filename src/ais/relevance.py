@@ -9,6 +9,7 @@ from pathlib import Path
 
 from ais.pilot import ROOT
 from ais.search import CaseSearch
+from ais.historical import frozen_bytes
 
 STUDY = ROOT / "evaluation/relevance-m008"
 REVIEW_ASSETS = ROOT / "assets/review"
@@ -34,8 +35,7 @@ def save(path, value):
 def verify_inputs():
     freeze = json.loads((STUDY / "freeze.json").read_text())
     for path, expected in freeze["sha256"].items():
-        if digest(ROOT / path) != expected:
-            raise ValueError(f"Frozen M008 input changed: {path}")
+        frozen_bytes(path, expected)
 
 
 def snapshot():
@@ -112,7 +112,8 @@ def render(packet):
     template = (REVIEW_ASSETS / "packet.html").read_text()
     # Source text cannot escape the JSON script block or execute as HTML.
     payload = encoded(packet).replace("<", "\\u003c").replace("&", "\\u0026")
-    reader = (ROOT / "assets/app/reader.mjs").read_text().replace("export ", "")
+    reader_hash = json.loads((STUDY / "freeze.json").read_text())["sha256"]["assets/app/reader.mjs"]
+    reader = frozen_bytes("assets/app/reader.mjs", reader_hash).decode().replace("export ", "")
     review = "\n".join(
         line
         for line in (REVIEW_ASSETS / "review.mjs").read_text().splitlines()
@@ -161,8 +162,7 @@ def check(directory):
         if digest(directory / path) != expected:
             raise ValueError(f"Frozen review artifact changed: {path}")
     for path, expected in manifest["tooling"].items():
-        if digest(ROOT / path) != expected:
-            raise ValueError(f"Review tooling changed since packet freeze: {path}")
+        frozen_bytes(path, expected)
     if json.loads((directory / "coordinator/snapshot.json").read_text()) != private:
         raise ValueError("Current search no longer reproduces the packet snapshot")
     if (directory / "reviewer/packet.html").read_text() != render(packet):

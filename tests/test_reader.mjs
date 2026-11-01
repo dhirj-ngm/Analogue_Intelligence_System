@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { SearchDraft, changeInformationDate, dateLabel, metricFacts, metricHelp, pressureLabel, reportLocator, unknownLabels, explainBasisPoints, pressureMatchLabel, matchDirectionLabel } from "../assets/app/reader.mjs";
+import { SearchDraft, changeInformationDate, dateLabel, metricFacts, metricHelp, pressureLabel, reportLocator, unknownLabels, explainBasisPoints, pressureMatchLabel, matchDirectionLabel, coverageText } from "../assets/app/reader.mjs";
 
 const own = { text: "My packaging problem", cutoff: "2023-03-01", before_period_end: "2022-10-01", source_id: "" };
 const colgate = { id: "CL-2022", challenge: "Source challenge", published: "2023-01-27", period_end: "2022-12-31" };
@@ -89,4 +89,26 @@ test("direction explanations distinguish input topics from asserted increases", 
   assert.match(matchDirectionLabel([{query_direction:"up",report_direction:"up"}]), /rising costs in both/);
   assert.match(matchDirectionLabel([{query_direction:"down",report_direction:"down"}]), /falling costs in both/);
   assert.equal(matchDirectionLabel([]), "");
+});
+
+test("partial coverage names unsupported pressures without implying they were absent",()=>{
+  const text=coverageText({supported:["dairy"],missing:["energy"],names:{dairy:"milk",energy:"energy"},unrecognized:[],unresolved:[],supported_count:1,identified_count:2,partial:true});
+  assert.match(text.summary,/Partial comparison.*1 of 2/);
+  assert.equal(text.supported,"Evidence for: milk.");
+  assert.equal(text.missing,"Not established here: energy.");
+  assert.doesNotMatch(text.missing,/did not rise|absent/);
+});
+
+test("unrecognized and unresolved inputs cannot be presented as complete coverage",()=>{
+  const base={supported:["dairy"],missing:[],names:{dairy:"milk"},unrecognized:["potato"],unresolved:["live-animal purchases"],supported_count:1,identified_count:3,partial:true};
+  const text=coverageText(base);
+  assert.match(text.missing,/potato costs/);assert.match(text.unresolved,/Clarify/);
+  assert.match(text.summary,/1 of 3/);
+  assert.equal(coverageText(null),null);
+});
+
+test("coverage of a single identified pressure does not claim a complete business analogy",()=>{
+  const text=coverageText({supported:["dairy"],missing:[],names:{dairy:"milk"},unrecognized:[],unresolved:[],supported_count:1,identified_count:1,partial:false});
+  assert.equal(text.summary,"Supports the identified pressure");
+  assert.equal(text.missing,"");
 });

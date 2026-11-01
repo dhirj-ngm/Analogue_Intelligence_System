@@ -6,6 +6,7 @@ import json
 
 from ais.pilot import ROOT
 from ais.search import CaseSearch
+from ais.historical import frozen_bytes
 
 DIRECTORY = ROOT / "evaluation/collection-m007"
 
@@ -231,6 +232,10 @@ if __name__ == "__main__":
         )
     else:
         recorded = json.loads((DIRECTORY / "results.json").read_text())
-        if recorded != result:
-            raise ValueError("M007 observations differ; inspect before recording with --write")
+        if {k: v for k, v in recorded.items() if k != "fingerprints"} != {
+            k: v for k, v in result.items() if k != "fingerprints"
+        }:
+            raise ValueError("M007 observations differ from their frozen original cohort/method")
+        for path, expected in recorded["fingerprints"].items():
+            frozen_bytes(path, expected)
     print(json.dumps(result["summary"], indent=2))

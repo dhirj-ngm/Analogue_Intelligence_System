@@ -8,6 +8,7 @@ import { join, resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 const audit = process.argv.includes("--audit-m008")
   ? JSON.parse(await readFile(join(root,"evaluation/audit-m008/snapshot.json"),"utf8")).queries : [];
+const currentAudit = audit.length ? JSON.parse(await readFile(join(root,"evaluation/search-m009/results.json"),"utf8")).historical.filter(r=>r.group==="m008") : [];
 const retryRounds = Number(process.argv.find((arg) => arg.startsWith("--retry-rounds="))?.split("=")[1] || 3);
 assert.ok(Number.isInteger(retryRounds) && retryRounds >= 1 && retryRounds <= 30);
 const profile = await mkdtemp(join(tmpdir(), "ais-browser-"));
@@ -323,7 +324,7 @@ try {
     assert.ok(comparison.includes('Connection to your description') && comparison.includes('Your direction is not specified'));
     assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
     await screenshot(`ais-collection-comparison-${device}.png`, false);
-    await evaluate(`document.querySelectorAll('#comparison-table tbody tr')[1].scrollIntoView({block:'start',behavior:'instant'})`);
+    await evaluate(`document.querySelector('#comparison-table [data-comparison-field="profit"]').scrollIntoView({block:'start',behavior:'instant'})`);
     await screenshot(`ais-collection-figures-${device}.png`, false);
     checks.push(`${device}: three new cases compared with business scope, accounting differences and conflict retained`);
     await click("#clear-comparison");
@@ -383,10 +384,10 @@ try {
     assert.ok(expandedComparison.includes('write-down') && expandedComparison.includes('bottler') && expandedComparison.includes('quarterly'));
     assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
     await screenshot(`ais-m007-comparison-${device}.png`,false);
-    await evaluate(`document.querySelectorAll('#comparison-table tbody tr')[1].scrollIntoView({block:'start',behavior:'instant'})`);
-    for (const cell of [2,3,4]) await click(`#comparison-table tbody tr:nth-child(2) td:nth-child(${cell}) > .detail-block > .metric-details > summary`);
+    await evaluate(`document.querySelector('#comparison-table [data-comparison-field="profit"]').scrollIntoView({block:'start',behavior:'instant'})`);
+    for (const cell of [2,3,4]) await click(`#comparison-table [data-comparison-field="profit"] td:nth-child(${cell}) > .detail-block > .metric-details > summary`);
     assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('-206 USD million')`));
-    await evaluate(`document.querySelectorAll('#comparison-table tbody tr')[1].scrollIntoView({block:'start',behavior:'instant'})`);
+    await evaluate(`document.querySelector('#comparison-table [data-comparison-field="profit"]').scrollIntoView({block:'start',behavior:'instant'})`);
     await screenshot(`ais-m007-measures-${device}.png`,false);
     await click("#clear-comparison");
     for (const text of ["Potato input costs rise.","Beef input costs rise."]) {
@@ -397,6 +398,55 @@ try {
     }
     checks.push(`${device}: M007 dairy and three-metric comparisons, benchmark distinction, unsupported and documented missed wording`);
 
+    await openOptions();
+    await click("#reset-dates");
+    const supplierQuery="We bottle water. Our freight supplier also serves airlines. Freight and fuel costs are rising.";
+    await fill("situation",supplierQuery);
+    await search();
+    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`),"NES-WATERS-2011-H1");
+    await fill("cutoff","2011-08-09",true);await fill("before-period","2011-08-09");
+    await search();assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+    await fill("cutoff","2011-08-10",true);await fill("before-period","2011-08-10");
+    await search();assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`),"NES-WATERS-2011-H1");
+    await fill("source-case","NES-WATERS-2011-H1",true);await search();
+    assert.ok(await evaluate(`!document.querySelector('[data-case-id="NES-WATERS-2011-H1"]') && document.getElementById('method-checks').textContent.includes('The case you started from: 1')`));
+    await click("#reset-dates");
+    await fill("situation","We operate an airline. Fuel costs rise.");await search();
+    assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('results-status').innerText.includes('outside')`));
+    checks.push(`${device}: M009 supplier/customer roles, true airline exclusion, publication-day and self safeguards`);
+
+    await fill("situation","Milk costs fell while energy bills rose.");await search();
+    assert.ok(await evaluate(`document.querySelector('[data-case-id="DF-2015"] .coverage').innerText.includes('Not established here: energy') && document.querySelector('[data-case-id="KC-2011"] .coverage').innerText.includes('Not established here: milk')`));
+    assert.ok(await evaluate(`document.getElementById('result-caution').innerText.includes('combined pressures')`));
+    for(const id of ["DF-2015","KC-2011"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
+    await click("#compare-button");
+    assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('Partial comparison') && document.querySelector('.comparison-note').innerText.includes('combining partial cases')`));
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`));
+    await screenshot(`ais-m009-partial-${device}.png`,false);
+    await click("#clear-comparison");
+    await fill("situation","Milk and potato costs are rising.");await search();
+    assert.ok(await evaluate(`document.querySelector('.coverage').innerText.includes('potato costs') && document.querySelector('.coverage').innerText.includes('Partial comparison')`));
+    checks.push(`${device}: M009 supported/missing pressures per result and comparison; combined-case caution; unknown input stays unsupported`);
+
+    const liveQuery="Our beef plant buys live animals. Beef raw-material costs are rising.";
+    await fill("situation",liveQuery);await search();
+    assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && !document.getElementById('input-clarification').hidden && document.getElementById('clarification-message').innerText.includes('cattle')`));
+    const savedDate=await evaluate(`document.getElementById('cutoff').value`);
+    const beforeEdit=await evaluate(`window.__searchSubmissions`);
+    await screenshot(`ais-m009-clarify-${device}.png`,false);
+    await click("#clarify-input");
+    assert.equal(await evaluate(`document.activeElement.id`),"situation");
+    assert.equal(await evaluate(`document.getElementById('situation').value`),liveQuery);
+    assert.equal(await evaluate(`window.__searchSubmissions`),beforeEdit);
+    assert.equal(await evaluate(`document.getElementById('cutoff').value`),savedDate);
+    await fill("situation","Cattle input costs are rising.");await search();
+    assert.ok(await evaluate(`document.querySelector('.case-card').dataset.caseId==='TSN-BEEF-2024-Q1' && document.getElementById('input-clarification').hidden`));
+    await fill("situation","Beef selling prices are rising.");await search();
+    assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('input-clarification').hidden`));
+    await fill("situation","We buy live animals. Milk costs are falling.");await search();
+    assert.ok(await evaluate(`document.querySelector('.case-card').dataset.caseId==='DF-2015' && !document.getElementById('input-clarification').hidden && document.querySelector('.coverage').innerText.includes('Still unclear')`));
+    checks.push(`${device}: M009 live-animal clarification requires an explicit edit; dates/draft retained; beef outputs separate; unresolved input prevents full coverage`);
+
     if (audit.length) {
       await openOptions();
       await click("#reset-dates");
@@ -405,7 +455,8 @@ try {
         await fill("cutoff",row.payload.cutoff,true);
         await fill("before-period",row.payload.before_period_end);
         await search();
-        assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),row.displayed.map(c=>c.id),row.id);
+        const expected=currentAudit.find(c=>c.id===row.id).new.ranked;
+        assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),expected.map(c=>c.id),row.id);
         assert.equal(await evaluate(`document.getElementById('cutoff').value`),row.payload.cutoff);
         assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth && document.getElementById('error').hidden`));
         if (["A06","A08"].includes(row.id)) {

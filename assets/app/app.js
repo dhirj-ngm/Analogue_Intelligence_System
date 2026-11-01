@@ -2,7 +2,7 @@
 
 import {
   dateLabel, periodLabel, words, differenceLabel, pressureLabel, reportLocator, unknownLabels, metricFacts, explainBasisPoints, pressureMatchLabel, matchDirectionLabel,
-  EXCLUSION_LABELS, SearchDraft, changeInformationDate, metricHelp,
+  EXCLUSION_LABELS, SearchDraft, changeInformationDate, metricHelp, coverageText,
 } from "/reader.mjs";
 
 const $ = (id) => document.getElementById(id);
@@ -65,6 +65,17 @@ function bulletList(items) {
   const list = node("ul");
   items.forEach((item) => list.append(node("li", item)));
   return list;
+}
+
+function coverageBlock(c) {
+  const block = node("div", undefined, "coverage");
+  const text = coverageText(c.coverage);
+  if (!text) return block;
+  block.append(node("strong", text.summary), node("p", text.supported));
+  if (text.missing) block.append(node("p", text.missing, "coverage-missing"));
+  if (text.unresolved) block.append(node("p", text.unresolved));
+  if (c.coverage.partial) block.append(node("p", "This record does not support the whole combination in your description.", "field-help"));
+  return block;
 }
 
 function metricDetails(metric) {
@@ -144,6 +155,7 @@ function renderCard(c, index) {
   }
   const direction = matchDirectionLabel(c.pressure_matches || []);
   if (direction) main.append(node("p", direction, "field-help direction-match"));
+  if (c.coverage) main.append(coverageBlock(c));
   main.append(node("p", pressureLabel(c.fields.pressure.value), "pressure"), differences);
   const details = node("details", undefined, "case-reading");
   details.append(node("summary", "Read the case and its sources"));
@@ -184,6 +196,7 @@ function renderComparison() {
   head.append(header);
   const body = node("tbody");
   const rows = [
+    ["Which requested pressures this case supports", coverageBlock],
     ["What was happening", (c) => fieldBlock("From the company report", c.fields.pressure)],
     ["What was reported about profit", profitBlock],
     ["What else was changing", (c) => fieldBlock("From the company report", c.fields.other_drivers)],
@@ -196,6 +209,8 @@ function renderComparison() {
   ];
   rows.forEach(([title, value]) => {
     const row = node("tr"); row.setAttribute("role", "row");
+    if (value === profitBlock) row.dataset.comparisonField = "profit";
+    if (value === coverageBlock) row.dataset.comparisonField = "coverage";
     const th = node("th", title); th.scope = "row"; th.setAttribute("role", "rowheader"); row.append(th);
     cases.forEach((c) => {
       const td = node("td"); td.setAttribute("role", "cell");
@@ -239,6 +254,11 @@ function renderResults(data) {
     reading.append(node("p", explained ? `From your description: “${data.query.text.slice(0,160)}”` : data.query_reading.summary));
     if (!explained && data.query_reading.ignored.length) reading.append(bulletList(data.query_reading.ignored.map((item) => `Left out: “${item.text.slice(0,160)}” — ${item.message}`)));
   }
+  $("input-clarification").hidden = !data.clarification;
+  $("clarification-message").textContent = data.clarification?.message || "";
+  $("result-caution").textContent = data.partial_only
+    ? "Each case covers only part of your description. Showing them together does not document one situation with the combined pressures."
+    : "Shared or related input names are a starting point. Check the business, whether costs rose or fell, and the source.";
   $("result-caution").hidden = !data.results.length;
   $("empty-actions").hidden = Boolean(data.results.length);
   $("try-example").hidden = data.empty_reason === "no_eligible_cases";
@@ -286,6 +306,7 @@ $("search-form").addEventListener("submit", async (event) => {
   $("results-status").textContent = "Looking through the company reports…";
   $("query-reading").hidden = true;
   $("query-reading").replaceChildren();
+  $("input-clarification").hidden = true;
   $("method-checks").replaceChildren(node("p", "This search is still running."));
   updateSelection();
   try {
@@ -311,6 +332,13 @@ $("search-form").addEventListener("submit", async (event) => {
       $("results-section").setAttribute("aria-busy", "false");
     }
   }
+});
+
+$("clarify-input").addEventListener("click", () => {
+  const input = $("situation");
+  input.focus();
+  const match = /live[ -]+animals?/i.exec(input.value);
+  if (match) input.setSelectionRange(match.index, match.index + match[0].length);
 });
 
 function runExample(text) {

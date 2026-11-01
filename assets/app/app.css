@@ -93,3 +93,5 @@ footer p { font-size: 12px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+.coverage{margin:12px 0;padding:12px;border-left:3px solid #8ba58e;background:#f3f6ef;border-radius:3px}.coverage p{margin:6px 0}.coverage-missing{color:#655431}

@@ -75,6 +75,11 @@
         <button id="edit-search" class="text-button" type="button" hidden>Edit your search ↑</button></div>
       <div id="results-status" class="results-status" role="status" aria-live="polite">Your results will appear here. Try describing a problem or choosing an example.</div>
       <div id="query-reading" class="query-reading" hidden></div>
+      <aside id="input-clarification" class="query-reading" hidden aria-labelledby="clarification-title">
+        <h3 id="clarification-title">Clarify the input you buy</h3>
+        <p id="clarification-message"></p>
+        <button id="clarify-input" type="button" class="secondary">Edit the input description</button>
+      </aside>
       <p id="result-caution" class="visible-caution" hidden>Shared or related input names are a starting point. Check the business, whether costs rose or fell, and the source.</p>
       <div id="empty-actions" class="empty-actions" hidden>
         <button id="try-example" class="secondary" type="button">Try the packaging example</button>
@@ -91,7 +96,8 @@
       <div class="section-top"><h2 id="comparison-title" tabindex="-1">Look at the cases together</h2>
         <button id="clear-comparison" class="secondary" type="button">Clear choices</button></div>
       <p class="comparison-note">One case may cover a whole company, another just part of it.
-        Profit figures may also be calculated differently. A reported action does not prove what caused a result.</p>
+        Profit figures may also be calculated differently. Each column is a separate case;
+        combining partial cases does not document the combined situation. A reported action does not prove what caused a result.</p>
       <div class="table-scroll"><table id="comparison-table" role="table"></table></div>
     </section>
 
@@ -103,11 +109,14 @@
           It links milk with dairy, flour with grains, chocolate with cocoa, freight with transport, and fuel with oil. It also recognizes coffee, cattle/livestock and aluminum/aluminium.
           Each result shows the words it connected. Related inputs are not identical costs or proof of a useful comparison.</p>
         <p>Simple sentence rules separate input costs from sales or demand, keep denied pressures out, and compare whether costs rose or fell.
-          We set aside descriptions naming other industries, such as airlines. When the wording is unclear, we may have no comparison to show.
+          We set aside situations about businesses outside this collection, such as airlines. A supplier's or customer's industry is considered separately from your business. When the wording is unclear, we may have no comparison to show.
           A list of input topics can still be searched, with its direction marked as unspecified.</p>
         <p>The rules cannot read every sentence or recognize every industry. Check what we read from your description and what we left out.
           Some phrases still fall outside the vocabulary: beef is not automatically treated as cattle, and PET needs a material word such as resin or plastic.
+          Live-animal wording prompts you to clarify what you buy. We do not assume it means cattle.
           Related terms and matching directions do not show that an earlier action would work now.</p>
+        <p>Each case lists the pressures it supports and those not established here. Missing evidence does not mean those costs did not change.
+          Counts cover the named pressures we could identify; complex descriptions can still be misread. Combining partial cases does not document one combined situation.</p>
         <h3>Where the evidence comes from</h3>
         <p>The case descriptions were compiled with AI from published company reports. They have not had a complete independent review.
           Each case links to its report and tells you where to look. The company's explanation is not independent proof of cause and effect.</p>

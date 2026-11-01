@@ -32,6 +32,20 @@ export function matchDirectionLabel(matches) {
     : `Matched inputs describe ${words(directions)} in both descriptions.`;
 }
 
+export function coverageText(coverage) {
+  if (!coverage) return null;
+  const names = keys => keys.map(key => coverage.names[key] || key);
+  const missing = [...names(coverage.missing), ...coverage.unrecognized.map(term=>`${term} costs`)];
+  return {
+    summary: coverage.partial
+      ? `Partial comparison — supports ${coverage.supported_count} of ${coverage.identified_count} identified pressures`
+      : coverage.identified_count === 1 ? "Supports the identified pressure" : `Supports all ${coverage.identified_count} identified pressures`,
+    supported: `Evidence for: ${words(names(coverage.supported))}.`,
+    missing: missing.length ? `Not established here: ${words(missing)}.` : "",
+    unresolved: coverage.unresolved.length ? `Still unclear: ${words(coverage.unresolved)}. Clarify the input you buy.` : "",
+  };
+}
+
 const DIFFERENCES = new Map([
   ["gross margin adjusted for restructuring; global scope", "This covers the whole company. Its gross margin leaves out restructuring charges."],
   ["profit amount includes restructuring; no margin level inferred", "This is a profit amount, including restructuring costs, rather than a margin percentage."],

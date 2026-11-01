@@ -1,0 +1,116 @@
+{
+  "provenance": "Rechecks of pre-existing M006 diagnostics on the same current 17-case pool, outside the 37 primary expectation counts. AI development observations, not independent validation.",
+  "checks": [
+    {
+      "payload": {
+        "text": "Milk costs are rising not falling.",
+        "cutoff": "2026-11-01"
+      },
+      "prior_limit": "A useful dairy-pressure case is missed by coarse negation scope without punctuation.",
+      "old": {
+        "ranked_ids": [],
+        "status": "insufficient_evidence",
+        "query_reading": {
+          "summary": "This part says the pressure was absent or unknown.",
+          "ignored": [
+            {
+              "text": "milk costs are rising not falling",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        }
+      },
+      "new": {
+        "ranked_ids": [],
+        "status": "insufficient_evidence",
+        "query_reading": {
+          "summary": "This part says the pressure was absent or unknown.",
+          "ignored": [
+            {
+              "text": "milk costs are rising not falling",
+              "reason": "negated_or_unknown",
+              "message": "This part says the pressure was absent or unknown."
+            }
+          ],
+          "blocked": null
+        }
+      }
+    },
+    {
+      "payload": {
+        "text": "Milk prices fell, packaging prices rose.",
+        "cutoff": "2026-11-01"
+      },
+      "prior_limit": "A potentially useful packaging match is missed because the comma does not safely bind each direction to an input.",
+      "old": {
+        "ranked_ids": [],
+        "status": "insufficient_evidence",
+        "query_reading": {
+          "summary": "We couldn't separate the cost directions reliably enough for this comparison.",
+          "ignored": [
+            {
+              "text": "milk prices fell, packaging prices rose",
+              "reason": "conflicting_direction",
+              "message": "We couldn't separate the cost directions reliably enough for this comparison."
+            }
+          ],
+          "blocked": "conflicting_direction"
+        }
+      },
+      "new": {
+        "ranked_ids": [],
+        "status": "insufficient_evidence",
+        "query_reading": {
+          "summary": "We couldn't separate the cost directions reliably enough for this comparison.",
+          "ignored": [
+            {
+              "text": "milk prices fell, packaging prices rose",
+              "reason": "conflicting_direction",
+              "message": "We couldn't separate the cost directions reliably enough for this comparison."
+            }
+          ],
+          "blocked": "conflicting_direction"
+        }
+      }
+    },
+    {
+      "payload": {
+        "text": "A food maker pays more for freight from its logistics provider.",
+        "cutoff": "2026-11-01"
+      },
+      "prior_limit": "The supplier context triggers conservative industry rejection; the food maker context is not resolved.",
+      "old": {
+        "ranked_ids": [],
+        "status": "insufficient_evidence",
+        "query_reading": {
+          "summary": "The description names a business outside this consumer-goods collection.",
+          "ignored": [],
+          "blocked": "outside_scope"
+        }
+      },
+      "new": {
+        "ranked_ids": [
+          "PG-2022",
+          "CL-2022",
+          "CLX-2021",
+          "UL-2022",
+          "NES-WATERS-2011-H1"
+        ],
+        "status": "candidates",
+        "query_reading": {
+          "summary": "Searching for: transport (direction not specified).",
+          "ignored": [
+            {
+              "text": "from its logistics provider",
+              "reason": "supplier_context",
+              "message": "A supplier's or customer's industry does not set your business type or establish your own costs."
+            }
+          ],
+          "blocked": null
+        }
+      }
+    }
+  ]
+}
