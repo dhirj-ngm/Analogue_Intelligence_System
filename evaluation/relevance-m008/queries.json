@@ -1,0 +1,76 @@
+{
+  "version": "M008-v1",
+  "provenance": "Builder-authored realistic prompts, informed by known corpus coverage; no expected relevance answers. Independent human labels must be collected separately. Not a random sample of reader queries.",
+  "queries": [
+    {
+      "id": "Q01",
+      "sampling_stratum": "multiple-food-inputs",
+      "text": "We sell packaged foods. Milk, wheat and electricity costs are rising together. I want an earlier example with more than one input under pressure.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "Q02",
+      "sampling_stratum": "coffee",
+      "text": "We buy green coffee for retail packs. Prices have risen; which earlier coffee business faced a comparable input squeeze?",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "Q03",
+      "sampling_stratum": "declining-dairy",
+      "text": "Our milk purchasing costs have fallen compared with last year. I want a dairy example that separates input prices from price cuts and profit changes.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "Q04",
+      "sampling_stratum": "cocoa",
+      "text": "A chocolate maker is paying more for cocoa. We are considering price increases, but demand could weaken. Are there relevant earlier situations?",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "Q05",
+      "sampling_stratum": "bottling-multiple-inputs",
+      "text": "We bottle drinks in plastic and aluminum containers. Packaging and road freight costs are higher together.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "Q06",
+      "sampling_stratum": "currency-and-energy",
+      "text": "Imported ingredients cost more after our currency weakened, while electricity bills are rising. I need a consumer-goods comparison rather than a commodity-price chart.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "Q07",
+      "sampling_stratum": "uncovered-input",
+      "text": "A snack maker is paying more for potatoes after a poor harvest. I need an earlier potato-cost example.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "Q08",
+      "sampling_stratum": "outside-business",
+      "text": "We operate an airline. Jet fuel costs have risen sharply; is there a useful comparison for this business?",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "Q09",
+      "sampling_stratum": "historical-coffee",
+      "text": "In mid-2011, we are assessing higher coffee input costs. Use only information published by 27 June 2011.",
+      "cutoff": "2011-06-27",
+      "before_period_end": "2011-06-27"
+    },
+    {
+      "id": "Q10",
+      "sampling_stratum": "historical-cocoa",
+      "text": "As of 30 April 2025, rising cocoa costs are squeezing a chocolate producer. Which earlier report could help us compare the situation?",
+      "cutoff": "2025-04-30",
+      "before_period_end": "2025-04-30"
+    }
+  ]
+}

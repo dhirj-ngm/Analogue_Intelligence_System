@@ -1,0 +1,34 @@
+{
+  "version": "M008-v1",
+  "base_commit": "ef208431f4a0ba506a12af6b4bc3910e172d4a59",
+  "collection": "m007",
+  "method": "context_m007",
+  "display_limit": 5,
+  "ordering_seed": "M008-blind-v1-20261101",
+  "case_sampling": "All eligible cases for every query. No judgement-dependent sampling or replacement.",
+  "minimum_reviewers": 1,
+  "preferred_reviewers": 2,
+  "labels": [
+    "useful",
+    "partly_useful",
+    "not_useful",
+    "unsure"
+  ],
+  "misleading_labels": [
+    "yes",
+    "no",
+    "unsure"
+  ],
+  "source_access_labels": [
+    "opened",
+    "not_opened",
+    "unavailable"
+  ],
+  "query_coverage_labels": [
+    "adequate",
+    "limited",
+    "none",
+    "unsure"
+  ],
+  "policy": "No changes to cases, ranking, queries or analysis definitions after freeze. No Builder or AI labels qualify as independent human judgement."
+}
