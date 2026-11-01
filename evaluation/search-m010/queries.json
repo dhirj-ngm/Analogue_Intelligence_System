@@ -1,0 +1,626 @@
+{
+  "version": "M010-v1",
+  "base_commit": "d63b3c341fc72277abc235d292efe1ab721f36c8",
+  "provenance": "Builder-authored deterministic development expectations, case-informed, frozen before code changes. Not independent human labels or a representative relevance sample.",
+  "policy": "Compare M009/M010 on identical eligible cases. Bind explicit cost subjects/directions locally, separate third-party/output statements, and clarify ambiguity instead of guessing. No material synonyms, case edits or first-stage response/outcome features.",
+  "queries": [
+    {
+      "id": "up-not-down",
+      "text": "Milk costs are rising not falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "up-comma-not-down",
+      "text": "Milk costs are rising, not falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "down-not-up",
+      "text": "Milk costs are falling not rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "positive-after-negation",
+      "text": "Milk costs are not falling but rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "reverse-positive",
+      "text": "Milk costs are not rising but falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "rather-than",
+      "text": "Milk costs are increasing rather than decreasing.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "group-alternative",
+      "text": "Milk and grain input costs are rising not falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "not-falling-alone",
+      "text": "Milk costs are not falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "not-rising-alone",
+      "text": "Milk costs did not rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "neither-direction",
+      "text": "Milk costs are neither rising nor falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "not-only",
+      "text": "Milk costs are not only rising but also putting pressure on margin.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "same-subject-opposed",
+      "text": "Milk costs are rising and falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "cost_direction",
+      "forbidden_cases": []
+    },
+    {
+      "id": "either-direction",
+      "text": "Milk costs are rising or falling; I am not sure which.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "cost_direction",
+      "forbidden_cases": []
+    },
+    {
+      "id": "time-periods",
+      "text": "Milk costs fell last year but are rising now.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "cost_direction",
+      "forbidden_cases": []
+    },
+    {
+      "id": "comma-mixed",
+      "text": "Milk costs fell, energy bills rose.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015",
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "comma-opposite",
+      "text": "Milk costs rose, energy bills fell.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "comma-three",
+      "text": "Milk costs fell, energy bills rose, packaging costs rose.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "comma-ingredient-list",
+      "text": "Milk, wheat and electricity costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "comma-input-list",
+      "text": "Milk and grain costs fell, packaging costs rose.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015",
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "comma-sales",
+      "text": "Milk sales rose, milk input costs fell.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "comma-profit",
+      "text": "Milk costs fell, profits rose.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "comma-price-response",
+      "text": "Milk input costs fell, we raised retail selling prices.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "missing-reference",
+      "text": "Milk costs fell, prices rose.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "cost_direction",
+      "forbidden_cases": []
+    },
+    {
+      "id": "bare-changes",
+      "text": "Milk fell, energy rose.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "cost_direction",
+      "forbidden_cases": []
+    },
+    {
+      "id": "pay-more",
+      "text": "We pay more for milk.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "pay-less",
+      "text": "We are paying less for milk.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "customer-pays",
+      "text": "Our customers pay more for milk.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "we-charge",
+      "text": "We charge more for our milk products.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "future-uncertain",
+      "text": "Milk costs might rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "complex-provider",
+      "text": "Our bottled-water business uses a logistics firm whose customers include airlines. Freight and fuel costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "two-relations",
+      "text": "We make food for airline customers and hire a logistics company to deliver it. Packaging and freight costs are increasing.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "financing-party",
+      "text": "Our company makes dairy products. A bank finances our expansion. Milk costs have fallen.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "supplier-apposition",
+      "text": "We are a food business. Our supplier, an airline, raised our freight charges. Milk costs are falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "reverse-customer",
+      "text": "An airline is our customer, not our business. Our bottled-water company faces higher fuel costs.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "client-product",
+      "text": "We bottle drinks for airlines. Resin and energy costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "outside-buyer",
+      "text": "A logistics company buys our milk products. We manufacture dairy foods and face lower milk costs.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "possessive-client",
+      "text": "We are an airline's bottled-water supplier. Freight and fuel costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "possessive-outside",
+      "text": "We are an airline's software supplier. Energy costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "ambiguous-supplier",
+      "text": "We are an airline supplier. Fuel costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "business_scope",
+      "forbidden_cases": []
+    },
+    {
+      "id": "actual-airline",
+      "text": "We operate an airline and sell food on board. Fuel costs are rising, not falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "actual-software",
+      "text": "We run a software company serving food makers. Energy costs are up.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "actual-bank",
+      "text": "Our food supplier uses an airline, but we are a bank. Electricity costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "multiple-businesses",
+      "text": "We supply airlines, or we may be an airline ourselves. Fuel costs are higher.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "business_scope",
+      "forbidden_cases": []
+    },
+    {
+      "id": "supplier-own-comma",
+      "text": "Our airline supplier's own fuel costs fell, our food company's milk costs rose.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "supplier-milk-own",
+      "text": "Our supplier's milk costs fell, but we pay more for milk.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "customer-costs",
+      "text": "Our customers face higher energy costs, our own milk costs are falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "supplier-beneficiary",
+      "text": "Milk costs are falling for our supplier, but our own milk costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "DF-2015"
+      ]
+    },
+    {
+      "id": "supplier-charged",
+      "text": "Our supplier charges us lower milk prices.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "customer-lower-output",
+      "text": "Our customers pay less for milk.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "historical-boundary",
+      "text": "Our bottled-water business uses a logistics firm whose customers include airlines. Freight and fuel costs are rising.",
+      "cutoff": "2011-08-09",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "historical-on-day",
+      "text": "Our bottled-water business uses a logistics firm whose customers include airlines. Freight and fuel costs are rising.",
+      "cutoff": "2011-08-10",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "source-exclusion",
+      "text": "Milk costs are rising not falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": null,
+      "forbidden_cases": [],
+      "source_id": "GIS-2007"
+    },
+    {
+      "id": "comma-with-negated-alternative",
+      "text": "Milk costs fell, energy costs rose not fell.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015",
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": [
+        "GIS-2007"
+      ]
+    },
+    {
+      "id": "different-negative-subject",
+      "text": "Milk costs are not falling but energy costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "clarification_kind": null,
+      "forbidden_cases": []
+    },
+    {
+      "id": "live-animals-still",
+      "text": "We buy live animals. Their input costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "live_animal_input",
+      "forbidden_cases": []
+    },
+    {
+      "id": "opposed-list-ambiguous",
+      "text": "Milk and energy costs are up and down.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "clarification_kind": "cost_direction",
+      "forbidden_cases": []
+    }
+  ]
+}
