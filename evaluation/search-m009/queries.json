@@ -1,0 +1,428 @@
+{
+  "version": "M009-v1",
+  "base_commit": "1e4e6d36fcfa95fc02c1d2a8f44f81be54129c61",
+  "provenance": "Builder-authored deterministic development expectations, informed by M008; not independent human labels or a held-out relevance benchmark. Frozen before M009 method/UI changes.",
+  "policy": "Same eligible cases for paired M008/M009 runs. Do not use source responses/outcomes for ranking. Unknown/unresolved requested inputs must not be presented as covered. Live-animal wording prompts clarification, never an automatic cattle synonym. No query/company exceptions.",
+  "queries": [
+    {
+      "id": "supplier-airline",
+      "text": "We bottle water. Our freight supplier also serves airlines. Freight and fuel costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "from-supplier",
+      "text": "We make food. We buy packaging from an airline supplier. Packaging costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "logistics-supplier",
+      "text": "We bottle water and use a logistics provider. Freight and fuel costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "charged-by-supplier",
+      "text": "A food company faces higher fuel costs charged by its airline supplier.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "supplier-is-airline",
+      "text": "Our food company buys packaging. Our supplier is an airline. Packaging costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "supplier-milk",
+      "text": "We make food. Our supplier serves airlines. Milk costs are falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "reader-still-airline",
+      "text": "Our food supplier serves an airline. We operate an airline. Fuel costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "provider-relative",
+      "text": "We are a water company using a logistics provider that serves airlines. Freight costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "airline",
+      "text": "We operate an airline. Fuel costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "logistics-business",
+      "text": "We run a logistics company. Fuel and freight costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "bank",
+      "text": "Our banking business faces rising electricity costs.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "software",
+      "text": "We operate a software business. Energy costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "airline-food-supplier",
+      "text": "We run an airline and buy food from a dairy supplier. Fuel costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "supplier-own-costs",
+      "text": "We make dairy foods. Our airline supplier's fuel costs are rising. Milk costs are falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false,
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1"
+      ]
+    },
+    {
+      "id": "outside-customer",
+      "text": "We bottle water. Airlines are our customers. Freight and fuel costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "unknown-reader",
+      "text": "Our supplier is an airline. Freight costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "mixed-directions",
+      "text": "Milk costs fell while energy bills rose.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015",
+        "KC-2011"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false,
+      "coverage": {
+        "DF-2015": {
+          "supported": [
+            "dairy"
+          ],
+          "missing": [
+            "energy"
+          ]
+        },
+        "KC-2011": {
+          "supported": [
+            "energy"
+          ],
+          "missing": [
+            "dairy"
+          ]
+        }
+      }
+    },
+    {
+      "id": "three-inputs",
+      "text": "Milk, wheat and electricity costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false,
+      "coverage": {
+        "GIS-2007": {
+          "supported": [
+            "dairy",
+            "energy",
+            "grain"
+          ],
+          "missing": []
+        },
+        "KC-2011": {
+          "supported": [
+            "energy"
+          ],
+          "missing": [
+            "dairy",
+            "grain"
+          ]
+        }
+      }
+    },
+    {
+      "id": "bottler",
+      "text": "We bottle drinks in plastic and aluminum containers. Packaging and road freight costs are higher together.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "COKE-2022"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false,
+      "coverage": {
+        "COKE-2022": {
+          "supported": [
+            "aluminum",
+            "packaging",
+            "resin",
+            "transport"
+          ],
+          "missing": []
+        },
+        "CL-2022": {
+          "supported": [
+            "packaging",
+            "transport"
+          ],
+          "missing": [
+            "aluminum",
+            "resin"
+          ]
+        }
+      }
+    },
+    {
+      "id": "unknown-input",
+      "text": "Milk costs are rising. Potato costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false,
+      "unknown_coverage": true
+    },
+    {
+      "id": "unknown-in-list",
+      "text": "Milk and potato costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false,
+      "unknown_coverage": true
+    },
+    {
+      "id": "negation",
+      "text": "Not milk but packaging is more expensive.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false,
+      "coverage": {
+        "CL-2022": {
+          "supported": [
+            "packaging"
+          ],
+          "missing": []
+        }
+      }
+    },
+    {
+      "id": "profit-goal",
+      "text": "Milk costs are falling. We want rising profits.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false,
+      "coverage": {
+        "DF-2015": {
+          "supported": [
+            "dairy"
+          ],
+          "missing": []
+        }
+      }
+    },
+    {
+      "id": "live-animals",
+      "text": "Our beef plant buys live animals. Beef raw-material costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": true
+    },
+    {
+      "id": "live-plus-milk",
+      "text": "We buy live animals. Milk costs are falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "expect_clarification": true,
+      "unresolved_coverage": true
+    },
+    {
+      "id": "confirmed-cattle",
+      "text": "We buy cattle. Cattle input costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "TSN-BEEF-2024-Q1"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "beef-sales",
+      "text": "Our beef sales are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "beef-output",
+      "text": "The selling price of our beef output is rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "cattle-sales",
+      "text": "Cattle sales are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "denied-animals",
+      "text": "We do not buy live animals. Milk costs are falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "airline-animals",
+      "text": "Our airline transports live animals. Fuel costs rise.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "live-hyphen",
+      "text": "Live-animal input prices have risen.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": true
+    },
+    {
+      "id": "live-decline",
+      "text": "We buy live animals. Their costs have fallen.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": true
+    },
+    {
+      "id": "confirmed-decline",
+      "text": "Cattle input costs are falling.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "supplier-before",
+      "text": "We bottle water. Our supplier also serves airlines. Freight and fuel costs are rising.",
+      "cutoff": "2011-08-09",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false
+    },
+    {
+      "id": "supplier-on-day",
+      "text": "We bottle water. Our supplier also serves airlines. Freight and fuel costs are rising.",
+      "cutoff": "2011-08-10",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_clarification": false
+    },
+    {
+      "id": "supplier-self",
+      "text": "We bottle water. Our supplier also serves airlines. Freight and fuel costs are rising.",
+      "cutoff": "2026-11-02",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "expect_clarification": false,
+      "source_id": "NES-WATERS-2011-H1"
+    }
+  ]
+}

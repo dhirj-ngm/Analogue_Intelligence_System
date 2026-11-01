@@ -1,0 +1,5218 @@
+{
+  "queries": [
+    {
+      "id": "supplier-airline",
+      "payload": {
+        "text": "We bottle water. Our freight supplier also serves airlines. Freight and fuel costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "from-supplier",
+      "payload": {
+        "text": "We make food. We buy packaging from an airline supplier. Packaging costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "logistics-supplier",
+      "payload": {
+        "text": "We bottle water and use a logistics provider. Freight and fuel costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "charged-by-supplier",
+      "payload": {
+        "text": "A food company faces higher fuel costs charged by its airline supplier.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "supplier-is-airline",
+      "payload": {
+        "text": "Our food company buys packaging. Our supplier is an airline. Packaging costs rise.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "supplier-milk",
+      "payload": {
+        "text": "We make food. Our supplier serves airlines. Milk costs are falling.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "reader-still-airline",
+      "payload": {
+        "text": "Our food supplier serves an airline. We operate an airline. Fuel costs rise.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "provider-relative",
+      "payload": {
+        "text": "We are a water company using a logistics provider that serves airlines. Freight costs rise.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "airline",
+      "payload": {
+        "text": "We operate an airline. Fuel costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "logistics-business",
+      "payload": {
+        "text": "We run a logistics company. Fuel and freight costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 2.612306
+        },
+        {
+          "id": "PG-2022",
+          "score": 1.064106
+        },
+        {
+          "id": "CL-2022",
+          "score": 0.830186
+        },
+        {
+          "id": "CLX-2021",
+          "score": 0.830186
+        },
+        {
+          "id": "UL-2022",
+          "score": 0.830186
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: oil and fuel (rising costs); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "bank",
+      "payload": {
+        "text": "Our banking business faces rising electricity costs.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "software",
+      "payload": {
+        "text": "We operate a software business. Energy costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "airline-food-supplier",
+      "payload": {
+        "text": "We run an airline and buy food from a dairy supplier. Fuel costs rise.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "supplier-own-costs",
+      "payload": {
+        "text": "We make dairy foods. Our airline supplier's fuel costs are rising. Milk costs are falling.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "outside-customer",
+      "payload": {
+        "text": "We bottle water. Airlines are our customers. Freight and fuel costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "unknown-reader",
+      "payload": {
+        "text": "Our supplier is an airline. Freight costs rise.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "mixed-directions",
+      "payload": {
+        "text": "Milk costs fell while energy bills rose.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs); energy (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "three-inputs",
+      "payload": {
+        "text": "Milk, wheat and electricity costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 5.000972
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs); energy (rising costs); grain inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "bottler",
+      "payload": {
+        "text": "We bottle drinks in plastic and aluminum containers. Packaging and road freight costs are higher together.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "COKE-2022",
+          "score": 4.388633
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.954484
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.876949
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 1.602263
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: aluminum inputs (direction not specified); packaging (rising costs); resin and plastic materials (direction not specified); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "unknown-input",
+      "payload": {
+        "text": "Milk costs are rising. Potato costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "unknown-in-list",
+      "payload": {
+        "text": "Milk and potato costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "negation",
+      "payload": {
+        "text": "Not milk but packaging is more expensive.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "not milk",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "id": "profit-goal",
+      "payload": {
+        "text": "Milk costs are falling. We want rising profits.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "live-animals",
+      "payload": {
+        "text": "Our beef plant buys live animals. Beef raw-material costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "live-plus-milk",
+      "payload": {
+        "text": "We buy live animals. Milk costs are falling.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "confirmed-cattle",
+      "payload": {
+        "text": "We buy cattle. Cattle input costs are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "TSN-BEEF-2024-Q1",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: cattle inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "beef-sales",
+      "payload": {
+        "text": "Our beef sales are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "beef-output",
+      "payload": {
+        "text": "The selling price of our beef output is rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "cattle-sales",
+      "payload": {
+        "text": "Cattle sales are rising.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Sales or demand changes do not establish input-cost pressure.",
+        "ignored": [
+          {
+            "text": "cattle sales are rising",
+            "reason": "sales_or_demand",
+            "message": "Sales or demand changes do not establish input-cost pressure."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "id": "denied-animals",
+      "payload": {
+        "text": "We do not buy live animals. Milk costs are falling.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "airline-animals",
+      "payload": {
+        "text": "Our airline transports live animals. Fuel costs rise.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "live-hyphen",
+      "payload": {
+        "text": "Live-animal input prices have risen.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "live-decline",
+      "payload": {
+        "text": "We buy live animals. Their costs have fallen.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "confirmed-decline",
+      "payload": {
+        "text": "Cattle input costs are falling.",
+        "cutoff": "2026-11-02"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: cattle inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "id": "supplier-before",
+      "payload": {
+        "text": "We bottle water. Our supplier also serves airlines. Freight and fuel costs are rising.",
+        "cutoff": "2011-08-09"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011"
+      ],
+      "excluded": {
+        "after_cutoff": 14
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "supplier-on-day",
+      "payload": {
+        "text": "We bottle water. Our supplier also serves airlines. Freight and fuel costs are rising.",
+        "cutoff": "2011-08-10"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1"
+      ],
+      "excluded": {
+        "after_cutoff": 13
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "id": "supplier-self",
+      "payload": {
+        "text": "We bottle water. Our supplier also serves airlines. Freight and fuel costs are rising.",
+        "cutoff": "2026-11-02",
+        "source_id": "NES-WATERS-2011-H1"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011"
+      ],
+      "excluded": {
+        "not_earlier_observation": 13,
+        "self": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    }
+  ],
+  "historical": [
+    {
+      "group": "m006",
+      "id": "milk-flour-electricity",
+      "payload": {
+        "text": "Milk, flour and electricity are more expensive.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 5.000972
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs); energy (rising costs); grain inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "chocolate",
+      "payload": {
+        "text": "Chocolate ingredient inflation is squeezing profit.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "bottled-water",
+      "payload": {
+        "text": "Bottled-water freight and fuel costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 2.612306
+        },
+        {
+          "id": "PG-2022",
+          "score": 1.064106
+        },
+        {
+          "id": "CL-2022",
+          "score": 0.830186
+        },
+        {
+          "id": "CLX-2021",
+          "score": 0.830186
+        },
+        {
+          "id": "UL-2022",
+          "score": 0.830186
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: oil and fuel (rising costs); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "literal-food",
+      "payload": {
+        "text": "Grains, dairy and energy costs are increasing.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 5.000972
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs); energy (rising costs); grain inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "literal-cocoa",
+      "payload": {
+        "text": "Cocoa costs are rising and putting pressure on gross margin.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "literal-oil",
+      "payload": {
+        "text": "Oil-related packaging and distribution costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 3.533992
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.954484
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "COKE-2022",
+          "score": 1.177767
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: oil and fuel (rising costs); packaging (rising costs); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "literal-packaging",
+      "payload": {
+        "text": "Packaging and logistics costs are increasing, putting pressure on margin.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2022",
+          "score": 1.954484
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 1.602263
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "COKE-2022",
+          "score": 1.177767
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "literal-resin",
+      "payload": {
+        "text": "Resin and fiber costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "KC-2011",
+          "score": 2.937058
+        },
+        {
+          "id": "COKE-2022",
+          "score": 1.790919
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: fibre inputs (rising costs); resin and plastic materials (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "wheat-power",
+      "payload": {
+        "text": "Wheat and power bills are increasing.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 3.466351
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: energy (rising costs); grain inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "milk-powder",
+      "payload": {
+        "text": "Milk powder and grain prices rose.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 3.466351
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs); grain inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "cacao",
+      "payload": {
+        "text": "Cacao beans have become more expensive.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "freight",
+      "payload": {
+        "text": "Freight, diesel and packaging costs are higher.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 3.533992
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.954484
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "COKE-2022",
+          "score": 1.177767
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: oil and fuel (rising costs); packaging (rising costs); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "unsupported-chips",
+      "payload": {
+        "text": "Semiconductor shortages at a bank.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "unsupported-coffee",
+      "payload": {
+        "text": "Arabica coffee bean costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "SJM-COFFEE-2011",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: coffee inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "unsupported-steel",
+      "payload": {
+        "text": "Steel smelting costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "generic",
+      "payload": {
+        "text": "Ingredient inflation and higher costs.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "action-only",
+      "payload": {
+        "text": "Lighter bottles and successful savings.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "negated-chocolate",
+      "payload": {
+        "text": "No chocolate input-cost inflation is established.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "This part says the pressure was absent or unknown.",
+        "ignored": [
+          {
+            "text": "no chocolate input-cost inflation is established",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "negated-milk",
+      "payload": {
+        "text": "Milk cost pressure is unknown.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "This part says the pressure was absent or unknown.",
+        "ignored": [
+          {
+            "text": "milk cost pressure is unknown",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "mixed-clauses",
+      "payload": {
+        "text": "No milk cost inflation; packaging costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "no milk cost inflation",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "mixed-negation",
+      "payload": {
+        "text": "Not milk but packaging is more expensive.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "not milk",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "falling-milk",
+      "payload": {
+        "text": "Milk costs are falling and profits are recovering.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "milk-sales",
+      "payload": {
+        "text": "Milk sales are booming.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Sales or demand changes do not establish input-cost pressure.",
+        "ignored": [
+          {
+            "text": "milk sales are booming",
+            "reason": "sales_or_demand",
+            "message": "Sales or demand changes do not establish input-cost pressure."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "airline",
+      "payload": {
+        "text": "Freight and fuel costs at an airline.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "oil-art",
+      "payload": {
+        "text": "Oil paintings are expensive for a museum.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "early-food",
+      "payload": {
+        "text": "Milk flour electricity",
+        "cutoff": "2007-07-25"
+      },
+      "eligible_ids": [],
+      "excluded": {
+        "after_cutoff": 17
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (direction not specified); energy (direction not specified); grain inputs (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "early-water",
+      "payload": {
+        "text": "Oil distribution costs",
+        "cutoff": "2011-08-09"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011"
+      ],
+      "excluded": {
+        "after_cutoff": 14
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: oil and fuel (direction not specified); transport (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "early-chocolate",
+      "payload": {
+        "text": "Chocolate ingredient inflation",
+        "cutoff": "2025-04-30"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1"
+      ],
+      "excluded": {
+        "after_cutoff": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "inclusive-chocolate",
+      "payload": {
+        "text": "Chocolate input costs",
+        "cutoff": "2025-05-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: cocoa and chocolate inputs (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "self-cocoa",
+      "payload": {
+        "text": "Cocoa costs",
+        "cutoff": "2026-11-01",
+        "source_id": "HSY-2025-Q1"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1"
+      ],
+      "excluded": {
+        "self": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: cocoa and chocolate inputs (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "self-food",
+      "payload": {
+        "text": "Milk flour electricity",
+        "cutoff": "2026-11-01",
+        "source_id": "GIS-2007"
+      },
+      "eligible_ids": [],
+      "excluded": {
+        "not_earlier_observation": 16,
+        "self": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (direction not specified); energy (direction not specified); grain inputs (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "self-water",
+      "payload": {
+        "text": "Oil freight costs",
+        "cutoff": "2026-11-01",
+        "source_id": "NES-WATERS-2011-H1"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011"
+      ],
+      "excluded": {
+        "not_earlier_observation": 13,
+        "self": 1
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: oil and fuel (direction not specified); transport (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "period-boundary",
+      "payload": {
+        "text": "Milk flour electricity",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2007-05-27"
+      },
+      "eligible_ids": [],
+      "excluded": {
+        "not_earlier_observation": 17
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (direction not specified); energy (direction not specified); grain inputs (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "falling-dairy",
+      "payload": {
+        "text": "Dairy input prices declined.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "cheaper-milk",
+      "payload": {
+        "text": "Milk is becoming cheaper.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "sales-only",
+      "payload": {
+        "text": "Milk sales are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Sales or demand changes do not establish input-cost pressure.",
+        "ignored": [
+          {
+            "text": "milk sales are rising",
+            "reason": "sales_or_demand",
+            "message": "Sales or demand changes do not establish input-cost pressure."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "demand-only",
+      "payload": {
+        "text": "Demand for chocolate is growing.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Sales or demand changes do not establish input-cost pressure.",
+        "ignored": [
+          {
+            "text": "demand for chocolate is growing",
+            "reason": "sales_or_demand",
+            "message": "Sales or demand changes do not establish input-cost pressure."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "aviation",
+      "payload": {
+        "text": "An aviation business faces rising fuel bills.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "logistics-provider",
+      "payload": {
+        "text": "Freight costs are rising at a logistics provider.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "museum",
+      "payload": {
+        "text": "A museum pays more for oil paintings.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "not-but",
+      "payload": {
+        "text": "Not milk but packaging is more expensive.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "not milk",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "without-while",
+      "payload": {
+        "text": "Without milk cost pressure, while packaging prices rise.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "without milk cost pressure,",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "no-and",
+      "payload": {
+        "text": "No milk cost pressure and higher packaging costs.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "no milk cost pressure",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "down-and-up",
+      "payload": {
+        "text": "Milk costs fall and cocoa prices rise.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 3.020329
+        },
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: cocoa and chocolate inputs (rising costs); dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "unknown-but",
+      "payload": {
+        "text": "Milk costs are unknown, but packaging costs are higher.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "milk costs are unknown,",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "costs-versus-sales",
+      "payload": {
+        "text": "Milk costs are rising while milk sales are falling.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs).",
+        "ignored": [
+          {
+            "text": "milk sales are falling",
+            "reason": "sales_or_demand",
+            "message": "Sales or demand changes do not establish input-cost pressure."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "sales-and-costs",
+      "payload": {
+        "text": "Milk sales are growing and packaging costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "milk sales are growing",
+            "reason": "sales_or_demand",
+            "message": "Sales or demand changes do not establish input-cost pressure."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "costs-versus-profit",
+      "payload": {
+        "text": "Packaging costs rise and profits fall.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "changed",
+      "payload": {
+        "text": "Milk costs changed.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description does not establish which way these costs changed.",
+        "ignored": [
+          {
+            "text": "milk costs changed",
+            "reason": "unclear_direction",
+            "message": "The description does not establish which way these costs changed."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "either-direction",
+      "payload": {
+        "text": "Milk costs may rise or fall.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description does not establish which way these costs changed.",
+        "ignored": [
+          {
+            "text": "milk costs may rise or fall",
+            "reason": "unclear_direction",
+            "message": "The description does not establish which way these costs changed."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "contradiction",
+      "payload": {
+        "text": "Milk costs are rising and milk costs are falling.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "We couldn't separate the cost directions reliably enough for this comparison.",
+        "ignored": [],
+        "blocked": "conflicting_direction"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "no-longer",
+      "payload": {
+        "text": "Milk costs are no longer rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "This part says the pressure was absent or unknown.",
+        "ignored": [
+          {
+            "text": "milk costs are no longer rising",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "not-declining",
+      "payload": {
+        "text": "Milk costs did not fall.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "This part says the pressure was absent or unknown.",
+        "ignored": [
+          {
+            "text": "milk costs did not fall",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "topic-only",
+      "payload": {
+        "text": "Milk flour electricity",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 5.000972
+        },
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (direction not specified); energy (direction not specified); grain inputs (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "cost-topic",
+      "payload": {
+        "text": "Milk costs",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        },
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "food-scope",
+      "payload": {
+        "text": "Oil costs at a food manufacturer",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 1.93173
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: oil and fuel (direction not specified).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "negative-sector",
+      "payload": {
+        "text": "We are not an airline. Milk input costs rise.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "not-only",
+      "payload": {
+        "text": "Not only milk but also packaging costs are higher.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs); packaging (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "positive-unknown",
+      "payload": {
+        "text": "Milk costs rose, but it is unclear whether packaging costs changed.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs).",
+        "ignored": [
+          {
+            "text": "it is unclear whether packaging costs changed",
+            "reason": "unclear_direction",
+            "message": "The description does not establish which way these costs changed."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "negative-alternative",
+      "payload": {
+        "text": "Milk costs are rising, not falling.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "factory-scope",
+      "payload": {
+        "text": "Electricity bills rose at a factory.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: energy (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "unknown-sector",
+      "payload": {
+        "text": "Fuel costs are rising at a marina.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m006",
+      "id": "business-product",
+      "payload": {
+        "text": "A chocolate maker faces rising milk costs.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "ambiguous-power",
+      "payload": {
+        "text": "Power is shifting at the company.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description does not establish which way these costs changed.",
+        "ignored": [
+          {
+            "text": "power is shifting at the company",
+            "reason": "unclear_direction",
+            "message": "The description does not establish which way these costs changed."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m006",
+      "id": "split-costs",
+      "payload": {
+        "text": "Milk costs fell while energy bills rose.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs); energy (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "coffee",
+      "payload": {
+        "text": "Green coffee input costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "SJM-COFFEE-2011",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: coffee inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "milk-deflation",
+      "payload": {
+        "text": "Raw milk input costs are falling.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "cattle",
+      "payload": {
+        "text": "Live cattle input costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "TSN-BEEF-2024-Q1",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: cattle inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "metal",
+      "payload": {
+        "text": "Aluminium input costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "COKE-2022",
+          "score": 1.419947
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: aluminum inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "resin-transport",
+      "payload": {
+        "text": "Aluminum, PET resin and transport costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "COKE-2022",
+          "score": 3.711133
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.876949
+        },
+        {
+          "id": "PG-2022",
+          "score": 1.064106
+        },
+        {
+          "id": "CL-2022",
+          "score": 0.830186
+        },
+        {
+          "id": "CLX-2021",
+          "score": 0.830186
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: aluminum inputs (rising costs); resin and plastic materials (rising costs); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "milk-inflation",
+      "payload": {
+        "text": "Milk costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 1.534621
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "packaging-regression",
+      "payload": {
+        "text": "Packaging and logistics costs are increasing, putting pressure on margin.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2022",
+          "score": 1.954484
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 1.602263
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "COKE-2022",
+          "score": 1.177767
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "cocoa-regression",
+      "payload": {
+        "text": "Cocoa costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "HSY-2025-Q1",
+          "score": 3.020329
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: cocoa and chocolate inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "mixed-negation",
+      "payload": {
+        "text": "Not milk but packaging is more expensive.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        },
+        {
+          "id": "CL-2015",
+          "score": 1.124298
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.124298
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 0.921686
+        },
+        {
+          "id": "COKE-2022",
+          "score": 0.677499
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: packaging (rising costs).",
+        "ignored": [
+          {
+            "text": "not milk",
+            "reason": "negated_or_unknown",
+            "message": "This part says the pressure was absent or unknown."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "coffee-decline",
+      "payload": {
+        "text": "Coffee input costs are falling.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: coffee inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "sales",
+      "payload": {
+        "text": "Milk sales are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Sales or demand changes do not establish input-cost pressure.",
+        "ignored": [
+          {
+            "text": "milk sales are rising",
+            "reason": "sales_or_demand",
+            "message": "Sales or demand changes do not establish input-cost pressure."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "cattle-sales",
+      "payload": {
+        "text": "Cattle sales are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Sales or demand changes do not establish input-cost pressure.",
+        "ignored": [
+          {
+            "text": "cattle sales are rising",
+            "reason": "sales_or_demand",
+            "message": "Sales or demand changes do not establish input-cost pressure."
+          }
+        ],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "airline",
+      "payload": {
+        "text": "Airline fuel costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m007",
+      "id": "non-fmcg-metal",
+      "payload": {
+        "text": "Aluminum costs in steel smelting are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    },
+    {
+      "group": "m007",
+      "id": "uncovered-potato",
+      "payload": {
+        "text": "Potato input costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "beef-wording",
+      "payload": {
+        "text": "Beef input costs are rising.",
+        "cutoff": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "coffee-before",
+      "payload": {
+        "text": "Coffee input costs rise.",
+        "cutoff": "2011-06-27"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "after_cutoff": 15
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: coffee inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "milk-before",
+      "payload": {
+        "text": "Milk costs fall.",
+        "cutoff": "2016-02-21"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015"
+      ],
+      "excluded": {
+        "after_cutoff": 11
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "cattle-before",
+      "payload": {
+        "text": "Cattle input costs rise.",
+        "cutoff": "2024-02-04"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023"
+      ],
+      "excluded": {
+        "after_cutoff": 2
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: cattle inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m007",
+      "id": "metal-before",
+      "payload": {
+        "text": "Aluminum input costs rise.",
+        "cutoff": "2023-02-21"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022"
+      ],
+      "excluded": {
+        "after_cutoff": 4
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: aluminum inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m008",
+      "id": "A01",
+      "payload": {
+        "text": "We sell packaged foods. Milk, wheat and electricity costs are rising together. I want an earlier example with more than one input under pressure.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "GIS-2007",
+          "score": 5.000972
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs); energy (rising costs); grain inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m008",
+      "id": "A02",
+      "payload": {
+        "text": "Our milk purchasing costs have fallen compared with last year. I want a dairy example that separates input prices from price cuts and profit changes.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m008",
+      "id": "A03",
+      "payload": {
+        "text": "We bottle drinks in plastic and aluminum containers. Packaging and road freight costs are higher together.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "COKE-2022",
+          "score": 4.388633
+        },
+        {
+          "id": "CL-2022",
+          "score": 1.954484
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.876949
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "score": 1.602263
+        },
+        {
+          "id": "CL-2008",
+          "score": 1.44109
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: aluminum inputs (direction not specified); packaging (rising costs); resin and plastic materials (direction not specified); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m008",
+      "id": "A04",
+      "payload": {
+        "text": "A snack maker is paying more for potatoes after a poor harvest. I need an earlier potato-cost example.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m008",
+      "id": "A05",
+      "payload": {
+        "text": "In mid-2011, we are assessing higher coffee input costs. Use only information published by 27 June 2011.",
+        "cutoff": "2011-06-27",
+        "before_period_end": "2011-06-27"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "after_cutoff": 15
+      },
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "Searching for: coffee inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m008",
+      "id": "A06",
+      "payload": {
+        "text": "Milk costs fell while energy bills rose.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "ranked": [
+        {
+          "id": "DF-2015",
+          "score": 2.399436
+        },
+        {
+          "id": "KC-2011",
+          "score": 1.300293
+        }
+      ],
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs); energy (rising costs).",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m008",
+      "id": "A07",
+      "payload": {
+        "text": "Our beef plant buys live animals. Beef raw-material costs are rising.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      }
+    },
+    {
+      "group": "m008",
+      "id": "A08",
+      "payload": {
+        "text": "We bottle water. Our freight supplier also serves airlines. Freight and fuel costs are rising.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "ranked": [],
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      }
+    }
+  ]
+}
