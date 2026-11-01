@@ -1,0 +1,1695 @@
+{
+  "provenance": "Builder AI development audit, not human or independent validation. Deliberate case-informed sample, including known limits; not a random sample or held-out benchmark. Selected before these audit labels.",
+  "queries": [
+    {
+      "id": "A01",
+      "payload": {
+        "text": "We sell packaged foods. Milk, wheat and electricity costs are rising together. I want an earlier example with more than one input under pressure.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (rising costs); energy (rising costs); grain inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      },
+      "message": "These reports have input or disruption evidence connected to your description.",
+      "displayed": [
+        {
+          "id": "GIS-2007",
+          "company": "General Mills",
+          "period": {
+            "start": "2006-05-29",
+            "end": "2007-05-27"
+          },
+          "published": "2007-07-26",
+          "score": 5.000972,
+          "matching_pressure_terms": [
+            "dairy",
+            "energy",
+            "grain"
+          ],
+          "unmatched_terms": [
+            "earlier",
+            "example",
+            "foods",
+            "more",
+            "one",
+            "packaged",
+            "sell",
+            "together",
+            "under",
+            "want"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "General Mills reported higher ingredient costs, mainly grains and dairy, and higher energy costs.",
+              "kind": "issuer_reported_cost_pressure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+                "locator": "Item 7, MD&A, Fiscal 2007 Consolidated Results, printed p. 14, cost-of-sales paragraph and following paragraph",
+                "public_date": "2007-07-26",
+                "period_start": "2006-05-29",
+                "period_end": "2007-05-27"
+              }
+            },
+            "margin_or_profit": {
+              "value": "Gross margin was 36.1%, compared with 35.6% in the previous financial year. Gross margin is sales left after the cost of products sold, as a share of sales.",
+              "kind": "issuer_reported_measure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+                "locator": "Item 6, Selected Financial Data, Operating Ratios, gross margin row, FY2007 and FY2006 columns (printed p. 12)",
+                "public_date": "2007-07-26",
+                "period_start": "2006-05-29",
+                "period_end": "2007-05-27"
+              }
+            },
+            "other_drivers": {
+              "value": "The company also reported more units sold and a more favourable mix of products. It attributed factory efficiency gains partly to producing more units.",
+              "kind": "issuer_attribution",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+                "locator": "Item 7, MD&A, Fiscal 2007 Consolidated Results, printed p. 14, cost-of-sales paragraph and following paragraph",
+                "public_date": "2007-07-26",
+                "period_start": "2006-05-29",
+                "period_end": "2007-05-27"
+              }
+            },
+            "response": {
+              "value": "The company described factory investment to save costs, changes to product recipes, and replacing slow-selling products with faster-selling ones. It said factory efficiencies more than offset the higher input costs; that is its explanation, not an isolated test of these actions.",
+              "kind": "issuer_reported_action_and_attribution",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+                "locator": "Item 7, MD&A, Fiscal 2007 Consolidated Results, printed p. 14, cost-of-sales paragraph and following paragraph",
+                "public_date": "2007-07-26",
+                "period_start": "2006-05-29",
+                "period_end": "2007-05-27"
+              }
+            }
+          },
+          "metric": {
+            "name": "Gross margin",
+            "value": 36.1,
+            "unit": "percent",
+            "basis": "Reported consolidated gross margin; sales less cost of sales, divided by sales",
+            "scope": "Global consolidated business",
+            "comparison": "FY2006 ended 28 May 2006: 35.6%; FY2007 ended 27 May 2007",
+            "kind": "issuer_reported_measure",
+            "evidence": {
+              "url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+              "locator": "Item 6, Selected Financial Data, Operating Ratios, gross margin row, FY2007/FY2006 (printed p. 12)",
+              "public_date": "2007-07-26",
+              "period_start": "2006-05-29",
+              "period_end": "2007-05-27"
+            }
+          },
+          "important_differences": [
+            "A full financial year across a packaged-food company; gross margin rose despite higher ingredient and energy costs.",
+            "One financial-year observation of continuing cost pressure; the true onset and end are unknown. Subsequent 2008 reports are not additional situations in this batch.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "How much of the cost increase came from each ingredient or energy.",
+            "The separate effect and timing of each action.",
+            "When the pressure began and ended, and what happened later."
+          ],
+          "figures": [
+            {
+              "name": "Higher ingredient and energy costs",
+              "value": 115,
+              "unit": "USD million",
+              "basis": "Company-reported year-on-year cost increase; ingredients primarily grains and dairy, plus energy. This is not the total change in cost of sales.",
+              "scope": "Global consolidated business",
+              "comparison": "FY2007 versus FY2006",
+              "kind": "issuer_reported_measure",
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+                "locator": "Item 7, MD&A, Fiscal 2007 Consolidated Results, printed p. 14, cost-of-sales paragraph and following paragraph",
+                "public_date": "2007-07-26",
+                "period_start": "2006-05-29",
+                "period_end": "2007-05-27"
+              }
+            }
+          ],
+          "conflicts": [],
+          "source": {
+            "url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+            "locator": "Item 7, MD&A, Fiscal 2007 Consolidated Results, printed p. 14, cost-of-sales paragraph and following paragraph",
+            "excerpt": "higher ingredient (primarily grains and dairy) and energy costs"
+          },
+          "review_status": "assistant_source_checked; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "dairy",
+              "label": "dairy inputs",
+              "query_terms": [
+                "milk"
+              ],
+              "report_terms": [
+                "dairy"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "up",
+              "report_direction": "up"
+            },
+            {
+              "family": "energy",
+              "label": "energy",
+              "query_terms": [
+                "electricity"
+              ],
+              "report_terms": [
+                "energy"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "up",
+              "report_direction": "up"
+            },
+            {
+              "family": "grain",
+              "label": "grain inputs",
+              "query_terms": [
+                "wheat"
+              ],
+              "report_terms": [
+                "grains"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "up",
+              "report_direction": "up"
+            }
+          ]
+        },
+        {
+          "id": "KC-2011",
+          "company": "Kimberly-Clark",
+          "period": {
+            "start": "2011-07-01",
+            "end": "2011-09-30"
+          },
+          "published": "2011-10-24",
+          "score": 1.300293,
+          "matching_pressure_terms": [
+            "energy"
+          ],
+          "unmatched_terms": [
+            "earlier",
+            "example",
+            "foods",
+            "milk",
+            "more",
+            "one",
+            "packaged",
+            "sell",
+            "together",
+            "under",
+            "want",
+            "wheat"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "resin, energy, distribution and fiber costs increased",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "margin_or_profit": {
+              "value": "reported operating profit fell 5% to USD 662 million",
+              "kind": "issuer_reported_measure_and_change",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "other_drivers": {
+              "value": "lower production volumes to manage inventory also affected operating profit",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "response": {
+              "value": "FORCE programme savings were reported",
+              "kind": "issuer_reported_response",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            }
+          },
+          "metric": {
+            "name": "operating profit",
+            "value": 662,
+            "unit": "USD million",
+            "basis": "reported; includes restructuring",
+            "scope": "consolidated",
+            "comparison": "same period prior year"
+          },
+          "important_differences": [
+            "profit amount includes restructuring; no margin level inferred",
+            "Profit amount is not a margin; restructuring complicates comparison.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "true episode start/end",
+            "isolated effect of response",
+            "later realized outcome",
+            "Action-level rationale and later outcomes are not established in these case records."
+          ],
+          "figures": [],
+          "conflicts": [],
+          "source": {
+            "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+            "locator": "Third Quarter 2011 Operating Results",
+            "excerpt": "inflation in key cost inputs"
+          },
+          "review_status": "assistant_structured_from_source_checked_v1; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "energy",
+              "label": "energy",
+              "query_terms": [
+                "electricity"
+              ],
+              "report_terms": [
+                "energy"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "up",
+              "report_direction": "up"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "payload": {
+        "text": "Our milk purchasing costs have fallen compared with last year. I want a dairy example that separates input prices from price cuts and profit changes.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs).",
+        "ignored": [],
+        "blocked": null
+      },
+      "message": "These reports have input or disruption evidence connected to your description.",
+      "displayed": [
+        {
+          "id": "DF-2015",
+          "company": "Dean Foods",
+          "period": {
+            "start": "2015-01-01",
+            "end": "2015-12-31"
+          },
+          "published": "2016-02-22",
+          "score": 2.399436,
+          "matching_pressure_terms": [
+            "dairy"
+          ],
+          "unmatched_terms": [
+            "changes",
+            "compared",
+            "cuts",
+            "example",
+            "fallen",
+            "last",
+            "price",
+            "prices",
+            "purchasing",
+            "separates",
+            "want"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "Raw milk input costs were lower in 2015 than in 2014.",
+              "kind": "issuer_reported_cost_pressure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            },
+            "margin_or_profit": {
+              "value": "Gross margin was 24.3%, compared with 17.6% in 2014. It measures sales left after the reported cost of products sold; some delivery costs sit outside that calculation.",
+              "kind": "issuer_reported_measure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            },
+            "other_drivers": {
+              "value": "Sales volume declined. The company attributed the gross-profit change to several factors, including pricing and lower dairy costs; it also reported higher operating expenses.",
+              "kind": "issuer_attribution",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            },
+            "response": {
+              "value": "Dean described changes to private-label prices, branded-product pricing actions and ongoing cost-efficiency initiatives. Their separate effects are not established.",
+              "kind": "issuer_reported_action_and_attribution",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            }
+          },
+          "metric": {
+            "name": "Gross margin",
+            "value": 24.3,
+            "unit": "percent",
+            "basis": "Reported US accounting calculation: gross profit divided by net sales. Some finished-product delivery/shipping costs are in selling and distribution expenses, rather than cost of sales.",
+            "scope": "Consolidated continuing operations, U.S. dairy business",
+            "comparison": "Calendar 2015 versus 2014: 17.6%; WhiteWave and Morningstar shown as discontinued operations",
+            "kind": "issuer_reported_measure",
+            "evidence": {
+              "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+              "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24; Note 1 Shipping and Handling Fees, printed p. F-8; MD&A Overview p. 21",
+              "public_date": "2016-02-22",
+              "period_start": "2015-01-01",
+              "period_end": "2015-12-31"
+            }
+          },
+          "important_differences": [
+            "Falling dairy costs, rather than inflation. Gross margin excludes some delivery costs that other companies include in cost of sales.",
+            "One annual observation of falling dairy costs. Earlier quarters and continuing 2016 reports are not separate situations. True episode bounds are unknown.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "Actual average milk purchase price, including location premiums and procurement costs.",
+            "The isolated effects of prices, cost programmes and lower input costs.",
+            "When the cost decline began/ended and later outcomes."
+          ],
+          "figures": [
+            {
+              "name": "Class I raw-milk price benchmark",
+              "value": 16.34,
+              "unit": "USD per 100 lb",
+              "basis": "Average monthly Class I mover benchmark, quoted per hundredweight (100 pounds). NOT the price Dean actually paid: location differences, producer premiums and procurement costs also matter.",
+              "scope": "U.S. federal raw-milk benchmark reported by Dean; not company purchase-price scope",
+              "comparison": "2015 average versus 2014 average of US$23.29 per 100 lb; reported change −29.8%",
+              "kind": "issuer_reported_external_benchmark",
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "MD&A raw-milk price table and footnotes, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            }
+          ],
+          "conflicts": [],
+          "source": {
+            "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+            "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+            "excerpt": "decline in dairy commodity costs"
+          },
+          "review_status": "assistant_source_checked; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "dairy",
+              "label": "dairy inputs",
+              "query_terms": [
+                "dairy",
+                "milk"
+              ],
+              "report_terms": [
+                "milk"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "milk"
+              ],
+              "query_direction": "down",
+              "report_direction": "down"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "payload": {
+        "text": "We bottle drinks in plastic and aluminum containers. Packaging and road freight costs are higher together.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "query_reading": {
+        "summary": "Searching for: aluminum inputs (direction not specified); packaging (rising costs); resin and plastic materials (direction not specified); transport (rising costs).",
+        "ignored": [],
+        "blocked": null
+      },
+      "message": "These reports have input or disruption evidence connected to your description.",
+      "displayed": [
+        {
+          "id": "COKE-2022",
+          "company": "Coca-Cola Consolidated",
+          "period": {
+            "start": "2022-01-01",
+            "end": "2022-12-31"
+          },
+          "published": "2023-02-22",
+          "score": 4.388633,
+          "matching_pressure_terms": [
+            "aluminum",
+            "packaging",
+            "resin",
+            "transport"
+          ],
+          "unmatched_terms": [
+            "bottle",
+            "containers",
+            "drinks",
+            "road",
+            "together"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "Aluminum and PET resin packaging input costs increased. Transportation costs also increased. PET is a plastic used for bottles.",
+              "kind": "issuer_reported_cost_pressure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+                "locator": "Item 7 MD&A Cost of Sales, printed p. 24; Item 1 Raw Materials, packaging-material description",
+                "public_date": "2023-02-22",
+                "period_start": "2022-01-01",
+                "period_end": "2022-12-31"
+              }
+            },
+            "margin_or_profit": {
+              "value": "Gross margin was 36.7%, compared with 35.1% in 2021. This is sales left after the reported cost of products sold, as a share of sales.",
+              "kind": "issuer_reported_measure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+                "locator": "Item 7 MD&A, Executive Summary, printed p. 22; gross-profit comparison table",
+                "public_date": "2023-02-22",
+                "period_start": "2022-01-01",
+                "period_end": "2022-12-31"
+              }
+            },
+            "other_drivers": {
+              "value": "The company described steady overall case volume, a more profitable product mix and some commodity prices easing from high levels. The full-year input-cost increase does not mean every input rose throughout the year.",
+              "kind": "issuer_attribution",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+                "locator": "Item 7 MD&A, Executive Summary, printed p. 22",
+                "public_date": "2023-02-22",
+                "period_start": "2022-01-01",
+                "period_end": "2022-12-31"
+              }
+            },
+            "response": {
+              "value": "The company said it raised prices across its product portfolio during 2022. That report does not establish how much pricing alone changed profit.",
+              "kind": "issuer_reported_action",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+                "locator": "Item 7 MD&A Net Sales, printed p. 23; Executive Summary p. 22",
+                "public_date": "2023-02-22",
+                "period_start": "2022-01-01",
+                "period_end": "2022-12-31"
+              }
+            }
+          },
+          "metric": {
+            "name": "Gross margin",
+            "value": 36.7,
+            "unit": "percent",
+            "basis": "Reported gross profit divided by net sales under standard US accounting rules; includes specified plant-to-distribution shipping/fuel costs in cost of sales, while other delivery costs are outside it",
+            "scope": "Consolidated U.S. bottler and other operations",
+            "comparison": "Calendar 2022 versus 2021: 35.1%; reported increase 160 basis points",
+            "kind": "issuer_reported_measure",
+            "evidence": {
+              "url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+              "locator": "Item 7 MD&A, Executive Summary, printed p. 22; Cost of Sales definition p. 24",
+              "public_date": "2023-02-22",
+              "period_start": "2022-01-01",
+              "period_end": "2022-12-31"
+            }
+          },
+          "important_differences": [
+            "A U.S. bottler rather than a global brand/concentrate company. Gross margin rose despite higher inputs; the company also discussed pricing, product mix and some later commodity moderation.",
+            "One annual observation of packaging/input inflation. Quarterly and subsequent continuing reports are not counted separately. True episode bounds are unknown.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "The separate amounts for aluminum, bottle resin and transport within the cost estimate.",
+            "How much each pricing or operating action changed margin.",
+            "The true pressure start/end and later outcomes."
+          ],
+          "figures": [
+            {
+              "name": "Estimated increase in input costs",
+              "value": 365,
+              "unit": "USD million",
+              "basis": "Approximate company estimate including aluminum, PET resin and transportation. Not an aluminum-only amount and not the total cost-of-sales change; mix also affected costs.",
+              "scope": "Consolidated bottling business and other operations",
+              "comparison": "2022 versus 2021",
+              "kind": "issuer_estimated_cost_bridge",
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+                "locator": "Item 7 MD&A Cost of Sales, printed p. 24",
+                "public_date": "2023-02-22",
+                "period_start": "2022-01-01",
+                "period_end": "2022-12-31"
+              }
+            }
+          ],
+          "conflicts": [],
+          "source": {
+            "url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+            "locator": "Item 7 MD&A Cost of Sales, printed p. 24; Item 1 Raw Materials, packaging-material description",
+            "excerpt": "including aluminum, PET resin and transportation costs"
+          },
+          "review_status": "assistant_source_checked; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "aluminum",
+              "label": "aluminum inputs",
+              "query_terms": [
+                "aluminum"
+              ],
+              "report_terms": [
+                "aluminum"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "aluminum"
+              ],
+              "query_direction": "unspecified",
+              "report_direction": "up"
+            },
+            {
+              "family": "packaging",
+              "label": "packaging",
+              "query_terms": [
+                "packaging"
+              ],
+              "report_terms": [
+                "packaging"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "packaging"
+              ],
+              "query_direction": "up",
+              "report_direction": "up"
+            },
+            {
+              "family": "resin",
+              "label": "resin and plastic materials",
+              "query_terms": [
+                "plastic"
+              ],
+              "report_terms": [
+                "plastic",
+                "resin"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "plastic"
+              ],
+              "query_direction": "unspecified",
+              "report_direction": "up"
+            },
+            {
+              "family": "transport",
+              "label": "transport",
+              "query_terms": [
+                "freight"
+              ],
+              "report_terms": [
+                "transportation"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "up",
+              "report_direction": "up"
+            }
+          ]
+        },
+        {
+          "id": "CL-2022",
+          "company": "Colgate",
+          "period": {
+            "start": "2022-10-01",
+            "end": "2022-12-31"
+          },
+          "published": "2023-01-27",
+          "score": 1.954484,
+          "matching_pressure_terms": [
+            "packaging",
+            "transport"
+          ],
+          "unmatched_terms": [
+            "aluminum",
+            "bottle",
+            "containers",
+            "drinks",
+            "plastic",
+            "road",
+            "together"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "materials and packaging costs increased; logistics costs also rose",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-4th-quarter-and-full-year-2022-results",
+                "locator": "Asia Pacific divisional commentary and operating-profit table; detailed evidence in data/episodes.jsonl",
+                "public_date": "2023-01-27",
+                "period_start": "2022-10-01",
+                "period_end": "2022-12-31"
+              }
+            },
+            "margin_or_profit": {
+              "value": "Asia Pacific operating margin fell 220 basis points to 26.0%",
+              "kind": "issuer_reported_measure_and_change",
+              "available": true,
+              "evidence": {
+                "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-4th-quarter-and-full-year-2022-results",
+                "locator": "Asia Pacific divisional commentary and operating-profit table; detailed evidence in data/episodes.jsonl",
+                "public_date": "2023-01-27",
+                "period_start": "2022-10-01",
+                "period_end": "2022-12-31"
+              }
+            },
+            "other_drivers": {
+              "value": "as-reported and organic volume each fell 1%; underlying consumer demand unknown",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-4th-quarter-and-full-year-2022-results",
+                "locator": "Asia Pacific divisional commentary and operating-profit table; detailed evidence in data/episodes.jsonl",
+                "public_date": "2023-01-27",
+                "period_start": "2022-10-01",
+                "period_end": "2022-12-31"
+              }
+            },
+            "response": {
+              "value": "higher realized pricing and programme savings were reported",
+              "kind": "issuer_reported_response",
+              "available": true,
+              "evidence": {
+                "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-4th-quarter-and-full-year-2022-results",
+                "locator": "Asia Pacific divisional commentary and operating-profit table; detailed evidence in data/episodes.jsonl",
+                "public_date": "2023-01-27",
+                "period_start": "2022-10-01",
+                "period_end": "2022-12-31"
+              }
+            }
+          },
+          "metric": {
+            "name": "operating margin",
+            "value": 26.0,
+            "unit": "percent",
+            "basis": "issuer reported division",
+            "scope": "Asia Pacific division",
+            "comparison": "same period prior year"
+          },
+          "important_differences": [
+            "regional operating margin; exact interventions and effective dates unknown",
+            "Exact interventions and underlying consumer demand unknown; volume fell 1%.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "true episode start/end",
+            "isolated effect of response",
+            "later realized outcome",
+            "Action-level rationale and later outcomes are not established in these case records."
+          ],
+          "figures": [],
+          "conflicts": [],
+          "source": {
+            "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-4th-quarter-and-full-year-2022-results",
+            "locator": "Asia Pacific divisional commentary and operating-profit table",
+            "excerpt": ""
+          },
+          "review_status": "assistant_structured_from_source_checked_v1; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "packaging",
+              "label": "packaging",
+              "query_terms": [
+                "packaging"
+              ],
+              "report_terms": [
+                "packaging"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "packaging"
+              ],
+              "query_direction": "up",
+              "report_direction": "up"
+            },
+            {
+              "family": "transport",
+              "label": "transport",
+              "query_terms": [
+                "freight"
+              ],
+              "report_terms": [
+                "logistics"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "up",
+              "report_direction": "up"
+            }
+          ]
+        },
+        {
+          "id": "KC-2011",
+          "company": "Kimberly-Clark",
+          "period": {
+            "start": "2011-07-01",
+            "end": "2011-09-30"
+          },
+          "published": "2011-10-24",
+          "score": 1.876949,
+          "matching_pressure_terms": [
+            "resin",
+            "transport"
+          ],
+          "unmatched_terms": [
+            "aluminum",
+            "bottle",
+            "containers",
+            "drinks",
+            "packaging",
+            "road",
+            "together"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "resin, energy, distribution and fiber costs increased",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "margin_or_profit": {
+              "value": "reported operating profit fell 5% to USD 662 million",
+              "kind": "issuer_reported_measure_and_change",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "other_drivers": {
+              "value": "lower production volumes to manage inventory also affected operating profit",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "response": {
+              "value": "FORCE programme savings were reported",
+              "kind": "issuer_reported_response",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            }
+          },
+          "metric": {
+            "name": "operating profit",
+            "value": 662,
+            "unit": "USD million",
+            "basis": "reported; includes restructuring",
+            "scope": "consolidated",
+            "comparison": "same period prior year"
+          },
+          "important_differences": [
+            "profit amount includes restructuring; no margin level inferred",
+            "Profit amount is not a margin; restructuring complicates comparison.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "true episode start/end",
+            "isolated effect of response",
+            "later realized outcome",
+            "Action-level rationale and later outcomes are not established in these case records."
+          ],
+          "figures": [],
+          "conflicts": [],
+          "source": {
+            "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+            "locator": "Third Quarter 2011 Operating Results",
+            "excerpt": "inflation in key cost inputs"
+          },
+          "review_status": "assistant_structured_from_source_checked_v1; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "resin",
+              "label": "resin and plastic materials",
+              "query_terms": [
+                "plastic"
+              ],
+              "report_terms": [
+                "resin"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "unspecified",
+              "report_direction": "up"
+            },
+            {
+              "family": "transport",
+              "label": "transport",
+              "query_terms": [
+                "freight"
+              ],
+              "report_terms": [
+                "distribution"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "up",
+              "report_direction": "up"
+            }
+          ]
+        },
+        {
+          "id": "NES-WATERS-2011-H1",
+          "company": "Nestlé",
+          "period": {
+            "start": "2011-01-01",
+            "end": "2011-06-30"
+          },
+          "published": "2011-08-10",
+          "score": 1.602263,
+          "matching_pressure_terms": [
+            "packaging",
+            "transport"
+          ],
+          "unmatched_terms": [
+            "aluminum",
+            "bottle",
+            "containers",
+            "drinks",
+            "plastic",
+            "road",
+            "together"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "Nestlé Waters reported sharply higher oil-related costs for distribution and packaging.",
+              "kind": "issuer_reported_cost_pressure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+                "locator": "Nestlé Waters section, final bullet on oil-related costs; Jan.–June results table, Nestlé Waters row",
+                "public_date": "2011-08-10",
+                "period_start": "2011-01-01",
+                "period_end": "2011-06-30"
+              }
+            },
+            "margin_or_profit": {
+              "value": "Trading operating margin was 8.6%, down 140 basis points. This is the division’s operating profit as a share of sales, using Nestlé’s trading measure.",
+              "kind": "issuer_reported_measure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+                "locator": "Nestlé Waters section, final bullet on oil-related costs; Jan.–June results table, Nestlé Waters row",
+                "public_date": "2011-08-10",
+                "period_start": "2011-01-01",
+                "period_end": "2011-06-30"
+              }
+            },
+            "other_drivers": {
+              "value": "The report described a competitive North American market and a mix of growth across regions. The previous year’s figures were reworked to match a new reporting format; the group comparison excludes the sold Alcon business.",
+              "kind": "issuer_reported_context",
+              "available": true,
+              "evidence": {
+                "url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+                "locator": "Nestlé Waters section, especially North America bullet; First-half results introductory comparability paragraph and table footnote",
+                "public_date": "2011-08-10",
+                "period_start": "2011-01-01",
+                "period_end": "2011-06-30"
+              }
+            },
+            "response": {
+              "value": "Nestlé Waters described savings, higher prices, lighter bottles and more efficient distribution. The company said these were insufficient to prevent a margin decline; their individual effects are not measured here.",
+              "kind": "issuer_reported_action_and_attribution",
+              "available": true,
+              "evidence": {
+                "url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+                "locator": "Nestlé Waters section, final bullet on oil-related costs; Jan.–June results table, Nestlé Waters row",
+                "public_date": "2011-08-10",
+                "period_start": "2011-01-01",
+                "period_end": "2011-06-30"
+              }
+            }
+          },
+          "metric": {
+            "name": "Trading operating profit margin",
+            "value": 8.6,
+            "unit": "percent",
+            "basis": "Nestlé trading operating profit divided by sales; issuer-defined operating measure, not gross margin",
+            "scope": "Nestlé Waters, global division",
+            "comparison": "January–June 2011 versus January–June 2010; prior figures restated (reworked to match the new reporting format); continuing operations exclude the sold Alcon business",
+            "kind": "issuer_reported_measure",
+            "evidence": {
+              "url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+              "locator": "Nestlé Waters section, final bullet on oil-related costs; Jan.–June results table, Nestlé Waters row",
+              "public_date": "2011-08-10",
+              "period_start": "2011-01-01",
+              "period_end": "2011-06-30"
+            }
+          },
+          "important_differences": [
+            "This is a global bottled-water division, not the whole Nestlé group. Its trading operating margin differs from gross margin.",
+            "One half-year observation of oil-related pressure. Full-year 2011 and subsequent continuing reports are not counted separately; true episode bounds are unknown.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "The separate cost amounts for oil, bottles and distribution.",
+            "When each price or bottle change took effect, and how much it helped.",
+            "The true pressure start/end and later results."
+          ],
+          "figures": [
+            {
+              "name": "Decline in trading operating margin",
+              "value": 140,
+              "unit": "basis points",
+              "basis": "Reported decline; 100 basis points equals one percentage point",
+              "scope": "Nestlé Waters, global division",
+              "comparison": "January–June 2011 versus restated January–June 2010",
+              "kind": "issuer_reported_measure",
+              "evidence": {
+                "url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+                "locator": "Nestlé Waters section, final bullet on oil-related costs; Jan.–June results table, Nestlé Waters row",
+                "public_date": "2011-08-10",
+                "period_start": "2011-01-01",
+                "period_end": "2011-06-30"
+              }
+            }
+          ],
+          "conflicts": [],
+          "source": {
+            "url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+            "locator": "Nestlé Waters section, final bullet on oil-related costs; Jan.–June results table, Nestlé Waters row",
+            "excerpt": ""
+          },
+          "review_status": "assistant_source_checked; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "packaging",
+              "label": "packaging",
+              "query_terms": [
+                "packaging"
+              ],
+              "report_terms": [
+                "packaging"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "packaging"
+              ],
+              "query_direction": "up",
+              "report_direction": "up"
+            },
+            {
+              "family": "transport",
+              "label": "transport",
+              "query_terms": [
+                "freight"
+              ],
+              "report_terms": [
+                "distribution"
+              ],
+              "relationship": "related_terms",
+              "shared_words": [],
+              "query_direction": "up",
+              "report_direction": "up"
+            }
+          ]
+        },
+        {
+          "id": "CL-2008",
+          "company": "Colgate",
+          "period": {
+            "start": "2008-07-01",
+            "end": "2008-09-30"
+          },
+          "published": "2008-10-30",
+          "score": 1.44109,
+          "matching_pressure_terms": [
+            "packaging"
+          ],
+          "unmatched_terms": [
+            "aluminum",
+            "bottle",
+            "containers",
+            "drinks",
+            "freight",
+            "plastic",
+            "road",
+            "together"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "raw and packaging material costs increased",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-strong-3rd-quarter-exceeding-profit",
+                "locator": "opening gross-profit paragraph",
+                "public_date": "2008-10-30",
+                "period_start": "2008-07-01",
+                "period_end": "2008-09-30"
+              }
+            },
+            "margin_or_profit": {
+              "value": "adjusted gross margin declined 90 basis points to 56.4%",
+              "kind": "issuer_reported_measure_and_change",
+              "available": true,
+              "evidence": {
+                "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-strong-3rd-quarter-exceeding-profit",
+                "locator": "opening gross-profit paragraph",
+                "public_date": "2008-10-30",
+                "period_start": "2008-07-01",
+                "period_end": "2008-09-30"
+              }
+            },
+            "other_drivers": {
+              "value": "not established from checked release",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-strong-3rd-quarter-exceeding-profit",
+                "locator": "opening gross-profit paragraph",
+                "public_date": "2008-10-30",
+                "period_start": "2008-07-01",
+                "period_end": "2008-09-30"
+              }
+            },
+            "response": {
+              "value": "pricing and savings partly offset costs",
+              "kind": "issuer_reported_response",
+              "available": true,
+              "evidence": {
+                "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-strong-3rd-quarter-exceeding-profit",
+                "locator": "opening gross-profit paragraph",
+                "public_date": "2008-10-30",
+                "period_start": "2008-07-01",
+                "period_end": "2008-09-30"
+              }
+            }
+          },
+          "metric": {
+            "name": "gross margin",
+            "value": 56.4,
+            "unit": "percent",
+            "basis": "excluding restructuring charges",
+            "scope": "consolidated",
+            "comparison": "same period prior year"
+          },
+          "important_differences": [
+            "gross margin adjusted for restructuring; global scope",
+            "Global gross margin differs from divisional operating margin.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "true episode start/end",
+            "isolated effect of response",
+            "later realized outcome",
+            "Action-level rationale and later outcomes are not established in these case records."
+          ],
+          "figures": [],
+          "conflicts": [],
+          "source": {
+            "url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-strong-3rd-quarter-exceeding-profit",
+            "locator": "Opening gross-profit paragraph",
+            "excerpt": "significant increases in raw and packaging material costs worldwide"
+          },
+          "review_status": "assistant_structured_from_source_checked_v1; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "packaging",
+              "label": "packaging",
+              "query_terms": [
+                "packaging"
+              ],
+              "report_terms": [
+                "packaging"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "packaging"
+              ],
+              "query_direction": "up",
+              "report_direction": "up"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "payload": {
+        "text": "A snack maker is paying more for potatoes after a poor harvest. I need an earlier potato-cost example.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      },
+      "message": "We don't have enough evidence for this comparison. We couldn't connect a specific pressure in your description to these reports. Try naming a material or disruption. This small collection may not cover your situation.",
+      "displayed": []
+    },
+    {
+      "id": "A05",
+      "payload": {
+        "text": "In mid-2011, we are assessing higher coffee input costs. Use only information published by 27 June 2011.",
+        "cutoff": "2011-06-27",
+        "before_period_end": "2011-06-27"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008"
+      ],
+      "excluded": {
+        "after_cutoff": 15
+      },
+      "status": "insufficient_evidence",
+      "query_reading": {
+        "summary": "Searching for: coffee inputs (rising costs).",
+        "ignored": [],
+        "blocked": null
+      },
+      "message": "We don't have enough evidence for this comparison. We couldn't connect a specific pressure in your description to these reports. Try naming a material or disruption. This small collection may not cover your situation.",
+      "displayed": []
+    },
+    {
+      "id": "A06",
+      "payload": {
+        "text": "Milk costs fell while energy bills rose.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "candidates",
+      "query_reading": {
+        "summary": "Searching for: dairy inputs (falling costs); energy (rising costs).",
+        "ignored": [],
+        "blocked": null
+      },
+      "message": "These reports have input or disruption evidence connected to your description.",
+      "displayed": [
+        {
+          "id": "DF-2015",
+          "company": "Dean Foods",
+          "period": {
+            "start": "2015-01-01",
+            "end": "2015-12-31"
+          },
+          "published": "2016-02-22",
+          "score": 2.399436,
+          "matching_pressure_terms": [
+            "dairy"
+          ],
+          "unmatched_terms": [
+            "bills",
+            "energy"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "Raw milk input costs were lower in 2015 than in 2014.",
+              "kind": "issuer_reported_cost_pressure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            },
+            "margin_or_profit": {
+              "value": "Gross margin was 24.3%, compared with 17.6% in 2014. It measures sales left after the reported cost of products sold; some delivery costs sit outside that calculation.",
+              "kind": "issuer_reported_measure",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            },
+            "other_drivers": {
+              "value": "Sales volume declined. The company attributed the gross-profit change to several factors, including pricing and lower dairy costs; it also reported higher operating expenses.",
+              "kind": "issuer_attribution",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            },
+            "response": {
+              "value": "Dean described changes to private-label prices, branded-product pricing actions and ongoing cost-efficiency initiatives. Their separate effects are not established.",
+              "kind": "issuer_reported_action_and_attribution",
+              "available": true,
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            }
+          },
+          "metric": {
+            "name": "Gross margin",
+            "value": 24.3,
+            "unit": "percent",
+            "basis": "Reported US accounting calculation: gross profit divided by net sales. Some finished-product delivery/shipping costs are in selling and distribution expenses, rather than cost of sales.",
+            "scope": "Consolidated continuing operations, U.S. dairy business",
+            "comparison": "Calendar 2015 versus 2014: 17.6%; WhiteWave and Morningstar shown as discontinued operations",
+            "kind": "issuer_reported_measure",
+            "evidence": {
+              "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+              "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24; Note 1 Shipping and Handling Fees, printed p. F-8; MD&A Overview p. 21",
+              "public_date": "2016-02-22",
+              "period_start": "2015-01-01",
+              "period_end": "2015-12-31"
+            }
+          },
+          "important_differences": [
+            "Falling dairy costs, rather than inflation. Gross margin excludes some delivery costs that other companies include in cost of sales.",
+            "One annual observation of falling dairy costs. Earlier quarters and continuing 2016 reports are not separate situations. True episode bounds are unknown.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "Actual average milk purchase price, including location premiums and procurement costs.",
+            "The isolated effects of prices, cost programmes and lower input costs.",
+            "When the cost decline began/ended and later outcomes."
+          ],
+          "figures": [
+            {
+              "name": "Class I raw-milk price benchmark",
+              "value": 16.34,
+              "unit": "USD per 100 lb",
+              "basis": "Average monthly Class I mover benchmark, quoted per hundredweight (100 pounds). NOT the price Dean actually paid: location differences, producer premiums and procurement costs also matter.",
+              "scope": "U.S. federal raw-milk benchmark reported by Dean; not company purchase-price scope",
+              "comparison": "2015 average versus 2014 average of US$23.29 per 100 lb; reported change −29.8%",
+              "kind": "issuer_reported_external_benchmark",
+              "evidence": {
+                "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+                "locator": "MD&A raw-milk price table and footnotes, printed p. 24",
+                "public_date": "2016-02-22",
+                "period_start": "2015-01-01",
+                "period_end": "2015-12-31"
+              }
+            }
+          ],
+          "conflicts": [],
+          "source": {
+            "url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+            "locator": "Item 7 MD&A, Year Ended December 31, 2015 Compared to 2014, Cost of Sales and Gross Profit, printed p. 24",
+            "excerpt": "decline in dairy commodity costs"
+          },
+          "review_status": "assistant_source_checked; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "dairy",
+              "label": "dairy inputs",
+              "query_terms": [
+                "milk"
+              ],
+              "report_terms": [
+                "milk"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "milk"
+              ],
+              "query_direction": "down",
+              "report_direction": "down"
+            }
+          ]
+        },
+        {
+          "id": "KC-2011",
+          "company": "Kimberly-Clark",
+          "period": {
+            "start": "2011-07-01",
+            "end": "2011-09-30"
+          },
+          "published": "2011-10-24",
+          "score": 1.300293,
+          "matching_pressure_terms": [
+            "energy"
+          ],
+          "unmatched_terms": [
+            "bills",
+            "milk"
+          ],
+          "fields": {
+            "pressure": {
+              "value": "resin, energy, distribution and fiber costs increased",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "margin_or_profit": {
+              "value": "reported operating profit fell 5% to USD 662 million",
+              "kind": "issuer_reported_measure_and_change",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "other_drivers": {
+              "value": "lower production volumes to manage inventory also affected operating profit",
+              "kind": "issuer_attribution_or_disclosed_context",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            },
+            "response": {
+              "value": "FORCE programme savings were reported",
+              "kind": "issuer_reported_response",
+              "available": true,
+              "evidence": {
+                "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+                "locator": "Third Quarter 2011 Operating Results",
+                "public_date": "2011-10-24",
+                "period_start": "2011-07-01",
+                "period_end": "2011-09-30"
+              }
+            }
+          },
+          "metric": {
+            "name": "operating profit",
+            "value": 662,
+            "unit": "USD million",
+            "basis": "reported; includes restructuring",
+            "scope": "consolidated",
+            "comparison": "same period prior year"
+          },
+          "important_differences": [
+            "profit amount includes restructuring; no margin level inferred",
+            "Profit amount is not a margin; restructuring complicates comparison.",
+            "Check that the part of the business and the way profit is measured fit your situation."
+          ],
+          "unknowns": [
+            "true episode start/end",
+            "isolated effect of response",
+            "later realized outcome",
+            "Action-level rationale and later outcomes are not established in these case records."
+          ],
+          "figures": [],
+          "conflicts": [],
+          "source": {
+            "url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+            "locator": "Third Quarter 2011 Operating Results",
+            "excerpt": "inflation in key cost inputs"
+          },
+          "review_status": "assistant_structured_from_source_checked_v1; human_review_pending",
+          "pressure_matches": [
+            {
+              "family": "energy",
+              "label": "energy",
+              "query_terms": [
+                "energy"
+              ],
+              "report_terms": [
+                "energy"
+              ],
+              "relationship": "shared_word",
+              "shared_words": [
+                "energy"
+              ],
+              "query_direction": "up",
+              "report_direction": "up"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A07",
+      "payload": {
+        "text": "Our beef plant buys live animals. Beef raw-material costs are rising.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "query_reading": {
+        "summary": "No specific input or disruption could be read from this description.",
+        "ignored": [],
+        "blocked": null
+      },
+      "message": "We don't have enough evidence for this comparison. We couldn't connect a specific pressure in your description to these reports. Try naming a material or disruption. This small collection may not cover your situation.",
+      "displayed": []
+    },
+    {
+      "id": "A08",
+      "payload": {
+        "text": "We bottle water. Our freight supplier also serves airlines. Freight and fuel costs are rising.",
+        "cutoff": "2026-11-01",
+        "before_period_end": "2026-11-01"
+      },
+      "eligible_ids": [
+        "GIS-2007",
+        "CL-2008",
+        "SJM-COFFEE-2011",
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "DF-2015",
+        "KC-2018",
+        "CL-2020",
+        "CLX-2021",
+        "PG-2022",
+        "CL-2022",
+        "UL-2022",
+        "COKE-2022",
+        "CLX-2023",
+        "TSN-BEEF-2024-Q1",
+        "HSY-2025-Q1"
+      ],
+      "excluded": {},
+      "status": "insufficient_evidence",
+      "query_reading": {
+        "summary": "The description names a business outside this consumer-goods collection.",
+        "ignored": [],
+        "blocked": "outside_scope"
+      },
+      "message": "We don't have enough evidence for this comparison. The description names a business outside this consumer-goods collection. Try a clearer consumer-goods input-cost description.",
+      "displayed": []
+    }
+  ]
+}

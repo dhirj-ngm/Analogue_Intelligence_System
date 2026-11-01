@@ -6,6 +6,8 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
+const audit = process.argv.includes("--audit-m008")
+  ? JSON.parse(await readFile(join(root,"evaluation/audit-m008/snapshot.json"),"utf8")).queries : [];
 const retryRounds = Number(process.argv.find((arg) => arg.startsWith("--retry-rounds="))?.split("=")[1] || 3);
 assert.ok(Number.isInteger(retryRounds) && retryRounds >= 1 && retryRounds <= 30);
 const profile = await mkdtemp(join(tmpdir(), "ais-browser-"));
@@ -394,6 +396,25 @@ try {
       assert.ok(await evaluate(`!document.getElementById('empty-actions').hidden`));
     }
     checks.push(`${device}: M007 dairy and three-metric comparisons, benchmark distinction, unsupported and documented missed wording`);
+
+    if (audit.length) {
+      await openOptions();
+      await click("#reset-dates");
+      for (const row of audit) {
+        await fill("situation",row.payload.text);
+        await fill("cutoff",row.payload.cutoff,true);
+        await fill("before-period",row.payload.before_period_end);
+        await search();
+        assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),row.displayed.map(c=>c.id),row.id);
+        assert.equal(await evaluate(`document.getElementById('cutoff').value`),row.payload.cutoff);
+        assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth && document.getElementById('error').hidden`));
+        if (["A06","A08"].includes(row.id)) {
+          await evaluate(`document.getElementById('results-title').scrollIntoView({block:'start',behavior:'instant'})`);
+          await screenshot(`ais-m008-audit-${row.id}-${device}.png`,false);
+        }
+      }
+      checks.push(`${device}: eight AI audit searches reproduce displayed cases, empty results and date controls; these are observations, not quality grades`);
+    }
 
     // Error focus starts smooth scrolling. Keep real clicks and slow responses:
     // wait for a stable target and a fresh submission, never an old idle flag.

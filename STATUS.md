@@ -35,21 +35,20 @@ Desktop/375px phone flow passed 30 grouped checks with 40 delayed-response retry
 cycles. Four new source documents opened; comparisons/screenshots inspected.
 Benchmark/amount help now reflects units. See [actual checks](evaluation/collection-m007/verification.md).
 
-**M008: Prepared; awaiting independent human review.** Collection/method and ten
-realistic queries frozen in `6362044`. Blinded offline packet: 154 eligible pairs,
-shuffled without scores, result membership or expected answers. Analysis preserves
-partial usefulness, uncertainty, misleading flags, omissions and disagreements;
-verified external human provenance is required. The authorized invitation and packet were sent
-to R01 through Gmail, with attachment readback; eligibility and actual responses
-remain pending. **Zero human judgements;
-no independent relevance conclusions.** Existing cases/ranking remain unchanged.
-71 Python/13 JavaScript tests, lint, validation and historical evaluations passed;
-app and review-form desktop/mobile flows passed. See [M008](evaluation/relevance-m008/report.md).
+**M008: AI development audit complete; human validation deferred.** The user
+withdrew the 154-pair request: zero human judgements, no R01 follow-up or resend.
+The frozen packet remains optional. [AI audit](evaluation/audit-m008/report.md):
+eight searches selected in `9fc5895`, all ten displayed pairs plus four named
+extra assessments; four AI useful / six AI partly useful displayed labels.
+Nine source checks, including an issuer HTML fallback for Kimberly-Clark.
+No independent human validation or general quality estimate is claimed.
+Cases and ranking rules are unchanged. Checks: 74 Python / 13 JavaScript tests,
+lint/syntax, validation, historical evaluations and desktop/375px audit flow.
 
 **Limits / next:** Assistant curation and development checks, not independent
 validation. Beef wording still misses cattle; PET alone is unrecognized. New
 sources remain U.S. focused. Partial matches need not cover every named input;
 complex grammar/industry limits, uncertain episode boundaries and unestablished
 action effects remain. Hershey's earlier source discrepancy remains unresolved.
-Next confirm independent eligibility and collect real human judgements for M008
-before reporting relevance findings.
+Next fix reader-versus-supplier industry context, expose partial pressure coverage
+and clarify live-animal input wording. See the AI audit for proposed checks.

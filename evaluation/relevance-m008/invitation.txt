@@ -1,3 +1,7 @@
+ARCHIVED OPTIONAL TEMPLATE — human validation is deferred. The user withdrew
+the 154-pair request. Do not resend this to R01 or ask R01 to complete it.
+A future human review requires a new explicit instruction.
+
 Subject: Independent review of historical business comparisons
 
 Hello [authorized reviewer],

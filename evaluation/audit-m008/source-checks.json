@@ -1,0 +1,100 @@
+{
+  "provenance": "AI source checks, not independent human validation. Link-only summaries; original documents not retained.",
+  "checks": [
+    {
+      "case_id": "GIS-2007",
+      "record_source_url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+      "status": "substantive_source_opened",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://www.sec.gov/Archives/edgar/data/40704/000089710107001522/gis072744s1_10k.htm",
+      "locator": "Item 7, Fiscal 2007 consolidated results, printed p. 14; Item 6 p. 12",
+      "finding": "Higher grain/dairy/energy costs and consolidated gross margin confirmed. Factory-efficiency explanations are issuer attribution, not isolated causal evidence."
+    },
+    {
+      "case_id": "KC-2011",
+      "record_source_url": "https://www.investor.kimberly-clark.com/static-files/0c374753-f8e4-458e-a775-d59714525972",
+      "status": "verified_via_issuer_alternative",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://www.investor.kimberly-clark.com/news-releases/news-release-details/kimberly-clark-announces-third-quarter-2011-results",
+      "locator": "Third Quarter 2011 Operating Results",
+      "finding": "Original static-file URL failed in the reader (cache miss). Same-issuer dated HTML release confirms resin, energy and distribution inflation; reported operating profit includes restructuring.",
+      "original_access_failure": "Web reader cache miss; not evidence the URL is universally broken. No frozen source link was changed."
+    },
+    {
+      "case_id": "DF-2015",
+      "record_source_url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+      "status": "substantive_source_opened",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://www.sec.gov/Archives/edgar/data/931336/000093133616000031/df-20151231x10k.htm",
+      "locator": "MD&A p. 24, raw-milk table and footnotes / Gross Profit",
+      "finding": "Falling dairy costs and price adjustments confirmed. Class I mover is explicitly not the company purchase price; do not infer an action caused the profit change."
+    },
+    {
+      "case_id": "COKE-2022",
+      "record_source_url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+      "status": "substantive_source_opened",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://www.sec.gov/Archives/edgar/data/317540/000031754023000009/coke-20221231.htm",
+      "locator": "MD&A Cost of Sales p. 24; Executive Summary p. 22",
+      "finding": "Company estimates higher aluminum/resin/transport inputs. Gross margin uses bottler scope; the aggregate estimate is not an aluminum-only cost or an isolated pricing effect."
+    },
+    {
+      "case_id": "CL-2022",
+      "record_source_url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-4th-quarter-and-full-year-2022-results",
+      "status": "substantive_source_opened",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-4th-quarter-and-full-year-2022-results",
+      "locator": "Asia Pacific divisional commentary, fourth-quarter sales and operating-profit tables",
+      "finding": "Packaging/logistics pressure confirmed for Asia Pacific. Volume changes do not establish underlying consumer demand; pricing/savings remain company explanations."
+    },
+    {
+      "case_id": "NES-WATERS-2011-H1",
+      "record_source_url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+      "status": "substantive_source_opened",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+      "locator": "Nestlé Waters section; January–June division table",
+      "finding": "Oil-related distribution/packaging pressure confirmed in the water division. Trading operating margin is not gross margin; reported actions have no isolated effectiveness estimate."
+    },
+    {
+      "case_id": "CL-2008",
+      "record_source_url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-strong-3rd-quarter-exceeding-profit",
+      "status": "substantive_source_opened",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://investor.colgatepalmolive.com/news-releases/news-release-details/colgate-announces-strong-3rd-quarter-exceeding-profit",
+      "locator": "Opening gross-profit paragraph, third quarter 2008",
+      "finding": "Raw/packaging inflation and restructuring-adjusted gross margin confirmed. No aluminum, resin or freight breakdown established by this passage."
+    },
+    {
+      "case_id": "SJM-COFFEE-2011",
+      "record_source_url": "https://www.sec.gov/Archives/edgar/data/91419/000095012311062373/l42203aexv13.htm",
+      "status": "substantive_source_opened",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://www.sec.gov/Archives/edgar/data/91419/000095012311062373/l42203aexv13.htm",
+      "locator": "MD&A pp. 24–25; SEC company-directory accession 000095012311062373",
+      "finding": "Coffee-segment cost increase confirmed. Chosen annual-report filing date is 28 June 2011, after A05 cutoff; earlier availability of its facts is not ruled out.",
+      "publication_check": {
+        "url": "https://www.sec.gov/Archives/edgar/data/91419",
+        "locator": "Accession 000095012311062373 directory timestamp 2011-06-28 16:18:21"
+      }
+    },
+    {
+      "case_id": "TSN-BEEF-2024-Q1",
+      "record_source_url": "https://www.sec.gov/Archives/edgar/data/100493/000010049324000014/tsn-20231230.htm",
+      "status": "substantive_source_opened",
+      "checked_on": "2026-11-01",
+      "method": "web reader; original issuer/SEC passages inspected; raw HTTP status not exposed",
+      "verified_url": "https://www.sec.gov/Archives/edgar/data/100493/000010049324000014/tsn-20231230.htm",
+      "locator": "MD&A Cost of Sales bridge p. 27; Beef Segment Results p. 29",
+      "finding": "Cattle-cost bridge and operating loss confirmed for the Beef segment. Legal, inventory and closure charges coexist; beef selling prices are distinct from live-cattle purchase costs."
+    }
+  ]
+}

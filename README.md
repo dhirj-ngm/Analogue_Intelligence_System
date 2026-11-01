@@ -198,22 +198,23 @@ checks repeat delayed-response recovery three times per screen size. See the
 [browser findings](evaluation/search-m005/browser-check.md) for the reproduction
 and the 40-cycle stress result.
 
-## Independent relevance review (M008)
+## M008 AI development audit
 
-M008 is prepared and awaiting independent human review. The cases, method, ten
-realistic queries and plan are frozen; cases and rankings are unchanged. The
-[blinded packet](evaluation/relevance-m008/README.md) includes all 154 eligible
-query–case pairs, shuffled without scores, result membership or expected answers.
-It supports reasons, partial usefulness, uncertainty, misleading flags and missing
-case suggestions. Drafts can be downloaded/restored; nothing is sent by the form.
+Human validation is deferred, with zero human judgements. The earlier 154-pair
+packet remains an optional frozen artifact; no further R01 review request or
+resend is authorized. The user does not need to grade anything.
 
-The authorized invitation and frozen packet were sent to the designated reviewer;
-identity, independence and actual judgements still need confirmation. No human relevance results exist
-yet. Builder/AI/test labels are excluded from human findings. `make review-check`
-verifies the freeze and current admission state; `make review-browser` tests the
-form on desktop/mobile with disposable synthetic responses. See the
-[plan and pending report](evaluation/relevance-m008/report.md) for analysis limits
-and the precise next step. The user does not need to grade anything.
+The [small AI audit](evaluation/audit-m008/report.md) assesses eight selected
+searches, all ten displayed results and four named non-displayed examples, with
+reasons and nine source checks. These are Builder AI judgements, not independent
+human validation or a general quality estimate. It identifies a supplier-industry
+false abstention, unclear partial coverage and a live-animal wording limit.
+Ranking rules and case records are unchanged; next fixes are proposed in the report.
+
+Run `make audit-check` (also `make review-check`) to reproduce the audit and
+verify the optional human packet and deferred state. Run
+`node scripts/check_app_browser.mjs --audit-m008` for the full desktop/mobile flow
+plus these searches. Original sources stay external. No paid review service is used.
 
 ## Reproduce the earlier model pilot
 
@@ -253,7 +254,8 @@ M004 adds three distinct source-backed cost situations. M005 fixes browser-check
 timing and adds explainable related-input search. M006 adds conservative context,
 direction and negation checks, visible interpretations and a frozen comparison.
 M007 adds four source-backed situations and compares the old and expanded collections.
-Next address the documented grammar/supplier-context limits, evaluate with
-independent relevance judgements, test structural comparison and consider training when
-failures and labels justify it. Builder works end to end without user review
-gates. Development findings must remain labelled honestly.
+M008 completes a small AI development audit; human validation is deferred.
+Next address supplier-context and partial-coverage limits using the recorded
+failure cases. Broader comparison, collection and model work needs evidence
+that justifies it. Builder works end to end without user review gates;
+development judgements remain labelled honestly.

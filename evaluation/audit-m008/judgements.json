@@ -1,0 +1,214 @@
+{
+  "judge_type": "AI",
+  "judge": "Builder AI, informed by the implementation and prior development findings",
+  "independent_human_validation": false,
+  "scope": "Eight deliberately selected searches; all ten displayed results assessed, plus four named non-displayed examples. No exhaustive relevance labels or recall estimate.",
+  "displayed_judgements": [
+    {
+      "query_id": "A01",
+      "case_id": "GIS-2007",
+      "usefulness": "useful",
+      "misleading_risk": "low",
+      "reason": "The food business reports rising grain, dairy and energy inputs, covering all three pressure families. The ingredient groups do not establish an exact milk/wheat/electricity purchase basket; annual consolidated figures and issuer efficiency explanations are not causal evidence.",
+      "source_check": "GIS-2007"
+    },
+    {
+      "query_id": "A01",
+      "case_id": "KC-2011",
+      "usefulness": "partly_useful",
+      "misleading_risk": "possible",
+      "reason": "The source supports rising energy costs but not dairy or grain costs. It offers an energy-only contrast for a query explicitly seeking multiple inputs. Reported operating profit including restructuring is not a food-company gross margin.",
+      "source_check": "KC-2011"
+    },
+    {
+      "query_id": "A02",
+      "case_id": "DF-2015",
+      "usefulness": "useful",
+      "misleading_risk": "low",
+      "reason": "A dairy business with falling input costs and price adjustments fits the central question. Its published benchmark is not the actual purchase price, and concurrent pricing and profit changes do not isolate an action effect.",
+      "source_check": "DF-2015"
+    },
+    {
+      "query_id": "A03",
+      "case_id": "COKE-2022",
+      "usefulness": "useful",
+      "misleading_risk": "low",
+      "reason": "The bottler reports higher aluminum, bottle resin and transport inputs. This closely covers the operating context and both cost pressures. The aggregate cost estimate does not allocate an aluminum-only effect, and gross margin also reflects other factors.",
+      "source_check": "COKE-2022"
+    },
+    {
+      "query_id": "A03",
+      "case_id": "CL-2022",
+      "usefulness": "partly_useful",
+      "misleading_risk": "possible",
+      "reason": "Packaging and logistics inflation are relevant, but this is a regional oral/personal/home-care division rather than a bottler. Aluminum and bottle-resin costs are not established here. Its operating margin cannot be directly compared with the bottler gross margin.",
+      "source_check": "CL-2022"
+    },
+    {
+      "query_id": "A03",
+      "case_id": "KC-2011",
+      "usefulness": "partly_useful",
+      "misleading_risk": "possible",
+      "reason": "Resin and distribution costs fit two related pressures. Hygiene/tissue products differ from beverage packaging, and aluminum is not established. Its third-place rank ahead of the water division is debatable on business fit, not proof of a scoring defect.",
+      "source_check": "KC-2011"
+    },
+    {
+      "query_id": "A03",
+      "case_id": "NES-WATERS-2011-H1",
+      "usefulness": "useful",
+      "misleading_risk": "low",
+      "reason": "The bottled-water division reports packaging and distribution costs rising with oil, covering the core pressures in a closely related business. Aluminum cans and separately measured resin purchases remain unestablished; trading operating margin differs from gross margin.",
+      "source_check": "NES-WATERS-2011-H1"
+    },
+    {
+      "query_id": "A03",
+      "case_id": "CL-2008",
+      "usefulness": "partly_useful",
+      "misleading_risk": "possible",
+      "reason": "This supports packaging-cost inflation, but the passage does not establish freight or the named packaging materials. An adjusted company-wide gross margin adds another accounting difference. It is a narrow contrast, not a complete match.",
+      "source_check": "CL-2008"
+    },
+    {
+      "query_id": "A06",
+      "case_id": "DF-2015",
+      "usefulness": "partly_useful",
+      "misleading_risk": "possible",
+      "reason": "This matches falling dairy costs only. Rising energy costs are not established in this case. First position should not be read as evidence of the full mixed-direction situation.",
+      "source_check": "DF-2015"
+    },
+    {
+      "query_id": "A06",
+      "case_id": "KC-2011",
+      "usefulness": "partly_useful",
+      "misleading_risk": "possible",
+      "reason": "This matches rising energy costs only, not falling milk. The two displayed partial cases do not supply one documented joint situation, although the current match explanations name their respective inputs.",
+      "source_check": "KC-2011"
+    }
+  ],
+  "other_assessments": [
+    {
+      "query_id": "A08",
+      "case_id": "NES-WATERS-2011-H1",
+      "usefulness": "useful",
+      "misleading_risk": "high",
+      "reason": "The source directly supports oil-related freight/packaging pressure in a water business. A supplier serving airlines does not make the reader an airline. The empty-state industry explanation is misleading for the stated reader context.",
+      "source_check": "NES-WATERS-2011-H1",
+      "role": "important_omission",
+      "uncertainty": "This is an AI assessment of a close comparison; no human relevance grade exists."
+    },
+    {
+      "query_id": "A07",
+      "case_id": "TSN-BEEF-2024-Q1",
+      "usefulness": "partly_useful",
+      "misleading_risk": "possible",
+      "reason": "The Beef segment buys cattle and reports rising cattle costs, making it a plausible lead for a plant buying live animals. Clarify whether the reader means live cattle; beef selling prices and cattle input costs must not be merged automatically.",
+      "source_check": "TSN-BEEF-2024-Q1",
+      "role": "important_omission",
+      "uncertainty": "Conditional relevance depends on the live animals actually being cattle; loss drivers and operating scope also differ."
+    },
+    {
+      "query_id": "A05",
+      "case_id": "SJM-COFFEE-2011",
+      "usefulness": "not_eligible",
+      "misleading_risk": "low",
+      "reason": "The chosen report was filed after the query cutoff. Its exclusion is appropriate even though the coffee pressure fits. This does not establish that equivalent facts were unavailable in an earlier source.",
+      "source_check": "SJM-COFFEE-2011",
+      "role": "date_excluded",
+      "uncertainty": "Earlier public disclosure remains possible; do not backdate this frozen record."
+    },
+    {
+      "query_id": "A06",
+      "case_id": "GIS-2007",
+      "usefulness": "not_useful",
+      "misleading_risk": "high",
+      "reason": "The source has rising dairy costs, opposite to the query’s falling milk costs. Excluding it avoids substituting a partial energy match for an incompatible dairy direction.",
+      "source_check": "GIS-2007",
+      "role": "correct_direction_exclusion",
+      "uncertainty": "No claim is made about unrecorded subperiods or individual milk purchase prices."
+    }
+  ],
+  "query_assessments": [
+    {
+      "query_id": "A01",
+      "assessment": "useful_full_pressure_match_and_energy_only_partial",
+      "reason": "Both displayed cases checked; only General Mills covers all three requested pressure families."
+    },
+    {
+      "query_id": "A02",
+      "assessment": "useful_directional_match",
+      "reason": "The falling dairy-cost case is returned without asserting isolated pricing effectiveness."
+    },
+    {
+      "query_id": "A03",
+      "assessment": "useful_bottler_examples_with_partial_matches",
+      "reason": "Coca-Cola Consolidated first; Nestlé Waters fourth is also useful. Three other results are narrower contrasts. Industry-fit ordering is an AI preference, not independently graded."
+    },
+    {
+      "query_id": "A04",
+      "assessment": "appropriate_collection_gap_abstention",
+      "reason": "No named potato-cost situation is represented in the frozen pressure records. Empty results do not mean no potato-cost history exists."
+    },
+    {
+      "query_id": "A05",
+      "assessment": "appropriate_date_limited_abstention",
+      "reason": "The selected coffee report is after cutoff; earlier-source coverage remains unknown."
+    },
+    {
+      "query_id": "A06",
+      "assessment": "partial_matches_only",
+      "reason": "Neither displayed case establishes both falling milk and rising energy. The opposing dairy direction in General Mills is correctly filtered."
+    },
+    {
+      "query_id": "A07",
+      "assessment": "wording_limit_needs_clarification",
+      "reason": "Live-animal/beef wording supplies no recognized input family. Tyson is a conditional lead, not evidence that all beef costs equal cattle costs."
+    },
+    {
+      "query_id": "A08",
+      "assessment": "false_abstention_from_supplier_context",
+      "reason": "A global airline keyword veto mistakes the supplier’s customers for the reader’s industry and hides the water case."
+    }
+  ],
+  "next_fixes": [
+    {
+      "id": "F1",
+      "priority": 1,
+      "queries": [
+        "A08"
+      ],
+      "proposal": "Bind industry exclusions to the reader business instead of globally vetoing supplier/customer industry words.",
+      "check": "Keep the supplier-airline water query searchable while a genuine airline-fuel query remains unsupported; retain dates/exclusions and pressure-only ranking."
+    },
+    {
+      "id": "F2",
+      "priority": 2,
+      "queries": [
+        "A01",
+        "A03",
+        "A06"
+      ],
+      "proposal": "Make partial pressure coverage and business/metric differences explicit in the results and comparison.",
+      "check": "Name which requested inputs are supported or missing; do not imply the union of two cases documents a joint situation. Evaluate any optional context filter separately before changing ordering."
+    },
+    {
+      "id": "F3",
+      "priority": 3,
+      "queries": [
+        "A07"
+      ],
+      "proposal": "Offer a general clarification for live-animal/raw-material versus finished-product wording.",
+      "check": "Clarified live-cattle input searches may find the cattle case; rising beef sales/prices must not automatically become cattle-cost pressure."
+    },
+    {
+      "id": "F4",
+      "priority": 4,
+      "queries": [
+        "A01",
+        "A03",
+        "A06"
+      ],
+      "proposal": "Preserve the verified same-issuer HTML fallback for the intermittently inaccessible Kimberly-Clark static link in future non-pilot provenance updates.",
+      "check": "Record the original fetch failure accurately and verify equivalent period/figures before updating any active link; leave frozen M001 records intact."
+    }
+  ]
+}

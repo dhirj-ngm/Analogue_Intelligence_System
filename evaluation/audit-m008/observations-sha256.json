@@ -1,0 +1,9 @@
+{
+  "provenance": "AI audit observations and checker; fixed after source inspection and explicit AI grading. No human labels.",
+  "sha256": {
+    "evaluation/audit-m008/snapshot.json": "ccc1f1e99495d731dd9d6aac98026bf1443597c9b3515b359e737b8ce10374ff",
+    "evaluation/audit-m008/judgements.json": "66ddc9c3a1e23ec24dcadf96f1084d6ac5e37d22ccd67646cb4c4cdf116b852b",
+    "evaluation/audit-m008/source-checks.json": "8178200108ac32c45c3b2ed6a795cc84ee954841e4df9bdc804d0f409a3a9a48",
+    "scripts/check_audit_m008.py": "07916cebec8e8577c015cf62fcf2c97b3c5c52ff83ce71e2518c7dbb0b66f465"
+  }
+}
