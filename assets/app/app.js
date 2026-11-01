@@ -10,6 +10,7 @@ const selected = new Set();
 const fieldIds = { text: "situation", cutoff: "cutoff", before_period_end: "before-period", source_id: "source-case" };
 let catalog = [];
 let currentResults = [];
+let clarificationKind = null;
 let activeRequest = 0;
 let draft;
 let previousDate;
@@ -255,7 +256,10 @@ function renderResults(data) {
     if (!explained && data.query_reading.ignored.length) reading.append(bulletList(data.query_reading.ignored.map((item) => `Left out: “${item.text.slice(0,160)}” — ${item.message}`)));
   }
   $("input-clarification").hidden = !data.clarification;
+  clarificationKind = data.clarification?.kind || null;
+  $("clarification-title").textContent = data.clarification?.title || "Clarify the input you buy";
   $("clarification-message").textContent = data.clarification?.message || "";
+  $("clarify-input").textContent = data.clarification?.action || "Edit the input description";
   $("result-caution").textContent = data.partial_only
     ? "Each case covers only part of your description. Showing them together does not document one situation with the combined pressures."
     : "Shared or related input names are a starting point. Check the business, whether costs rose or fell, and the source.";
@@ -337,7 +341,7 @@ $("search-form").addEventListener("submit", async (event) => {
 $("clarify-input").addEventListener("click", () => {
   const input = $("situation");
   input.focus();
-  const match = /live[ -]+animals?/i.exec(input.value);
+  const match = clarificationKind === "live_animal_input" && /live[ -]+animals?/i.exec(input.value);
   if (match) input.setSelectionRange(match.index, match.index + match[0].length);
 });
 

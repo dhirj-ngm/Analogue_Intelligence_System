@@ -8,7 +8,7 @@ import { join, resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 const audit = process.argv.includes("--audit-m008")
   ? JSON.parse(await readFile(join(root,"evaluation/audit-m008/snapshot.json"),"utf8")).queries : [];
-const currentAudit = audit.length ? JSON.parse(await readFile(join(root,"evaluation/search-m009/results.json"),"utf8")).historical.filter(r=>r.group==="m008") : [];
+const currentAudit = audit.length ? JSON.parse(await readFile(join(root,"evaluation/search-m010/results.json"),"utf8")).historical.filter(r=>r.group==="m008") : [];
 const retryRounds = Number(process.argv.find((arg) => arg.startsWith("--retry-rounds="))?.split("=")[1] || 3);
 assert.ok(Number.isInteger(retryRounds) && retryRounds >= 1 && retryRounds <= 30);
 const profile = await mkdtemp(join(tmpdir(), "ais-browser-"));
@@ -291,7 +291,7 @@ try {
     checks.push(`${device}: new-case publication boundary, self exclusion, three related-term searches and negation`);
 
     const contextDate = await evaluate(`document.getElementById('cutoff').value`);
-    for (const [text,reason] of [["Coffee costs are falling.","opposite direction"],["Milk sales are rising.","Sales or demand"],["Freight and fuel costs at an airline.","outside"],["Milk costs changed.","which way"]]) {
+    for (const [text,reason] of [["Coffee costs are falling.","opposite direction"],["Milk sales are rising.","Sales, selling prices"],["Freight and fuel costs at an airline.","outside"],["Milk costs changed.","which way"]]) {
       await fill("situation",text);
       await search();
       assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('results-status').textContent.includes(${JSON.stringify(reason)}) && !document.getElementById('query-reading').hidden && document.getElementById('comparison').hidden`));
@@ -446,6 +446,42 @@ try {
     await fill("situation","We buy live animals. Milk costs are falling.");await search();
     assert.ok(await evaluate(`document.querySelector('.case-card').dataset.caseId==='DF-2015' && !document.getElementById('input-clarification').hidden && document.querySelector('.coverage').innerText.includes('Still unclear')`));
     checks.push(`${device}: M009 live-animal clarification requires an explicit edit; dates/draft retained; beef outputs separate; unresolved input prevents full coverage`);
+
+    await openOptions();
+    await click("#reset-dates");
+    await fill("situation","Milk costs are rising not falling.");await search();
+    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`),"GIS-2007");
+    assert.ok(await evaluate(`!document.querySelector('[data-case-id="DF-2015"]') && document.getElementById('query-reading').innerText.includes('rising costs')`));
+    await fill("situation","Milk costs fell, energy bills rose.");await search();
+    assert.ok(await evaluate(`document.querySelector('[data-case-id="DF-2015"] .coverage').innerText.includes('Not established here: energy') && document.querySelector('[data-case-id="KC-2011"] .coverage').innerText.includes('Not established here: milk') && !document.querySelector('[data-case-id="GIS-2007"]')`));
+    for (const id of ["DF-2015","KC-2011"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
+    await click("#compare-button");
+    assert.ok(await evaluate(`document.querySelector('.comparison-note').innerText.includes('combining partial cases') && document.documentElement.scrollWidth<=innerWidth`));
+    await screenshot(`ais-m010-comparison-${device}.png`,false);
+    await click("#clear-comparison");
+    checks.push(`${device}: M010 unpunctuated denied alternative; comma directions stay per-input in results/comparison`);
+
+    const unclear="Milk costs fell, prices rose.";
+    await fill("situation",unclear);await search();
+    assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('clarification-title').innerText==='Clarify which costs changed' && document.getElementById('clarification-message').innerText.includes('one change per clause')`));
+    const directionDraft = await evaluate(`JSON.stringify({text:document.getElementById('situation').value,cutoff:document.getElementById('cutoff').value,period:document.getElementById('before-period').value,submissions:window.__searchSubmissions})`);
+    await screenshot(`ais-m010-direction-${device}.png`,false);
+    await click("#clarify-input");
+    assert.equal(await evaluate(`document.activeElement.id`),"situation");
+    assert.equal(await evaluate(`JSON.stringify({text:document.getElementById('situation').value,cutoff:document.getElementById('cutoff').value,period:document.getElementById('before-period').value,submissions:window.__searchSubmissions})`),directionDraft);
+    await fill("situation","We are an airline supplier. Fuel costs rise.");await search();
+    assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('clarification-title').innerText==='Clarify whose situation this is' && document.getElementById('clarify-input').innerText==='Edit the business description'`));
+    await screenshot(`ais-m010-scope-${device}.png`,false);
+    await click("#clarify-input");
+    assert.equal(await evaluate(`document.activeElement.id`),"situation");
+    await fill("situation","Our bottled-water business uses a logistics firm whose customers include airlines. Freight and fuel costs rise.");await search();
+    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`),"NES-WATERS-2011-H1");
+    assert.ok(await evaluate(`document.getElementById('input-clarification').hidden`));
+    await fill("situation","We operate an airline. Fuel costs rise not fall.");await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+    await fill("situation","Our customers pay more for milk.");await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+    checks.push(`${device}: M010 direction/business clarification preserves draft/dates with no submission; explicit role edit works; real outside business and selling context remain excluded`);
 
     if (audit.length) {
       await openOptions();

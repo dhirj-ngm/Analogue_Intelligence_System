@@ -41,6 +41,11 @@ For **live animals**, the app asks whether you mean cattle or another animal.
 dates or submitting a search. Clarify what you buy and whether costs rose or fell.
 Beef selling prices/sales remain separate from cattle purchase costs.
 
+Ordinary cost sentences can include “rising not falling” or separate changes such
+as “milk costs fell, energy bills rose.” Each change stays with its named input.
+Conflicting directions or unclear business roles prompt an edit. The clarification
+button focuses your description, preserving text and dates without submitting it.
+
 **Dates and a starting case** is optional. **Information available by** includes
 reports published on or before that date; periods must end strictly before the
 situation being compared. A starting case and known continuing reports are
@@ -57,7 +62,7 @@ reports open separately at the publisher/SEC; documents are not stored or served
 
 BM25 scores named input families in **case pressure passages only**. The
 [vocabulary](src/ais/related.py), [additional material names](src/ais/vocabulary.py)
-and [reader-role rules](src/ais/reader_context.py) are small and explicit.
+and [sentence rules](src/ais/language_context.py) are small and explicit.
 Responses, profit figures, business identity, later outcomes and rationale cannot
 increase scores. Publication evidence, earlier periods and self/continuation
 exclusions are shared across methods. Future responses are withheld.
@@ -68,18 +73,18 @@ coverage is computed after scoring. Related words do not establish identical
 purchases or a useful analogy. Unknown cost names do not become scoring synonyms.
 Bare topic lists retain unspecified direction.
 
-[M009 paired checks](evaluation/search-m009/report.md) freeze 37 development queries
-before changes (`78abe11`). On identical eligible cases, expected-case retrieval
-rises from 10/21 to 21/21; expected-empty queries from 15/16 to 16/16, with no
-expected-case or target-rank regressions in that set. Only the intended supplier
-failure changes ranks among 93 historical query entries. These case-informed
+[M010 paired checks](evaluation/search-m010/report.md) freeze 56 development queries
+before changes (`e858102`). On identical eligible cases, expected useful-case
+retrieval rises from 9/33 to 33/33 queries; misleading-result queries fall from
+9 to 0. All 56 expectations pass, without target-retrieval/rank regressions.
+The 130 historical entries retain M009 ranks and scores. These case-informed
 checks are **not independent validation or a general accuracy estimate**.
 
-Unpunctuated alternative negation and comma-only opposing directions remain
-[conservative misses](evaluation/search-m009/diagnostics.json). Unlisted industries,
-complex roles and input phrases can still be misread. Collection coverage is narrow
-and U.S. biased; episode bounds and action effects remain uncertain. Hershey's
-existing source discrepancy remains visible and unresolved.
+Long references still need care: “Milk prices aren't rising; they are falling”
+and “The costs of milk were lower, but those of energy were higher” ask for
+clarification. Unlisted industries, role attachments and input phrases can still
+be misread. Collection coverage is narrow and U.S. biased; episode bounds and
+action effects remain uncertain. Hershey's source discrepancy remains unresolved.
 
 Additional cases live in `data/collection/cases.jsonl` and
 `data/collection/m007/cases.jsonl`. All existing records and frozen M001 files are
@@ -101,23 +106,24 @@ make test                # Python safeguards/HTTP checks and JavaScript reader t
 make lint                # Ruff check/format in the existing .venv
 make validate            # Frozen pilot data and judgement coverage
 make collection-check    # Current collection and historical M004 literal checks
-make search-check        # M006/M007 historical and M009 paired evaluations
+make search-check        # M006/M007 historical and M009/M010 paired evaluations
 make search-check-m005   # Earlier literal/related comparison
-make search-check-m009   # M009 alone
+make search-check-m010   # M009/M010 paired comparison alone
+make search-check-m009   # Earlier M008/M009 comparison
 make audit-check         # Original M008 audit, optional packet and deferred human state
 ```
 
 For minimal lint setup: `python3 -m venv .venv`, then
 `.venv/bin/python -m pip install ruff==0.17.3`.
 Older checks retain original cohorts/methods and verify original runtime/UI hashes
-against Git at `1e4e6d3`; those checks need that history. No evidence/data hash is
+against Git at `1e4e6d3` and `d63b3c3`; those checks need that history. No evidence/data hash is
 exempted. The app itself adds no Git dependency.
 
 Browser checks start and stop their own server and Chrome:
 
 ```sh
 make browser-test
-# Current M009 flow, historical audit searches and 40 delayed-response retry cycles:
+# Current flow, historical audit searches and 40 delayed-response retry cycles:
 node scripts/check_app_browser.mjs --audit-m008 --retry-rounds=20
 # Override the default /opt/google/chrome/chrome if needed:
 CHROME_BIN=/usr/bin/chromium make browser-test
@@ -126,8 +132,8 @@ CHROME_BIN=/usr/bin/chromium make browser-test
 Desktop/375px checks cover searches, sources, comparison, dates, self exclusions,
 empty states, clarification and failure recovery. Screenshots are disposable in
 `/tmp/ais-case-search-{desktop,mobile}.png`,
-`/tmp/ais-m009-{partial,clarify}-{desktop,mobile}.png` and related comparison files.
-The old audit flag uses recorded M009 expectations for the current UI; the audit
+`/tmp/ais-m010-{comparison,direction,scope}-{desktop,mobile}.png` and related comparison files.
+The old audit flag uses recorded M010 expectations for the current UI; the audit
 command separately reproduces M008. The optional archived review-form check is
 `make review-browser`; its synthetic drafts are not human judgements.
 
@@ -151,7 +157,8 @@ HF_HUB_OFFLINE=1 make run
 Models/caches are ignored by Git. `make run` reproduces the earlier model pilot;
 `make app` runs the reader. M002/M003 built the app/reader experience, M004/M007
 expanded the collection, and M005/M006 introduced related-input/context checks.
-[M008](evaluation/audit-m008/report.md) audited the app; M009 fixes the three
-reader-facing failures. Next work should address the documented grammar limits
-and broader realistic development samples. Development judgements stay labelled
+[M008](evaluation/audit-m008/report.md) audited the app; [M009](evaluation/search-m009/report.md)
+fixed its three reader-facing failures, and M010 improves ordinary sentence wording.
+Next work should address conservative reference-resolution misses and broader
+realistic development samples. Development judgements stay labelled
 honestly; human validation remains deferred.

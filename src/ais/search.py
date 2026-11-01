@@ -12,6 +12,12 @@ from ais.pilot import ROOT, bm25, eligible, ranking_text, read_jsonl, tokens
 from ais.related import analyze, explain_matches
 from ais.vocabulary import FAMILIES as M007_FAMILIES
 from ais.reader_context import EXTRA_REASONS, clarification, coverage, query_profile
+from ais.language_context import (
+    REASONS as LANGUAGE_REASONS,
+    query_profile as language_profile,
+    describe_query as describe_language,
+    clarification as language_clarification,
+)
 
 # These words alone do not establish a specific, supported pressure match.
 FILLER = set(
@@ -220,8 +226,15 @@ class CaseSearch:
             candidates.append(case)
         return candidates, dict(sorted(exclusions.items()))
 
-    def search(self, payload, *, method="context_m009"):
-        if method not in {"literal_v1", "related_v1", "context_v1", "context_m007", "context_m009"}:
+    def search(self, payload, *, method="context_m010"):
+        if method not in {
+            "literal_v1",
+            "related_v1",
+            "context_v1",
+            "context_m007",
+            "context_m009",
+            "context_m010",
+        }:
             raise ValueError("Unknown search method.")
         query = self.query(payload)
         candidates, exclusions = self.candidate_pool(query)
@@ -237,10 +250,14 @@ class CaseSearch:
             scores = bm25(" ".join(query_concepts), [" ".join(a[0]) for a in analyzed])
         else:
             vocabulary = (
-                {"families": M007_FAMILIES} if method in {"context_m007", "context_m009"} else {}
+                {"families": M007_FAMILIES}
+                if method in {"context_m007", "context_m009", "context_m010"}
+                else {}
             )
             reading = (
-                query_profile(query["text"])
+                language_profile(query["text"])
+                if method == "context_m010"
+                else query_profile(query["text"])
                 if method == "context_m009"
                 else read_pressure(query["text"], **vocabulary)
             )
@@ -271,7 +288,7 @@ class CaseSearch:
             if score > 0 and matched:
                 presented = self.present(case, query, score, matched)
                 presented["pressure_matches"] = explanations
-                if method == "context_m009":
+                if method in {"context_m009", "context_m010"}:
                     presented["coverage"] = coverage(reading, explanations)
                 if method != "literal_v1":
                     connected = {word for m in explanations for word in m["query_terms"]}
@@ -279,10 +296,24 @@ class CaseSearch:
                 matches.append(presented)
         matches.sort(key=lambda c: (-c["score"], c["id"]))
         context = (
-            describe(reading) if method in {"context_v1", "context_m007", "context_m009"} else None
+            describe_language(reading)
+            if method == "context_m010"
+            else describe(reading)
+            if method in {"context_v1", "context_m007", "context_m009"}
+            else None
         )
-        clarification_request = clarification(reading) if method == "context_m009" else None
-        if clarification_request and not reading["words"]:
+        clarification_request = (
+            language_clarification(reading)
+            if method == "context_m010"
+            else clarification(reading)
+            if method == "context_m009"
+            else None
+        )
+        if (
+            clarification_request
+            and clarification_request["kind"] == "live_animal_input"
+            and not reading["words"]
+        ):
             context["summary"] = "The live-animal input needs clarification."
         context_reason = None
         if context and not matches:
@@ -294,7 +325,10 @@ class CaseSearch:
         return {
             "status": "candidates" if matches else "insufficient_evidence",
             "message": "The live-animal input needs clarification. We have not assumed it means cattle."
-            if clarification_request and candidates and not matches
+            if clarification_request
+            and clarification_request["kind"] == "live_animal_input"
+            and candidates
+            and not matches
             else (
                 "These reports have input or disruption evidence connected to your description."
                 if matches
@@ -303,7 +337,7 @@ class CaseSearch:
                     "No cases can be used with these dates and this starting case. "
                     "You can change those choices without changing your description."
                     if not candidates
-                    else {**REASONS, **EXTRA_REASONS}[context_reason]
+                    else {**REASONS, **EXTRA_REASONS, **LANGUAGE_REASONS}[context_reason]
                     + " Try a clearer consumer-goods input-cost description."
                     if context_reason
                     else "We couldn't connect a specific pressure in your description to these reports. "
@@ -332,7 +366,7 @@ class CaseSearch:
                     "partial_only": bool(matches)
                     and all(c["coverage"]["partial"] for c in matches[:5]),
                 }
-                if method == "context_m009"
+                if method in {"context_m009", "context_m010"}
                 else {}
             ),
             "method_id": method,
@@ -341,7 +375,7 @@ class CaseSearch:
                 if method == "literal_v1"
                 else "BM25 on pressure passages only, with clause-level input role, direction, negation and scope checks. "
                 "Bare input topics have unspecified direction. Vocabulary matches are not causal comparisons."
-                if method in {"context_v1", "context_m007", "context_m009"}
+                if method in {"context_v1", "context_m007", "context_m009", "context_m010"}
                 else "BM25 on named input families in pressure passages only; explicit shared/related terms required. "
                 "A vocabulary link is not a disclosed fact, industry check or causal comparison."
             )

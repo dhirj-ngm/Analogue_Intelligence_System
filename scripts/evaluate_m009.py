@@ -6,6 +6,7 @@ import json
 
 from ais.pilot import ROOT
 from ais.search import CaseSearch
+from ais.historical import frozen_bytes
 
 DIRECTORY = ROOT / "evaluation/search-m009"
 
@@ -165,8 +166,14 @@ if __name__ == "__main__":
         (DIRECTORY / "results.json").write_text(
             json.dumps(result, indent=2, ensure_ascii=False) + "\n"
         )
-    elif json.loads((DIRECTORY / "results.json").read_text()) != result:
-        raise ValueError("M009 observations differ; inspect before explicitly recording --write")
+    else:
+        recorded = json.loads((DIRECTORY / "results.json").read_text())
+        if {k: v for k, v in recorded.items() if k != "fingerprints"} != {
+            k: v for k, v in result.items() if k != "fingerprints"
+        }:
+            raise ValueError("M009 observations differ from their frozen methods/cases")
+        for path, expected in recorded["fingerprints"].items():
+            frozen_bytes(path, expected)
     print(json.dumps(result["summary"], indent=2))
     if result["summary"]["remaining_failures"]:
         raise SystemExit(1)
