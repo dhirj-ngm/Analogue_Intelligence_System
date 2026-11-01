@@ -26,80 +26,86 @@ Open **http://127.0.0.1:8000**. Stop with Ctrl+C. For another port:
 PYTHONPATH=src python3 -m ais.app --port 8001
 ```
 
-Try **Packaging & logistics**, open a case's evidence panel, select two or three
-cases and choose **Compare selected**. To investigate the existing Colgate Q4
-2022 case, select **Colgate · CL-2022**: dates populate automatically and the case
-and known continuations are excluded. Try `semiconductor shortages at a bank`
-for an insufficient-evidence result.
+Describe the problem, or choose an example to run a search straight away.
+Open **Read the case and its sources** to see what the company reported,
+where to find it, how the situation differs, and what we do not know. Choose
+**two or three cases**, then **Compare cases**, to read them together. On a
+phone, comparisons stack vertically without a sideways-scrolling table.
 
-**Only information published by** is an inclusive public-information cutoff.
-Candidate reporting periods must end strictly before **Situation period end**,
-which cannot be after that cutoff. Selecting a source case also limits candidates
-to periods ending before its period end; its query evidence must be public by
-the cutoff. Expand **Dates and exclusions** to see effective rules and counts.
+**Dates and a starting case** is optional. Choose a case such as Colgate's period
+ending 31 Dec 2022 to fill in its description and dates. Switching back to
+**My own situation** restores your earlier description and date choices.
+**Use my situation and today's dates** resets the dates without losing your own
+text. Changing the information date also updates an end date that is still linked
+to it; a separately chosen end date is kept.
+
+**Information available by** includes reports published on or before that date.
+Cases must cover periods ending before **End of the situation you are comparing**.
+A chosen starting case and its known continuing reports are excluded. Date errors
+open the controls and focus the field to fix; dates are never silently widened to
+produce results.
+
+If the app cannot support a comparison, it explains whether the dates ruled out
+all cases or the collection lacks a matching pressure word. You can check the
+dates, edit the description, or try an example. `Semiconductor shortages at a bank`
+shows a collection gap. Empty results are not evidence that no historical
+comparison exists elsewhere.
+
+**How this works** contains the method, date/exclusion counts and optional BM25
+scores. The main view keeps shared words, sources, differences and unknowns
+visible. Shared words do not establish a useful analogy, and reported actions do
+not prove what caused a result. Metric definitions and exact source locators
+remain available beside the company-reported figures.
 
 The app binds to loopback for local use. Searches remain in memory for the
 request; their text is neither logged nor persisted. The app does not fetch
 models or sources. Source links visit the issuer's site in a separate tab.
 
-## What ranking and comparisons mean
+## Safeguards and limits
 
-BM25 scores only the pilot's allowlisted `challenge` text. Responses, rationale,
-later outcomes, comparison limits and review labels do not enter its scores.
-Structured fields supply display evidence and a conservative pressure-match
-gate. Unknown publication dates, post-cutoff challenge evidence, non-earlier
-periods, the selected query case and its known duplicate/continuation group are
-excluded. Other duplicate groups collapse to the earliest eligible publication
-before scoring. Select a corpus source case when using its situation; free text
-alone does not identify which case to exclude as self.
-
-Up to five **partial pressure matches** require a positive BM25 score and at
-least one specific shared pressure term. Generic cost/margin words alone do not
-suffice. Explicitly negated/unknown clauses are skipped by this small lexical
-gate. It can miss synonyms and mixed/complex descriptions. It does not establish
-relevance, a useful analogy or confidence in a response's success. With no
-eligible match, the app shows insufficient evidence. Unmatched query terms are
-wording gaps, not documented contradictions. Dense retrieval remains in the
-pilot; the app uses BM25 for an offline, inspectable implementation.
-
-Responses appear after retrieval with their evidence. A response with a missing
-publication date or a date after the cutoff is withheld. Comparisons retain
-metric units, scope, accounting basis and reporting/comparison periods. The app
-does not subtract incompatible measures. Missing verbatim excerpts are explicit
-and retain their source locator. Episode boundaries, isolated response effects,
-action-level reasoning and later outcomes remain limited.
+BM25 still scores only allowlisted challenge text. Responses, rationale, later
+outcomes and display wording do not affect scores. Unknown or post-cutoff
+challenge dates, self cases, known duplicates/continuations and non-earlier
+periods stay excluded. A response unknown by the selected date is withheld.
+The app uses a conservative shared-pressure-word gate, not a relevance model;
+it can miss synonyms and complex descriptions. Numerical comparisons retain
+units, scope and the company's accounting definition. No incompatible amounts
+are subtracted. Source records and frozen experiment files are unchanged.
 
 ## Checks
 
-The deterministic suite includes local HTTP integration tests and needs no model:
+Python 3.14 and Node 22+ run the full development suite; running the app itself
+needs no Node installation:
 
 ```sh
-make test
-make validate
+make test       # Python safeguards/HTTP tests and JavaScript reader-state tests
+make validate   # Existing pilot data and judgement coverage
+make lint       # Ruff, using the existing .venv development environment
 ```
 
-With the development environment installed, run `make lint` for Ruff checks and
-format verification. For a minimal lint environment instead of the full model
-setup: `python3 -m venv .venv`, then
+For a minimal lint environment: `python3 -m venv .venv`, then
 `.venv/bin/python -m pip install ruff==0.17.3`.
-JavaScript syntax: `node --check assets/app/app.js` and
-`node --check scripts/check_app_browser.mjs`.
+JavaScript syntax: `node --check assets/app/app.js`,
+`node --check assets/app/reader.mjs` and `node --check scripts/check_app_browser.mjs`.
 
-For the optional real-browser smoke check, use Node 22+ and Chrome/Chromium:
+The optional browser checks use Node 22+ and installed Chrome/Chromium:
 
 ```sh
 make browser-test
-# If Chrome is installed elsewhere:
+# For another browser installation:
 CHROME_BIN=/usr/bin/chromium make browser-test
 ```
 
-The check starts/stops its own loopback server and temporary headless browser.
-It covers search, source inspection, three-case comparison, self/date exclusions,
-insufficient evidence, validation errors and a 375px mobile viewport. Screenshots
-are written to `/tmp/ais-case-search-desktop.png` and
-`/tmp/ais-case-search-mobile.png`; the temporary profile is removed. The default
-browser path is `/opt/google/chrome/chrome`. The app itself needs neither Node
-nor Chrome. Set `APP_PYTHON` to use a different Python executable.
+They start and stop their own local server and browser. Real control clicks cover
+search, case/source details, comparison, date recovery and insufficient-evidence
+results on desktop and a 375px phone viewport. They also check that technical
+information stays optional, a personal draft survives source-case switching,
+and a failed connection preserves the description for retry. Screenshots go to
+`/tmp/ais-case-search-{desktop,mobile}.png`,
+`/tmp/ais-reader-comparison-{desktop,mobile}.png` and
+`/tmp/ais-reader-case-mobile.png`; the temporary browser profile is removed.
+Default Chrome path: `/opt/google/chrome/chrome`. Set `APP_PYTHON` to use another
+Python executable.
 
 ## Reproduce the earlier model pilot
 
@@ -131,7 +137,8 @@ changes require a new benchmark version. `make run` reproduces the model pilot;
 
 ## Roadmap
 
-M001 is closed as a development pilot; M002 delivers local search and comparison.
+M001 is closed as a development pilot. M002 delivers local search/comparison;
+M003 makes the reader experience simpler, with optional technical detail.
 Next improve case depth and coverage. Later, evaluate with independent relevance
 judgements, test structural comparison and consider task-specific training when
 failures and labels justify it. Builder works end to end without user review

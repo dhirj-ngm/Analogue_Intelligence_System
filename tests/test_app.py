@@ -28,7 +28,7 @@ class AppTests(unittest.TestCase):
         return result
 
     def test_page_and_assets_are_served_without_exposing_repository_files(self):
-        for path in ["/", "/app.js", "/app.css", "/icon.svg"]:
+        for path in ["/", "/app.js", "/reader.mjs", "/app.css", "/icon.svg"]:
             status, headers, body = self.request("GET", path)
             self.assertEqual(status, 200)
             self.assertTrue(body)
@@ -60,6 +60,18 @@ class AppTests(unittest.TestCase):
             self.assertEqual(status, 400)
             self.assertIn("error", json.loads(body))
             self.assertNotIn("Traceback", body.decode())
+
+    def test_validation_error_names_the_field_for_accessible_recovery(self):
+        payload = json.dumps(
+            dict(text="packaging", cutoff="2023-01-27", before_period_end="2024-01-01")
+        )
+        status, _, body = self.request(
+            "POST", "/api/search", payload, {"Content-Type": "application/json"}
+        )
+        self.assertEqual(status, 400)
+        error = json.loads(body)
+        self.assertEqual(error["field"], "before_period_end")
+        self.assertIn("earlier end date", error["error"])
 
     def test_cross_origin_wrong_media_type_and_oversize_requests_are_rejected(self):
         self.assertEqual(self.request("GET", "/", headers={"Host": "evil.example"})[0], 403)

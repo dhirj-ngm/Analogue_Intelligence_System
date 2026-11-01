@@ -3,81 +3,114 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Historical Analogue — Case search</title>
+  <title>Historical Analogue — Company case studies</title>
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/app.css">
-  <script src="/app.js" defer></script>
+  <script src="/app.js" type="module"></script>
 </head>
 <body>
   <a class="skip-link" href="#search">Skip to search</a>
   <header class="site-header">
     <a class="brand" href="/" aria-label="Historical Analogue home"><span class="brand-mark">a.</span> Historical Analogue</a>
-    <span class="header-note">The research workspace <span class="status-dot"></span></span>
+    <span class="header-note">Stories from company reports <span class="status-dot"></span></span>
   </header>
   <main>
     <section class="intro" aria-labelledby="page-title">
       <div>
-        <p class="eyebrow">BUSINESS HISTORY, WITH THE EVIDENCE</p>
-        <h1 id="page-title">A past situation.<br>A new perspective.</h1>
-        <p class="intro-copy">Explore how companies described earlier pressures and responses.
-          Find a starting point for investigation, with the differences in plain sight.</p>
+        <p class="eyebrow">LEARN FROM EARLIER COMPANY EXPERIENCES</p>
+        <h1 id="page-title">A past problem.<br>A new perspective.</h1>
+        <p class="intro-copy">Describe a business problem. Explore what other companies reported,
+          what they said they did, and where the comparison falls short.</p>
       </div>
       <aside class="corpus-note">
-        <span class="small-label">THE STARTING COLLECTION</span>
-        <strong id="corpus-count">FMCG case studies</strong>
-        <p>Input costs, margins and disruption.<br>Assistant-checked observations; independent validation remains open.</p>
+        <span class="small-label">A SMALL STARTING COLLECTION</span>
+        <strong id="corpus-count">Company case studies</strong>
+        <p>Everyday consumer goods, from packaging to delivery.<br>Compiled with AI from company reports; not independently verified.</p>
       </aside>
     </section>
 
     <section class="search-panel" id="search" aria-labelledby="search-title">
-      <div class="section-top"><h2 id="search-title">What are you investigating?</h2><span class="small-label">01 / DESCRIBE</span></div>
-      <form id="search-form">
-        <label for="situation">Describe the pressure and context</label>
+      <div class="section-top"><h2 id="search-title">What is happening?</h2></div>
+      <form id="search-form" novalidate>
+        <label for="situation">Describe the problem</label>
         <textarea id="situation" name="text" rows="3" minlength="3" maxlength="2000" required
-          placeholder="For example: packaging and freight costs are rising, putting pressure on operating margin."
+          placeholder="Packaging costs are rising and there is less profit left from each sale."
           aria-describedby="text-help"></textarea>
-        <p class="field-help" id="text-help">Name a material or disruption. Responses and later outcomes appear after retrieval.</p>
-        <div class="examples" aria-label="Example situations">
-          <span>Try a starting point</span>
-          <button type="button" data-example="Packaging and logistics costs are increasing, putting pressure on margin.">Packaging &amp; logistics</button>
-          <button type="button" data-example="Resin and energy inflation is weighing on operating profit.">Resin &amp; energy</button>
-          <button type="button" data-example="A cyberattack disrupted shipments and sales.">Shipment disruption</button>
+        <p class="field-help" id="text-help">Name what became more expensive or what was disrupted. A few sentences are enough.</p>
+        <div class="examples" aria-label="Example searches">
+          <span>Or try a search</span>
+          <button type="button" disabled data-example="Packaging and logistics costs are increasing, putting pressure on margin.">Packaging &amp; delivery costs</button>
+          <button type="button" disabled data-example="Resin and energy inflation is weighing on operating profit.">Plastic materials &amp; energy</button>
+          <button type="button" disabled data-example="A cyberattack disrupted shipments and sales.">A cyberattack stops shipments</button>
         </div>
-        <div class="form-grid">
-          <div><label for="cutoff">Only information published by</label><input id="cutoff" name="cutoff" type="date" required></div>
-          <div><label for="before-period">Situation period end</label><input id="before-period" name="before_period_end" type="date" required></div>
-          <div class="source-choice"><label for="source-case">Investigate an existing case <span>(optional)</span></label>
-            <select id="source-case" name="source_id"><option value="">My own description</option></select></div>
-        </div>
-        <div class="form-bottom"><p>Candidate reporting periods must end <strong>before</strong> the situation period end.
-          Selecting a case sets its dates and excludes itself and known continuations.</p>
-          <button class="primary" id="search-button" type="submit" disabled>Find historical cases <span aria-hidden="true">↗</span></button>
+        <details id="search-options" class="search-options">
+          <summary>Dates and a starting case <span>(optional)</span></summary>
+          <p class="field-help">Use these when you want to look back at what was known at a particular time.</p>
+          <div class="form-grid">
+            <div class="source-choice"><label for="source-case">Start from a case in this collection</label>
+              <select id="source-case" name="source_id" aria-describedby="source-help"><option value="">My own situation</option></select>
+              <p class="field-help" id="source-help">This fills in its description and dates. We leave out that case and its continuing reports.</p>
+            </div>
+            <div><label for="cutoff">Information available by</label><input id="cutoff" name="cutoff" type="date" required aria-describedby="cutoff-help">
+              <p class="field-help" id="cutoff-help">Use reports published on or before this date.</p></div>
+            <div><label for="before-period">End of the situation you are comparing</label><input id="before-period" name="before_period_end" type="date" required aria-describedby="period-help">
+              <p class="field-help" id="period-help">The cases shown must cover periods ending before this date.</p></div>
+          </div>
+          <button id="reset-dates" class="text-button" type="button" disabled>Use my situation and today's dates</button>
+        </details>
+        <div class="form-bottom"><p id="search-scope">Loading the case collection…</p>
+          <button class="primary" id="search-button" type="submit" disabled>Find cases <span aria-hidden="true">↗</span></button>
         </div>
       </form>
-      <p id="error" class="error" role="alert" hidden></p>
-      <noscript><p class="error">Enable JavaScript to search and compare the local case collection.</p></noscript>
+      <div id="error" class="error" role="alert" hidden><strong>Let's check one thing</strong><p id="error-message"></p><button id="reload" class="text-button" type="button" hidden>Reload the page</button></div>
+      <noscript><p class="error">Turn on JavaScript in your browser to search these cases.</p></noscript>
     </section>
 
     <section id="results-section" aria-labelledby="results-title">
-      <div class="section-top results-top"><div><p class="eyebrow">02 / EXPLORE</p><h2 id="results-title">Historical cases</h2></div>
-        <button id="compare-button" class="secondary" type="button" disabled>Compare selected (0/3)</button></div>
-      <div id="results-status" class="results-status" role="status" aria-live="polite">Describe a situation to explore the collection.</div>
-      <p id="method-note" class="field-help" hidden></p>
-      <details id="eligibility" class="eligibility" hidden><summary>Dates and exclusions</summary><div id="eligibility-content"></div></details>
+      <div class="section-top results-top"><div><h2 id="results-title" tabindex="-1">Cases to explore</h2></div>
+        <button id="edit-search" class="text-button" type="button" hidden>Edit your search ↑</button></div>
+      <div id="results-status" class="results-status" role="status" aria-live="polite">Your results will appear here. Try describing a problem or choosing an example.</div>
+      <p id="result-caution" class="visible-caution" hidden>Shared words are a starting point. The situations may still be very different.</p>
+      <div id="empty-actions" class="empty-actions" hidden>
+        <button id="try-example" class="secondary" type="button">Try the packaging example</button>
+        <button id="change-dates" class="text-button" type="button">Check the dates</button>
+      </div>
+      <div id="selection-bar" class="selection-bar" hidden>
+        <p id="selection-help" role="status">Choose two or three cases to see them together.</p>
+        <button id="compare-button" class="primary" type="button" disabled>Compare cases</button>
+      </div>
       <div id="results" class="results-grid"></div>
     </section>
 
     <section id="comparison" class="comparison" aria-labelledby="comparison-title" hidden>
-      <div class="section-top"><div><p class="eyebrow">03 / LOOK CLOSER</p><h2 id="comparison-title">Compare the evidence</h2></div>
-        <button id="clear-comparison" class="secondary" type="button">Clear selection</button></div>
-      <p class="comparison-note">These measures may differ in scope, accounting basis and period. Read them alongside each other;
-        no causal effect or compatible numerical comparison is implied.</p>
-      <div class="table-scroll" role="region" aria-label="Selected case comparison" tabindex="0"><table id="comparison-table"></table></div>
+      <div class="section-top"><h2 id="comparison-title" tabindex="-1">Look at the cases together</h2>
+        <button id="clear-comparison" class="secondary" type="button">Clear choices</button></div>
+      <p class="comparison-note">One case may cover a whole company, another just part of it.
+        Profit figures may also be calculated differently. A reported action does not prove what caused a result.</p>
+      <div class="table-scroll"><table id="comparison-table" role="table"></table></div>
     </section>
-    <footer>
-      <span class="brand-mini">a.</span><p>A source-backed starting point, not a strategy recommendation.
-        Episode boundaries, later outcomes and source reuse rights remain limited. Searches stay in this local app.</p>
-    </footer>
+
+    <details id="how-it-works" class="how-it-works">
+      <summary>How this works</summary>
+      <div class="how-content">
+        <h3>What a match means</h3>
+        <p>Search looks for words about a pressure, such as packaging or energy, in a small collection of company reports.
+          It may miss different words for the same problem. A match does not show that an earlier action would work now.</p>
+        <h3>Where the evidence comes from</h3>
+        <p>The case descriptions were compiled with AI from published company reports. They have not had a complete independent review.
+          Each case links to its report and tells you where to look. The company's explanation is not independent proof of cause and effect.</p>
+        <h3>Dates, repeated cases and later events</h3>
+        <p>We check publication dates, not just the dates a report covers. When you start from a case, we exclude it and known continuing reports.
+          Repeated copies are grouped together. Reported actions and later outcomes do not help a case rank higher. Actions not known by your chosen date are hidden.</p>
+        <details class="technical-details"><summary>Search method and this search's checks</summary>
+          <p>BM25 scores challenge text only. Results also need a specific shared pressure word; general words such as cost or margin are not enough.
+            Scores are keyword scores, not confidence or probabilities. The small word-matching and negation rules do not establish relevance.</p>
+          <div id="method-checks"><p>Run a search to see its dates, exclusions and scores.</p></div>
+        </details>
+      </div>
+    </details>
+    <footer><span class="brand-mini">a.</span><p>Learn from reported experiences, with room for uncertainty.
+      This small collection cannot tell you which action will work. Your searches stay in this local app.</p></footer>
   </main>
 </body>
 </html>

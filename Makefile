@@ -8,6 +8,7 @@ setup:
 	$(PYTHON) -m pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
 test:
 	$(APP_PYTHON) -m unittest discover -s tests -v
+	node --test tests/test_reader.mjs
 lint:
 	.venv/bin/ruff check src tests scripts
 	.venv/bin/ruff format --check src tests scripts

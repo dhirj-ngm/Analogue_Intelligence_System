@@ -34,12 +34,24 @@ def pressure_terms(text):
     )
 
 
-def iso_date(value, label):
+class SearchInputError(ValueError):
+    """Reader-facing error with the form field that needs attention."""
+
+    def __init__(self, message, field):
+        super().__init__(message)
+        self.field = field
+
+
+def iso_date(value, label, field=None):
     if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+        if field:
+            raise SearchInputError(f"Choose a date for {label}.", field)
         raise ValueError(f"{label} must be a date in YYYY-MM-DD format.")
     try:
         date.fromisoformat(value)
     except ValueError:
+        if field:
+            raise SearchInputError(f"Choose a real calendar date for {label}.", field) from None
         raise ValueError(f"{label} is not a valid calendar date.") from None
     return value
 
@@ -113,27 +125,40 @@ class CaseSearch:
 
     def query(self, payload):
         if not isinstance(payload, dict):
-            raise ValueError("Search must be a JSON object.")
+            raise SearchInputError(
+                "We couldn't read that search. Refresh the page and try again.", "text"
+            )
         text = payload.get("text")
         if not isinstance(text, str) or not 3 <= len(text.strip()) <= 2000:
-            raise ValueError("Describe a situation using 3–2000 characters.")
-        cutoff = iso_date(payload.get("cutoff"), "Publication cutoff")
+            raise SearchInputError(
+                "Describe the problem in a few words, using no more than 2,000 characters.", "text"
+            )
+        cutoff = iso_date(payload.get("cutoff"), "information available by", "cutoff")
         supplied_end = payload.get("before_period_end")
         before = iso_date(
-            cutoff if supplied_end in (None, "") else supplied_end, "Situation period end"
+            cutoff if supplied_end in (None, "") else supplied_end,
+            "the end of the situation you're comparing",
+            "before_period_end",
         )
         if before > cutoff:
-            raise ValueError("Situation period end cannot be after the publication cutoff.")
+            raise SearchInputError(
+                "The situation must end on or before the date for available information. "
+                "Choose an earlier end date, or a later information date.",
+                "before_period_end",
+            )
         source_id = payload.get("source_id")
         if source_id == "":
             source_id = None
         if source_id is not None and (
             not isinstance(source_id, str) or source_id not in self.by_id
         ):
-            raise ValueError("Choose a known source case or leave it blank.")
+            raise SearchInputError(
+                "That starting case isn't in this collection. Choose another, or use your own situation.",
+                "source_id",
+            )
         company = payload.get("company", "")
         if not isinstance(company, str) or len(company) > 100:
-            raise ValueError("Company must be text of at most 100 characters.")
+            raise SearchInputError("Use a company name of no more than 100 characters.", "company")
         query = {
             "text": text.strip(),
             "cutoff": cutoff,
@@ -146,8 +171,10 @@ class CaseSearch:
             source = self.by_id[source_id]
             # Query evidence itself must be public, not just its reporting period.
             if self.evidence_reason(source, cutoff):
-                raise ValueError(
-                    "The selected source case's challenge was not public by this cutoff."
+                raise SearchInputError(
+                    "This starting case was not public by that date. "
+                    "Use a later information date, or choose your own situation.",
+                    "cutoff",
                 )
             query["before_period_end"] = min(before, source["period_end"])
             query["exclude_groups"] = [source["duplicate_group"]]
@@ -198,12 +225,20 @@ class CaseSearch:
         return {
             "status": "candidates" if matches else "insufficient_evidence",
             "message": (
-                "Partial pressure matches — inspect the evidence and differences."
+                "These reports share words about the problem you described."
                 if matches
-                else "Insufficient evidence for a comparison in this corpus. "
-                "No eligible case has a specific pressure-term match. "
-                "Try naming a material, disruption or other pressure, or adjust the dates."
+                else "We don't have enough evidence for this comparison. "
+                + (
+                    "No cases can be used with these dates and this starting case. "
+                    "You can change those choices without changing your description."
+                    if not candidates
+                    else "None of the cases we can use shares a specific word about the pressure. "
+                    "Try naming a material or disruption. This small collection may not cover your situation."
+                )
             ),
+            "empty_reason": None
+            if matches
+            else ("no_eligible_cases" if not candidates else "no_pressure_match"),
             "query": query,
             "eligible_count": len(candidates),
             "matched_count": len(matches),
@@ -221,7 +256,9 @@ class CaseSearch:
             public = field["evidence"].get("public_date")
             visible = bool(public and public <= query["cutoff"])
             fields[key] = {
-                "value": field["value"] if visible else "Not available by the selected cutoff.",
+                "value": field["value"]
+                if visible
+                else "We don't have this information by the date you chose.",
                 "kind": field["kind"],
                 "available": visible,
                 "evidence": deepcopy(field["evidence"]) if visible else None,
@@ -230,12 +267,12 @@ class CaseSearch:
         if query["company"]:
             same = query["company"].casefold() == case["company"].casefold()
             differences.append(
-                "Earlier observation at the same company; scope and conditions may have changed."
+                "This is the same company at an earlier time. Its business and conditions may have changed."
                 if same
-                else f"Different company: {case['company']}. Exposures and constraints may differ."
+                else f"This concerns {case['company']}, a different company. Its costs and options may differ."
             )
         differences.append(
-            "Your situation's metric basis and business scope need separate verification."
+            "Check that the part of the business and the way profit is measured fit your situation."
         )
         return {
             "id": case["id"],

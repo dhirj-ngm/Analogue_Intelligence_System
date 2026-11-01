@@ -3,7 +3,7 @@
 from copy import deepcopy
 import unittest
 
-from ais.search import CaseSearch
+from ais.search import CaseSearch, SearchInputError
 
 
 class SearchTests(unittest.TestCase):
@@ -136,6 +136,25 @@ class SearchTests(unittest.TestCase):
         )
         self.assertEqual(result["eligible_count"], 0)
         self.assertEqual(result["status"], "insufficient_evidence")
+        self.assertEqual(result["empty_reason"], "no_eligible_cases")
+        self.assertIn("these dates", result["message"])
+
+    def test_no_word_match_explains_collection_gap_separately_from_date_exclusions(self):
+        result = self.search.search(dict(self.query, text="semiconductor shortage"))
+        self.assertGreater(result["eligible_count"], 0)
+        self.assertEqual(result["empty_reason"], "no_pressure_match")
+        self.assertIn("small collection", result["message"])
+
+    def test_reader_errors_identify_the_control_that_needs_attention(self):
+        for field, value in [
+            ("text", ""),
+            ("cutoff", "2023-02-30"),
+            ("source_id", "missing"),
+            ("before_period_end", "2024-01-01"),
+        ]:
+            with self.subTest(field=field), self.assertRaises(SearchInputError) as error:
+                self.search.search(dict(self.query, **{field: value}))
+            self.assertEqual(error.exception.field, field)
 
     def test_invalid_searches_are_rejected_and_ties_are_stable(self):
         for bad in [

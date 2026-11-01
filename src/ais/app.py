@@ -6,7 +6,7 @@ import json
 from urllib.parse import urlsplit
 
 from ais.pilot import ROOT
-from ais.search import CaseSearch
+from ais.search import CaseSearch, SearchInputError
 
 ASSETS = ROOT / "assets/app"
 MAX_BODY = 16_384
@@ -45,7 +45,9 @@ def create_server(port=8000, search=None):
                 return False
             origin = self.headers.get("Origin")
             if origin and origin not in {f"http://{host}" for host in hosts}:
-                self.send(403, {"error": "Cross-origin requests are not allowed."})
+                self.send(
+                    403, {"error": "Open the app directly using its local address to search."}
+                )
                 return False
             return True
 
@@ -60,6 +62,7 @@ def create_server(port=8000, search=None):
                 "/": ("index.html", "text/html; charset=utf-8"),
                 "/app.css": ("app.css", "text/css; charset=utf-8"),
                 "/app.js": ("app.js", "text/javascript; charset=utf-8"),
+                "/reader.mjs": ("reader.mjs", "text/javascript; charset=utf-8"),
                 "/icon.svg": ("icon.svg", "image/svg+xml"),
             }
             if path not in assets:
@@ -75,19 +78,30 @@ def create_server(port=8000, search=None):
                 self.send(404, {"error": "Endpoint not found."})
                 return
             if self.headers.get("Content-Type", "").split(";")[0].strip() != "application/json":
-                self.send(415, {"error": "Send application/json."})
+                self.send(
+                    415, {"error": "We couldn't read that search. Refresh the page and try again."}
+                )
                 return
             try:
                 size = int(self.headers.get("Content-Length", "0"))
                 if not 0 < size <= MAX_BODY:
-                    self.send(413, {"error": "Search body must be between 1 and 16384 bytes."})
+                    self.send(
+                        413,
+                        {
+                            "error": "Shorten your description, then try searching again.",
+                            "field": "text",
+                        },
+                    )
                     return
                 payload = json.loads(self.rfile.read(size))
                 result = search.search(payload)
             except (json.JSONDecodeError, UnicodeDecodeError):
                 self.send(
-                    400, {"error": "Invalid search. Check the situation, dates and source case."}
+                    400, {"error": "We couldn't read that search. Refresh the page and try again."}
                 )
+                return
+            except SearchInputError as error:
+                self.send(400, {"error": str(error), "field": error.field})
                 return
             except ValueError as error:
                 self.send(400, {"error": str(error)})
