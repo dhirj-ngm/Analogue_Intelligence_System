@@ -208,6 +208,57 @@ try {
     await wait("document.querySelectorAll('.case-card').length>=3 && document.getElementById('results-section').getAttribute('aria-busy')==='false'", "retry with example");
     assert.ok(await evaluate(`document.getElementById('error').hidden`));
     checks.push(`${device}: distinct date/coverage empty states and recovery`);
+
+    await openOptions();
+    await click("#reset-dates");
+    await fill("situation", "cocoa");
+    await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`), 1);
+    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`), "HSY-2025-Q1");
+    await click(".case-reading > summary");
+    assert.ok(await evaluate(`document.querySelector('.source-conflict').innerText.includes('1,780 basis points (17.8 percentage points)') && document.querySelector('.source-conflict').innerText.includes('1,790 basis points (17.9 percentage points)')`));
+    assert.ok(await evaluate(`document.querySelector('.case-detail').innerText.includes('33.7%') && document.querySelector('.case-detail').innerText.includes('not independent proof')`));
+    await click(".other-figures > summary");
+    assert.ok(await evaluate(`document.querySelector('.other-figures').innerText.includes('41.2%')`));
+    await click(".other-figures .metric-details > summary");
+    assert.ok(await evaluate(`document.querySelector('.other-figures').innerText.includes('Non-GAAP')`));
+    assert.ok(await evaluate(`document.querySelectorAll('.source-conflict a').length===2 && [...document.querySelectorAll('.source-conflict a')].every(a=>a.target==='_blank' && a.href.startsWith('https://'))`));
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
+    await evaluate(`document.querySelector('.source-conflict').scrollIntoView({block:'start',behavior:'instant'})`);
+    await screenshot(`ais-collection-conflict-${device}.png`, false);
+    checks.push(`${device}: cocoa case, separate reported/adjusted figures, visible source disagreement and unit explanations`);
+
+    await openOptions();
+    await fill("cutoff", "2025-04-30", true);
+    await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`), 0);
+    await fill("cutoff", "2025-05-01", true);
+    await search();
+    assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`), "HSY-2025-Q1");
+    await fill("source-case", "HSY-2025-Q1", true);
+    await search();
+    assert.ok(await evaluate(`![...document.querySelectorAll('.case-card')].some(c=>c.dataset.caseId==='HSY-2025-Q1') && document.getElementById('method-checks').textContent.includes('The case you started from: 1')`));
+    await click("#reset-dates");
+    await fill("situation", "milk flour electricity");
+    await search();
+    assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('results-status').textContent.includes("don't have enough evidence")`));
+    checks.push(`${device}: new-case publication boundary, self exclusion and honest synonym miss`);
+
+    await fill("situation", "cocoa grains oil");
+    await search();
+    assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).sort(), ["GIS-2007", "HSY-2025-Q1", "NES-WATERS-2011-H1"]);
+    await click(".case-card[data-case-id='NES-WATERS-2011-H1'] .case-reading > summary");
+    assert.ok(await evaluate(`document.querySelector('[data-case-id="NES-WATERS-2011-H1"] .case-detail').innerText.includes('140 basis points (1.4 percentage points)')`));
+    for (const id of ["GIS-2007", "HSY-2025-Q1", "NES-WATERS-2011-H1"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
+    await click("#compare-button");
+    const comparison = await evaluate(`document.getElementById('comparison-table').innerText`);
+    assert.ok(comparison.includes('bottled-water division') && comparison.includes('full financial year') && comparison.includes('sources disagree'));
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=window.innerWidth`));
+    await screenshot(`ais-collection-comparison-${device}.png`, false);
+    await evaluate(`document.querySelectorAll('#comparison-table tbody tr')[1].scrollIntoView({block:'start',behavior:'instant'})`);
+    await screenshot(`ais-collection-figures-${device}.png`, false);
+    checks.push(`${device}: three new cases compared with business scope, accounting differences and conflict retained`);
+    await click("#clear-comparison");
   }
   await call("Network.enable");
   await call("Network.setBlockedURLs", {urls:["*/api/search"]});

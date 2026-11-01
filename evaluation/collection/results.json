@@ -1,0 +1,92 @@
+{
+  "query_inputs_sha256": "a2904483d78a200b8433dba490dcae7ddb9e60fd543e26164f0adf87b88dd6ad",
+  "collection_sha256": "29ec05ec0b360a2ea88b586212d7626e1687a0dedeeb98a4868a093ffc907cd7",
+  "additional_cases": 3,
+  "app_cases": 13,
+  "note": "Development observations only. Misses are reported, not converted to passing relevance judgements. Source access was checked manually; this command is offline.",
+  "checks": [
+    {
+      "text": "Cocoa costs are rising and putting pressure on gross margin.",
+      "useful_case": "HSY-2025-Q1",
+      "ranked_ids": [
+        "HSY-2025-Q1"
+      ],
+      "status": "candidates",
+      "useful_case_rank": 1,
+      "finding": "useful case retrieved"
+    },
+    {
+      "text": "Grains, dairy and energy costs are increasing.",
+      "useful_case": "GIS-2007",
+      "ranked_ids": [
+        "GIS-2007",
+        "KC-2011"
+      ],
+      "status": "candidates",
+      "useful_case_rank": 1,
+      "finding": "useful case retrieved"
+    },
+    {
+      "text": "Oil-related packaging and distribution costs are rising.",
+      "useful_case": "NES-WATERS-2011-H1",
+      "ranked_ids": [
+        "NES-WATERS-2011-H1",
+        "KC-2011",
+        "CL-2015",
+        "CL-2022",
+        "CL-2008"
+      ],
+      "status": "candidates",
+      "useful_case_rank": 1,
+      "finding": "useful case retrieved"
+    },
+    {
+      "text": "Packaging and logistics costs are increasing, putting pressure on margin.",
+      "useful_case": "CL-2022",
+      "ranked_ids": [
+        "CL-2022",
+        "UL-2022",
+        "CL-2015",
+        "NES-WATERS-2011-H1",
+        "CL-2008"
+      ],
+      "status": "candidates",
+      "useful_case_rank": 1,
+      "finding": "useful case retrieved"
+    },
+    {
+      "text": "Milk, flour and electricity are more expensive.",
+      "useful_case": "GIS-2007",
+      "ranked_ids": [],
+      "status": "insufficient_evidence",
+      "useful_case_rank": null,
+      "finding": "useful case missed"
+    },
+    {
+      "text": "Chocolate ingredient inflation is squeezing profit.",
+      "useful_case": "HSY-2025-Q1",
+      "ranked_ids": [
+        "GIS-2007"
+      ],
+      "status": "candidates",
+      "useful_case_rank": null,
+      "finding": "useful case missed"
+    },
+    {
+      "text": "Bottled water freight and fuel costs are rising.",
+      "useful_case": "NES-WATERS-2011-H1",
+      "ranked_ids": [],
+      "status": "insufficient_evidence",
+      "useful_case_rank": null,
+      "finding": "useful case missed"
+    },
+    {
+      "text": "Semiconductor shortages at a bank.",
+      "useful_case": null,
+      "ranked_ids": [],
+      "status": "insufficient_evidence",
+      "useful_case_rank": null,
+      "finding": "unsupported situation correctly left empty"
+    }
+  ]
+}

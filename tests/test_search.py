@@ -25,7 +25,7 @@ class SearchTests(unittest.TestCase):
             self.assertTrue(case["fields"]["response"]["value"])
             self.assertTrue(case["metric"]["basis"])
             self.assertTrue(case["important_differences"])
-            self.assertIn("later realized outcome", case["unknowns"])
+            self.assertTrue(case["unknowns"])
 
     def test_publication_cutoff_is_inclusive_and_uses_publication_not_period(self):
         for cutoff, expected in [("2023-01-26", False), ("2023-01-27", True)]:

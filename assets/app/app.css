@@ -59,6 +59,11 @@
 .comparison td .detail-block h4 { display: none; }
 .comparison td .detail-block p { font-size: 13px; }
 .compare-case-label { display: none; }
+.source-conflict { background: #f7f0e4; border-left: 3px solid #b0864d; padding: 12px; margin: 12px 0; font-size: 13px; }
+.source-conflict strong { color: #6d4e25; }
+.case-card .other-figures, .other-figures { background: transparent; border: 0; margin-top: 12px; }
+.case-card .other-figures > summary, .other-figures > summary { padding: 8px 0; font-size: 12px; cursor: pointer; }
+.other-figures > p { font-size: 13px; font-weight: 600; }
 footer p { font-size: 12px; }
 @media (max-width: 700px) {
   .intro-copy { font-size: 14px; }

@@ -46,7 +46,15 @@ const PRESSURES = new Map([
 ]);
 
 export function pressureLabel(text) {
-  return PRESSURES.get(text) || text;
+  return explainBasisPoints(PRESSURES.get(text) || text);
+}
+
+export function explainBasisPoints(text) {
+  // Preserve the disclosed number; explain its unit without reconciling sources.
+  return text.replace(/(\d[\d,]*(?:\.\d+)?) basis points\b/g, (match, amount) => {
+    const points = Number(amount.replaceAll(",", "")) / 100;
+    return `${match} (${Number(points.toFixed(6))} percentage ${points === 1 ? "point" : "points"})`;
+  });
 }
 
 export function reportLocator(text) {
@@ -69,10 +77,10 @@ export function metricFacts(metric) {
   const amount = metric.unit === "percent" ? `${metric.value}%` : `${metric.value} ${metric.unit}`;
   return [
     ["Measure", metric.name],
-    ["Number reported", amount],
+    ["Number reported", explainBasisPoints(amount)],
     ["Part of the business", metric.scope === "consolidated" ? "The whole company" : metric.scope],
-    ["Company's calculation", metric.basis],
-    ["Compared with", metric.comparison],
+    ["Company's calculation", explainBasisPoints(metric.basis)],
+    ["Compared with", explainBasisPoints(metric.comparison)],
   ];
 }
 

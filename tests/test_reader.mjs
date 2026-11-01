@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { SearchDraft, changeInformationDate, dateLabel, metricFacts, pressureLabel, reportLocator, unknownLabels } from "../assets/app/reader.mjs";
+import { SearchDraft, changeInformationDate, dateLabel, metricFacts, pressureLabel, reportLocator, unknownLabels, explainBasisPoints } from "../assets/app/reader.mjs";
 
 const own = { text: "My packaging problem", cutoff: "2023-03-01", before_period_end: "2022-10-01", source_id: "" };
 const colgate = { id: "CL-2022", challenge: "Source challenge", published: "2023-01-27", period_end: "2022-12-31" };
@@ -58,4 +58,12 @@ test("pressure summaries keep reported amounts, negation and unknown wording", (
   assert.match(pressureLabel("a cyberattack disrupted shipments; no input-cost inflation mechanism established here"), /does not establish/);
   assert.equal(pressureLabel("Unresolved pressure from a new source"), "Unresolved pressure from a new source");
   assert.equal(reportLocator("Asia Pacific commentary; detailed evidence in data/episodes.jsonl"), "Asia Pacific commentary");
+});
+
+test("basis points are explained beside each reported number without changing the claim", () => {
+  assert.equal(explainBasisPoints("down 140 basis points"), "down 140 basis points (1.4 percentage points)");
+  assert.equal(explainBasisPoints("1,780 basis points; 1,790 basis points"), "1,780 basis points (17.8 percentage points); 1,790 basis points (17.9 percentage points)");
+  assert.equal(explainBasisPoints("100 basis points"), "100 basis points (1 percentage point)");
+  assert.match(pressureLabel("up 20 basis points"), /0.2 percentage points/);
+  assert.equal(explainBasisPoints("33.7%"), "33.7%");
 });

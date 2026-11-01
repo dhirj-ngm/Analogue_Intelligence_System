@@ -6,6 +6,7 @@ from datetime import date
 import re
 from urllib.parse import urlsplit
 
+from ais.collection import load_collection, search_records
 from ais.pilot import ROOT, bm25, eligible, ranking_text, read_jsonl, tokens
 
 # These words alone do not establish a specific, supported pressure match.
@@ -101,9 +102,10 @@ class CaseSearch:
 
     @classmethod
     def load(cls):
+        cases, details = search_records(load_collection())
         return cls(
-            read_jsonl(ROOT / "data/pilot/cases.jsonl"),
-            read_jsonl(ROOT / "data/pilot/cases-structured-v2.jsonl"),
+            read_jsonl(ROOT / "data/pilot/cases.jsonl") + cases,
+            read_jsonl(ROOT / "data/pilot/cases-structured-v2.jsonl") + details,
         )
 
     def catalog(self):
@@ -189,6 +191,8 @@ class CaseSearch:
             detail[key]["evidence"].get("public_date")
             for key in ("pressure", "margin_or_profit", "other_drivers")
         ]
+        if "evidence" in detail["metric"]:
+            dates.append(detail["metric"]["evidence"].get("public_date"))
         if any(not d for d in dates):
             return "unknown_challenge_date"
         if any(d > cutoff for d in dates):
@@ -286,8 +290,28 @@ class CaseSearch:
             "metric": deepcopy(detail["metric"]),
             "important_differences": list(dict.fromkeys(differences)),
             "unknowns": list(detail["unknowns"])
-            + [
-                "Action-level rationale and later outcomes are not established in these case records."
+            + (
+                []
+                if "sources" in detail
+                else [
+                    "Action-level rationale and later outcomes are not established in these case records."
+                ]
+            ),
+            # Extra display evidence never enters ranking. Hide it if it was not
+            # public by the query date, including both sides of a disagreement.
+            "figures": [
+                deepcopy(m)
+                for m in detail.get("figures", [])
+                if m["evidence"].get("public_date")
+                and m["evidence"]["public_date"] <= query["cutoff"]
+            ],
+            "conflicts": [
+                deepcopy(c)
+                for c in detail.get("conflicts", [])
+                if all(
+                    e.get("public_date") and e["public_date"] <= query["cutoff"]
+                    for e in c["sources"]
+                )
             ],
             "source": {
                 "url": case["source_url"],

@@ -7,26 +7,32 @@ five queries and frozen BM25/MiniLM experiments remain unchanged. Five user grad
 without rationales are not a complete human benchmark. See
 [the pilot report](evaluation/pilot/pilot-report.md).
 
-**M002: Complete.** Local case search, source inspection and comparison run with
-`make app` at http://127.0.0.1:8000.
+**M002 / M003: Complete.** Local, reader-friendly search, source inspection and
+comparison run with `make app` at http://127.0.0.1:8000. Technical details remain
+optional; date, self/continuation and evidence safeguards remain enforced.
 
-**M003: Complete — reader-friendly experience.** Plain labels and explanations
-cover shared pressures, company reports, differences, actions and unknowns.
-Scores and detailed date/exclusion checks sit in optional “How this works”.
-Examples run a search; starting-case switching restores the reader's own draft;
-optional dates explain their meaning and errors focus the field to fix. Empty
-states distinguish date restrictions from a collection gap. Phone comparisons
-stack vertically. Visible cautions preserve uncertainty and attribution.
+**M004: Complete — deeper case collection.** Three distinct situations add
+General Mills FY2007 grain/dairy/energy costs, Nestlé Waters H1 2011 oil-related
+packaging/distribution costs and Hershey Q1 2025 cocoa costs. The app now has 13
+observations from eight companies. New records include source passages/locators,
+publication/reporting dates, scope, units/basis, company attribution, actions,
+unknowns and access/retention notes. Supporting figures and Hershey's unresolved
+source disagreement are available in details and comparison. Basis points are
+explained beside numbers. Original documents remain external links.
 
-**Verification:** 29 Python tests and 6 JavaScript tests, Ruff, syntax and pilot
-validation passed. Thirteen real-browser checks covered the complete flow on
-desktop and a 375px phone viewport, plus connection-failure recovery. Screenshots
-were inspected. Four regression queries retained identical rankings/scores; all
-case, evaluation and configuration hashes were unchanged. No model run or new
-source acquisition was needed.
+**Verification:** 38 Python tests, 7 JavaScript tests, Ruff, JavaScript syntax,
+pilot validation and collection checks passed. Nineteen real-browser checks
+covered desktop and a 375px phone, new-case comparisons, source links, dates,
+self exclusion, empty results and connection recovery; screenshots inspected.
+Four substantive primary documents were readable through the web reader; a
+General Mills index request returned 403, with publication corroborated through
+the official EDGAR directory/report. All 16 frozen pilot artifact hashes match
+the starting checkpoint. No model experiment was rerun.
 
-**Limits / next:** Literal pressure matching can miss synonyms or complex
-situations; these cases are starting points, not validated analogues or evidence
-that a response worked. Episode boundaries, later outcomes and source reuse
-rights remain limited. Improve case depth/coverage before further ranking claims.
-Use [README.md](README.md) for run instructions and checks.
+**Limits / next:** Eight recorded development queries include three useful-case
+misses; these are not a human relevance benchmark. See
+[collection notes](data/collection/README.md) and
+[actual query results](evaluation/collection/results.json). Improve coverage and
+literal-matching failures next. Cases remain assistant-checked; true episode
+bounds, isolated action effects and later outcomes are unknown. Hershey's two
+stated margin declines remain unreconciled. Use [README.md](README.md) to run/check.

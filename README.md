@@ -7,8 +7,10 @@ compare up to three side by side, with sources, important differences and unknow
 Issuer explanations remain distinct from independently identified effects.
 A reported recovery does not establish that an action caused it.
 
-The collection has ten assistant-checked observations from five companies.
-These development records have limited evidence depth and independent validation.
+The collection has **13 assistant-checked observations from eight companies**.
+The latest batch adds General Mills' 2007 grain/dairy/energy costs, Nestlé Waters'
+2011 oil-related packaging/distribution costs, and Hershey's 2025 cocoa costs.
+These development records have not had independent human validation.
 
 ## Run the case app
 
@@ -57,9 +59,16 @@ visible. Shared words do not establish a useful analogy, and reported actions do
 not prove what caused a result. Metric definitions and exact source locators
 remain available beside the company-reported figures.
 
+Try **Cocoa costs** or **Food ingredients & energy** for the new cases.
+Case details and comparisons explain basis points beside the disclosed numbers.
+**More company-reported figures** keeps supporting amounts and adjusted measures
+with their own definitions and sources. Hershey's release and filing disagree
+about the margin decline; the app shows both claims and the unresolved difference.
+Reported and adjusted margins remain separate.
+
 The app binds to loopback for local use. Searches remain in memory for the
 request; their text is neither logged nor persisted. The app does not fetch
-models or sources. Source links visit the issuer's site in a separate tab.
+models or sources. Source links visit the issuer's site or SEC EDGAR in a separate tab.
 
 ## Safeguards and limits
 
@@ -70,7 +79,18 @@ periods stay excluded. A response unknown by the selected date is withheld.
 The app uses a conservative shared-pressure-word gate, not a relevance model;
 it can miss synonyms and complex descriptions. Numerical comparisons retain
 units, scope and the company's accounting definition. No incompatible amounts
-are subtracted. Source records and frozen experiment files are unchanged.
+are subtracted. The new records live in `data/collection/cases.jsonl`; the frozen
+M001 source records, cases and experiments are unchanged. No source documents are
+stored or served by the app; readers follow links to original reports.
+
+See [collection notes](data/collection/README.md) for source selection, precise
+locations, access/retention limits, continuation decisions and curation work.
+The [eight development query checks](evaluation/collection/results.json) include
+three known misses: milk/flour/electricity misses General Mills;
+chocolate/ingredient inflation misses Hershey and instead returns General Mills;
+bottled-water/freight/fuel misses Nestlé. Explicit pressure words retrieve each new
+case first in these checks. This is not an independent quality benchmark, and the
+expanded corpus changes BM25 scores/order. The ranking method is unchanged.
 
 ## Checks
 
@@ -80,6 +100,7 @@ needs no Node installation:
 ```sh
 make test       # Python safeguards/HTTP tests and JavaScript reader-state tests
 make validate   # Existing pilot data and judgement coverage
+make collection-check # New records and reproducible query observations, including misses
 make lint       # Ruff, using the existing .venv development environment
 ```
 
@@ -100,18 +121,24 @@ They start and stop their own local server and browser. Real control clicks cove
 search, case/source details, comparison, date recovery and insufficient-evidence
 results on desktop and a 375px phone viewport. They also check that technical
 information stays optional, a personal draft survives source-case switching,
-and a failed connection preserves the description for retry. Screenshots go to
+and a failed connection preserves the description for retry. New-case checks
+cover the source disagreement, accounting definitions, publication boundary,
+self exclusion, synonym misses and comparison on both screen sizes. Screenshots go to
 `/tmp/ais-case-search-{desktop,mobile}.png`,
 `/tmp/ais-reader-comparison-{desktop,mobile}.png` and
 `/tmp/ais-reader-case-mobile.png`; the temporary browser profile is removed.
 Default Chrome path: `/opt/google/chrome/chrome`. Set `APP_PYTHON` to use another
 Python executable.
 
+Additional screenshots: `/tmp/ais-collection-{conflict,comparison,figures}-{desktop,mobile}.png`.
+
 ## Reproduce the earlier model pilot
 
 [The pilot report](evaluation/pilot/pilot-report.md) describes the ten-case,
-five-query BM25/MiniLM experiment. The app reads `data/pilot/cases.jsonl` and
-`data/pilot/cases-structured-v2.jsonl` without changing frozen inputs/results.
+five-query BM25/MiniLM experiment. The app combines `data/pilot/cases.jsonl` and
+`data/pilot/cases-structured-v2.jsonl` with the new collection through an adapter,
+without changing frozen inputs/results. The pilot CLI still uses only its frozen
+ten cases.
 The detailed Colgate record and source manifest remain in `data/episodes.jsonl`
 and `data/source_manifest.jsonl`.
 
@@ -139,7 +166,8 @@ changes require a new benchmark version. `make run` reproduces the model pilot;
 
 M001 is closed as a development pilot. M002 delivers local search/comparison;
 M003 makes the reader experience simpler, with optional technical detail.
-Next improve case depth and coverage. Later, evaluate with independent relevance
-judgements, test structural comparison and consider task-specific training when
+M004 adds three distinct source-backed cost situations and records search misses.
+Next improve coverage and literal-matching failures, then evaluate with independent
+relevance judgements, test structural comparison and consider task-specific training when
 failures and labels justify it. Builder works end to end without user review
 gates. Development findings must remain labelled honestly.

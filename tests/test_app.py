@@ -33,13 +33,19 @@ class AppTests(unittest.TestCase):
             self.assertEqual(status, 200)
             self.assertTrue(body)
             self.assertIn("frame-ancestors 'none'", headers["Content-Security-Policy"])
-        for path in ["/../data/episodes.jsonl", "/.git/config", "/README.md"]:
+        for path in [
+            "/../data/episodes.jsonl",
+            "/.git/config",
+            "/README.md",
+            "/data/collection/cases.jsonl",
+            "/sources/report.pdf",
+        ]:
             self.assertEqual(self.request("GET", path)[0], 404)
 
     def test_catalog_and_real_search_round_trip(self):
         status, _, body = self.request("GET", "/api/catalog")
         self.assertEqual(status, 200)
-        self.assertEqual(json.loads(body)["total"], 10)
+        self.assertEqual(json.loads(body)["total"], 13)
         payload = json.dumps(dict(text="packaging logistics", cutoff="2023-01-27"))
         status, _, body = self.request(
             "POST", "/api/search", payload, {"Content-Type": "application/json"}

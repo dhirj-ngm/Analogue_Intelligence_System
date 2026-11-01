@@ -1,0 +1,15 @@
+{
+  "version": "M004-development-checks-v1",
+  "provenance": "Assistant-selected examples before executing this batch's rankings; not independent relevance judgements or a search-quality benchmark.",
+  "cutoff": "2026-11-01",
+  "queries": [
+    {"text": "Cocoa costs are rising and putting pressure on gross margin.", "useful_case": "HSY-2025-Q1"},
+    {"text": "Grains, dairy and energy costs are increasing.", "useful_case": "GIS-2007"},
+    {"text": "Oil-related packaging and distribution costs are rising.", "useful_case": "NES-WATERS-2011-H1"},
+    {"text": "Packaging and logistics costs are increasing, putting pressure on margin.", "useful_case": "CL-2022"},
+    {"text": "Milk, flour and electricity are more expensive.", "useful_case": "GIS-2007"},
+    {"text": "Chocolate ingredient inflation is squeezing profit.", "useful_case": "HSY-2025-Q1"},
+    {"text": "Bottled water freight and fuel costs are rising.", "useful_case": "NES-WATERS-2011-H1"},
+    {"text": "Semiconductor shortages at a bank.", "useful_case": null}
+  ]
+}

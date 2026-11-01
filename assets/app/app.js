@@ -1,7 +1,7 @@
 "use strict";
 
 import {
-  dateLabel, periodLabel, words, differenceLabel, pressureLabel, reportLocator, unknownLabels, metricFacts,
+  dateLabel, periodLabel, words, differenceLabel, pressureLabel, reportLocator, unknownLabels, metricFacts, explainBasisPoints,
   EXCLUSION_LABELS, SearchDraft, changeInformationDate,
 } from "/reader.mjs";
 
@@ -67,13 +67,35 @@ function bulletList(items) {
   return list;
 }
 
-function metricDetails(c) {
+function metricDetails(metric) {
   const details = node("details", undefined, "metric-details");
   details.append(node("summary", "What this number measures"));
   const facts = node("dl");
-  metricFacts(c.metric).forEach(([label, value]) => facts.append(node("dt", label), node("dd", value)));
+  metricFacts(metric).forEach(([label, value]) => facts.append(node("dt", label), node("dd", value)));
   details.append(facts, node("p", "A margin is profit as a share of sales. A profit amount and a margin percentage measure different things. For margins, 100 basis points means one percentage point. Adjusted figures leave out some items; check the company's definition.", "field-help"));
+  if (metric.evidence) details.append(sourceLink(metric.evidence));
   return details;
+}
+
+function profitBlock(c) {
+  const block = fieldBlock("What the company reported about profit", c.fields.margin_or_profit);
+  for (const conflict of c.conflicts || []) {
+    const warning = node("aside", undefined, "source-conflict");
+    warning.append(node("strong", "The sources disagree"), node("p", explainBasisPoints(conflict.value)));
+    conflict.sources.forEach((ref, i) => warning.append(sourceLink(ref, i === 0 ? "Read the earnings release ↗" : "Read the filing ↗")));
+    block.append(warning);
+  }
+  block.append(metricDetails(c.metric));
+  if (c.figures?.length) {
+    const extra = node("details", undefined, "other-figures");
+    extra.append(node("summary", "More company-reported figures"));
+    for (const metric of c.figures) {
+      const amount = metricFacts(metric)[1][1];
+      extra.append(node("p", `${metric.name}: ${amount}`), metricDetails(metric));
+    }
+    block.append(extra);
+  }
+  return block;
 }
 
 function updateSelection() {
@@ -122,7 +144,7 @@ function renderCard(c, index) {
   const body = node("div", undefined, "case-detail");
   body.append(node("p", `From a company report published ${dateLabel(c.published)}. These summaries describe what the company reported; they are not independent proof of what caused the result.`, "field-help"),
     fieldBlock("What was happening", c.fields.pressure),
-    fieldBlock("What the company reported about profit", c.fields.margin_or_profit), metricDetails(c),
+    profitBlock(c),
     fieldBlock("What else was changing", c.fields.other_drivers),
     fieldBlock("What the company said it did", c.fields.response),
     node("p", "A reported action does not show how much it helped, or whether it would help in your situation.", "visible-caution"));
@@ -157,7 +179,7 @@ function renderComparison() {
   const body = node("tbody");
   const rows = [
     ["What was happening", (c) => fieldBlock("From the company report", c.fields.pressure)],
-    ["What was reported about profit", (c) => { const block = fieldBlock("Reported figure", c.fields.margin_or_profit); block.append(metricDetails(c)); return block; }],
+    ["What was reported about profit", profitBlock],
     ["What else was changing", (c) => fieldBlock("From the company report", c.fields.other_drivers)],
     ["Why the comparison may fall short", (c) => bulletList(c.important_differences.map(differenceLabel))],
     ["What the company said it did", (c) => fieldBlock("Reported action", c.fields.response)],
