@@ -1,0 +1,9 @@
+{
+  "base_commit": "935bba5d3b440389ee224527fb69061bd7ee3788",
+  "sha256": {
+    "evaluation/audit-m008/selection.json": "9540cbe65487c9e818b230d7fa14980b7b0a0d3816b9be52a1bbd254ff135781",
+    "evaluation/relevance-m008/freeze.json": "540ae966ef743ee2391ec3712320d44c5bbaace2aacb55b65c64800b48ff90d8",
+    "evaluation/relevance-m008/packet-manifest.json": "107dadf5edaa5e2eaa4bf0b034270d3b6f0db4b001ba1162302a1bf788a71eae"
+  },
+  "policy": "Keep the optional human packet, all case records and search rules unchanged; AI judgements and source checks are separate."
+}

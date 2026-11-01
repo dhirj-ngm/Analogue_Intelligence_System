@@ -1,0 +1,74 @@
+{
+  "version": "M008-AI-v1",
+  "base_commit": "935bba5d3b440389ee224527fb69061bd7ee3788",
+  "provenance": "Builder AI development audit, not human or independent validation. Deliberate case-informed sample, including known limits; not a random sample or held-out benchmark. Selected before these audit labels.",
+  "scope": "Assess every displayed result for eight queries; inspect a small named set of important omissions and date-excluded examples. No exhaustive eligible-pool relevance grading or recall estimate.",
+  "method": "context_m007",
+  "collection": "m007",
+  "queries": [
+    {
+      "id": "A01",
+      "origin": "Q01",
+      "selection_reason": "Multi-pressure food situation; check full versus partial input overlap.",
+      "text": "We sell packaged foods. Milk, wheat and electricity costs are rising together. I want an earlier example with more than one input under pressure.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "A02",
+      "origin": "Q03",
+      "selection_reason": "Realistic falling-cost description with pricing/profit context.",
+      "text": "Our milk purchasing costs have fallen compared with last year. I want a dairy example that separates input prices from price cuts and profit changes.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "A03",
+      "origin": "Q05",
+      "selection_reason": "Bottler inputs with packaging and freight; inspect business and metric differences.",
+      "text": "We bottle drinks in plastic and aluminum containers. Packaging and road freight costs are higher together.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "A04",
+      "origin": "Q07",
+      "selection_reason": "Uncovered agricultural input; test honest abstention.",
+      "text": "A snack maker is paying more for potatoes after a poor harvest. I need an earlier potato-cost example.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "A05",
+      "origin": "Q09",
+      "selection_reason": "Historical coffee cutoff before the chosen source; separate a date exclusion from a retrieval miss.",
+      "text": "In mid-2011, we are assessing higher coffee input costs. Use only information published by 27 June 2011.",
+      "cutoff": "2011-06-27",
+      "before_period_end": "2011-06-27"
+    },
+    {
+      "id": "A06",
+      "origin": "AI diagnostic added before audit labels",
+      "selection_reason": "Mixed directions; inspect whether each displayed case covers both pressures or only one.",
+      "text": "Milk costs fell while energy bills rose.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "A07",
+      "origin": "AI diagnostic added before audit labels",
+      "selection_reason": "Inspect a known material-name coverage limit without equating all beef prices with cattle inputs.",
+      "text": "Our beef plant buys live animals. Beef raw-material costs are rising.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    },
+    {
+      "id": "A08",
+      "origin": "AI diagnostic added before audit labels",
+      "selection_reason": "Supplier context versus the reader’s own business; inspect a known scope-rule limit.",
+      "text": "We bottle water. Our freight supplier also serves airlines. Freight and fuel costs are rising.",
+      "cutoff": "2026-11-01",
+      "before_period_end": "2026-11-01"
+    }
+  ]
+}
