@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 
 from ais.collection import load_collection, search_records
 from ais import material_context as materials
+from ais import polymer_context as polymers
 from ais.context import REASONS, compatible_matches, describe, read_pressure
 from ais.pilot import ROOT, bm25, eligible, ranking_text, read_jsonl, tokens
 from ais.related import analyze, explain_matches
@@ -227,7 +228,7 @@ class CaseSearch:
             candidates.append(case)
         return candidates, dict(sorted(exclusions.items()))
 
-    def search(self, payload, *, method="context_m012"):
+    def search(self, payload, *, method="context_m013"):
         if method not in {
             "literal_v1",
             "related_v1",
@@ -236,8 +237,10 @@ class CaseSearch:
             "context_m009",
             "context_m010",
             "context_m012",
+            "context_m013",
         }:
             raise ValueError("Unknown search method.")
+        input_method = polymers if method == "context_m013" else materials
         query = self.query(payload)
         candidates, exclusions = self.candidate_pool(query)
         if method == "literal_v1":
@@ -257,8 +260,8 @@ class CaseSearch:
                 else {}
             )
             reading = (
-                materials.profile(query["text"], query=True)
-                if method == "context_m012"
+                input_method.profile(query["text"], query=True)
+                if method in {"context_m012", "context_m013"}
                 else language_profile(query["text"])
                 if method == "context_m010"
                 else query_profile(query["text"])
@@ -266,15 +269,15 @@ class CaseSearch:
                 else read_pressure(query["text"], **vocabulary)
             )
             profiles = [
-                materials.profile(self.details[c["id"]]["pressure"]["value"])
-                if method == "context_m012"
+                input_method.profile(self.details[c["id"]]["pressure"]["value"])
+                if method in {"context_m012", "context_m013"}
                 else read_pressure(self.details[c["id"]]["pressure"]["value"], **vocabulary)
                 for c in candidates
             ]
             query_words = reading["words"]
             scores = (
-                materials.scores(reading, profiles)
-                if method == "context_m012"
+                input_method.scores(reading, profiles)
+                if method in {"context_m012", "context_m013"}
                 else bm25(
                     " ".join(reading["concepts"]),
                     [" ".join(p["concepts"]) for p in profiles],
@@ -293,7 +296,9 @@ class CaseSearch:
                 matched = [match["family"] for match in explanations]
             else:
                 explanations, reason = (
-                    materials.compatible_matches if method == "context_m012" else compatible_matches
+                    input_method.compatible_matches
+                    if method in {"context_m012", "context_m013"}
+                    else compatible_matches
                 )(reading, profiles[index])
                 if reason:
                     context_filtered[reason] += 1
@@ -301,20 +306,22 @@ class CaseSearch:
             if score > 0 and matched:
                 presented = self.present(case, query, score, matched)
                 presented["pressure_matches"] = explanations
-                if method in {"context_m009", "context_m010", "context_m012"}:
+                if method in {"context_m009", "context_m010", "context_m012", "context_m013"}:
                     presented["coverage"] = (
-                        materials.coverage if method == "context_m012" else coverage
+                        input_method.coverage
+                        if method in {"context_m012", "context_m013"}
+                        else coverage
                     )(reading, explanations)
                 if method != "literal_v1":
                     connected = {word for m in explanations for word in m["query_terms"]}
-                    if method == "context_m012":
+                    if method in {"context_m012", "context_m013"}:
                         connected = {term for phrase in connected for term in tokens(phrase)}
                     presented["unmatched_terms"] = sorted(specific_terms(query["text"]) - connected)
                 matches.append(presented)
         matches.sort(key=lambda c: (-c["score"], c["id"]))
         context = (
-            materials.describe_query(reading)
-            if method == "context_m012"
+            input_method.describe_query(reading)
+            if method in {"context_m012", "context_m013"}
             else describe_language(reading)
             if method == "context_m010"
             else describe(reading)
@@ -322,8 +329,8 @@ class CaseSearch:
             else None
         )
         clarification_request = (
-            materials.clarification(reading)
-            if method == "context_m012"
+            input_method.clarification(reading)
+            if method in {"context_m012", "context_m013"}
             else language_clarification(reading)
             if method == "context_m010"
             else clarification(reading)
@@ -343,7 +350,7 @@ class CaseSearch:
                 context_reason = reading["ignored"][0]["reason"]
             if (
                 not context_reason
-                and method == "context_m012"
+                and method in {"context_m012", "context_m013"}
                 and reading["unrecognized"]
                 and not reading["words"]
             ):
@@ -388,6 +395,7 @@ class CaseSearch:
             "matched_count": len(matches),
             "excluded": exclusions,
             "results": matches[:5],
+            **({"additional_results": matches[5:]} if method == "context_m013" else {}),
             "query_reading": context,
             "context_filtered": dict(sorted(context_filtered.items())),
             **(
@@ -396,7 +404,7 @@ class CaseSearch:
                     "partial_only": bool(matches)
                     and all(c["coverage"]["partial"] for c in matches[:5]),
                 }
-                if method in {"context_m009", "context_m010", "context_m012"}
+                if method in {"context_m009", "context_m010", "context_m012", "context_m013"}
                 else {}
             ),
             "method_id": method,
@@ -404,7 +412,7 @@ class CaseSearch:
                 "BM25 on challenge text only; specific pressure-term overlap required."
                 if method == "literal_v1"
                 else "BM25 on typed input names and explicit qualified comparison links in pressure passages only. Source wording determines the material; a related cost link does not establish the exact requested input."
-                if method == "context_m012"
+                if method in {"context_m012", "context_m013"}
                 else "BM25 on pressure passages only, with clause-level input role, direction, negation and scope checks. "
                 "Bare input topics have unspecified direction. Vocabulary matches are not causal comparisons."
                 if method in {"context_v1", "context_m007", "context_m009", "context_m010"}

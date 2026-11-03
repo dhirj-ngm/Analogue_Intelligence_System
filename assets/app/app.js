@@ -10,6 +10,8 @@ const selected = new Set();
 const fieldIds = { text: "situation", cutoff: "cutoff", before_period_end: "before-period", source_id: "source-case" };
 let catalog = [];
 let currentResults = [];
+let remainingResults = [];
+let currentData = null;
 let clarificationKind = null;
 let activeRequest = 0;
 let draft;
@@ -243,12 +245,17 @@ function renderChecks(data) {
 
 function renderResults(data) {
   currentResults = data.results;
+  remainingResults = data.additional_results || [];
+  currentData = data;
   selected.clear();
   $("comparison").hidden = true;
   $("results").replaceChildren(...data.results.map(renderCard));
   updateSelection();
   const relatedOnly = data.results.length && data.results.every(c => c.coverage?.related_count && !c.coverage.supported_count);
-  $("results-title").textContent = data.results.length ? `${data.results.length} ${relatedOnly ? "related " : ""}${data.results.length === 1 ? "case" : "cases"} to explore` : "No comparison to show yet";
+  $("results-title").textContent = data.results.length ? `${data.results.length}${remainingResults.length ? ` of ${data.results.length + remainingResults.length}` : ""} ${relatedOnly ? "related " : ""}${data.results.length === 1 ? "case" : "cases"} to explore` : "No comparison to show yet";
+  $("show-more-results").hidden = !remainingResults.length;
+  $("more-results-help").hidden = !remainingResults.length;
+  $("show-more-results").textContent = `Show ${remainingResults.length} more matching cases`;
   $("results-status").textContent = data.message;
   $("results-status").classList.toggle("empty", data.status === "insufficient_evidence");
   const reading = $("query-reading");
@@ -307,6 +314,10 @@ $("search-form").addEventListener("submit", async (event) => {
   $("search-button").textContent = "Finding cases…";
   $("results-section").setAttribute("aria-busy", "true");
   currentResults = [];
+  remainingResults = [];
+  currentData = null;
+  $("show-more-results").hidden = true;
+  $("more-results-help").hidden = true;
   selected.clear();
   $("results").replaceChildren();
   $("comparison").hidden = true;
@@ -349,6 +360,29 @@ $("clarify-input").addEventListener("click", () => {
   input.focus();
   const match = clarificationKind === "live_animal_input" && /live[ -]+animals?/i.exec(input.value);
   if (match) input.setSelectionRange(match.index, match.index + match[0].length);
+});
+
+$("show-more-results").addEventListener("click", () => {
+  if (!remainingResults.length) return;
+  const firstIndex = currentResults.length;
+  const added = remainingResults.map((c, index) => renderCard(c, firstIndex + index));
+  currentResults = [...currentResults, ...remainingResults];
+  remainingResults = [];
+  $("results").append(...added);
+  $("show-more-results").hidden = true;
+  $("more-results-help").hidden = true;
+  $("results-title").textContent = `${currentResults.length} cases to explore`;
+  const relatedOnly = currentResults.every(c => c.coverage?.related_count && !c.coverage.supported_count);
+  $("result-caution").textContent = relatedOnly
+    ? "These reports describe related costs. They do not establish your exact requested input; check the source and the missing information."
+    : currentResults.every(c => c.coverage?.partial)
+      ? "Each case covers only part of your description. Showing them together does not document one situation with the combined pressures."
+      : "Shared or related input names are a starting point. Check the business, whether costs rose or fell, and the source.";
+  renderChecks({ ...currentData, results: currentResults });
+  updateSelection();
+  added[0].tabIndex = -1;
+  added[0].focus({ preventScroll: true });
+  added[0].scrollIntoView({ block: "start", behavior: "instant" });
 });
 
 function runExample(text) {

@@ -8,7 +8,7 @@ import { join, resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 const audit = process.argv.includes("--audit-m008")
   ? JSON.parse(await readFile(join(root,"evaluation/audit-m008/snapshot.json"),"utf8")).queries : [];
-const currentAudit = audit.length ? JSON.parse(await readFile(join(root,"evaluation/search-m012/results.json"),"utf8")).historical.filter(r=>r.group==="m008") : [];
+const currentAudit = audit.length ? JSON.parse(await readFile(join(root,"evaluation/search-m013/results.json"),"utf8")).historical.filter(r=>r.group==="m008") : [];
 const retryRounds = Number(process.argv.find((arg) => arg.startsWith("--retry-rounds="))?.split("=")[1] || 3);
 assert.ok(Number.isInteger(retryRounds) && retryRounds >= 1 && retryRounds <= 30);
 const profile = await mkdtemp(join(tmpdir(), "ais-browser-"));
@@ -586,6 +586,52 @@ try {
       assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
     }
     checks.push(`${device}: M012 bare-oil clarification preserves draft/dates without submission; explicit edit works; unlisted oil, output and denied/opposite direction stay empty`);
+
+    // M013: expansion preserves ranking, selection, evidence and partial limits.
+    await fill("situation","natural oil packaging grain energy");await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),5);
+    assert.ok(await evaluate(`!document.getElementById('show-more-results').hidden && document.getElementById('results-title').innerText.includes('5 of') && !document.querySelector('[data-case-id="MARICO-INDIA-2021-Q4"]')`));
+    await click('.case-card[data-case-id="KAO-CP-2022"] .compare-check');
+    const beforeMore=await evaluate(`window.__searchSubmissions`);
+    const originalFive=await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`);
+    await click("#show-more-results");
+    assert.equal(await evaluate(`window.__searchSubmissions`),beforeMore);
+    assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).slice(0,5),originalFive);
+    assert.ok(await evaluate(`document.getElementById('show-more-results').hidden && document.querySelector('[data-case-id="KAO-CP-2022"] .compare-check').checked && document.querySelector('[data-case-id="MARICO-INDIA-2021-Q4"] .coverage').innerText.includes('Not established here') && document.activeElement.classList.contains('case-card') && document.documentElement.scrollWidth<=innerWidth`));
+    await click('.case-card[data-case-id="MARICO-INDIA-2021-Q4"] .compare-check');
+    await click("#compare-button");
+    assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('Marico') && document.getElementById('comparison-table').innerText.includes('Kao') && document.getElementById('comparison-table').innerText.includes('Not established here') && document.querySelector('.comparison-note').innerText.includes('combining partial cases')`));
+    await screenshot(`ais-m013-broad-${device}.png`,false);
+    await click("#clear-comparison");
+    checks.push(`${device}: M013 broad-query expansion exposes Marico, preserves original order/selection without a request, focuses added cards, and keeps partial comparison limits`);
+
+    for (const [text,id] of [["HDPE","MARICO-INDIA-2021-Q4"],["PET","COKE-2022"]]) {
+      await fill("situation",text);await search();
+      assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),[id]);
+      assert.ok(await evaluate(`document.getElementById('show-more-results').hidden && document.querySelector('.pressure-match').innerText.includes('Named input')`));
+      await click(`.case-card[data-case-id='${id}'] .case-reading > summary`);
+      assert.ok(await evaluate(`document.querySelector('.case-detail .source-link').href.startsWith('https://') && document.querySelector('.case-detail .source-location').innerText.includes('Where to look')`));
+    }
+    await fill("situation","HDPE and PET costs rose.");await search();
+    assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).sort(),["COKE-2022","MARICO-INDIA-2021-Q4"]);
+    for (const id of ["COKE-2022","MARICO-INDIA-2021-Q4"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
+    await click("#compare-button");
+    assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('supports 1 of 2') && document.getElementById('comparison-table').innerText.includes('PET (polyethylene terephthalate)') && document.getElementById('comparison-table').innerText.includes('HDPE (high-density polyethylene)') && document.getElementById('comparison-table').innerText.includes('Not established here') && document.documentElement.scrollWidth<=innerWidth`));
+    await screenshot(`ais-m013-polymers-${device}.png`,false);
+    await click("#clear-comparison");
+    checks.push(`${device}: M013 HDPE/PET alone find distinct named sources; combined query/comparison supports one of two inputs per case`);
+
+    for (const text of ["LDPE plastic costs rose.","PVC resin costs rose.","Pet food costs rose.","PET scan costs rose.","PET costs fell.","HDPE sales rose."]) {
+      await fill("situation",text);await search();
+      assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('show-more-results').hidden`));
+    }
+    await openOptions();await click("#reset-dates");
+    await fill("situation","PET");await fill("cutoff","2023-02-21",true);await search();
+    assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+    await fill("cutoff","2023-02-22",true);await search();
+    assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),["COKE-2022"]);
+    await click("#reset-dates");
+    checks.push(`${device}: M013 unsupported polymer/sense, sales and falling-cost results stay empty; PET publication boundary works and expansion resets`);
 
     if (audit.length) {
       await openOptions();

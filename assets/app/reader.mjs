@@ -17,7 +17,7 @@ export function words(items) {
 
 export function pressureMatchLabel(matches) {
   const parts = matches.map((match) => match.match_kind === "named_input"
-    ? `Named input: ${words(match.query_terms)}`
+    ? `Named input: ${match.display_label || words(match.query_terms)}`
     : match.match_kind === "broader_source"
       ? `Related cost only: ${words(match.query_terms)} → ${words(match.report_terms)}. The exact requested input is not named`
       : match.match_kind === "more_specific_source"

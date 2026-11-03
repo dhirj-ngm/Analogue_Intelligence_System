@@ -2,50 +2,47 @@
 
 Updated: 3 November 2026.
 
-**M001: Closed development pilot.** Ten observations and BM25/MiniLM experiments
-remain frozen. Five earlier user grades are not a complete human benchmark.
-See [pilot report](evaluation/pilot/pilot-report.md).
+**Local prototype complete — M013 delivered.** Search, evidence inspection and
+comparison run locally over the unchanged twenty FMCG situations from fifteen
+companies. No production rollout, collection expansion or human-review effort is
+underway. Run `make app`, then open http://127.0.0.1:8000. See [README](README.md).
 
-**M002–M011: Complete.** Local case search/comparison, sentence handling and
-collection development. The app has twenty situations from fifteen companies,
-including M011's India, Japan/overseas and South Africa-led additions. Earlier
-evaluations retain their original cohorts and outputs. See
-[M011 report](evaluation/collection-m011/report.md). Run `make app` at
-http://127.0.0.1:8000.
+**Final search pass:** HDPE and PET alone find their own named-input cases;
+sibling polymers and generic plastic do not establish one another. Full names are
+visible in results/comparisons. **Show more matching cases** exposes compatible
+results below five, preserving ranking, selection, evidence and partial-coverage
+limits. The documented broad query can now reach Marico, still ranked ninth.
+Dates, earlier reporting periods, self/continuation exclusions and pressure-only
+ranking apply to all results. Cases, sources and frozen M001 files are unchanged.
 
-**M008 human validation remains deferred: zero human judgements.** The withdrawn
-packet is optional; no R01 contact, follow-up or resend. The
-[AI audit](evaluation/audit-m008/report.md) is not independent validation.
+**Development evidence:** `871d4b4` freezes 44 searches before code changes;
+M012/M013 use identical eligible twenty-case pools. First-five target queries:
+8/21 → 21/21; accessible targets after expansion: 8/24 → 24/24. Expected-empty:
+16/18 → 18/18; forbidden/unexpected-result queries: 4 → 0. Among 275 historical
+entries, 19 first-five lists change; no previously labelled target moves lower.
+Other cases do move down or leave five; all are recorded. These are selected AI
+development checks, not independent validation or accuracy estimates. See
+[M013 results and limits](evaluation/search-m013/report.md).
 
-**M012: Complete.** Search separates fuel, petrochemical and edible/natural oils;
-recognizes copra/dried coconut kernel and paper/cardboard; and asks which material
-bare “oil” means. Results/comparisons distinguish named inputs from broader related
-costs. Nestlé's oil-related distribution disclosure does not establish diesel.
-Sources were rechecked; all cases, attribution, dates and frozen M001 files remain
-unchanged. Pressure-only ranking and publication/self/continuation rules are preserved.
+**Verification:** 116 Python / 19 JavaScript tests; Ruff check/format and syntax;
+pilot/current collection validation; original M005–M012 evaluations and M008 AI
+audit/optional packet checks; M013 paired comparison passed. The real app passed
+60 desktop/375px Chrome grouped checks and 40 delayed failure/retry cycles.
+Expansion, source details, date controls, distinct-polymer/partial comparisons,
+empty states and recovery were exercised; screenshots inspected at both sizes.
+The final inspection's lowercase polymer-label issue was fixed. No concrete
+prototype blocker remains; this is not multi-browser/physical-device testing.
 
-**Development comparison:** `0241f27` freezes 64 queries before code changes.
-Same eligible twenty-case pools: expected useful or explicitly related targets
-at five in 24/38 → 38/38 queries; forbidden/unexpected results in 23 → 0 queries;
-expected-empty in 19/26 → 26/26. New-set target retrieval has no loss, but two
-target ranks decline. Of 211 historical entries, 45 lists change and three targets
-rank lower, two leaving the five with oil clarification. Of M011's ten prior rank
-losses: two restored with related-only fuel evidence, seven remain lower, one now
-clarifies. These are AI development checks, not independent validation or accuracy
-estimates. See [results, regressions and limits](evaluation/search-m012/report.md).
+**Known limits:** First-five broad-query recall still misses useful cases; expanding
+results is not a relevance guarantee. Unlisted materials, complex roles and indirect
+references can still miss or mislead. Bare oil needs clarification; related costs
+do not establish diesel. Country names do not filter. Coverage remains small and
+U.S. weighted; episode bounds, action effects, Tiger's cost reconciliation and
+Hershey's source discrepancy remain unresolved. These limits do not trigger more
+modules under the current prototype scope.
 
-**Checks:** 109 Python / 18 JavaScript tests; Ruff check/format; pilot/current
-collection validation; M005/M006/M007/M009/M010/M011 historical comparisons;
-M012 paired evaluation; original M008 audit/optional packet checks passed.
-Desktop/375px Chrome: 54 grouped checks, 40 delayed failure/retry cycles; named,
-related and partial comparisons, clarification and source screenshots inspected.
-Historical code/UI hashes verify against Git; no old observations/manifests rewritten.
-
-**Limits / next:** No exact diesel disclosure; vague oil loses useful prior targets.
-A broad multi-pressure query omits Marico from five; separate post-freeze probes
-document this. HDPE alone and PET without resin/plastic wording still miss.
-Next work should freeze checks for broad-query recall and specific polymer names.
-Country names do not filter ranks; indirect references and collection geography
-remain limited. Episode bounds, action effects, Tiger's cost-base reconciliation
-and Hershey's source discrepancy remain unresolved. No response-effectiveness or
-independent human-validation claim is made.
+**History / human review:** M001 remains a closed, frozen model pilot; five earlier
+user grades are not a complete human benchmark. M002–M013 implementation is complete.
+M008 human validation stays deferred, with zero human judgements. The withdrawn
+packet remains optional; no R01 contact, follow-up or resend. Historical methods,
+cohorts, hashes and observations remain reproducible without rewriting old evidence.

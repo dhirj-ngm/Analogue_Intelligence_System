@@ -150,15 +150,15 @@ def encode(text):
     return text, surface
 
 
-def profile(text, *, query=False):
-    encoded, surface = encode(text)
+def profile(text, *, query=False, encoder=encode, vocabulary=FAMILIES, material_types=MATERIALS):
+    encoded, surface = encoder(text)
     original_reading = None
     identity_replacements = []
     output_notes = []
     if query:
         # Naming a manufactured/sold product is not a purchase-cost request.
         # Retain other words so an outside reader business cannot disappear.
-        aliases = {word for _, terms in FAMILIES.values() for word in terms.split()}
+        aliases = {word for _, terms in vocabulary.values() for word in terms.split()}
         parts = re.split(
             r"([.;!?]|\b(?:but|while|whereas)\b|\band(?=\s+we\b)|,(?=\s*(?:we|i|our)\b))", encoded
         )
@@ -189,12 +189,12 @@ def profile(text, *, query=False):
                 if not has_inputs:
                     output_notes.append(sentence_note(part, "output_context"))
         if identity_replacements:
-            original_reading = sentence_profile(encoded, vocabulary=FAMILIES)
+            original_reading = sentence_profile(encoded, vocabulary=vocabulary)
             encoded = "".join(parts)
     value = (
-        sentence_profile(encoded, vocabulary=FAMILIES)
+        sentence_profile(encoded, vocabulary=vocabulary)
         if query
-        else read_pressure(encoded, families=FAMILIES)
+        else read_pressure(encoded, families=vocabulary)
     )
     if original_reading and original_reading["blocked"] == "outside_scope":
         value["blocked"] = "outside_scope"
@@ -207,7 +207,7 @@ def profile(text, *, query=False):
             item["text"] = re.sub(
                 r"\s+".join(re.escape(w) for w in masked.split()), lambda _: original, item["text"]
             )
-        for key, (_, aliases) in MATERIALS.items():
+        for key, (_, aliases) in material_types.items():
             if key in surface:
                 item["text"] = item["text"].replace(
                     aliases.split()[0], " / ".join(sorted(surface[key]))
@@ -231,15 +231,17 @@ def profile(text, *, query=False):
     return value
 
 
-def index_concepts(report):
+def index_concepts(report, *, parents=PARENTS, broader_links=BROADER_LINKS):
     """Explicit source concepts plus declared, directed comparison links."""
     result = []
     for key in report["concepts"]:
-        result.extend([key, *sorted(PARENTS.get(key, set()) | BROADER_LINKS.get(key, set()))])
+        result.extend([key, *sorted(parents.get(key, set()) | broader_links.get(key, set()))])
     return result
 
 
-def scores(query, reports):
+def scores(
+    query, reports, *, parents=PARENTS, broader_links=BROADER_LINKS, material_types=MATERIALS
+):
     """BM25 with actual mention lengths, not the number of alias expansions.
 
     Material-name links have half the term frequency of direct named evidence.
@@ -252,14 +254,16 @@ def scores(query, reports):
     average = sum(lengths) / len(lengths)
     if not average:
         return [0.0] * len(reports)
-    documents = [Counter(index_concepts(r)) for r in reports]
+    documents = [
+        Counter(index_concepts(r, parents=parents, broader_links=broader_links)) for r in reports
+    ]
     direct = [Counter(r["concepts"]) for r in reports]
     result = [0.0] * len(reports)
     for term in set(query["concepts"]):
         df = sum(term in doc for doc in documents)
         idf = log(1 + (len(reports) - df + 0.5) / (df + 0.5))
         for i, doc in enumerate(documents):
-            tf = direct[i][term] + (0.5 if term in MATERIALS else 1.0) * (
+            tf = direct[i][term] + (0.5 if term in material_types else 1.0) * (
                 doc[term] - direct[i][term]
             )
             if tf:
@@ -267,24 +271,34 @@ def scores(query, reports):
     return result
 
 
-def relationship(requested, reported):
+def relationship(requested, reported, *, parents=PARENTS, broader_links=BROADER_LINKS):
     if requested == reported:
         return "named_input"
-    if requested in PARENTS.get(reported, set()):
+    if requested in parents.get(reported, set()):
         return "more_specific_source"
-    if requested in BROADER_LINKS.get(reported, set()):
+    if requested in broader_links.get(reported, set()):
         return "broader_source"
     return None
 
 
-def compatible_matches(query, report):
+def compatible_matches(
+    query,
+    report,
+    *,
+    parents=PARENTS,
+    broader_links=BROADER_LINKS,
+    vocabulary=FAMILIES,
+    material_types=MATERIALS,
+):
     if query["blocked"] or report["blocked"]:
         return [], query["blocked"] or "unsupported_direction"
     accepted, reason = [], None
     for requested in sorted(query["words"]):
         choices = []
         for reported in sorted(report["words"]):
-            relation = relationship(requested, reported)
+            relation = relationship(
+                requested, reported, parents=parents, broader_links=broader_links
+            )
             if not relation:
                 continue
             q = query["directions"][requested] - {"unspecified"}
@@ -297,7 +311,7 @@ def compatible_matches(query, report):
             qwords, rwords = query["words"][requested], report["words"][reported]
             exact = qwords & rwords
             named = relation != "broader_source" and (
-                requested in MATERIALS
+                requested in material_types
                 or bool(exact)
                 or any(
                     re.search(rf"\b{re.escape(qword)}\b", rword)
@@ -307,7 +321,7 @@ def compatible_matches(query, report):
             )
             kind = (
                 relation
-                if requested in MATERIALS or reported in MATERIALS
+                if requested in material_types or reported in material_types
                 else "shared_word"
                 if exact
                 else "related_words"
@@ -315,7 +329,7 @@ def compatible_matches(query, report):
             choices.append(
                 {
                     "family": requested,
-                    "label": FAMILIES[requested][0],
+                    "label": vocabulary[requested][0],
                     "query_terms": sorted(qwords),
                     "report_terms": sorted(rwords),
                     "relationship": "shared_word" if exact else "related_terms",

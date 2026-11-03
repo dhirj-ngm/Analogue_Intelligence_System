@@ -1,13 +1,13 @@
 """Material evidence, direction and ranking invariants; development checks only."""
 
 from copy import deepcopy
-from hashlib import sha256
 import json
 import unittest
 from unittest.mock import patch
 
 from ais import material_context as materials
 from ais.pilot import ROOT, bm25
+from ais.historical import frozen_bytes
 from ais.search import CaseSearch
 from scripts.evaluate_m012 import evaluate
 
@@ -17,7 +17,9 @@ class MaterialTests(unittest.TestCase):
         self.search = CaseSearch.load("m011")
 
     def query(self, text, **extra):
-        return self.search.search({"text": text, "cutoff": "2026-11-03", **extra})
+        return self.search.search(
+            {"text": text, "cutoff": "2026-11-03", **extra}, method="context_m012"
+        )
 
     def test_frozen_pairs_and_all_ten_m011_targets_are_reported(self):
         result = evaluate()
@@ -32,7 +34,7 @@ class MaterialTests(unittest.TestCase):
         freeze = json.loads((ROOT / "evaluation/search-m012/freeze.json").read_text())
         for path, expected in freeze["sha256"].items():
             if path not in freeze["mutable_code"]:
-                self.assertEqual(sha256((ROOT / path).read_bytes()).hexdigest(), expected, path)
+                frozen_bytes(path, expected)
 
     def test_fuel_result_is_related_cost_evidence_not_named_diesel(self):
         for q in ["Diesel fuel costs rose.", "Fuel input prices rose.", "Petrol costs rise."]:

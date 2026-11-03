@@ -1,189 +1,109 @@
 # Historical Analogue Intelligence Engine
 
-A small source-backed app for finding earlier company situations and comparing
-their input costs, reported responses, differences and unknowns. It starts with
-FMCG and has **20 assistant-checked observations from fifteen companies**.
-Company explanations do not establish that an action caused a result or would
-work elsewhere. The collection has no independent human relevance validation.
+**Complete local prototype:** search and compare twenty source-backed FMCG
+input-cost situations from fifteen companies. Intended for analysts, researchers
+and students exploring historical comparisons. Cases and search checks were
+prepared with AI; there is no independent human relevance validation. A company
+saying it took an action does not establish that the action caused a result.
 
-## Run the app
+## Run locally
 
-Python 3.14 is tested. The app uses the Python standard library, local case files
-and BM25. No package installation, model download, paid service or credentials
-are needed:
+Python 3.14 is tested. The app uses the standard library and local files; no
+installation, model download, credentials or paid service is needed:
 
 ```sh
 make app
 ```
 
-Open **http://127.0.0.1:8000**; stop with Ctrl+C. For another port:
+Open **http://127.0.0.1:8000**; stop with Ctrl+C. To use another port:
 
 ```sh
 PYTHONPATH=src python3 -m ais.app --port 8001
 ```
 
-Describe a situation or choose an example. Open **Read the case and its sources**
-for original links, figures, definitions, reported actions and unknowns. Select
-**two or three cases**, then **Compare cases**. Phone comparisons stack vertically.
+Describe purchased inputs and whether costs rose or fell, or choose an example.
+Open **Read the case and its sources** for original links, locations, dates,
+figures, company-stated actions and unknowns. The first five matches are a starting
+point: **Show more matching cases** reveals the rest in the same ranked order.
+Select two or three cases and **Compare cases**. Phone comparisons stack vertically.
+Each case names the pressures supported and **not established here**; combining
+partial cases does not document a situation with every requested pressure.
 
-Each result and the first comparison row name the supported pressures and those
-**not established here**. Partial cases do not document one combined situation.
-Counts refer to identified named pressures, not every meaning of the description.
-New cases show India, Japan/overseas and South Africa-led scope in results and
-comparison headings. Country names do not filter results. Yen/rand amounts retain
-their original units and definitions; we do not convert or subtract unlike measures.
-Missing evidence does not mean a cost did not change. Profit amounts, margins,
-benchmarks and adjusted figures retain their own definitions and scope; basis
-points are explained beside the numbers.
+**Dates and a starting case** is optional. Reports must be public on or before
+**Information available by**, with reporting periods ending strictly before the
+situation being compared. The starting case and known continuations are excluded
+from all results, including additional matches. Invalid dates are explained,
+never silently widened. Resetting dates preserves your personal description.
 
-A food/water business can mention an airline or logistics supplier without becoming
-an outside-industry query. A genuine airline/logistics business remains outside
-this collection. A supplier's own costs are not automatically the reader's costs.
-For **live animals**, the app asks whether you mean cattle or another animal.
-**Edit the input description** selects the original phrase without changing text,
-dates or submitting a search. Clarify what you buy and whether costs rose or fell.
-Beef selling prices/sales remain separate from cattle purchase costs.
+HDPE (high-density polyethylene) and PET (polyethylene terephthalate) match their
+own named evidence, not one another or generic plastic reports. Fuel,
+petrochemical materials and edible/natural oils stay separate; bare **oil** asks
+which material you buy. Live-animal wording also asks for clarification. The edit
+button preserves your description and dates without submitting it. Empty results
+show a search/evidence limit, not proof that no historical analogue exists.
 
-Ordinary cost sentences can include “rising not falling” or separate changes such
-as “milk costs fell, energy bills rose.” Each change stays with its named input.
-Conflicting directions or unclear business roles prompt an edit. The clarification
-button focuses your description, preserving text and dates without submitting it.
+**How this works** holds method details and scores. The app binds to loopback,
+does not persist searches and fetches no sources or models. Original documents
+remain external links; the app does not store or serve them.
 
-Fuel, petrochemical materials and edible/natural oils stay separate. Bare **oil**
-asks which material you buy. Copra (dried coconut kernel), paper and cardboard are
-recognized. Results distinguish named inputs from related costs: oil-related
-distribution evidence does **not** establish diesel. Each comparison keeps that
-limit visible; coconut oil is not copra, and paper/cardboard do not establish pulp.
+## Search and known limits
 
-**Dates and a starting case** is optional. **Information available by** includes
-reports published on or before that date; periods must end strictly before the
-situation being compared. A starting case and known continuing reports are
-excluded. Returning to **My own situation** restores your draft; resetting dates
-keeps your own description. Invalid dates are explained and focused, never widened
-silently to obtain results. Empty results describe a date, evidence, wording or
-scope limit; they do not establish that no historical comparison exists.
+BM25 uses **pressure passages only**, with explicit
+[material](src/ais/material_context.py), [polymer](src/ais/polymer_context.py) and
+[sentence rules](src/ais/language_context.py). Responses, profit figures, outcomes,
+company identity and geography cannot increase scores. Simple rules separate
+cost direction, negation, input purchases, sales and supplier/customer context.
+Related input words do not establish identical purchases or useful analogies.
+Metric units, scope, basis points, attribution and uncertainties remain visible.
 
-**How this works** keeps method details and BM25 scores optional. The app binds
-to loopback, does not persist searches, and fetches no sources or models. Original
-reports open separately at the publisher/SEC; documents are not stored or served.
+[M013's report](evaluation/search-m013/report.md) compares the unchanged twenty-case
+collection with M012 using 44 searches frozen in `871d4b4` plus 275 historical
+entries. Expected targets in the first five improve from 8/21 to 21/21 queries;
+targets accessible after expansion improve from 8/24 to 24/24. Forbidden/unexpected
+matches fall from four queries to zero. Nineteen historical first-five lists
+change, with no previously labelled target ranking lower. These are **AI development
+checks, not independent validation or accuracy estimates**.
 
-## Method, evidence and limits
+The broad `natural oil packaging grain energy` query still puts Marico below five;
+**Show more** makes it accessible without claiming an improved top-five rank.
+Generic oil needs clarification. Nestlé's related distribution-cost evidence does
+not name diesel. Unlisted material names, indirect references and complex business
+roles can still be misread; search does not index every fact in the original
+report. Country names do not filter results. Coverage is small and U.S. weighted;
+episode boundaries, action effects, Tiger's cost-base reconciliation and Hershey's
+source discrepancy remain unresolved. The prototype is complete with these limits;
+no collection expansion or human-review effort is underway.
 
-BM25 scores named input families in **case pressure passages only**. The
-[vocabulary](src/ais/related.py), [additional material names](src/ais/vocabulary.py)
-and [sentence rules](src/ais/language_context.py) are small and explicit.
-[M012 material rules](src/ais/material_context.py) replace the broad oil synonym
-with named inputs and directed, qualified links. Names receive more weight than
-related material links; lengths count actual mentions rather than generated links.
-Responses, profit figures, business identity, later outcomes and rationale cannot
-increase scores. Publication evidence, earlier periods and self/continuation
-exclusions are shared across methods. Future responses are withheld.
+**Human validation remains deferred, with zero human judgements.** The withdrawn
+M008 packet is optional; R01 must not be contacted or sent the packet again.
+[Prior AI audit](evaluation/audit-m008/report.md) labels retain AI provenance.
 
-Rules distinguish cost direction, negation and sales/demand roles. Opposite shared
-input directions veto a partial match. Source pressure wording stays unchanged;
-coverage is computed after scoring. Related words do not establish identical
-purchases or a useful analogy. Unknown cost names do not become scoring synonyms.
-Bare topic lists retain unspecified direction.
+## Checks and history
 
-[M012 checks](evaluation/search-m012/report.md) freeze 64 searches before changing
-search (`0241f27`). On identical eligible cases from the twenty-case collection,
-queries retrieving all expected useful or explicitly related targets improve from
-24/38 to 38/38; forbidden/unexpected-result queries fall from 23 to zero. All 26
-expected-empty queries stay empty. Of 211 historical entries, 45 ranked lists change;
-three prior targets rank lower, including two leaving the displayed five with
-oil clarification. The report accounts for all ten targets that fell after M011:
-two restored, seven still lower, one now clarified. These are **AI development
-checks, not independent validation or accuracy estimates**. Earlier
-[M011 collection](evaluation/collection-m011/report.md) and
-[M010 search](evaluation/search-m010/report.md) results reproduce unchanged.
-
-No pressure passage explicitly names diesel; its related distribution comparison
-is not exact-input evidence. Broad multi-pressure searches can still omit useful
-cases. HDPE alone remains unrecognized; PET needs resin/plastic wording. Search
-uses the frozen pressure text, not every fact in the original document. Long
-references still need care: “Milk prices aren't rising; they are falling”
-and “The costs of milk were lower, but those of energy were higher” ask for
-clarification. Unlisted industries, role attachments and input phrases can still
-be misread. Collection coverage is narrow and U.S. biased; episode bounds and
-action effects remain uncertain. Hershey's source discrepancy remains unresolved.
-
-Additional cases live in `data/collection/cases.jsonl` and
-`data/collection/m007/cases.jsonl`; the new batch is separate in
-`data/collection/m011/cases.jsonl`. Existing records and frozen M001 files are
-unchanged. [M011 collection notes](data/collection/m011/README.md) explain selection,
-source access, locations, metric definitions, retention and continuation decisions.
-
-**M008 human validation is deferred, with zero human judgements.** The withdrawn
-154-pair packet remains optional; no R01 follow-up or resend is authorized. The
-[small AI audit](evaluation/audit-m008/report.md) retains explicit AI provenance;
-its original outputs still reproduce using the historical method. The user does
-not need to grade anything.
-
-## Checks
-
-Python 3.14 and Node 22+ run the tests; the app itself does not need Node:
+Python 3.14 and Node 22+ run tests; Node is not needed to use the app:
 
 ```sh
-make test                # Python safeguards/HTTP checks and JavaScript reader tests
-make lint                # Ruff check/format in the existing .venv
-make validate            # Frozen pilot data and judgement coverage
-make collection-check    # Current validation, M004 reproduction, M011 comparison
-make collection-check-m011 # M011 collection comparison alone
-make search-check        # M006/M007 historical and M009/M010/M012 paired evaluations
-make search-check-m005   # Earlier literal/related comparison
-make search-check-m012   # M011/M012 on identical eligible twenty-case pools
-make search-check-m010   # M009/M010 paired comparison alone
-make search-check-m009   # Earlier M008/M009 comparison
-make audit-check         # Original M008 audit, optional packet and deferred human state
-```
-
-For minimal lint setup: `python3 -m venv .venv`, then
-`.venv/bin/python -m pip install ruff==0.17.3`.
-Older checks retain original cohorts/methods and verify original runtime/UI hashes
-against Git at `1e4e6d3`, `d63b3c3`, `13814c2` and `1630a79`; checks need that history. No
-evidence/data hash is exempted. The app itself adds no Git dependency.
-
-Browser checks start and stop their own server and Chrome:
-
-```sh
-make browser-test
-# Current flow, historical audit searches and 40 delayed-response retry cycles:
+make test lint validate collection-check search-check search-check-m005 audit-check
+make search-check-m013  # M012/M013 paired evaluation alone
 node scripts/check_app_browser.mjs --audit-m008 --retry-rounds=20
-# Override the default /opt/google/chrome/chrome if needed:
-CHROME_BIN=/usr/bin/chromium make browser-test
 ```
 
-Desktop/375px checks cover searches, sources, comparison, dates, self exclusions,
-empty states, clarification and failure recovery. Screenshots are disposable in
-`/tmp/ais-case-search-{desktop,mobile}.png`,
-`/tmp/ais-m012-{related,named,clarify}-{desktop,mobile}.png` and related comparison files.
-The old audit flag uses recorded M012 observations for the current UI; the audit
-command separately reproduces M008. The optional archived review-form check is
-`make review-browser`; its synthetic drafts are not human judgements.
+Lint uses the existing `.venv` with `ruff==0.17.3`; minimal setup:
+`python3 -m venv .venv` then `.venv/bin/python -m pip install ruff==0.17.3`.
+Browser checks start/stop their own app and Chrome. Override the browser with
+`CHROME_BIN=/usr/bin/chromium make browser-test`. Desktop/375px checks cover
+search, all matches, evidence, comparisons, dates, exclusions, empty states and
+failure recovery. Disposable screenshots include
+`/tmp/ais-m013-{broad,polymers}-{desktop,mobile}.png`.
 
-## Earlier model pilot and project history
+Cases live in the frozen pilot and `data/collection/{cases.jsonl,m007/,m011/}`;
+[M011 notes](data/collection/m011/README.md) explain the latest source selection.
+Existing records, evidence and prior observations remain unchanged. Historical
+commands retain original methods/cohorts and verify code/UI hashes against Git
+commits through `c0b8b32`; that history is needed for checks, not for running the app.
+Earlier reports remain under `evaluation/`.
 
-The [M001 report](evaluation/pilot/pilot-report.md) describes the frozen ten-case,
-five-query BM25/MiniLM experiment. The app uses these records plus the additional
-collection through an adapter, without rewriting pilot inputs/results. Detailed
-Colgate evidence remains in `data/episodes.jsonl` and `data/source_manifest.jsonl`.
-The five user grades do not form a complete human benchmark.
-
-Only the earlier model pilot needs ML dependencies and an initial internet download:
-
-```sh
-make setup
-make run
-# After caching the model:
-HF_HUB_OFFLINE=1 make run
-```
-
-Models/caches are ignored by Git. `make run` reproduces the earlier model pilot;
-`make app` runs the reader. M002/M003 built the app/reader experience, M004/M007
-expanded the collection, and M005/M006 introduced related-input/context checks.
-[M008](evaluation/audit-m008/report.md) audited the app; [M009](evaluation/search-m009/report.md)
-fixed its three reader-facing failures, and M010 improves ordinary sentence wording.
-M011 adds the three non-U.S.-focused situations; M012 distinguishes material names
-and qualifies related evidence. Next work should address broad-query recall,
-specific polymer names, local-market coverage and conservative reference handling.
-Development judgements stay labelled honestly; human validation remains deferred.
+Only the archived [M001 model pilot](evaluation/pilot/pilot-report.md) needs ML
+packages/downloads: `make setup` then `make run`. Its frozen ten-case experiment
+and five earlier user grades are not a complete human benchmark. Models and caches
+are ignored by Git. The delivered local app uses no model service.

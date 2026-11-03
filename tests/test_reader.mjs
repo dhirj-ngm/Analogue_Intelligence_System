@@ -135,3 +135,9 @@ test("coverage of a single identified pressure does not claim a complete busines
   assert.equal(text.summary,"Supports the identified pressure");
   assert.equal(text.missing,"");
 });
+
+test("specific polymer names are expanded without altering the matched source terms", () => {
+  const match = { match_kind: "named_input", query_terms: ["pet"], report_terms: ["pet resin"], display_label: "PET (polyethylene terephthalate)" };
+  assert.equal(pressureMatchLabel([match]), "Pressure match: Named input: PET (polyethylene terephthalate).");
+  assert.deepEqual(match.report_terms, ["pet resin"]);
+});
