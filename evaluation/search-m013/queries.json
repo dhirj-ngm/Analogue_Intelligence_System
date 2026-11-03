@@ -1,0 +1,632 @@
+{
+  "provenance": "Builder AI development expectations, frozen before M013 code. Not human/independent validation. First-five retrieval and accessible results after explicit expansion are measured separately. Broad queries require Marico to be accessible, not a forced rank.",
+  "queries": [
+    {
+      "id": "broad-documented",
+      "text": "natural oil packaging grain energy",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "TIGER-2023-H1",
+        "GIS-2007",
+        "KAO-CP-2022"
+      ],
+      "expected_accessible": [
+        "TIGER-2023-H1",
+        "GIS-2007",
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": [
+        "TIGER-2023-H1",
+        "GIS-2007",
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ]
+    },
+    {
+      "id": "broad-sentence",
+      "text": "Natural oil, packaging, grain and energy input costs are rising.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "TIGER-2023-H1",
+        "GIS-2007",
+        "KAO-CP-2022"
+      ],
+      "expected_accessible": [
+        "TIGER-2023-H1",
+        "GIS-2007",
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": [
+        "TIGER-2023-H1",
+        "GIS-2007",
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ]
+    },
+    {
+      "id": "broad-reordered",
+      "text": "Energy grain packaging natural oil",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [
+        "TIGER-2023-H1",
+        "GIS-2007",
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": [
+        "TIGER-2023-H1",
+        "GIS-2007",
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ]
+    },
+    {
+      "id": "broad-specific",
+      "text": "copra natural oil packaging grain energy",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ]
+    },
+    {
+      "id": "broad-unsupported",
+      "text": "Potato costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "broad-mixed",
+      "text": "Natural oil costs fell, grain and energy costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "TIGER-2023-H1",
+        "GIS-2007"
+      ],
+      "expected_accessible": [
+        "TIGER-2023-H1",
+        "GIS-2007"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "broad-before-marico",
+      "text": "natural oil packaging grain energy",
+      "cutoff": "2021-04-29",
+      "expected_first_five": [],
+      "expected_accessible": [
+        "GIS-2007"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022",
+        "TIGER-2023-H1"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "broad-self",
+      "text": "natural oil packaging grain energy",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": false,
+      "partial_cases": [],
+      "source_id": "MARICO-INDIA-2021-Q4"
+    },
+    {
+      "id": "hdpe-topic",
+      "text": "HDPE",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "COKE-2022",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "hdpe-cost",
+      "text": "HDPE costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "COKE-2022",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "hdpe-name",
+      "text": "High-density polyethylene prices rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "COKE-2022",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "hdpe-definition",
+      "text": "High-density polyethylene (HDPE) plastic prices rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "COKE-2022",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "hdpe-before",
+      "text": "HDPE",
+      "cutoff": "2021-04-29",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "hdpe-on",
+      "text": "HDPE",
+      "cutoff": "2021-04-30",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "hdpe-self",
+      "text": "HDPE",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": [],
+      "source_id": "MARICO-INDIA-2021-Q4"
+    },
+    {
+      "id": "hdpe-period",
+      "text": "HDPE",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": [],
+      "before_period_end": "2021-03-31"
+    },
+    {
+      "id": "pet-topic",
+      "text": "PET",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "COKE-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "pet-cost",
+      "text": "PET costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "COKE-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "pet-name",
+      "text": "Polyethylene terephthalate costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "COKE-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "pet-definition",
+      "text": "PET resin (polyethylene terephthalate) input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "COKE-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "pet-before",
+      "text": "PET",
+      "cutoff": "2023-02-21",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "pet-on",
+      "text": "PET",
+      "cutoff": "2023-02-22",
+      "expected_first_five": [
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "COKE-2022"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "pet-self",
+      "text": "PET",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": [],
+      "source_id": "COKE-2022"
+    },
+    {
+      "id": "two-polymers",
+      "text": "HDPE and PET costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4",
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4",
+        "COKE-2022"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "COKE-2022"
+      ]
+    },
+    {
+      "id": "polymer-mixed",
+      "text": "HDPE costs fell, PET costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "COKE-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "polymer-negation",
+      "text": "Not PET but HDPE costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "COKE-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "polymer-denied",
+      "text": "No PET or HDPE costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "polymer-falling",
+      "text": "PET costs fell.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "polymer-sales",
+      "text": "HDPE sales rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "polymer-output",
+      "text": "We sell PET at higher prices.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "polymer-uncertain",
+      "text": "HDPE costs might rise.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "ldpe-counter",
+      "text": "LDPE plastic input prices rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "pvc-counter",
+      "text": "PVC resin input prices rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "pp-counter",
+      "text": "Polypropylene costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "pvc-packaging-partial",
+      "text": "PVC and packaging costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": [
+        "KAO-CP-2022"
+      ]
+    },
+    {
+      "id": "pet-food-counter",
+      "text": "Pet food costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "pet-scan-counter",
+      "text": "PET scan costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "polymer-fuel-separate",
+      "text": "HDPE and diesel input prices rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "COKE-2022",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ]
+    },
+    {
+      "id": "polymer-outside",
+      "text": "We run an airline. PET costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    },
+    {
+      "id": "polymer-supplier",
+      "text": "We make drinks. Our airline supplier charges us more for PET.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "COKE-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "generic-plastic",
+      "text": "Plastic input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "MARICO-INDIA-2021-Q4",
+        "COKE-2022"
+      ],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4",
+        "COKE-2022"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "generic-resin",
+      "text": "Resin input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [
+        "MARICO-INDIA-2021-Q4",
+        "COKE-2022"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "fuel-counter",
+      "text": "Diesel fuel costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expected_accessible": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "partial_cases": []
+    },
+    {
+      "id": "bare-oil-counter",
+      "text": "Oil costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_first_five": [],
+      "expected_accessible": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "partial_cases": []
+    }
+  ]
+}
