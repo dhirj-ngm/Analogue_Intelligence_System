@@ -1,0 +1,320 @@
+{
+  "version": "M011-v1",
+  "base_commit": "13814c27e3f5efab6142ba3c4bbd1fededccd611",
+  "method": "context_m010",
+  "provenance": "Builder-authored AI development expectations, case-informed before records; not independent human validation. Human validation deferred, zero human judgements.",
+  "policy": "Compare 17-case and expanded cohorts with identical method and eligibility rules; preserve existing candidate eligibility. Record all useful targets, unexpected/forbidden results and rank losses. Known material-word misses and oil/fuel conflation are not permission to tune ranking or cases.",
+  "selection": [
+    {
+      "id": "MARICO-INDIA-2021-Q4",
+      "source": "https://marico.com/investorspdf/Information_Update_April_30_2021.pdf",
+      "gap": "India: copra/vegetable oils and HDPE in Q4FY21; domestic operating margin, commodity benchmarks distinct from actual consumption costs."
+    },
+    {
+      "id": "KAO-CP-2022",
+      "source": "https://www.kao.com/content/dam/sites/kao/www-kao-com/global/en/investor-relations/pdf/presentations-fy2022-01.pdf",
+      "gap": "Japan-led consumer products, also overseas: natural fats/oils, petrochemical packaging and paper; estimated income headwind distinct from actual operating loss. Exclude 2023 forecast energy increases."
+    },
+    {
+      "id": "TIGER-2023-H1",
+      "source": "https://www.tigerbrands-ir-digital.com/results/2023/interims-2023/pdf/booklet.pdf",
+      "gap": "South Africa-led FMCG: rolling electricity cuts and grain inflation; group gross margin, unreconciled load-shedding/energy cost bases."
+    }
+  ],
+  "queries": [
+    {
+      "id": "india-oil-plastic",
+      "text": "Vegetable oil and plastic input prices rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": "Distinct Indian copra/vegetable-oil and HDPE pressure; no geographic rank feature."
+    },
+    {
+      "id": "india-situation",
+      "text": "We make consumer goods in India. Vegetable oil and plastic costs are rising.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "copra-only",
+      "text": "Copra input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": "Useful disclosed input; vocabulary coverage may be absent. Record the miss rather than add synonyms."
+    },
+    {
+      "id": "rice-bran",
+      "text": "Rice bran oil costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": "Oil family can blur vegetable oil and fuel; inspect displayed differences."
+    },
+    {
+      "id": "japan-packaging",
+      "text": "Petrochemical packaging costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "paper-cardboard",
+      "text": "Paper and cardboard costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": "New disclosed material; no paper/fibre synonym is authorized. A retrieval miss is possible."
+    },
+    {
+      "id": "japan-oil-packaging",
+      "text": "We make household products in Japan. Oil and packaging costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "sa-grain-power",
+      "text": "Wheat and maize input costs rose, electricity costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "TIGER-2023-H1"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "sa-situation",
+      "text": "We make food in South Africa. Wheat costs rose and power costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "TIGER-2023-H1"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "power-reliability",
+      "text": "Power cuts raise electricity-related operating costs.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "TIGER-2023-H1"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": "Outage costs differ from tariffs; the method does not distinguish every disruption subtype."
+    },
+    {
+      "id": "mixed-partial",
+      "text": "Milk costs fell, electricity costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "DF-2015",
+        "TIGER-2023-H1"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "note": "Require per-case partial coverage, never a pooled joint situation."
+    },
+    {
+      "id": "diesel-counterexample",
+      "text": "Diesel fuel costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "note": "Natural/edible oils are not a fuel disclosure. Broad existing oil family may return these as misleading comparisons."
+    },
+    {
+      "id": "airline",
+      "text": "We operate an airline. Fuel costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "output-sales",
+      "text": "Milk sales rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "coffee-fall",
+      "text": "Coffee input costs fall.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "unsupported-potato",
+      "text": "Potato input costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "milk-fall",
+      "text": "Milk costs are falling.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "negated-cost",
+      "text": "Oil input costs are not rising.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "expect_empty": true,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "old-date",
+      "text": "Vegetable oil and plastic costs rise.",
+      "cutoff": "2010-01-01",
+      "expected_useful_cases": [],
+      "expect_empty": false,
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022",
+        "TIGER-2023-H1"
+      ],
+      "note": ""
+    },
+    {
+      "id": "india-before",
+      "text": "Vegetable oil and plastic costs rise.",
+      "cutoff": "2021-04-29",
+      "expected_useful_cases": [],
+      "expect_empty": false,
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "note": ""
+    },
+    {
+      "id": "india-on",
+      "text": "Vegetable oil and plastic costs rise.",
+      "cutoff": "2021-04-30",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "japan-before",
+      "text": "Oil and packaging costs rise.",
+      "cutoff": "2023-02-01",
+      "expected_useful_cases": [],
+      "expect_empty": false,
+      "forbidden_cases": [
+        "KAO-CP-2022"
+      ],
+      "note": ""
+    },
+    {
+      "id": "japan-on",
+      "text": "Oil and packaging costs rise.",
+      "cutoff": "2023-02-02",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    },
+    {
+      "id": "south-africa-before",
+      "text": "Wheat and electricity costs rise.",
+      "cutoff": "2023-05-29",
+      "expected_useful_cases": [],
+      "expect_empty": false,
+      "forbidden_cases": [
+        "TIGER-2023-H1"
+      ],
+      "note": ""
+    },
+    {
+      "id": "south-africa-on",
+      "text": "Wheat and electricity costs rise.",
+      "cutoff": "2023-05-30",
+      "expected_useful_cases": [
+        "TIGER-2023-H1"
+      ],
+      "expect_empty": false,
+      "forbidden_cases": [],
+      "note": ""
+    }
+  ],
+  "comparison_checks": [
+    {
+      "ids": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022",
+        "TIGER-2023-H1"
+      ],
+      "requirements": [
+        "Keep geography and domestic versus group scope visible",
+        "Keep percentages, JPY billion and ZAR million in their own units; no conversion/subtraction",
+        "Explain copra and HDPE, chemical price offset, load-shedding and cost reconciliation unknown",
+        "Keep company action estimates separate from independent effects; preserve source URLs/locators",
+        "Show per-case supported/missing pressures; comparison does not establish combined coverage"
+      ]
+    }
+  ],
+  "safeguards": [
+    "For every new record test publication-day inclusion, previous-day exclusion, strict earlier reporting end, self and continuation exclusion",
+    "Mutation-check actions, outcomes, metrics, geography and identity cannot affect first-stage ranks",
+    "Sources link externally; original documents not committed/served; human_reviewed false"
+  ]
+}
