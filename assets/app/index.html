@@ -106,7 +106,7 @@
       <div class="how-content">
         <h3>What a match means</h3>
         <p>Search connects a small set of input names in your description with pressures in company reports.
-          It links milk with dairy, flour with grains, chocolate with cocoa, freight with transport, and fuel with oil. It also recognizes coffee, cattle/livestock and aluminum/aluminium.
+          It links milk with dairy, flour with grains, chocolate with cocoa, and freight with transport. It also recognizes coffee, cattle/livestock, aluminum/aluminium, copra (dried coconut kernel), paper and cardboard.
           Each result shows the words it connected. Related inputs are not identical costs or proof of a useful comparison.</p>
         <p>Simple sentence rules separate input costs from sales or demand, keep denied pressures out, and compare whether costs rose or fell.
           For example, “milk costs are rising not falling” searches for a rise. “Milk costs fell, energy bills rose” keeps each change with its input.
@@ -119,7 +119,10 @@
           Related terms and matching directions do not show that an earlier action would work now.</p>
         <p>Each case lists the pressures it supports and those not established here. Missing evidence does not mean those costs did not change.
           Counts cover the named pressures we could identify; complex descriptions can still be misread. Combining partial cases does not document one combined situation.</p>
-        <p>Country names do not filter or boost search results. Check each case's location and business scope. Natural or cooking oils can also match fuel through the broad oil family; check the actual material in the source.</p>
+        <p>Fuel, petrochemical materials, and natural or cooking oils are kept separate. Bare “oil” prompts a clarification. Copra is a dried kernel, not coconut oil; paper/cardboard evidence does not establish pulp.
+          A named-input match means both descriptions identify the material, with grade and purchase basis still unknown. A related comparison can name a narrower input or only a broader cost connection.
+          Oil-related distribution costs may offer related fuel context, but they do not establish diesel or another exact fuel. Results and comparisons keep that limit visible.</p>
+        <p>Country names do not filter or boost search results. Check each case's location and business scope.</p>
         <h3>Where the evidence comes from</h3>
         <p>The case descriptions were compiled with AI from published company reports. They have not had a complete independent review.
           Each case links to its report and tells you where to look. The company's explanation is not independent proof of cause and effect.</p>
@@ -129,6 +132,7 @@
         <details class="technical-details"><summary>Search method and this search's checks</summary>
           <p>BM25 scores named input families in the pressure passages only. Responses, profit figures and later outcomes do not affect these scores.
             General words such as ingredient, commodity, cost or margin are not enough. Clauses are checked for role, direction, negation and business context before matching.
+            Material names receive more weight than related material links. Length checks count actual pressure mentions, rather than the number of possible links.
             Scores are keyword scores, not confidence or probabilities. This vocabulary and its simple negation rule do not establish relevance.</p>
           <div id="method-checks"><p>Run a search to see its dates, exclusions and scores.</p></div>
         </details>

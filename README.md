@@ -49,6 +49,12 @@ as “milk costs fell, energy bills rose.” Each change stays with its named in
 Conflicting directions or unclear business roles prompt an edit. The clarification
 button focuses your description, preserving text and dates without submitting it.
 
+Fuel, petrochemical materials and edible/natural oils stay separate. Bare **oil**
+asks which material you buy. Copra (dried coconut kernel), paper and cardboard are
+recognized. Results distinguish named inputs from related costs: oil-related
+distribution evidence does **not** establish diesel. Each comparison keeps that
+limit visible; coconut oil is not copra, and paper/cardboard do not establish pulp.
+
 **Dates and a starting case** is optional. **Information available by** includes
 reports published on or before that date; periods must end strictly before the
 situation being compared. A starting case and known continuing reports are
@@ -66,6 +72,9 @@ reports open separately at the publisher/SEC; documents are not stored or served
 BM25 scores named input families in **case pressure passages only**. The
 [vocabulary](src/ais/related.py), [additional material names](src/ais/vocabulary.py)
 and [sentence rules](src/ais/language_context.py) are small and explicit.
+[M012 material rules](src/ais/material_context.py) replace the broad oil synonym
+with named inputs and directed, qualified links. Names receive more weight than
+related material links; lengths count actual mentions rather than generated links.
 Responses, profit figures, business identity, later outcomes and rationale cannot
 increase scores. Publication evidence, earlier periods and self/continuation
 exclusions are shared across methods. Future responses are withheld.
@@ -76,19 +85,23 @@ coverage is computed after scoring. Related words do not establish identical
 purchases or a useful analogy. Unknown cost names do not become scoring synonyms.
 Bare topic lists retain unspecified direction.
 
-[M011 collection checks](evaluation/collection-m011/report.md) freeze 25 searches,
-comparison requirements and 186 historical entries before new records (`98b8001`).
-Using unchanged M010 search on 17 versus 20 cases, expected useful targets appear
-in the first five for 2/16 → 14/16 queries; all five expected-empty searches stay
-empty. However, edible/natural oils now misleadingly match a diesel query. Fifty-one
-historical ranked lists change; ten prior targets move down, none leaves the first
-five. These are **AI development checks, not independent validation or accuracy estimates**.
-[M010's report](evaluation/search-m010/report.md) still reproduces on its original
-seventeen-case cohort.
+[M012 checks](evaluation/search-m012/report.md) freeze 64 searches before changing
+search (`0241f27`). On identical eligible cases from the twenty-case collection,
+queries retrieving all expected useful or explicitly related targets improve from
+24/38 to 38/38; forbidden/unexpected-result queries fall from 23 to zero. All 26
+expected-empty queries stay empty. Of 211 historical entries, 45 ranked lists change;
+three prior targets rank lower, including two leaving the displayed five with
+oil clarification. The report accounts for all ten targets that fell after M011:
+two restored, seven still lower, one now clarified. These are **AI development
+checks, not independent validation or accuracy estimates**. Earlier
+[M011 collection](evaluation/collection-m011/report.md) and
+[M010 search](evaluation/search-m010/report.md) results reproduce unchanged.
 
-Copra and paper/cardboard alone miss useful new cases. The broad oil family does
-not safely distinguish cooking oils from fuel; read the source and differences.
-Long references still need care: “Milk prices aren't rising; they are falling”
+No pressure passage explicitly names diesel; its related distribution comparison
+is not exact-input evidence. Broad multi-pressure searches can still omit useful
+cases. HDPE alone remains unrecognized; PET needs resin/plastic wording. Search
+uses the frozen pressure text, not every fact in the original document. Long
+references still need care: “Milk prices aren't rising; they are falling”
 and “The costs of milk were lower, but those of energy were higher” ask for
 clarification. Unlisted industries, role attachments and input phrases can still
 be misread. Collection coverage is narrow and U.S. biased; episode bounds and
@@ -116,8 +129,9 @@ make lint                # Ruff check/format in the existing .venv
 make validate            # Frozen pilot data and judgement coverage
 make collection-check    # Current validation, M004 reproduction, M011 comparison
 make collection-check-m011 # M011 collection comparison alone
-make search-check        # M006/M007 historical and M009/M010 paired evaluations
+make search-check        # M006/M007 historical and M009/M010/M012 paired evaluations
 make search-check-m005   # Earlier literal/related comparison
+make search-check-m012   # M011/M012 on identical eligible twenty-case pools
 make search-check-m010   # M009/M010 paired comparison alone
 make search-check-m009   # Earlier M008/M009 comparison
 make audit-check         # Original M008 audit, optional packet and deferred human state
@@ -126,7 +140,7 @@ make audit-check         # Original M008 audit, optional packet and deferred hum
 For minimal lint setup: `python3 -m venv .venv`, then
 `.venv/bin/python -m pip install ruff==0.17.3`.
 Older checks retain original cohorts/methods and verify original runtime/UI hashes
-against Git at `1e4e6d3`, `d63b3c3` and `13814c2`; checks need that history. No
+against Git at `1e4e6d3`, `d63b3c3`, `13814c2` and `1630a79`; checks need that history. No
 evidence/data hash is exempted. The app itself adds no Git dependency.
 
 Browser checks start and stop their own server and Chrome:
@@ -142,8 +156,8 @@ CHROME_BIN=/usr/bin/chromium make browser-test
 Desktop/375px checks cover searches, sources, comparison, dates, self exclusions,
 empty states, clarification and failure recovery. Screenshots are disposable in
 `/tmp/ais-case-search-{desktop,mobile}.png`,
-`/tmp/ais-m011-{comparison,measures,rand}-{desktop,mobile}.png` and related comparison files.
-The old audit flag uses recorded M011 observations for the current UI; the audit
+`/tmp/ais-m012-{related,named,clarify}-{desktop,mobile}.png` and related comparison files.
+The old audit flag uses recorded M012 observations for the current UI; the audit
 command separately reproduces M008. The optional archived review-form check is
 `make review-browser`; its synthetic drafts are not human judgements.
 
@@ -169,7 +183,7 @@ Models/caches are ignored by Git. `make run` reproduces the earlier model pilot;
 expanded the collection, and M005/M006 introduced related-input/context checks.
 [M008](evaluation/audit-m008/report.md) audited the app; [M009](evaluation/search-m009/report.md)
 fixed its three reader-facing failures, and M010 improves ordinary sentence wording.
-M011 adds the three non-U.S.-focused situations. Next work should distinguish
-natural oils from fuel, assess missing material names, and extend local-market
-coverage and conservative reference handling. Development judgements stay labelled
-honestly; human validation remains deferred.
+M011 adds the three non-U.S.-focused situations; M012 distinguishes material names
+and qualifies related evidence. Next work should address broad-query recall,
+specific polymer names, local-market coverage and conservative reference handling.
+Development judgements stay labelled honestly; human validation remains deferred.

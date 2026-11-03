@@ -122,15 +122,15 @@ GENERIC = set(
 )
 
 
-def query_profile(text):
+def query_profile(text, *, vocabulary=FAMILIES):
     cleaned, notes, outside = reader_pressure_text(text)
-    profile = read_pressure(cleaned, families=FAMILIES)
+    profile = read_pressure(cleaned, families=vocabulary)
     if outside:
         profile["blocked"] = "outside_scope"
     profile["ignored"].extend(notes)
     live = []
     unknown = set()
-    aliases = {word for _, terms in FAMILIES.values() for word in terms.split()}
+    aliases = {word for _, terms in vocabulary.values() for word in terms.split()}
     for clause in fragments(cleaned):
         if found(NEGATIVE, clause):
             continue

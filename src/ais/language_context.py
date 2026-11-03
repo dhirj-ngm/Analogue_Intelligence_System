@@ -30,9 +30,10 @@ CHANGE = f"(?:{UP}|{DOWN})"
 COST_CONTEXT = rf"{COST}|\b(?:charges?|rates?|fees?)\b"
 
 
-def inputs(text):
+def inputs(text, *, vocabulary=FAMILIES):
     text = re.sub(BUSINESS, " ", text, flags=re.I)
-    return {ALIASES[w] for w in tokens(text) if w in ALIASES}
+    aliases = {word: family for family, (_, terms) in vocabulary.items() for word in terms.split()}
+    return {aliases[w] for w in tokens(text) if w in aliases}
 
 
 def note(text, reason):
@@ -107,7 +108,7 @@ def has_change(text):
     )
 
 
-def comma_clauses(sentence):
+def comma_clauses(sentence, *, vocabulary=FAMILIES):
     pieces = re.split(r",\s*", sentence)
     current = pieces[0]
     grouped = []
@@ -116,7 +117,7 @@ def comma_clauses(sentence):
         if (
             has_change(current)
             and has_change(remainder)
-            and (inputs(piece) or found(COST, piece) or found(OUTPUT, piece))
+            and (inputs(piece, vocabulary=vocabulary) or found(COST, piece) or found(OUTPUT, piece))
         ):
             grouped.append(current)
             current = piece
@@ -130,7 +131,11 @@ def comma_clauses(sentence):
             if (
                 has_change(current)
                 and has_change(piece)
-                and (inputs(piece) or found(COST, piece) or found(OUTPUT, piece))
+                and (
+                    inputs(piece, vocabulary=vocabulary)
+                    or found(COST, piece)
+                    or found(OUTPUT, piece)
+                )
             ):
                 yield current
                 current = piece
@@ -171,7 +176,7 @@ def positive_alternatives(text):
     return result, ambiguous
 
 
-def retained_cost_clause(text):
+def retained_cost_clause(text, *, vocabulary=FAMILIES):
     """Separate the reader's purchase, a selling response and another actor's bill."""
     external = re.match(rf"\s*(?:our|the)\s+(?:[\w-]+\s+){{0,3}}{ROLE}(?:'s)?\b", text)
     transfer = bool(
@@ -211,13 +216,14 @@ def retained_cost_clause(text):
         r"\b(we|i|(?:a|the|our)\s+(?:[\w-]+\s+){0,3}(?:company|business|maker))\s+(?:are\s+|is\s+)?(?:pay|pays|paying|paid)\s+(more|less)\s+for\s+(.+)$"
     )
     match = buyer.search(text)
-    if match and inputs(match[3]):
+    if match and inputs(match[3], vocabulary=vocabulary):
         change = "rising" if match[2] == "more" else "falling"
         text = text[: match.start()] + f"{match[1]} buy {match[3]} with input costs {change}"
     return text, None
 
 
-def query_profile(text):
+def query_profile(text, *, vocabulary=FAMILIES):
+    aliases = {word for _, terms in vocabulary.values() for word in terms.split()}
     original = text
     text, scope_ambiguous = role_phrases(direction_words(text))
     notes, kept = [], []
@@ -239,7 +245,7 @@ def query_profile(text):
             and found(r"\b(?:last year|previously|now|this year)\b", sentence)
         ):
             cost_ambiguous = True
-        for comma_part in comma_clauses(sentence):
+        for comma_part in comma_clauses(sentence, vocabulary=vocabulary):
             # An explicit business identity is not an input purchase. Preserve
             # industry checks above; do not score the product in the identity.
             if (
@@ -249,7 +255,7 @@ def query_profile(text):
             ):
                 antecedent = None
                 continue
-            raw, discarded = retained_cost_clause(comma_part.strip())
+            raw, discarded = retained_cost_clause(comma_part.strip(), vocabulary=vocabulary)
             if discarded:
                 antecedent = None
                 notes.append(discarded)
@@ -263,7 +269,7 @@ def query_profile(text):
                 if found(OUTPUT, part) and not found(COST, part):
                     notes.append(note(part, "output_context"))
                     continue
-                families = inputs(part)
+                families = inputs(part, vocabulary=vocabulary)
                 up, down = found(UP, part), found(DOWN, part)
                 if up and down and not found(rf"{NEGATIVE}|\bneither\b", part):
                     cost_ambiguous = True
@@ -275,11 +281,11 @@ def query_profile(text):
                 ):
                     if antecedent and found(r"\b(?:prices?|costs?|it|they|these|their)\b", part):
                         part = antecedent + " input " + part
-                        families = inputs(part)
+                        families = inputs(part, vocabulary=vocabulary)
                     elif (
                         kept
                         and not found(LIVE, original)
-                        and not m009_profile(part)["unrecognized"]
+                        and not m009_profile(part, vocabulary=vocabulary)["unrecognized"]
                     ):
                         cost_ambiguous = True
                 if (
@@ -296,11 +302,11 @@ def query_profile(text):
                     and found(r"\b(?:buy|buys|buying|purchase|costs?)\b", part)
                     and not found(NEGATIVE, part)
                 ):
-                    words = [w for w in tokens(re.sub(BUSINESS, " ", part)) if w in ALIASES]
+                    words = [w for w in tokens(re.sub(BUSINESS, " ", part)) if w in aliases]
                     antecedent = " ".join(words)
                 else:
                     antecedent = None
-    profile = m009_profile(". ".join(kept))
+    profile = m009_profile(". ".join(kept), vocabulary=vocabulary)
     profile["ignored"].extend(notes)
     if outside:
         profile["blocked"] = "outside_scope"

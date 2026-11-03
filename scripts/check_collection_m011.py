@@ -6,6 +6,7 @@ import json
 
 from ais.pilot import ROOT
 from ais.search import CaseSearch
+from ais.historical import frozen_bytes
 
 DIRECTORY = ROOT / "evaluation/collection-m011"
 METHOD = "context_m010"
@@ -41,11 +42,8 @@ def ranked(observation):
 def evaluate():
     freeze = json.loads((DIRECTORY / "freeze.json").read_text())
     for path, expected in freeze["sha256"].items():
-        if (
-            path not in freeze["mutable_code"]
-            and sha256((ROOT / path).read_bytes()).hexdigest() != expected
-        ):
-            raise ValueError(f"Frozen M011 input changed: {path}")
+        if path not in freeze["mutable_code"]:
+            frozen_bytes(path, expected)
     inputs = json.loads((DIRECTORY / "checks.json").read_text())
     if inputs["method"] != METHOD:
         raise ValueError("The frozen method must stay unchanged")
@@ -209,10 +207,14 @@ if __name__ == "__main__":
         (DIRECTORY / "results.json").write_text(
             json.dumps(result, indent=2, ensure_ascii=False) + "\n"
         )
-    elif json.loads((DIRECTORY / "results.json").read_text()) != result:
-        raise ValueError(
-            "M011 observations/fingerprints changed; inspect before explicitly recording --write"
-        )
+    else:
+        recorded = json.loads((DIRECTORY / "results.json").read_text())
+        if {k: v for k, v in recorded.items() if k != "fingerprints"} != {
+            k: v for k, v in result.items() if k != "fingerprints"
+        }:
+            raise ValueError("M011 observations differ from their frozen method/cohorts")
+        for path, expected in recorded["fingerprints"].items():
+            frozen_bytes(path, expected)
     summary = result["summary"]
     print(
         json.dumps(

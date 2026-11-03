@@ -16,7 +16,13 @@ export function words(items) {
 }
 
 export function pressureMatchLabel(matches) {
-  const parts = matches.map((match) => match.relationship === "shared_word"
+  const parts = matches.map((match) => match.match_kind === "named_input"
+    ? `Named input: ${words(match.query_terms)}`
+    : match.match_kind === "broader_source"
+      ? `Related cost only: ${words(match.query_terms)} → ${words(match.report_terms)}. The exact requested input is not named`
+      : match.match_kind === "more_specific_source"
+        ? `${words(match.query_terms)} → ${words(match.report_terms)} (source names a more specific input; other varieties are not established)`
+        : match.relationship === "shared_word"
     ? words(match.shared_words)
     : `${words(match.query_terms)} → ${words(match.report_terms)} (related ${match.label})`);
   return `Pressure match: ${parts.join("; ")}.`;
@@ -27,6 +33,7 @@ export function matchDirectionLabel(matches) {
   if (!reports.size) return "";
   const directions = [...reports].map((value) => value === "up" ? "rising costs" : value === "down" ? "falling costs" : "disruption");
   const unspecified = matches.some((m) => m.query_direction === "unspecified");
+  if (matches.some((m) => m.named_input_established === false)) return `${unspecified ? "Your direction is not specified for some inputs. " : ""}The source describes ${words(directions)} in related costs; it does not establish the exact requested input.`;
   return unspecified
     ? `Your direction is not specified for some inputs. The matched report describes ${words(directions)}.`
     : `Matched inputs describe ${words(directions)} in both descriptions.`;
@@ -37,10 +44,16 @@ export function coverageText(coverage) {
   const names = keys => keys.map(key => coverage.names[key] || key);
   const missing = [...names(coverage.missing), ...coverage.unrecognized.map(term=>`${term} costs`)];
   return {
-    summary: coverage.partial
+    summary: coverage.related_count && !coverage.supported_count
+      ? "Related costs only — the requested input is not established"
+      : coverage.partial
       ? `Partial comparison — supports ${coverage.supported_count} of ${coverage.identified_count} identified pressures`
       : coverage.identified_count === 1 ? "Supports the identified pressure" : `Supports all ${coverage.identified_count} identified pressures`,
-    supported: `Evidence for: ${words(names(coverage.supported))}.`,
+    supported: coverage.related_count && !coverage.supported_count
+      ? "No named requested input is established here."
+      : `Evidence for: ${words(names(coverage.supported))}.`,
+    related: coverage.related_count
+      ? `Related cost connection for: ${words(names(coverage.related_only))}. ${[...new Set(coverage.related_notes)].join(" ")}` : "",
     missing: missing.length ? `Not established here: ${words(missing)}.` : "",
     unresolved: coverage.unresolved.length ? `Still unclear: ${words(coverage.unresolved)}. Clarify the input you buy.` : "",
   };

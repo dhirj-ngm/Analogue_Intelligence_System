@@ -94,6 +94,19 @@ test("related matches show query and actual report terms rather than claiming id
   assert.equal(pressureMatchLabel([{relationship:"shared_word",shared_words:["packaging"]}]), "Pressure match: packaging.");
 });
 
+test("material evidence distinguishes named inputs, narrower examples and broader costs", () => {
+  assert.match(pressureMatchLabel([{match_kind:"named_input",query_terms:["copra"]}]), /Named input: copra/);
+  assert.match(pressureMatchLabel([{match_kind:"more_specific_source",query_terms:["vegetable oil"],report_terms:["rice bran oil"]}]), /source names a more specific input; other varieties are not established/);
+  const match = {match_kind:"broader_source",query_terms:["diesel"],report_terms:["oil-related distribution costs"],named_input_established:false,query_direction:"up",report_direction:"up"};
+  assert.match(pressureMatchLabel([match]), /Related cost only.*exact requested input is not named/);
+  assert.match(matchDirectionLabel([match]), /does not establish the exact requested input/);
+  const text = coverageText({supported:[],missing:[],related_only:["diesel"],related_count:1,related_notes:["The source does not name diesel."],names:{diesel:"diesel fuel"},unrecognized:[],unresolved:[],supported_count:0,identified_count:1,partial:true});
+  assert.match(text.summary,/Related costs only/);
+  assert.match(text.supported,/No named requested input/);
+  assert.match(text.related,/does not name diesel/);
+  assert.doesNotMatch(text.supported,/Evidence for: diesel|Supports the identified/);
+});
+
 test("direction explanations distinguish input topics from asserted increases", () => {
   assert.match(matchDirectionLabel([{query_direction:"unspecified",report_direction:"up"}]), /Your direction is not specified/);
   assert.match(matchDirectionLabel([{query_direction:"up",report_direction:"up"}]), /rising costs in both/);

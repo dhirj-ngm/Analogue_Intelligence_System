@@ -73,6 +73,7 @@ function coverageBlock(c) {
   const text = coverageText(c.coverage);
   if (!text) return block;
   block.append(node("strong", text.summary), node("p", text.supported));
+  if (text.related) block.append(node("p", text.related, "coverage-missing"));
   if (text.missing) block.append(node("p", text.missing, "coverage-missing"));
   if (text.unresolved) block.append(node("p", text.unresolved));
   if (c.coverage.partial) block.append(node("p", "This record does not support the whole combination in your description.", "field-help"));
@@ -246,7 +247,8 @@ function renderResults(data) {
   $("comparison").hidden = true;
   $("results").replaceChildren(...data.results.map(renderCard));
   updateSelection();
-  $("results-title").textContent = data.results.length ? `${data.results.length} cases to explore` : "No comparison to show yet";
+  const relatedOnly = data.results.length && data.results.every(c => c.coverage?.related_count && !c.coverage.supported_count);
+  $("results-title").textContent = data.results.length ? `${data.results.length} ${relatedOnly ? "related " : ""}${data.results.length === 1 ? "case" : "cases"} to explore` : "No comparison to show yet";
   $("results-status").textContent = data.message;
   $("results-status").classList.toggle("empty", data.status === "insufficient_evidence");
   const reading = $("query-reading");
@@ -262,7 +264,9 @@ function renderResults(data) {
   $("clarification-title").textContent = data.clarification?.title || "Clarify the input you buy";
   $("clarification-message").textContent = data.clarification?.message || "";
   $("clarify-input").textContent = data.clarification?.action || "Edit the input description";
-  $("result-caution").textContent = data.partial_only
+  $("result-caution").textContent = relatedOnly
+    ? "These reports describe related costs. They do not establish your exact requested input; check the source and the missing information."
+    : data.partial_only
     ? "Each case covers only part of your description. Showing them together does not document one situation with the combined pressures."
     : "Shared or related input names are a starting point. Check the business, whether costs rose or fell, and the source.";
   $("result-caution").hidden = !data.results.length;

@@ -22,7 +22,9 @@ class CollectionTests(unittest.TestCase):
         self.assertEqual(self.search.catalog()["total"], 13)
         self.assertEqual(self.search.catalog()["companies"], 8)
         self.assertEqual(len(self.records), 3)
-        for case, query in zip(self.records, ["grains dairy energy", "oil distribution", "cocoa"]):
+        for case, query in zip(
+            self.records, ["grains dairy energy", "oil-related distribution", "cocoa"]
+        ):
             self.assertEqual(self.query(query)["results"][0]["id"], case["id"])
             self.assertFalse(case["human_reviewed"])
             self.assertTrue(case["business_scope"])

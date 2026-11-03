@@ -1,0 +1,120 @@
+{
+  "provenance": "Post-freeze AI development probes, excluded from all 64-query and 211-entry summary counts. Not independent validation.",
+  "observations": [
+    {
+      "payload": {
+        "text": "natural oil packaging grain energy",
+        "cutoff": "2026-11-03"
+      },
+      "note": "Broad multi-pressure ranking can miss Marico in the displayed five; naming copra narrows the request without changing the method/cases.",
+      "m011": {
+        "status": "candidates",
+        "ranked": [
+          {
+            "id": "TIGER-2023-H1",
+            "score": 4.11181
+          },
+          {
+            "id": "GIS-2007",
+            "score": 3.169355
+          },
+          {
+            "id": "KAO-CP-2022",
+            "score": 2.901997
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 2.396813
+          },
+          {
+            "id": "MARICO-INDIA-2021-Q4",
+            "score": 1.753994
+          }
+        ]
+      },
+      "m012": {
+        "status": "candidates",
+        "ranked": [
+          {
+            "id": "TIGER-2023-H1",
+            "score": 4.252354
+          },
+          {
+            "id": "GIS-2007",
+            "score": 3.295277
+          },
+          {
+            "id": "KAO-CP-2022",
+            "score": 2.07778
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.483582
+          },
+          {
+            "id": "KC-2011",
+            "score": 1.289838
+          }
+        ]
+      }
+    },
+    {
+      "payload": {
+        "text": "copra natural oil packaging grain energy",
+        "cutoff": "2026-11-03"
+      },
+      "note": "Broad multi-pressure ranking can miss Marico in the displayed five; naming copra narrows the request without changing the method/cases.",
+      "m011": {
+        "status": "candidates",
+        "ranked": [
+          {
+            "id": "TIGER-2023-H1",
+            "score": 4.11181
+          },
+          {
+            "id": "GIS-2007",
+            "score": 3.169355
+          },
+          {
+            "id": "KAO-CP-2022",
+            "score": 2.901997
+          },
+          {
+            "id": "NES-WATERS-2011-H1",
+            "score": 2.396813
+          },
+          {
+            "id": "MARICO-INDIA-2021-Q4",
+            "score": 1.753994
+          }
+        ]
+      },
+      "m012": {
+        "status": "candidates",
+        "ranked": [
+          {
+            "id": "TIGER-2023-H1",
+            "score": 4.252354
+          },
+          {
+            "id": "MARICO-INDIA-2021-Q4",
+            "score": 3.324278
+          },
+          {
+            "id": "GIS-2007",
+            "score": 3.295277
+          },
+          {
+            "id": "KAO-CP-2022",
+            "score": 2.07778
+          },
+          {
+            "id": "CL-2008",
+            "score": 1.483582
+          }
+        ]
+      }
+    }
+  ],
+  "method_sha256": "009f285d48ddf9408efffb55ab2ef2e98f7b3a59179c9a52a52192a169553965"
+}

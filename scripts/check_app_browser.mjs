@@ -8,7 +8,7 @@ import { join, resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 const audit = process.argv.includes("--audit-m008")
   ? JSON.parse(await readFile(join(root,"evaluation/audit-m008/snapshot.json"),"utf8")).queries : [];
-const currentAudit = audit.length ? JSON.parse(await readFile(join(root,"evaluation/collection-m011/results.json"),"utf8")).historical.filter(r=>r.group==="m008") : [];
+const currentAudit = audit.length ? JSON.parse(await readFile(join(root,"evaluation/search-m012/results.json"),"utf8")).historical.filter(r=>r.group==="m008") : [];
 const retryRounds = Number(process.argv.find((arg) => arg.startsWith("--retry-rounds="))?.split("=")[1] || 3);
 assert.ok(Number.isInteger(retryRounds) && retryRounds >= 1 && retryRounds <= 30);
 const profile = await mkdtemp(join(tmpdir(), "ais-browser-"));
@@ -275,7 +275,7 @@ try {
     await search();
     assert.equal(await evaluate(`document.querySelector('.case-card').dataset.caseId`), "GIS-2007");
     assert.ok(await evaluate(`document.querySelector('.pressure-match').textContent.includes('milk → dairy') && document.querySelector('.pressure-match').textContent.includes('flour → grains') && document.querySelector('.pressure-match').textContent.includes('electricity → energy')`));
-    assert.ok(await evaluate(`document.querySelector('.card-main').innerText.includes('do not establish that it measured your exact input') && document.getElementById('result-caution').innerText.includes('whether costs rose or fell')`));
+    assert.ok(await evaluate(`document.querySelector('.card-main').innerText.includes('do not establish that it measured your exact input') && document.getElementById('result-caution').innerText.includes('combined pressures')`));
     assert.ok(await evaluate(`document.getElementById('query-reading').innerText.includes('direction not specified') && document.querySelector('.direction-match').innerText.includes('Your direction is not specified')`));
     await screenshot(`ais-related-search-${device}.png`, false);
     for (const [text,id,link] of [["chocolate ingredient inflation","HSY-2025-Q1","chocolate → cocoa"],["bottled-water freight and fuel","NES-WATERS-2011-H1","fuel → oil"]]) {
@@ -312,7 +312,7 @@ try {
     assert.ok(await evaluate(`document.getElementById('query-reading').innerText.includes('falling costs') && document.getElementById('query-reading').innerText.includes('rising costs')`));
     checks.push(`${device}: mixed negation keeps positive packaging, packaging rank is transparent, opposite inputs veto partial matches`);
 
-    await fill("situation", "cocoa dairy grains oil transport");
+    await fill("situation", "cocoa dairy grains fuel transport");
     await search();
     assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).sort(), ["DF-2015", "GIS-2007", "HSY-2025-Q1", "NES-WATERS-2011-H1", "TIGER-2023-H1"]);
     await click(".case-card[data-case-id='NES-WATERS-2011-H1'] .case-reading > summary");
@@ -425,7 +425,7 @@ try {
     await screenshot(`ais-m009-partial-${device}.png`,false);
     await click("#clear-comparison");
     await fill("situation","Milk and potato costs are rising.");await search();
-    assert.ok(await evaluate(`document.querySelector('.coverage').innerText.includes('potato costs') && document.querySelector('.coverage').innerText.includes('Partial comparison')`));
+    assert.ok(await evaluate(`document.querySelector('.coverage').innerText.includes('potato costs') && document.querySelector('.coverage').innerText.includes('Related costs only')`));
     checks.push(`${device}: M009 supported/missing pressures per result and comparison; combined-case caution; unknown input stays unsupported`);
 
     const liveQuery="Our beef plant buys live animals. Beef raw-material costs are rising.";
@@ -487,7 +487,7 @@ try {
     await openOptions();await click("#reset-dates");
     for (const [text,id,place,url] of [
       ["Vegetable oil and plastic prices rose.","MARICO-INDIA-2021-Q4","India · domestic business","https://marico.com/investorspdf/Information_Update_April_30_2021.pdf"],
-      ["Oil and packaging prices rose.","KAO-CP-2022","Japan and overseas · consumer products","https://www.kao.com/content/dam/sites/kao/www-kao-com/global/en/investor-relations/pdf/presentations-fy2022-01.pdf"],
+      ["Petrochemical packaging prices rose.","KAO-CP-2022","Japan and overseas · consumer products","https://www.kao.com/content/dam/sites/kao/www-kao-com/global/en/investor-relations/pdf/presentations-fy2022-01.pdf"],
       ["Wheat and maize costs rose, electricity costs rose.","TIGER-2023-H1","South Africa-led · group results","https://www.tigerbrands-ir-digital.com/results/2023/interims-2023/pdf/booklet.pdf"],
     ]) {
       await fill("situation",text);await search();
@@ -506,8 +506,8 @@ try {
     checks.push(`${device}: M011 actual India, Japan/overseas and South Africa scopes; original source URLs/locations; yen cost headwind and unknowns`);
 
     for (const [text,id,before,on] of [
-      ["Oil and plastic costs rise.","MARICO-INDIA-2021-Q4","2021-04-29","2021-04-30"],
-      ["Oil and packaging costs rise.","KAO-CP-2022","2023-02-01","2023-02-02"],
+      ["Vegetable oil and plastic costs rise.","MARICO-INDIA-2021-Q4","2021-04-29","2021-04-30"],
+      ["Petrochemical packaging costs rise.","KAO-CP-2022","2023-02-01","2023-02-02"],
       ["Wheat and electricity costs rise.","TIGER-2023-H1","2023-05-29","2023-05-30"],
     ]) {
       await openOptions();await click("#reset-dates");await fill("situation",text);
@@ -520,7 +520,7 @@ try {
     }
     checks.push(`${device}: M011 publication before/on-day boundaries and starting-case exclusions for all three additions`);
     await openOptions();await click("#reset-dates");
-    await fill("situation","oil packaging grain energy");await search();
+    await fill("situation","copra natural oil packaging grain energy");await search();
     for (const id of ["MARICO-INDIA-2021-Q4","KAO-CP-2022","TIGER-2023-H1"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
     await click("#compare-button");
     assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('India domestic') && document.getElementById('comparison-table').innerText.includes('Japan and overseas') && document.getElementById('comparison-table').innerText.includes('South Africa-led') && document.querySelector('.comparison-note').innerText.includes('combining partial cases') && document.documentElement.scrollWidth<=innerWidth`));
@@ -536,13 +536,56 @@ try {
     assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('76 million South African rand (ZAR)') && document.getElementById('comparison-table').innerText.includes('48 million South African rand (ZAR)') && document.getElementById('comparison-table').innerText.includes('no reconciliation')`));
     await screenshot(`ais-m011-rand-${device}.png`,false);
     await click("#clear-comparison");
-    for (const text of ["Copra costs rose.","Paper and cardboard costs rose."]) {
+    for (const [text,id] of [["Copra costs rose.","MARICO-INDIA-2021-Q4"],["Paper and cardboard costs rose.","KAO-CP-2022"]]) {
       await fill("situation",text);await search();
-      assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && !document.getElementById('empty-actions').hidden`));
+      assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),[id]);
+      assert.ok(await evaluate(`document.querySelector('.pressure-match').innerText.includes('Named input')`));
     }
     await fill("situation","Diesel fuel costs rose.");await search();
-    assert.ok(await evaluate(`document.querySelector('[data-case-id="KAO-CP-2022"] .differences').innerText.includes('not a fuel disclosure') && document.querySelector('[data-case-id="MARICO-INDIA-2021-Q4"] .differences').innerText.includes('different purchases from diesel')`));
-    checks.push(`${device}: M011 comparison scopes, yen/rand versus percentage definitions, unreconciled 76/12/48 cost bases; honest material-word misses and visible oil/fuel mismatch`);
+    assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),["NES-WATERS-2011-H1"]);
+    assert.ok(await evaluate(`document.getElementById('results-title').innerText.includes('related case') && document.getElementById('result-caution').innerText.includes('do not establish your exact requested input') && document.querySelector('.coverage').innerText.includes('Related costs only') && document.querySelector('.pressure-match').innerText.includes('exact requested input is not named') && !document.querySelector('.coverage').innerText.includes('Evidence for: diesel')`));
+    checks.push(`${device}: M011 comparison scopes, yen/rand versus percentage definitions, unreconciled 76/12/48 cost bases; M012 named copra/paper and qualified fuel evidence`);
+
+    // M012: concrete material requests, broader links and ambiguity stay visible.
+    await fill("situation","Diesel and edible oil costs rose.");await search();
+    assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).sort(),["MARICO-INDIA-2021-Q4","NES-WATERS-2011-H1"]);
+    assert.ok(await evaluate(`document.querySelector('[data-case-id="MARICO-INDIA-2021-Q4"] .coverage').innerText.includes('Not established here: diesel') && document.querySelector('[data-case-id="NES-WATERS-2011-H1"] .coverage').innerText.includes('No named requested input')`));
+    for (const id of ["MARICO-INDIA-2021-Q4","NES-WATERS-2011-H1"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
+    await click("#compare-button");
+    assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('Related costs only') && document.querySelector('.comparison-note').innerText.includes('combining partial cases') && document.documentElement.scrollWidth<=innerWidth`));
+    await screenshot(`ais-m012-related-${device}.png`,false);
+    await click("#clear-comparison");
+    checks.push(`${device}: M012 fuel versus food oils; source broader than diesel; per-case related/missing inputs in comparison`);
+
+    await fill("situation","Copra and paper costs rose.");await search();
+    assert.deepEqual((await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`)).sort(),["KAO-CP-2022","MARICO-INDIA-2021-Q4"]);
+    for (const id of ["KAO-CP-2022","MARICO-INDIA-2021-Q4"]) await click(`.case-card[data-case-id='${id}'] .compare-check`);
+    await click("#compare-button");
+    assert.ok(await evaluate(`document.getElementById('comparison-table').innerText.includes('Not established here: paper') && document.getElementById('comparison-table').innerText.includes('Not established here: copra') && document.documentElement.scrollWidth<=innerWidth`));
+    await screenshot(`ais-m012-named-${device}.png`,false);
+    await click("#clear-comparison");
+    await fill("situation","Petrochemical packaging costs rose.");await search();
+    assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),["KAO-CP-2022"]);
+    await fill("situation","We make cooking oil. Diesel costs rose.");await search();
+    assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),["NES-WATERS-2011-H1"]);
+    assert.ok(await evaluate(`document.getElementById('query-reading').innerText.includes('cooking oil') && !document.getElementById('query-reading').innerText.includes('matedible')`));
+    checks.push(`${device}: M012 copra/paper named evidence, separate partial cases, petrochemical type, product identity excluded`);
+
+    const oilDraft="Oil costs rise.";
+    await fill("situation",oilDraft);await search();
+    assert.ok(await evaluate(`document.querySelectorAll('.case-card').length===0 && document.getElementById('clarification-title').innerText==='Which oil or material do you buy?'`));
+    const materialDraft=await evaluate(`JSON.stringify({text:document.getElementById('situation').value,date:document.getElementById('cutoff').value,end:document.getElementById('before-period').value,count:window.__searchSubmissions})`);
+    await screenshot(`ais-m012-clarify-${device}.png`,false);
+    await click("#clarify-input");
+    assert.equal(await evaluate(`document.activeElement.id`),"situation");
+    assert.equal(await evaluate(`JSON.stringify({text:document.getElementById('situation').value,date:document.getElementById('cutoff').value,end:document.getElementById('before-period').value,count:window.__searchSubmissions})`),materialDraft);
+    await fill("situation","Cooking oil input prices rise.");await search();
+    assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),["MARICO-INDIA-2021-Q4"]);
+    for(const text of ["Palm oil input costs rise.","Copra input costs fell.","Cardboard costs did not rise.","Our coconut oil sales rose."]) {
+      await fill("situation",text);await search();
+      assert.equal(await evaluate(`document.querySelectorAll('.case-card').length`),0);
+    }
+    checks.push(`${device}: M012 bare-oil clarification preserves draft/dates without submission; explicit edit works; unlisted oil, output and denied/opposite direction stay empty`);
 
     if (audit.length) {
       await openOptions();
@@ -552,7 +595,7 @@ try {
         await fill("cutoff",row.payload.cutoff,true);
         await fill("before-period",row.payload.before_period_end);
         await search();
-        const expected=currentAudit.find(c=>c.id===row.id).expanded.ranked;
+        const expected=currentAudit.find(c=>c.id===row.id).new.ranked;
         assert.deepEqual(await evaluate(`[...document.querySelectorAll('.case-card')].map(c=>c.dataset.caseId)`),expected.map(c=>c.id),row.id);
         assert.equal(await evaluate(`document.getElementById('cutoff').value`),row.payload.cutoff);
         assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth && document.getElementById('error').hidden`));

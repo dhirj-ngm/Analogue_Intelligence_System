@@ -2,10 +2,10 @@
 
 from copy import deepcopy
 from datetime import date, timedelta
-from hashlib import sha256
 import json
 import unittest
 
+from ais.historical import frozen_bytes
 from ais.collection import M011, load_collection, validate
 from ais.context import read_pressure
 from ais.pilot import ROOT, read_jsonl
@@ -22,11 +22,11 @@ class GeographicCollectionTests(unittest.TestCase):
     def query(self, text, **extra):
         return self.search.search({"text": text, "cutoff": "2026-11-03", **extra})
 
-    def test_existing_artifacts_and_method_modules_match_prefreeze_hashes(self):
+    def test_existing_artifacts_and_original_method_snapshots_match_prefreeze_hashes(self):
         freeze = json.loads((ROOT / "evaluation/collection-m011/freeze.json").read_text())
         for path, expected in freeze["sha256"].items():
             if path not in freeze["mutable_code"]:
-                self.assertEqual(sha256((ROOT / path).read_bytes()).hexdigest(), expected, path)
+                frozen_bytes(path, expected)
         self.assertEqual(self.search.catalog()["total"], 20)
         self.assertEqual(self.search.catalog()["companies"], 15)
         self.assertEqual(CaseSearch.load("m007").catalog()["total"], 17)
