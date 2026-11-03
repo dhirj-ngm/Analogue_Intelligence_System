@@ -2,6 +2,16 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { SearchDraft, changeInformationDate, dateLabel, metricFacts, metricHelp, pressureLabel, reportLocator, unknownLabels, explainBasisPoints, pressureMatchLabel, matchDirectionLabel, coverageText } from "../assets/app/reader.mjs";
 
+test("yen headwinds and rand costs keep their units and distinct measurement bases", () => {
+  const headwind = {name:"Estimated material-price effect",value:-46,unit:"JPY billion",scope:"Consumer Products, net Chemical price offset",basis:"Year-on-year headwind, not an operating loss",comparison:"2022 vs 2021"};
+  assert.deepEqual(metricFacts(headwind)[1], ["Number reported", "-46 billion Japanese yen (JPY)"]);
+  assert.match(metricHelp(headwind), /not an operating loss/);
+  assert.match(metricHelp(headwind), /another currency/);
+  assert.deepEqual(metricFacts({...headwind,value:76,unit:"ZAR million"})[1], ["Number reported", "76 million South African rand (ZAR)"]);
+  assert.match(metricHelp({unit:"ZAR million"}), /different definitions/);
+  assert.match(metricHelp({unit:"ZAR million"}), /not converted/);
+});
+
 const own = { text: "My packaging problem", cutoff: "2023-03-01", before_period_end: "2022-10-01", source_id: "" };
 const colgate = { id: "CL-2022", challenge: "Source challenge", published: "2023-01-27", period_end: "2022-12-31" };
 const earlier = { id: "CL-2008", challenge: "Earlier challenge", published: "2008-10-30", period_end: "2008-09-30" };

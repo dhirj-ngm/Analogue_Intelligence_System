@@ -2,7 +2,7 @@
 
 A small source-backed app for finding earlier company situations and comparing
 their input costs, reported responses, differences and unknowns. It starts with
-FMCG and has **17 assistant-checked observations from twelve companies**.
+FMCG and has **20 assistant-checked observations from fifteen companies**.
 Company explanations do not establish that an action caused a result or would
 work elsewhere. The collection has no independent human relevance validation.
 
@@ -29,6 +29,9 @@ for original links, figures, definitions, reported actions and unknowns. Select
 Each result and the first comparison row name the supported pressures and those
 **not established here**. Partial cases do not document one combined situation.
 Counts refer to identified named pressures, not every meaning of the description.
+New cases show India, Japan/overseas and South Africa-led scope in results and
+comparison headings. Country names do not filter results. Yen/rand amounts retain
+their original units and definitions; we do not convert or subtract unlike measures.
 Missing evidence does not mean a cost did not change. Profit amounts, margins,
 benchmarks and adjusted figures retain their own definitions and scope; basis
 points are explained beside the numbers.
@@ -73,13 +76,18 @@ coverage is computed after scoring. Related words do not establish identical
 purchases or a useful analogy. Unknown cost names do not become scoring synonyms.
 Bare topic lists retain unspecified direction.
 
-[M010 paired checks](evaluation/search-m010/report.md) freeze 56 development queries
-before changes (`e858102`). On identical eligible cases, expected useful-case
-retrieval rises from 9/33 to 33/33 queries; misleading-result queries fall from
-9 to 0. All 56 expectations pass, without target-retrieval/rank regressions.
-The 130 historical entries retain M009 ranks and scores. These case-informed
-checks are **not independent validation or a general accuracy estimate**.
+[M011 collection checks](evaluation/collection-m011/report.md) freeze 25 searches,
+comparison requirements and 186 historical entries before new records (`98b8001`).
+Using unchanged M010 search on 17 versus 20 cases, expected useful targets appear
+in the first five for 2/16 → 14/16 queries; all five expected-empty searches stay
+empty. However, edible/natural oils now misleadingly match a diesel query. Fifty-one
+historical ranked lists change; ten prior targets move down, none leaves the first
+five. These are **AI development checks, not independent validation or accuracy estimates**.
+[M010's report](evaluation/search-m010/report.md) still reproduces on its original
+seventeen-case cohort.
 
+Copra and paper/cardboard alone miss useful new cases. The broad oil family does
+not safely distinguish cooking oils from fuel; read the source and differences.
 Long references still need care: “Milk prices aren't rising; they are falling”
 and “The costs of milk were lower, but those of energy were higher” ask for
 clarification. Unlisted industries, role attachments and input phrases can still
@@ -87,9 +95,10 @@ be misread. Collection coverage is narrow and U.S. biased; episode bounds and
 action effects remain uncertain. Hershey's source discrepancy remains unresolved.
 
 Additional cases live in `data/collection/cases.jsonl` and
-`data/collection/m007/cases.jsonl`. All existing records and frozen M001 files are
-unchanged. [Collection notes](data/collection/m007/README.md) explain source access,
-precise locations, metric definitions, retention and continuation decisions.
+`data/collection/m007/cases.jsonl`; the new batch is separate in
+`data/collection/m011/cases.jsonl`. Existing records and frozen M001 files are
+unchanged. [M011 collection notes](data/collection/m011/README.md) explain selection,
+source access, locations, metric definitions, retention and continuation decisions.
 
 **M008 human validation is deferred, with zero human judgements.** The withdrawn
 154-pair packet remains optional; no R01 follow-up or resend is authorized. The
@@ -105,7 +114,8 @@ Python 3.14 and Node 22+ run the tests; the app itself does not need Node:
 make test                # Python safeguards/HTTP checks and JavaScript reader tests
 make lint                # Ruff check/format in the existing .venv
 make validate            # Frozen pilot data and judgement coverage
-make collection-check    # Current collection and historical M004 literal checks
+make collection-check    # Current validation, M004 reproduction, M011 comparison
+make collection-check-m011 # M011 collection comparison alone
 make search-check        # M006/M007 historical and M009/M010 paired evaluations
 make search-check-m005   # Earlier literal/related comparison
 make search-check-m010   # M009/M010 paired comparison alone
@@ -116,8 +126,8 @@ make audit-check         # Original M008 audit, optional packet and deferred hum
 For minimal lint setup: `python3 -m venv .venv`, then
 `.venv/bin/python -m pip install ruff==0.17.3`.
 Older checks retain original cohorts/methods and verify original runtime/UI hashes
-against Git at `1e4e6d3` and `d63b3c3`; those checks need that history. No evidence/data hash is
-exempted. The app itself adds no Git dependency.
+against Git at `1e4e6d3`, `d63b3c3` and `13814c2`; checks need that history. No
+evidence/data hash is exempted. The app itself adds no Git dependency.
 
 Browser checks start and stop their own server and Chrome:
 
@@ -132,8 +142,8 @@ CHROME_BIN=/usr/bin/chromium make browser-test
 Desktop/375px checks cover searches, sources, comparison, dates, self exclusions,
 empty states, clarification and failure recovery. Screenshots are disposable in
 `/tmp/ais-case-search-{desktop,mobile}.png`,
-`/tmp/ais-m010-{comparison,direction,scope}-{desktop,mobile}.png` and related comparison files.
-The old audit flag uses recorded M010 expectations for the current UI; the audit
+`/tmp/ais-m011-{comparison,measures,rand}-{desktop,mobile}.png` and related comparison files.
+The old audit flag uses recorded M011 observations for the current UI; the audit
 command separately reproduces M008. The optional archived review-form check is
 `make review-browser`; its synthetic drafts are not human judgements.
 
@@ -159,6 +169,7 @@ Models/caches are ignored by Git. `make run` reproduces the earlier model pilot;
 expanded the collection, and M005/M006 introduced related-input/context checks.
 [M008](evaluation/audit-m008/report.md) audited the app; [M009](evaluation/search-m009/report.md)
 fixed its three reader-facing failures, and M010 improves ordinary sentence wording.
-Next work should address conservative reference-resolution misses and broader
-realistic development samples. Development judgements stay labelled
+M011 adds the three non-U.S.-focused situations. Next work should distinguish
+natural oils from fuel, assess missing material names, and extend local-market
+coverage and conservative reference handling. Development judgements stay labelled
 honestly; human validation remains deferred.

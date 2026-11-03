@@ -9,7 +9,7 @@ from scripts.evaluate_m009 import evaluate
 
 class ReaderContextTests(unittest.TestCase):
     def setUp(self):
-        self.search = CaseSearch.load()
+        self.search = CaseSearch.load("m007")
 
     def run_query(self, text, **extra):
         return self.search.search({"text": text, "cutoff": "2026-11-02", **extra})

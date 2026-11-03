@@ -111,7 +111,7 @@ class CaseSearch:
                     iso_date(evidence["public_date"], "Evidence publication date")
 
     @classmethod
-    def load(cls, collection="m007"):
+    def load(cls, collection="m011"):
         cases, details = search_records(load_collection(collection))
         return cls(
             read_jsonl(ROOT / "data/pilot/cases.jsonl") + cases,
@@ -449,4 +449,5 @@ class CaseSearch:
                 "excerpt": case["evidence_excerpt"],
             },
             "review_status": detail["review_status"],
+            **({"geography": deepcopy(detail["geography"])} if "geography" in detail else {}),
         }

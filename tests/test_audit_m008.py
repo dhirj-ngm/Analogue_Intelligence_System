@@ -10,7 +10,7 @@ from scripts.check_audit_m008 import DIRECTORY, run, validate_labels
 
 class AIAuditTests(unittest.TestCase):
     def setUp(self):
-        self.search = CaseSearch.load()
+        self.search = CaseSearch.load("m007")
         self.snapshot = json.loads((DIRECTORY / "snapshot.json").read_text())
         self.labels = json.loads((DIRECTORY / "judgements.json").read_text())
         self.sources = json.loads((DIRECTORY / "source-checks.json").read_text())

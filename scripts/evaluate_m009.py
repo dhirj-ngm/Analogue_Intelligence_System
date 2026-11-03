@@ -20,14 +20,11 @@ def payload(row):
 def evaluate():
     freeze = json.loads((DIRECTORY / "freeze.json").read_text())
     for path, expected in freeze["sha256"].items():
-        if (
-            path not in freeze["mutable"]
-            and sha256((ROOT / path).read_bytes()).hexdigest() != expected
-        ):
-            raise ValueError(f"Frozen M009 input changed: {path}")
+        if path not in freeze["mutable"]:
+            frozen_bytes(path, expected)
     inputs = json.loads((DIRECTORY / "queries.json").read_text())
     baseline = json.loads((DIRECTORY / "baseline.json").read_text())
-    search = CaseSearch.load()
+    search = CaseSearch.load("m007")
 
     def paired(captured):
         p = captured["payload"]

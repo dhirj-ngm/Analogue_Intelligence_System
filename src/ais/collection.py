@@ -12,6 +12,7 @@ from ais.pilot import ROOT, read_jsonl
 
 COLLECTION = ROOT / "data/collection/cases.jsonl"
 M007 = ROOT / "data/collection/m007/cases.jsonl"
+M011 = ROOT / "data/collection/m011/cases.jsonl"
 FIELDS = ("pressure", "margin_or_profit", "other_drivers", "response")
 
 
@@ -83,7 +84,15 @@ def validate(records):
                 "metric must be numeric",
             )
             require(
-                metric["unit"] in {"percent", "USD million", "basis points", "USD per 100 lb"},
+                metric["unit"]
+                in {
+                    "percent",
+                    "USD million",
+                    "basis points",
+                    "USD per 100 lb",
+                    "JPY billion",
+                    "ZAR million",
+                },
                 "unsupported metric unit",
             )
             evidence(metric)
@@ -96,12 +105,14 @@ def validate(records):
     return records
 
 
-def load_collection(version="m007"):
-    if version not in {"m006", "m007"}:
+def load_collection(version="m011"):
+    if version not in {"m006", "m007", "m011"}:
         raise ValueError("Unknown collection version.")
     records = read_jsonl(COLLECTION)
-    if version == "m007":
+    if version in {"m007", "m011"}:
         records += read_jsonl(M007)
+    if version == "m011":
+        records += read_jsonl(M011)
     return validate(records)
 
 

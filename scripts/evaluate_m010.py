@@ -6,6 +6,7 @@ import json
 
 from ais.pilot import ROOT
 from ais.search import CaseSearch
+from ais.historical import frozen_bytes
 
 DIRECTORY = ROOT / "evaluation/search-m010"
 
@@ -19,14 +20,11 @@ def payload(row):
 def evaluate():
     freeze = json.loads((DIRECTORY / "freeze.json").read_text())
     for path, expected in freeze["sha256"].items():
-        if (
-            path not in freeze["mutable"]
-            and sha256((ROOT / path).read_bytes()).hexdigest() != expected
-        ):
-            raise ValueError(f"Frozen M010 input changed: {path}")
+        if path not in freeze["mutable"]:
+            frozen_bytes(path, expected)
     inputs = json.loads((DIRECTORY / "queries.json").read_text())
     baseline = json.loads((DIRECTORY / "baseline.json").read_text())
-    search = CaseSearch.load()
+    search = CaseSearch.load("m007")
 
     def paired(captured):
         p = captured["payload"]
@@ -194,10 +192,12 @@ if __name__ == "__main__":
         )
     else:
         recorded = json.loads((DIRECTORY / "results.json").read_text())
-        if recorded != result:
-            raise ValueError(
-                "M010 observations or implementation fingerprints changed; regenerate explicitly"
-            )
+        if {k: v for k, v in recorded.items() if k != "fingerprints"} != {
+            k: v for k, v in result.items() if k != "fingerprints"
+        }:
+            raise ValueError("M010 observations differ from the original method/cohort")
+        for path, expected in recorded["fingerprints"].items():
+            frozen_bytes(path, expected)
     print(json.dumps(result["summary"], indent=2))
     if result["summary"]["remaining_failures"]:
         raise SystemExit(1)

@@ -9,7 +9,7 @@ from scripts.evaluate_m010 import evaluate
 
 class SentenceTests(unittest.TestCase):
     def setUp(self):
-        self.search = CaseSearch.load()
+        self.search = CaseSearch.load("m007")
 
     def query(self, text, **extra):
         return self.search.search({"text": text, "cutoff": "2026-11-02", **extra})

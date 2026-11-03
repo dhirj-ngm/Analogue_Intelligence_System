@@ -1,47 +1,47 @@
 # Current status
 
-Updated: 2 November 2026.
+Updated: 3 November 2026.
 
-**M001: Closed development pilot.** Ten observations and original BM25/MiniLM
-experiments remain frozen. The five user grades are not a complete human benchmark.
+**M001: Closed development pilot.** Ten observations and BM25/MiniLM experiments
+remain frozen. Five earlier user grades are not a complete human benchmark.
 See [pilot report](evaluation/pilot/pilot-report.md).
 
-**M002–M007: Complete.** Reader-friendly local case search/comparison, with seventeen
-situations from twelve companies: `make app`, http://127.0.0.1:8000. Source evidence,
-metric definitions, unknowns and original observations are unchanged. See
-[M007 collection notes](data/collection/m007/README.md) and the earlier reports.
+**M002–M010: Complete.** Local reader-friendly case search/comparison, collection
+and sentence-handling development. Earlier evaluations retain original cohorts and
+outputs. See [M010 report](evaluation/search-m010/report.md).
 
-**M008: AI audit complete; human validation deferred.** Zero human judgements.
-The withdrawn 154-pair packet remains optional; no R01 follow-up or resend.
-The [AI audit](evaluation/audit-m008/report.md) is historical development evidence,
-not independent validation. Its method and original observations still reproduce.
+**M008 human validation remains deferred: zero human judgements.** The withdrawn
+packet is optional; no R01 follow-up/resend. The historical
+[AI audit](evaluation/audit-m008/report.md) is not independent validation.
 
-**M009: Complete.** Supplier/customer context, per-case pressure coverage and
-live-animal clarification remain available. See [M009 report](evaluation/search-m009/report.md).
+**M011: Complete.** The app now has twenty situations from fifteen companies:
+Marico's India input costs (2021), Kao's Japan/overseas consumer materials (2022),
+and Tiger Brands' South African electricity/grain pressure (2023) add geographic
+and input variety. New location labels and currency explanations preserve domestic
+versus group scope, market benchmarks, estimates and unknowns. Sources remain
+external; existing records and frozen M001 files are unchanged. See
+[collection notes](data/collection/m011/README.md). Run `make app` at
+http://127.0.0.1:8000.
 
-**M010: Complete.** Ordinary denied alternatives (“rising not falling”), comma-linked
-cost directions and explicit buying/third-party roles are handled before ranking.
-Ambiguous directions or reader roles ask for clarification; edits keep text/dates
-without submitting. Case-pressure scoring, publication dates, earlier periods,
-self/continuation exclusions and withheld future actions are preserved.
+**Development comparison:** 25 searches/comparison checks frozen in `98b8001`
+before records, plus 186 historical entries. Same M010 method and eligible-case
+rules on 17/20 cases: expected useful targets at five in 2/16 → 14/16 queries;
+all five expected-empty searches stay empty. Fourteen new-set and 51 historical
+ranked lists change; ten prior targets rank lower, none leaves the first five.
+Copra/paper queries miss, and edible oils misleadingly match diesel. These are
+AI development judgements, not independent validation or an accuracy estimate.
+See [actual results, regressions and limits](evaluation/collection-m011/report.md).
 
-**Development evaluation:** 56 queries/counterexamples frozen in `e858102` before
-method changes. Same seventeen-case eligible pools for M009/M010: expected useful
-cases found in 9/33 → 33/33 queries; misleading-result queries 9 → 0; required
-clarifications 1/9 → 9/9. All 56 expectations pass. Thirty-two ranked lists change;
-no expected-target retrieval/rank regressions. All 130 historical entries retain
-ranks and scores. See [paired results and limits](evaluation/search-m010/report.md).
+**Checks:** 98 Python / 17 JavaScript tests; Ruff/syntax; pilot/current collection
+validation; M005/M006/M007/M008/M009/M010 historical and M011 paired reproductions
+passed. Desktop/375px: 48 grouped checks, 40 delayed failure/retry cycles; source
+and app screenshots inspected. Original PDFs, dates, definitions, terms and links
+checked; no documents served. Historical code/UI hashes verify against Git;
+no prior case, observation or manifest was rewritten.
 
-**Checks:** 90 Python / 16 JavaScript tests; Ruff/syntax; pilot/collection validation;
-M005/M006/M007/M008 historical and M009/M010 paired checks passed. Desktop/375px:
-42 grouped checks and 40 delayed-response retry cycles; screenshots inspected.
-Existing cases, frozen M001 files and previous evaluation artifacts are unchanged;
-original runtime/UI hashes are checked against Git history.
-
-**Limits / next:** Builder development judgements, not independent validation.
-Negated antecedents (“Milk prices aren't rising; they are falling”) and indirect
-cost references (“costs of milk … those of energy”) still ask for clarification.
-Unlisted sectors, complex roles and input phrases remain limited. Next: improve
-reference handling conservatively and broaden realistic development checks.
-Coverage, episode bounds, action effects and Hershey's source discrepancy remain
-unresolved. Human validation stays deferred; no R01 contact occurred.
+**Limits / next:** Freeze tests to distinguish fuel from edible/natural oils and
+assess copra/paper names before changing search. Country names do not filter ranks.
+Indirect references still need clarification. Geographic coverage remains narrow,
+with many local markets missing; episode bounds, action effects, Tiger's cost-base
+reconciliation and Hershey's earlier discrepancy remain unresolved. No human
+validation or response-effectiveness claim is made; no R01 contact occurred.

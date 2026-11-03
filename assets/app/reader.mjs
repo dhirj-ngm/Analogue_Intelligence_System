@@ -105,7 +105,8 @@ export function unknownLabels(items) {
 }
 
 export function metricFacts(metric) {
-  const amount = metric.unit === "percent" ? `${metric.value}%` : `${metric.value} ${metric.unit}`;
+  const unitNames = {"JPY billion": "billion Japanese yen (JPY)", "ZAR million": "million South African rand (ZAR)"};
+  const amount = metric.unit === "percent" ? `${metric.value}%` : `${metric.value} ${unitNames[metric.unit] || metric.unit}`;
   return [
     ["Measure", metric.name],
     ["Number reported", explainBasisPoints(amount)],
@@ -116,6 +117,8 @@ export function metricFacts(metric) {
 }
 
 export function metricHelp(metric) {
+  if (metric.unit === "JPY billion") return "This amount is in billions of Japanese yen. A negative estimated cost effect is not an operating loss. Check its scope and comparison period; it cannot be subtracted from a margin or an amount in another currency.";
+  if (metric.unit === "ZAR million") return "This amount is in millions of South African rand. Check whether it is a total cost, a change or an estimate: these can use different definitions. We have not converted currencies or reconciled different cost bases.";
   if (metric.unit === "USD per 100 lb") return "This price is quoted per 100 pounds. Check whether it is a market benchmark or the company's actual purchase price, and which costs it includes.";
   if (metric.unit === "USD million") return "This amount is in millions of U.S. dollars. Check whether it measures profit, an estimated cost change or another reported amount, and which part of the business it covers.";
   return "A margin is profit as a share of sales. A percentage change in profit measures something different. For margins, 100 basis points means one percentage point. Adjusted figures leave out some items; check the company's definition.";

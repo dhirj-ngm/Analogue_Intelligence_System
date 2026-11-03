@@ -134,6 +134,7 @@ function renderCard(c, index) {
   const title = node("div");
   title.append(node("p", `CASE ${index + 1}`, "case-kicker"), node("h3", c.company),
     node("p", `Period covered: ${periodLabel(c.period)}`, "date-line"));
+  if (c.geography) title.append(node("p", c.geography.label, "case-geography date-line"));
   const label = node("label", undefined, "compare-label");
   const input = node("input");
   input.type = "checkbox";
@@ -192,6 +193,7 @@ function renderComparison() {
   cases.forEach((c) => {
     const th = node("th"); th.scope = "col";
     th.append(node("span", c.company), node("small", periodLabel(c.period)));
+    if (c.geography) th.append(node("small", c.geography.label));
     header.append(th);
   });
   head.append(header);
@@ -215,7 +217,7 @@ function renderComparison() {
     const th = node("th", title); th.scope = "row"; th.setAttribute("role", "rowheader"); row.append(th);
     cases.forEach((c) => {
       const td = node("td"); td.setAttribute("role", "cell");
-      const mobileLabel = node("span", `${c.company} · ${dateLabel(c.period.end)}`, "compare-case-label");
+      const mobileLabel = node("span", `${c.company} · ${dateLabel(c.period.end)}${c.geography ? ` · ${c.geography.label}` : ""}`, "compare-case-label");
       mobileLabel.setAttribute("aria-hidden", "true");
       const result = value(c);
       td.append(mobileLabel, typeof result === "string" ? document.createTextNode(result) : result);

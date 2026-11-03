@@ -14,7 +14,7 @@ from ais.vocabulary import FAMILIES
 
 class M007Tests(unittest.TestCase):
     def setUp(self):
-        self.search = CaseSearch.load()
+        self.search = CaseSearch.load("m007")
         self.records = {c["id"]: c for c in read_jsonl(M007)}
 
     def query(self, text, **extra):
@@ -27,7 +27,7 @@ class M007Tests(unittest.TestCase):
                 self.assertEqual(sha256((ROOT / path).read_bytes()).hexdigest(), expected, path)
 
     def test_collection_has_distinct_groups_and_complete_source_contracts(self):
-        self.assertEqual(len(load_collection()), 7)
+        self.assertEqual(len(load_collection("m007")), 7)
         self.assertEqual(self.search.catalog()["total"], 17)
         self.assertEqual(self.search.catalog()["companies"], 12)
         for c in self.records.values():
@@ -37,7 +37,7 @@ class M007Tests(unittest.TestCase):
                 self.assertFalse(s["document_retained"])
                 self.assertIn("sec.gov/Archives", s["url"])
                 self.assertTrue(s["publication_evidence"]["url"])
-        duplicate = deepcopy(load_collection())
+        duplicate = deepcopy(load_collection("m007"))
         duplicate[-1]["duplicate_group"] = duplicate[0]["duplicate_group"]
         with self.assertRaisesRegex(ValueError, "continuing situation"):
             validate(duplicate)
