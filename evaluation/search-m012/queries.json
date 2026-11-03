@@ -1,0 +1,983 @@
+{
+  "version": "M012-v1",
+  "base_commit": "1630a79b9aa1d817b42e0c08f8f903f2c8a42e28",
+  "collection": "m011",
+  "old_method": "context_m010",
+  "provenance": "Builder-authored AI development expectations frozen before method changes. Case-informed diagnostic sample, not independent human judgement or an accuracy estimate. Human validation deferred, zero human judgements.",
+  "policy": [
+    "Both methods use identical eligible IDs/exclusion counts on the same 20 cases. No record, source attribution, date or M001 changes. No first-stage actions/outcomes/identity/figures.",
+    "Distinguish fuel, petrochemical inputs/packaging, natural fats/oils, edible/vegetable oils and specific named oil inputs. Generic natural fats/oils do not establish edible use or a particular plant. Copra is dried coconut kernel, not coconut oil or a fuel.",
+    "Paper/cardboard words have explicit Kao pressure evidence; do not infer pulp. Specific petrochemical packaging requests are not satisfied by generic packaging alone.",
+    "Nestle oil-linked distribution/packaging evidence can be a qualified related cost comparison, never proof of diesel or another exact fuel/material. No fuel comparison with edible/natural oils or petrochemical material solely via oil.",
+    "Bare oil has no safe type. Ask for a material clarification; other clearly named pressures may still produce partial results. Negation, role and cost direction stay conservative.",
+    "Report missing useful cases, forbidden/unexpected results, named versus related support, and every historical target regression. Do not tune labels or cases after rankings."
+  ],
+  "source_checks": [
+    {
+      "url": "https://www.nestle.com/media/pressreleases/allpressreleases/half-year-results2011",
+      "locator": "Nestle Waters final bullet; 10 August 2011",
+      "finding": "Source reports oil-related distribution and packaging costs, without naming diesel. Treat fuel link as broader cost evidence, not exact-input support."
+    },
+    {
+      "url": "https://marico.com/investorspdf/Information_Update_April_30_2021.pdf",
+      "locator": "Update printed pp. 4 and 6, input/pricing and footnote (a); 30 April 2021",
+      "finding": "Copra and rice bran oil benchmarks; existing pressure also defines dried coconut kernel and HDPE plastic. Coconut oil sales/output do not establish a coconut-oil input price."
+    },
+    {
+      "url": "https://www.kao.com/content/dam/sites/kao/www-kao-com/global/en/investor-relations/pdf/presentations-fy2022-01.pdf",
+      "locator": "Printed/PDF p. 23, FY2022 bar and categories; 2 February 2023",
+      "finding": "Natural fats/oils, petrochemical materials/packaging and paper/cardboard; no named fuel or specific edible oil. Keep 2023 energy forecast out."
+    }
+  ],
+  "queries": [
+    {
+      "id": "diesel",
+      "text": "Diesel fuel costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "named_input_cases": []
+    },
+    {
+      "id": "food-diesel",
+      "text": "Our food factory faces higher diesel costs.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "named_input_cases": []
+    },
+    {
+      "id": "fuel",
+      "text": "Fuel input costs are rising.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "named_input_cases": []
+    },
+    {
+      "id": "gasoline",
+      "text": "Gasoline prices are higher.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "named_input_cases": []
+    },
+    {
+      "id": "petrol",
+      "text": "Petrol input prices rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "named_input_cases": []
+    },
+    {
+      "id": "diesel-not-food",
+      "text": "Diesel costs rise, not cooking oil costs.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "named_input_cases": []
+    },
+    {
+      "id": "edible",
+      "text": "Edible oil input costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "vegetable",
+      "text": "Vegetable oil costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "cooking",
+      "text": "We pay more for cooking oil.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "rice-bran",
+      "text": "Rice bran oil input prices rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ]
+    },
+    {
+      "id": "natural",
+      "text": "Natural fats and oils cost more; input prices are rising.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "natural-oils",
+      "text": "Natural oil costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "palm-unsupported",
+      "text": "Palm oil input costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "olive-unsupported",
+      "text": "Olive oil costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "coconut-not-copra",
+      "text": "Coconut oil input prices rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "crude-not-diesel",
+      "text": "Crude oil input costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "petrochemical",
+      "text": "Petrochemical raw-material costs are higher.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [
+        "KAO-CP-2022"
+      ]
+    },
+    {
+      "id": "petrochemical-packaging",
+      "text": "Petrochemical packaging costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1",
+        "CL-2008",
+        "CL-2015",
+        "CL-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [
+        "KAO-CP-2022"
+      ]
+    },
+    {
+      "id": "petrochemical-no-fuel",
+      "text": "Petrochemical materials rose in cost, not diesel fuel.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "oil-linked-distribution",
+      "text": "Oil-related distribution costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "oil-linked-packaging",
+      "text": "Oil-related packaging costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "plastic-not-fuel",
+      "text": "Plastic resin input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KC-2011",
+        "COKE-2022",
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "bare-oil",
+      "text": "Oil costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": true,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "food-oil",
+      "text": "Oil costs at a food manufacturer",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": true,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "oil-topic",
+      "text": "oil",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": true,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "oil-and-grain",
+      "text": "Oil and wheat costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "GIS-2007",
+        "TIGER-2023-H1"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "expect_material_clarification": true,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra",
+      "text": "Copra input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "KAO-CP-2022",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ]
+    },
+    {
+      "id": "dried-kernel",
+      "text": "Dried coconut kernel prices are rising.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "KAO-CP-2022",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ]
+    },
+    {
+      "id": "copra-buying",
+      "text": "We buy copra. Its costs are rising.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "KAO-CP-2022",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra-not-coconut-output",
+      "text": "Our coconut oil sales are rising.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra-sales",
+      "text": "Copra sales rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra-fall",
+      "text": "Copra input costs fell.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra-negated",
+      "text": "Copra costs are not rising.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra-alternative",
+      "text": "Copra costs are rising not falling.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [
+        "KAO-CP-2022",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "paper",
+      "text": "Paper input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [
+        "KC-2011",
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [
+        "KAO-CP-2022"
+      ]
+    },
+    {
+      "id": "cardboard",
+      "text": "Cardboard costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [
+        "KC-2011",
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [
+        "KAO-CP-2022"
+      ]
+    },
+    {
+      "id": "paper-cardboard",
+      "text": "Paper and cardboard costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [
+        "KC-2011",
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [
+        "KAO-CP-2022"
+      ]
+    },
+    {
+      "id": "paper-not-pulp",
+      "text": "Pulp input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KC-2011"
+      ],
+      "forbidden_cases": [
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4",
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "paper-sales",
+      "text": "Paper sales rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "paperwork",
+      "text": "Paperwork costs are higher.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "paper-fall",
+      "text": "Cardboard input costs fell.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "paper-negated",
+      "text": "Paper input prices did not rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "mixed-material-directions",
+      "text": "Copra costs fell, paper costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "two-situations",
+      "text": "Copra and paper costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "diesel-and-edible",
+      "text": "Diesel and edible oil costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1",
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "petrochemical-and-food",
+      "text": "Petrochemical packaging and rice bran oil costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022",
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "unknown-oil-with-paper",
+      "text": "Oil and paper costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "expect_material_clarification": true,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "oil-vague-uncertainty",
+      "text": "Oil costs may be rising or falling.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "supplier-fuel",
+      "text": "We make food. Our logistics supplier charges us higher diesel prices.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "named_input_cases": []
+    },
+    {
+      "id": "supplier-own-food",
+      "text": "Our supplier's rice bran oil costs rose. We pay more for diesel.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4",
+        "KAO-CP-2022"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "named_input_cases": []
+    },
+    {
+      "id": "true-airline",
+      "text": "We operate an airline. Diesel costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "price-response",
+      "text": "We raised our rice bran oil selling prices.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "unknown-beef",
+      "text": "Beef input costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "potato",
+      "text": "Potato costs rose.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "milk-decline",
+      "text": "Milk costs fell.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [
+        "DF-2015"
+      ],
+      "forbidden_cases": [
+        "GIS-2007"
+      ],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra-before",
+      "text": "Copra costs rise.",
+      "cutoff": "2021-04-29",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra-on",
+      "text": "Copra costs rise.",
+      "cutoff": "2021-04-30",
+      "expected_useful_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "copra-self",
+      "text": "Copra costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "MARICO-INDIA-2021-Q4"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [],
+      "source_id": "MARICO-INDIA-2021-Q4"
+    },
+    {
+      "id": "paper-before",
+      "text": "Paper costs rise.",
+      "cutoff": "2023-02-01",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "KAO-CP-2022"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "paper-on",
+      "text": "Paper costs rise.",
+      "cutoff": "2023-02-02",
+      "expected_useful_cases": [
+        "KAO-CP-2022"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "paper-self",
+      "text": "Paper costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "KAO-CP-2022"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [],
+      "source_id": "KAO-CP-2022"
+    },
+    {
+      "id": "fuel-before",
+      "text": "Diesel costs rise.",
+      "cutoff": "2011-08-09",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "fuel-on",
+      "text": "Diesel costs rise.",
+      "cutoff": "2011-08-10",
+      "expected_useful_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "forbidden_cases": [],
+      "expect_empty": false,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": []
+    },
+    {
+      "id": "fuel-self",
+      "text": "Diesel costs rise.",
+      "cutoff": "2026-11-03",
+      "expected_useful_cases": [],
+      "forbidden_cases": [
+        "NES-WATERS-2011-H1"
+      ],
+      "expect_empty": true,
+      "expect_material_clarification": false,
+      "related_only_cases": [],
+      "named_input_cases": [],
+      "source_id": "NES-WATERS-2011-H1"
+    }
+  ],
+  "comparison_checks": [
+    "Fuel-only result must disclose source oil-linked costs and exact fuel unknown; never label diesel as established.",
+    "For copra/paper or fuel/edible combinations, list supported, related-only and missing inputs per case; never pool different situations.",
+    "Source links, definitions, dates, geographic scope, action attribution and unknowns remain visible."
+  ]
+}
